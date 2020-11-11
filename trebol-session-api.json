@@ -1,9 +1,9 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Trebol Session API",
-        "version": "beta-03",
-        "description": "This API iteration allows consumers to request new user accounts (register), logging in and out, request/update their personal profile information, and generate guest session tokens.",
+        "title": "Trébol Session API",
+        "version": "1.0.0",
+        "description": "This API allows to request new user accounts (register), logging in and out, request/update their personal profile information, and generate guest session tokens.",
         "license": {
             "name": "GNU GPLv3",
             "url": "https://www.gnu.org/licenses/gpl.txt"
