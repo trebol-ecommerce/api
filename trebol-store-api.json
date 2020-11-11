@@ -1,0 +1,1047 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Trebol Store API",
+        "version": "beta-04",
+        "description": "This iteration includes resources to query products, categories, shop information, send payment requests and validate transaction statuses. All methods are documented with their accepted query parameters, payloads and responses.",
+        "contact": {
+            "name": "Benjamin La Madrid",
+            "email": "bg.lamadrid@gmail.com"
+        },
+        "license": {
+            "name": "GNU GPLv3",
+            "url": "https://www.gnu.org/licenses/gpl.txt"
+        }
+    },
+    "paths": {
+        "/store/front": {
+            "summary": "Available products",
+            "description": "",
+            "get": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "A normal response, including a paged array of products for sale."
+                    },
+                    "500": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
+                    }
+                },
+                "security": [
+                    {
+
+                    }
+                ],
+                "summary": "List available products",
+                "description": "GET all products currently on sale at the shop. May accept sorting, ordering, paging and filtering conditions in query parameters."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "security": [
+                    {
+
+                    }
+                ],
+                "summary": "Preflight check for available products",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "page",
+                    "description": "Products page number (1-based)",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "query",
+                    "required": false
+                },
+                {
+                    "name": "items",
+                    "description": "Products count per page",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "query"
+                },
+                {
+                    "examples": {
+                        "Sort by name": {
+                            "value": "\"name\""
+                        },
+                        "Sort by barcode": {
+                            "value": "\"barcode\""
+                        },
+                        "Sort by price": {
+                            "value": "\"price\""
+                        }
+                    },
+                    "name": "sortBy",
+                    "description": "Product property to sort by",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query",
+                    "required": false
+                },
+                {
+                    "examples": {
+                        "Ascending order": {
+                            "value": "\"asc\""
+                        },
+                        "Descending order": {
+                            "value": "\"desc\""
+                        }
+                    },
+                    "name": "order",
+                    "description": "Product sort order (ascending or descending)",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
+        },
+        "/store/categories": {
+            "summary": "Product main categories",
+            "description": "",
+            "get": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductFamily"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Normal response. Sends an array with all main product categories."
+                    },
+                    "500": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
+                    }
+                },
+                "security": [
+                    {
+
+                    }
+                ],
+                "summary": "List product main categories",
+                "description": "GET the main (bigger) categories where to browse the products available for sale at the shop."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "security": [
+                    {
+
+                    }
+                ],
+                "summary": "Preflight check for product categories",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/store/categories/{id}": {
+            "summary": "Product subcategories within specific main category",
+            "description": "",
+            "get": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductType"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Normal response. Sends an array with the requested subcategories."
+                    },
+                    "500": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
+                    },
+                    "404": {
+                        "description": "The specified main category could not be found."
+                    }
+                },
+                "security": [
+                    {
+
+                    }
+                ],
+                "summary": "Find and list product subcategories within specific main category",
+                "description": "GET the subcategories found within the provided main category ID."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "security": [
+                    {
+
+                    }
+                ],
+                "summary": "Preflight check for product subcategories",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "The main category identifier",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/store/product/{id}": {
+            "summary": "Find specific product",
+            "description": "",
+            "get": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        },
+                        "description": "A normal response, including an object containing the individual product data."
+                    },
+                    "404": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The specified product could not be found."
+                    },
+                    "500": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
+                    }
+                },
+                "security": [
+                    {
+
+                    }
+                ],
+                "summary": "Find specific product",
+                "description": "GET complete public information about a specific product, matched by its ID, barcode, or whatever unique property is used to identify it."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "security": [
+                    {
+
+                    }
+                ],
+                "summary": "Preflight check for specific product",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "The product identifier",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/store/about": {
+            "summary": "Info on the shop",
+            "description": "Public resource for general information about the company behind the shop.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShopOwnerDetails"
+                                }
+                            }
+                        },
+                        "description": "Normal response. Sends an object containing information about the shop."
+                    },
+                    "500": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
+                    }
+                },
+                "security": [
+                    {
+
+                    }
+                ],
+                "summary": "Request info on the shop",
+                "description": "GET general information regarding the company behind the shop."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "security": [
+                    {
+
+                    }
+                ],
+                "summary": "Preflight check for shop information",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/store/checkout": {
+            "summary": "Payment request",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CartDetail"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "parameters": [
+                    {
+                        "examples": {
+                            "Webpay": {
+                                "value": "\"webpay\""
+                            }
+                        },
+                        "name": "method",
+                        "description": "The payment method requested by the user.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaymentRedirection"
+                                }
+                            }
+                        },
+                        "description": "Normal response. The transaction was acknowledged and initiated. Sends details to redirect towards the payment page."
+                    },
+                    "500": {
+                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": [
+                        ]
+                    }
+                ],
+                "summary": "Send a payment request",
+                "description": "POST cart details to initiate a virtual transaction in the shop."
+            },
+            "options": {
+                "requestBody": {
+
+                },
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response, should include CORS headers and only allow the POST method."
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": [
+                        ]
+                    }
+                ],
+                "summary": "Preflight check for payment request",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/store/checkout/validate": {
+            "summary": "Payment confirmation",
+            "post": {
+                "responses": {
+                    "500": {
+                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
+                    },
+                    "301": {
+                        "description": "Normal response; the transaction was approved."
+                    },
+                    "400": {
+                        "description": "Failing response; the transaction was cancelled, rejected or is not a valid transaction."
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": [
+                        ]
+                    }
+                ],
+                "summary": "Send payment result",
+                "description": "POST response from the payment method to confirm the transaction end result."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response, should include CORS headers and only allow the POST method."
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": [
+                        ]
+                    }
+                ],
+                "summary": "Preflight check for payment confirmation",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Empty": {
+                "description": "An object without properties.",
+                "type": "object"
+            },
+            "Product": {
+                "anyOf": [
+                    {
+                        "required": [
+                            "id"
+                        ],
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "barcode": {
+                                "type": "string"
+                            },
+                            "productType": {
+                                "$ref": "#/components/schemas/ProductType",
+                                "properties": {
+                                    "id": {
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "price": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    {
+                        "$ref": "#/components/schemas/AbstractEntity"
+                    }
+                ],
+                "title": "Root Type for product",
+                "description": "A physical item or a service that the shop stocks up on, displays, offers and sells to its customers.",
+                "type": "object",
+                "example": {
+                    "id": 1,
+                    "name": "example product",
+                    "barcode": "EXMPL00001",
+                    "productType": {
+                        "id": 1,
+                        "name": "example product category"
+                    },
+                    "price": 1000
+                }
+            },
+            "AbstractEntity": {
+                "title": "Root Type for Identifiable",
+                "description": "Representation of data that has an unique identifier.",
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "id": 1
+                }
+            },
+            "ProductFamily": {
+                "anyOf": [
+                    {
+                        "required": [
+                            "id"
+                        ],
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "$ref": "#/components/schemas/AbstractEntity"
+                    }
+                ],
+                "title": "Root Type for ProductCategory",
+                "description": "A Product group/category. Each one can be divided into smaller subsets (ProductType).",
+                "type": "object",
+                "example": {
+                    "id": 1,
+                    "name": "example category"
+                }
+            },
+            "ProductType": {
+                "anyOf": [
+                    {
+                        "required": [
+                            "id"
+                        ],
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "productFamily": {
+                                "$ref": "#/components/schemas/ProductFamily",
+                                "properties": {
+                                    "id": {
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "$ref": "#/components/schemas/AbstractEntity"
+                    }
+                ],
+                "title": "Root Type for ProductChildCategory",
+                "description": "A smaller Product group/category. Belongs to a bigger set (ProductFamily).",
+                "type": "object",
+                "example": {
+                    "id": 1,
+                    "name": "example child category",
+                    "productFamily": {
+                        "id": 1,
+                        "name": "example category"
+                    }
+                }
+            },
+            "ShopOwnerDetails": {
+                "title": "Root Type for ShopOwnerDetails",
+                "description": "Representation of data about the shop owner - be it an individual or an organization.",
+                "required": [
+                    "name",
+                    "logoImageURL"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "bannerImageURL": {
+                        "type": "string"
+                    },
+                    "logoImageURL": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "example shop owner details",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse arcu eros, semper id interdum ut, molestie ut ex. Nulla lobortis viverra tempor.",
+                    "bannerImageURL": "https://example.com/banner.jpg",
+                    "logoImageURL": "https://example.com/logo.jpg"
+                }
+            },
+            "PaymentRedirection": {
+                "title": "Root Type for PaymentRedirection",
+                "description": "Representation of data used for redirecting the user towards a payment method.",
+                "required": [
+                    "url",
+                    "token_ws"
+                ],
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "type": "string"
+                    },
+                    "token_ws": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "url": "https://payment.com",
+                    "token_ws": "a.token.that.the.payment.method.created.and.recognizes"
+                }
+            },
+            "CartDetail": {
+                "title": "Root Type for CartDetail",
+                "description": "Representation of data about a single product within a shopping cart.",
+                "required": [
+                    "units",
+                    "product"
+                ],
+                "type": "object",
+                "properties": {
+                    "product": {
+                        "$ref": "#/components/schemas/Product",
+                        "properties": {
+                            "id": {
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "barcode": {
+                                "type": "string"
+                            },
+                            "price": {
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "units": {
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "product": {
+                        "id": 1,
+                        "name": "example product",
+                        "barcode": "EXMPL000001",
+                        "price": 1000
+                    },
+                    "units": 1
+                }
+            }
+        },
+        "responses": {
+            "Empty": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Empty"
+                        }
+                    }
+                },
+                "description": "Empty JSON response"
+            }
+        },
+        "securitySchemes": {
+            "AuthorizedRequest": {
+                "scheme": "bearer",
+                "type": "http",
+                "description": "Requests including a Bearer token in their Authorization header."
+            }
+        }
+    },
+    "security": [
+        {
+
+        }
+    ]
+}
