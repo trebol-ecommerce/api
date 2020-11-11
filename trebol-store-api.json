@@ -1,9 +1,9 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Trebol Store API",
-        "version": "beta-04",
-        "description": "This iteration includes resources to query products, categories, shop information, send payment requests and validate transaction statuses. All methods are documented with their accepted query parameters, payloads and responses.",
+        "title": "Trébol Store API",
+        "version": "1.0.0",
+        "description": "This API includes resources to query products, categories, shop information, send payment requests and validate transaction statuses. All methods are documented with their accepted query parameters, payloads and responses.",
         "contact": {
             "name": "Benjamin La Madrid",
             "email": "bg.lamadrid@gmail.com"
