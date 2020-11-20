@@ -3,7 +3,11 @@
     "info": {
         "title": "Trébol Session API",
         "version": "1.0.0",
-        "description": "This API allows to request new user accounts (register), logging in and out, request/update their personal profile information, and generate guest session tokens.",
+        "description": "Resources to request new user accounts (register), logging in and out, request/update personal profile information, and request guest session tokens.",
+        "contact": {
+            "name": "Benjamin La Madrid",
+            "email": "bg.lamadrid@gmail.com"
+        },
         "license": {
             "name": "GNU GPLv3",
             "url": "https://www.gnu.org/licenses/gpl.txt"
