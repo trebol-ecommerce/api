@@ -2,8 +2,8 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Data Access API",
-        "version": "1.0.0",
-        "description": "Resources for users to query their authorized resource and operation accesses on the Data Management API (v2.0.0 and onwards).",
+        "version": "2.0.0",
+        "description": "Resources for users to query their authorized resource and operation accesses on the Data Management API.",
         "contact": {
             "name": "Benjamin La Madrid",
             "email": "bg.lamadrid@gmail.com"
@@ -14,7 +14,7 @@
         }
     },
     "paths": {
-        "/access": {
+        "/": {
             "summary": "Allowed (authorized) access to API routes",
             "get": {
                 "responses": {
@@ -139,7 +139,7 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/access/clients": {
+        "/clients": {
             "summary": "Allowed (authorized) access to clients API",
             "get": {
                 "responses": {
@@ -357,7 +357,7 @@
                 }
             }
         },
-        "/access/products": {
+        "/products": {
             "summary": "Allowed (authorized) access to products API",
             "get": {
                 "responses": {
@@ -579,7 +579,7 @@
                 }
             }
         },
-        "/access/sales": {
+        "/sales": {
             "summary": "Allowed (authorized) access to sales API",
             "get": {
                 "responses": {
@@ -797,7 +797,7 @@
                 }
             }
         },
-        "/access/sellers": {
+        "/sellers": {
             "summary": "Allowed (authorized) access to sellers API",
             "get": {
                 "responses": {
@@ -1015,7 +1015,7 @@
                 }
             }
         },
-        "/access/users": {
+        "/users": {
             "summary": "Allowed (authorized) access to users API",
             "get": {
                 "responses": {
