@@ -2,8 +2,8 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Data Access API",
-        "version": "2.0.0",
-        "description": "Resources for users to query their authorized resource and operation accesses on the Data Management API.",
+        "version": "2.1.0",
+        "description": "Resources for API consumers to query their authorized resource and operation accesses on the Data Management API.",
         "contact": {
             "name": "Benjamin La Madrid",
             "email": "bg.lamadrid@gmail.com"
@@ -137,224 +137,6 @@
                 },
                 "summary": "Preflight check for API resource accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/clients": {
-            "summary": "Allowed (authorized) access to clients API",
-            "get": {
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/AuthorizedAcess"
-                                },
-                                "examples": {
-                                    "Read-only": {
-                                        "value": {
-                                            "permissions": [
-                                                "read"
-                                            ]
-                                        }
-                                    },
-                                    "Read and insert new data": {
-                                        "value": {
-                                            "permissions": [
-                                                "create",
-                                                "read"
-                                            ]
-                                        }
-                                    },
-                                    "Read and write data": {
-                                        "value": {
-                                            "permissions": [
-                                                "create",
-                                                "read",
-                                                "update"
-                                            ]
-                                        }
-                                    },
-                                    "Read, write and delete data (full access)": {
-                                        "value": {
-                                            "permissions": [
-                                                "create",
-                                                "read",
-                                                "update",
-                                                "delete"
-                                            ]
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Normal response. Sends an AuthorizedAccess object with an array of available and permitted actions."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Query allowed clients API operations",
-                "description": "GET actions that the current session is authorized to do using the clients API."
-            },
-            "options": {
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
-                    }
-                },
-                "summary": "Preflight check for clients API operation accesses",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "x-amazon-apigateway-any-method": {
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-
-                        }
-                    },
-                    "400": {
-                        "description": "400 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-
-                        }
-                    },
-                    "403": {
-                        "description": "403 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-
-                        }
-                    },
-                    "500": {
-                        "description": "500 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-
-                        }
-                    }
-                }
             }
         },
         "/products": {
@@ -516,9 +298,7 @@
                                 }
                             }
                         },
-                        "content": {
-
-                        }
+                        "content": {}
                     },
                     "403": {
                         "description": "403 response",
@@ -544,9 +324,7 @@
                                 }
                             }
                         },
-                        "content": {
-
-                        }
+                        "content": {}
                     },
                     "500": {
                         "description": "500 response",
@@ -572,9 +350,7 @@
                                 }
                             }
                         },
-                        "content": {
-
-                        }
+                        "content": {}
                     }
                 }
             }
@@ -706,9 +482,7 @@
                                 }
                             }
                         },
-                        "content": {
-
-                        }
+                        "content": {}
                     },
                     "400": {
                         "description": "400 response",
@@ -734,9 +508,7 @@
                                 }
                             }
                         },
-                        "content": {
-
-                        }
+                        "content": {}
                     },
                     "403": {
                         "description": "403 response",
@@ -762,9 +534,7 @@
                                 }
                             }
                         },
-                        "content": {
-
-                        }
+                        "content": {}
                     },
                     "500": {
                         "description": "500 response",
@@ -790,227 +560,7 @@
                                 }
                             }
                         },
-                        "content": {
-
-                        }
-                    }
-                }
-            }
-        },
-        "/sellers": {
-            "summary": "Allowed (authorized) access to sellers API",
-            "get": {
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/AuthorizedAcess"
-                                },
-                                "examples": {
-                                    "Read-only": {
-                                        "value": {
-                                            "permissions": [
-                                                "read"
-                                            ]
-                                        }
-                                    },
-                                    "Read and insert new data": {
-                                        "value": {
-                                            "permissions": [
-                                                "create",
-                                                "read"
-                                            ]
-                                        }
-                                    },
-                                    "Read and write data": {
-                                        "value": {
-                                            "permissions": [
-                                                "create",
-                                                "read",
-                                                "update"
-                                            ]
-                                        }
-                                    },
-                                    "Read, write and delete data (full access)": {
-                                        "value": {
-                                            "permissions": [
-                                                "create",
-                                                "read",
-                                                "update",
-                                                "delete"
-                                            ]
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Normal response. Sends an AuthorizedAccess object with an array of available and permitted actions."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Query allowed sellers API operations",
-                "description": "GET actions that the current session is authorized to do using the sellers API."
-            },
-            "options": {
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
-                    }
-                },
-                "summary": "Preflight check for sellers API operation accesses",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "x-amazon-apigateway-any-method": {
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-
-                        }
-                    },
-                    "400": {
-                        "description": "400 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-
-                        }
-                    },
-                    "403": {
-                        "description": "403 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-
-                        }
-                    },
-                    "500": {
-                        "description": "500 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-
-                        }
+                        "content": {}
                     }
                 }
             }
@@ -1142,9 +692,7 @@
                                 }
                             }
                         },
-                        "content": {
-
-                        }
+                        "content": {}
                     },
                     "400": {
                         "description": "400 response",
@@ -1170,9 +718,7 @@
                                 }
                             }
                         },
-                        "content": {
-
-                        }
+                        "content": {}
                     },
                     "403": {
                         "description": "403 response",
@@ -1198,9 +744,7 @@
                                 }
                             }
                         },
-                        "content": {
-
-                        }
+                        "content": {}
                     },
                     "500": {
                         "description": "500 response",
@@ -1226,9 +770,427 @@
                                 }
                             }
                         },
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/customers": {
+            "summary": "Allowed (authorized) access to customers API",
+            "get": {
+                "responses": {
+                    "200": {
                         "content": {
-
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthorizedAcess"
+                                },
+                                "examples": {
+                                    "Read-only": {
+                                        "value": {
+                                            "permissions": [
+                                                "read"
+                                            ]
+                                        }
+                                    },
+                                    "Read and insert new data": {
+                                        "value": {
+                                            "permissions": [
+                                                "create",
+                                                "read"
+                                            ]
+                                        }
+                                    },
+                                    "Read and write data": {
+                                        "value": {
+                                            "permissions": [
+                                                "create",
+                                                "read",
+                                                "update"
+                                            ]
+                                        }
+                                    },
+                                    "Read, write and delete data (full access)": {
+                                        "value": {
+                                            "permissions": [
+                                                "create",
+                                                "read",
+                                                "update",
+                                                "delete"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Normal response. Sends an AuthorizedAccess object with an array of available and permitted actions."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Query allowed customers API operations",
+                "description": "GET actions that the current session is authorized to do using the customers API."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "summary": "Preflight check for customers API operation accesses",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "x-amazon-apigateway-any-method": {
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
                         }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {}
+                    },
+                    "400": {
+                        "description": "400 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {}
+                    },
+                    "403": {
+                        "description": "403 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {}
+                    },
+                    "500": {
+                        "description": "500 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/salespeople": {
+            "summary": "Allowed (authorized) access to salespeople API",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthorizedAcess"
+                                },
+                                "examples": {
+                                    "Read-only": {
+                                        "value": {
+                                            "permissions": [
+                                                "read"
+                                            ]
+                                        }
+                                    },
+                                    "Read and insert new data": {
+                                        "value": {
+                                            "permissions": [
+                                                "create",
+                                                "read"
+                                            ]
+                                        }
+                                    },
+                                    "Read and write data": {
+                                        "value": {
+                                            "permissions": [
+                                                "create",
+                                                "read",
+                                                "update"
+                                            ]
+                                        }
+                                    },
+                                    "Read, write and delete data (full access)": {
+                                        "value": {
+                                            "permissions": [
+                                                "create",
+                                                "read",
+                                                "update",
+                                                "delete"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Normal response. Sends an AuthorizedAccess object with an array of available and permitted actions."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Query allowed salespeople API operations",
+                "description": "GET actions that the current session is authorized to do using the salespeople API."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "summary": "Preflight check for salespeople API operation accesses",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "x-amazon-apigateway-any-method": {
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {}
+                    },
+                    "400": {
+                        "description": "400 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {}
+                    },
+                    "403": {
+                        "description": "403 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {}
+                    },
+                    "500": {
+                        "description": "500 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {}
                     }
                 }
             }
@@ -1280,8 +1242,7 @@
     },
     "security": [
         {
-            "AuthorizedRequest": [
-            ]
+            "AuthorizedRequest": []
         }
     ]
 }
