@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Data Management API",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "description": "Resources to read, write and delete data in varied contexts. Requires authorization tokens. Users can query Trébol Data Access API to acknowledge which resources and operations can they request.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -14,13 +14,13 @@
         }
     },
     "paths": {
-        "/clients": {
-            "summary": "Non-specific-client API endpoint",
+        "/customers": {
+            "summary": "Non-specific-customer API endpoint",
             "get": {
                 "parameters": [
                     {
                         "name": "items",
-                        "description": "Clients count per page",
+                        "description": "Customers count per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -36,7 +36,7 @@
                             }
                         },
                         "name": "order",
-                        "description": "Client sort order (ascending or descending)",
+                        "description": "Customer sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },
@@ -44,7 +44,7 @@
                     },
                     {
                         "name": "page",
-                        "description": "Clients page number (1-based)",
+                        "description": "Customers page number (1-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -52,7 +52,7 @@
                     },
                     {
                         "name": "sortBy",
-                        "description": "Client property to sort by",
+                        "description": "Customer property to sort by",
                         "schema": {
                             "type": "string"
                         },
@@ -88,7 +88,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Client"
+                                        "$ref": "#/components/schemas/Customer"
                                     }
                                 }
                             }
@@ -146,15 +146,15 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
-                "summary": "List clients",
-                "description": "GET a paged collection of clients."
+                "summary": "List customers",
+                "description": "GET a paged collection of customers."
             },
             "post": {
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Client"
+                                "$ref": "#/components/schemas/Customer"
                             }
                         }
                     },
@@ -171,8 +171,8 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
-                "summary": "Insert new client",
-                "description": "POST a new client entity and save it to the data store"
+                "summary": "Insert new customer",
+                "description": "POST a new customer entity and save it to the data store"
             },
             "options": {
                 "responses": {
@@ -206,39 +206,39 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/clients/{id}": {
-            "summary": "Specific-client API endpoint",
+        "/customers/{id}": {
+            "summary": "Specific-customer API endpoint",
             "get": {
                 "responses": {
                     "200": {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client"
+                                    "$ref": "#/components/schemas/Customer"
                                 }
                             }
                         },
-                        "description": "Normal response; the client exists and it is sent in the response body."
+                        "description": "Normal response; the customer exists and it is sent in the response body."
                     },
                     "403": {
                         "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
                     },
                     "404": {
-                        "description": "Empty response; there is no such client with the provided id route parameter."
+                        "description": "Empty response; there is no such customer with the provided id route parameter."
                     },
                     "500": {
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
-                "summary": "Find specific client",
-                "description": "GET the client identified by a provided id parameter in the route path."
+                "summary": "Find specific customer",
+                "description": "GET the customer identified by a provided id parameter in the route path."
             },
             "put": {
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Client"
+                                "$ref": "#/components/schemas/Customer"
                             }
                         }
                     },
@@ -246,7 +246,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Normal, empty response; the client exists, the changes are valid and were saved."
+                        "description": "Normal, empty response; the customer exists, the changes are valid and were saved."
                     },
                     "403": {
                         "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
@@ -255,16 +255,16 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     },
                     "404": {
-                        "description": "Empty response; there is no such client with the provided id route parameter."
+                        "description": "Empty response; there is no such customer with the provided id route parameter."
                     }
                 },
-                "summary": "Update specific client",
-                "description": "PUT changes to the client identified by a provided id parameter in the route path."
+                "summary": "Update specific customer",
+                "description": "PUT changes to the customer identified by a provided id parameter in the route path."
             },
             "delete": {
                 "responses": {
                     "200": {
-                        "description": "Normal, empty response; the client exists, and its data was erased."
+                        "description": "Normal, empty response; the customer exists, and its data was erased."
                     },
                     "403": {
                         "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
@@ -273,11 +273,11 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     },
                     "404": {
-                        "description": "Empty response; there is no such client with the provided id route parameter."
+                        "description": "Empty response; there is no such customer with the provided id route parameter."
                     }
                 },
-                "summary": "Delete specific client",
-                "description": "DELETE a client with the id parameter, from the data store."
+                "summary": "Delete specific customer",
+                "description": "DELETE a customer with the id parameter, from the data store."
             },
             "options": {
                 "responses": {
@@ -307,7 +307,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
                     }
                 },
-                "summary": "Preflight check for specific-client API endpoint",
+                "summary": "Preflight check for specific-customer API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
             "parameters": [
@@ -486,7 +486,7 @@
                 "parameters": [
                     {
                         "name": "items",
-                        "description": "Clients count per page",
+                        "description": "People count per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -502,7 +502,7 @@
                             }
                         },
                         "name": "order",
-                        "description": "Client sort order (ascending or descending)",
+                        "description": "People sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },
@@ -510,7 +510,7 @@
                     },
                     {
                         "name": "page",
-                        "description": "Clients page number (1-based)",
+                        "description": "People page number (1-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -518,7 +518,7 @@
                     },
                     {
                         "name": "sortBy",
-                        "description": "Client property to sort by",
+                        "description": "People property to sort by",
                         "schema": {
                             "type": "string"
                         },
@@ -554,12 +554,12 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Client"
+                                        "$ref": "#/components/schemas/PersonProfile"
                                     }
                                 }
                             }
                         },
-                        "description": "Normal response, sends an array with as many clients as requested (and available)."
+                        "description": "Normal response, sends an array with as many people as requested (and available)."
                     },
                     "403": {
                         "headers": {
@@ -612,8 +612,8 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
-                "summary": "List clients",
-                "description": "GET a paged collection of clients."
+                "summary": "List people",
+                "description": "GET a paged collection of people."
             },
             "options": {
                 "responses": {
@@ -1087,7 +1087,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client"
+                                    "$ref": "#/components/schemas/Product"
                                 }
                             }
                         },
@@ -1427,7 +1427,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Client"
+                                        "$ref": "#/components/schemas/Sell"
                                     }
                                 }
                             }
@@ -1940,7 +1940,7 @@
                 "parameters": [
                     {
                         "name": "items",
-                        "description": "Sellers count per page",
+                        "description": "Salespersons count per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -1956,7 +1956,7 @@
                             }
                         },
                         "name": "order",
-                        "description": "Seller sort order (ascending or descending)",
+                        "description": "Salesperson sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },
@@ -1964,7 +1964,7 @@
                     },
                     {
                         "name": "page",
-                        "description": "Sellers page number (1-based)",
+                        "description": "Salespersons page number (1-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -1972,7 +1972,7 @@
                     },
                     {
                         "name": "sortBy",
-                        "description": "Seller property to sort by",
+                        "description": "Salesperson property to sort by",
                         "schema": {
                             "type": "string"
                         },
@@ -2008,7 +2008,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Seller"
+                                        "$ref": "#/components/schemas/Salesperson"
                                     }
                                 }
                             }
@@ -2074,7 +2074,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Seller"
+                                "$ref": "#/components/schemas/Salesperson"
                             }
                         }
                     },
@@ -2134,7 +2134,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Seller"
+                                    "$ref": "#/components/schemas/Salesperson"
                                 }
                             }
                         },
@@ -2158,7 +2158,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Seller"
+                                "$ref": "#/components/schemas/Salesperson"
                             }
                         }
                     },
@@ -2989,8 +2989,8 @@
                     }
                 }
             },
-            "Client": {
-                "title": "Root Type for Client",
+            "Customer": {
+                "title": "Root Type for Customer",
                 "description": "Store customers. They directly relate to PersonProfile's in a one-to-one relationship.",
                 "required": [
                     "id"
@@ -3038,9 +3038,9 @@
                     }
                 }
             },
-            "Seller": {
-                "title": "Root Type for Seller",
-                "description": "Store vendors/workers. Like Clients, they relate to PersonProfile's in a one-to-one relationship they could, but should not collide.",
+            "Salesperson": {
+                "title": "Root Type for Salesperson",
+                "description": "Store vendors/workers. Like Customers, they relate to PersonProfile's in a one-to-one relationship they could, but should not collide.",
                 "required": [
                     "id"
                 ],
