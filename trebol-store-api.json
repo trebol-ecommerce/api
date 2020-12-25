@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Store API",
-        "version": "2.1.0",
+        "version": "2.1.1",
         "description": "API resources to query products, categories, shop information, send payment requests and validate transaction statuses.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -440,11 +440,11 @@
                     "500": {
                         "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
                     },
-                    "303": {
-                        "description": "Normal response; the transaction was approved. \n\n'Location' response header should be included to redirect the user to the result page."
-                    },
                     "400": {
                         "description": "Failing response; the transaction was cancelled, rejected or is not a valid transaction."
+                    },
+                    "303": {
+                        "description": "Normal response; the transaction was approved. \n\n'Location' response header should be included to redirect the user to the result page."
                     }
                 },
                 "security": [
@@ -960,14 +960,14 @@
                 "description": "Representation of data used for redirecting the user towards a payment method.",
                 "required": [
                     "url",
-                    "token_ws"
+                    "token"
                 ],
                 "type": "object",
                 "properties": {
                     "url": {
                         "type": "string"
                     },
-                    "token_ws": {
+                    "token": {
                         "type": "string"
                     }
                 },
