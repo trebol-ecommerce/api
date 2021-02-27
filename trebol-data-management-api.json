@@ -2865,6 +2865,134 @@
                     }
                 }
             }
+        },
+        "/images": {
+            "summary": "Non-specific-image API endpoint",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "items",
+                        "description": "Images count per page",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "description": "Images page number (1-based)",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Image"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Normal response, sends an array with as many images as requested (and available)."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "List images",
+                "description": "GET a paged collection of customers."
+            }
+        },
+        "/images/{id}": {
+            "summary": "Specific-image API endpoint",
+            "description": "",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Image"
+                                }
+                            }
+                        },
+                        "description": "Normal response; the image exists and it is sent in the response body."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such image with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "operationId": "getImage",
+                "summary": "Find specific Image",
+                "description": "GET the image identified by a provided id parameter in the route path."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Image` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Image"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateImage",
+                "summary": "Update specific Image",
+                "description": "PUT changes to the image identified by a provided id parameter in the route path."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteImage",
+                "summary": "Delete specific Image",
+                "description": "DELETE an image with the id parameter, from the data store."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
+                    }
+                },
+                "summary": "Preflight check for specific-image API endpoint",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "A unique identifier for a `Image`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
         }
     },
     "components": {
