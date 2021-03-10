@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Store API",
-        "version": "2.3.0",
+        "version": "2.3.1",
         "description": "API resources to query products, categories, shop information, send payment requests and validate transaction statuses.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -802,6 +802,102 @@
                 "description": "An object without properties.",
                 "type": "object"
             },
+            "AbstractEntity": {
+                "title": "Root Type for Identifiable",
+                "description": "Representation of data that has an unique identifier.",
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "id": 1
+                }
+            },
+            "CartDetail": {
+                "title": "Root Type for CartDetail",
+                "description": "Representation of data about a single product within a shopping cart.",
+                "required": [
+                    "units",
+                    "product"
+                ],
+                "type": "object",
+                "properties": {
+                    "product": {
+                        "$ref": "#/components/schemas/Product",
+                        "properties": {
+                            "id": {
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "barcode": {
+                                "type": "string"
+                            },
+                            "price": {
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "units": {
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "product": {
+                        "id": 1,
+                        "name": "example product",
+                        "barcode": "EXMPL000001",
+                        "price": 1000
+                    },
+                    "units": 1
+                }
+            },
+            "Image": {
+                "title": "Root Type for Image",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "filename": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "filename": "test.png",
+                    "url": "http://localhost:80/examplePath"
+                }
+            },
+            "PaymentRedirection": {
+                "title": "Root Type for PaymentRedirection",
+                "description": "Representation of data used for redirecting the user towards a payment method.",
+                "required": [
+                    "url",
+                    "token"
+                ],
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "type": "string"
+                    },
+                    "token": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "url": "https://payment.com",
+                    "token_ws": "a.token.that.the.payment.method.created.and.recognizes"
+                }
+            },
             "Product": {
                 "anyOf": [
                     {
@@ -859,39 +955,6 @@
                         "name": "example product category"
                     },
                     "price": 1000
-                }
-            },
-            "AbstractEntity": {
-                "title": "Root Type for Identifiable",
-                "description": "Representation of data that has an unique identifier.",
-                "required": [
-                    "id"
-                ],
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    }
-                },
-                "example": {
-                    "id": 1
-                }
-            },
-            "Image": {
-                "title": "Root Type for Image",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "filename": {
-                        "type": "string"
-                    },
-                    "url": {
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "filename": "test.png",
-                    "url": "http://localhost:80/examplePath"
                 }
             },
             "ProductFamily": {
@@ -964,98 +1027,6 @@
                         "id": 1,
                         "name": "example category"
                     }
-                }
-            },
-            "ShopOwnerDetails": {
-                "title": "Root Type for ShopOwnerDetails",
-                "description": "Representation of data about the shop owner - be it an individual or an organization.",
-                "required": [
-                    "name",
-                    "logoImageURL"
-                ],
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "bannerImageURL": {
-                        "type": "string"
-                    },
-                    "logoImageURL": {
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "name": "example shop owner details",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse arcu eros, semper id interdum ut, molestie ut ex. Nulla lobortis viverra tempor.",
-                    "bannerImageURL": "https://example.com/banner.jpg",
-                    "logoImageURL": "https://example.com/logo.jpg"
-                }
-            },
-            "PaymentRedirection": {
-                "title": "Root Type for PaymentRedirection",
-                "description": "Representation of data used for redirecting the user towards a payment method.",
-                "required": [
-                    "url",
-                    "token"
-                ],
-                "type": "object",
-                "properties": {
-                    "url": {
-                        "type": "string"
-                    },
-                    "token": {
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "url": "https://payment.com",
-                    "token_ws": "a.token.that.the.payment.method.created.and.recognizes"
-                }
-            },
-            "CartDetail": {
-                "title": "Root Type for CartDetail",
-                "description": "Representation of data about a single product within a shopping cart.",
-                "required": [
-                    "units",
-                    "product"
-                ],
-                "type": "object",
-                "properties": {
-                    "product": {
-                        "$ref": "#/components/schemas/Product",
-                        "properties": {
-                            "id": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "name": {
-                                "type": "string"
-                            },
-                            "barcode": {
-                                "type": "string"
-                            },
-                            "price": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
-                    },
-                    "units": {
-                        "type": "integer"
-                    }
-                },
-                "example": {
-                    "product": {
-                        "id": 1,
-                        "name": "example product",
-                        "barcode": "EXMPL000001",
-                        "price": 1000
-                    },
-                    "units": 1
                 }
             },
             "Receipt": {
@@ -1149,6 +1120,35 @@
                         "price": 1000
                     },
                     "units": 1
+                }
+            },
+            "ShopOwnerDetails": {
+                "title": "Root Type for ShopOwnerDetails",
+                "description": "Representation of data about the shop owner - be it an individual or an organization.",
+                "required": [
+                    "name",
+                    "logoImageURL"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "bannerImageURL": {
+                        "type": "string"
+                    },
+                    "logoImageURL": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "example shop owner details",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse arcu eros, semper id interdum ut, molestie ut ex. Nulla lobortis viverra tempor.",
+                    "bannerImageURL": "https://example.com/banner.jpg",
+                    "logoImageURL": "https://example.com/logo.jpg"
                 }
             }
         },

@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Session API",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "description": "Resources to request new user accounts (register), logging in and out, request/update personal profile information, and request guest session tokens.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -792,6 +792,60 @@
                 "description": "An object without properties.",
                 "type": "object"
             },
+            "LoginCredentials": {
+                "title": "Root Type for LoginCredentials",
+                "description": "Data sent by an user to authenticate itself.",
+                "required": [
+                    "name",
+                    "password"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "an username",
+                    "password": "a password"
+                }
+            },
+            "PartialUserProfile": {
+                "title": "Root Type for PartialUserProfile",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "idCard": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "phone1": {
+                        "type": "integer"
+                    },
+                    "phone2": {
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "name": "Lorem ipsum dolor sit amet",
+                    "idCard": "xxxxxxxxx",
+                    "email": "address@example.com",
+                    "address": "Excepteur sint occaecat cupidatat non proident",
+                    "phone1": 1234567,
+                    "phone2": 7654321
+                }
+            },
             "PersonProfile": {
                 "title": "Root Type for PersonProfile",
                 "description": "Personal information about an individual.",
@@ -829,27 +883,6 @@
                     "address": "Excepteur sint occaecat cupidatat non proident",
                     "phone1": 1234567,
                     "phone2": 7654321
-                }
-            },
-            "LoginCredentials": {
-                "title": "Root Type for LoginCredentials",
-                "description": "Data sent by an user to authenticate itself.",
-                "required": [
-                    "name",
-                    "password"
-                ],
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "password": {
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "name": "an username",
-                    "password": "a password"
                 }
             },
             "UserRegistration": {
@@ -905,39 +938,6 @@
                         "phone1": 1234567,
                         "phone2": 7654321
                     }
-                }
-            },
-            "PartialUserProfile": {
-                "title": "Root Type for PartialUserProfile",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "idCard": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "address": {
-                        "type": "string"
-                    },
-                    "phone1": {
-                        "type": "integer"
-                    },
-                    "phone2": {
-                        "type": "integer"
-                    }
-                },
-                "example": {
-                    "name": "Lorem ipsum dolor sit amet",
-                    "idCard": "xxxxxxxxx",
-                    "email": "address@example.com",
-                    "address": "Excepteur sint occaecat cupidatat non proident",
-                    "phone1": 1234567,
-                    "phone2": 7654321
                 }
             }
         },

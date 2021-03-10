@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Data Management API",
-        "version": "2.2.2",
+        "version": "2.2.3",
         "description": "Resources to read, write and delete data in varied contexts. Requires authorization tokens. Users can query Trébol Data Access API to acknowledge which resources and operations can they request.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2942,6 +2942,105 @@
                     "id": 1
                 }
             },
+            "Customer": {
+                "title": "Root Type for Customer",
+                "description": "Store customers. They directly relate to PersonProfile's in a one-to-one relationship.",
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "person": {
+                        "$ref": "#/components/schemas/PersonProfile",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "idCard": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "address": {
+                                "type": "string"
+                            },
+                            "phone1": {
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "phone2": {
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "id": 1,
+                    "person": {
+                        "name": "Lorem ipsum dolor sit amet",
+                        "idCard": "xxxxxxxxx",
+                        "email": "address@example.com",
+                        "address": "Excepteur sint occaecat cupidatat non proident",
+                        "phone1": 1234567,
+                        "phone2": 7654321
+                    }
+                }
+            },
+            "Image": {
+                "title": "Root Type for Image",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "filename": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "filename": "test.png",
+                    "url": "http://localhost:80/examplePath"
+                }
+            },
+            "PersonProfile": {
+                "title": "Root Type for PersonProfile",
+                "description": "Personal information about an individual.",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "idCard": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "phone1": {
+                        "type": "integer"
+                    },
+                    "phone2": {
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "name": "Lorem ipsum dolor sit amet",
+                    "idCard": "xxxxxxxxx",
+                    "email": "address@example.com",
+                    "address": "Excepteur sint occaecat cupidatat non proident",
+                    "phone1": 1234567,
+                    "phone2": 7654321
+                }
+            },
             "Product": {
                 "title": "Root Type for product",
                 "description": "A physical item or a service that the shop stocks up on, displays, offers and sells to its customers.",
@@ -3059,55 +3158,6 @@
                     }
                 }
             },
-            "Customer": {
-                "title": "Root Type for Customer",
-                "description": "Store customers. They directly relate to PersonProfile's in a one-to-one relationship.",
-                "required": [
-                    "id"
-                ],
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "person": {
-                        "$ref": "#/components/schemas/PersonProfile",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "idCard": {
-                                "type": "string"
-                            },
-                            "email": {
-                                "type": "string"
-                            },
-                            "address": {
-                                "type": "string"
-                            },
-                            "phone1": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "phone2": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
-                    }
-                },
-                "example": {
-                    "id": 1,
-                    "person": {
-                        "name": "Lorem ipsum dolor sit amet",
-                        "idCard": "xxxxxxxxx",
-                        "email": "address@example.com",
-                        "address": "Excepteur sint occaecat cupidatat non proident",
-                        "phone1": 1234567,
-                        "phone2": 7654321
-                    }
-                }
-            },
             "Salesperson": {
                 "title": "Root Type for Salesperson",
                 "description": "Store vendors/workers. Like Customers, they relate to PersonProfile's in a one-to-one relationship they could, but should not collide.",
@@ -3155,39 +3205,6 @@
                         "phone1": 1234567,
                         "phone2": 7654321
                     }
-                }
-            },
-            "PersonProfile": {
-                "title": "Root Type for PersonProfile",
-                "description": "Personal information about an individual.",
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "idCard": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "address": {
-                        "type": "string"
-                    },
-                    "phone1": {
-                        "type": "integer"
-                    },
-                    "phone2": {
-                        "type": "integer"
-                    }
-                },
-                "example": {
-                    "name": "Lorem ipsum dolor sit amet",
-                    "idCard": "xxxxxxxxx",
-                    "email": "address@example.com",
-                    "address": "Excepteur sint occaecat cupidatat non proident",
-                    "phone1": 1234567,
-                    "phone2": 7654321
                 }
             },
             "SellDetail": {
@@ -3331,23 +3348,6 @@
                     "profile": {
                         "id": 1
                     }
-                }
-            },
-            "Image": {
-                "title": "Root Type for Image",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "filename": {
-                        "type": "string"
-                    },
-                    "url": {
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "filename": "test.png",
-                    "url": "http://localhost:80/examplePath"
                 }
             }
         },
