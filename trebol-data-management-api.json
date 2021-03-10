@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Data Management API",
-        "version": "2.1.0",
+        "version": "2.4.0",
         "description": "Resources to read, write and delete data in varied contexts. Requires authorization tokens. Users can query Trébol Data Access API to acknowledge which resources and operations can they request.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -251,11 +251,11 @@
                     "403": {
                         "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
                     },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    },
                     "404": {
                         "description": "Empty response; there is no such customer with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
                 "summary": "Update specific customer",
@@ -269,11 +269,11 @@
                     "403": {
                         "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
                     },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    },
                     "404": {
                         "description": "Empty response; there is no such customer with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
                 "summary": "Delete specific customer",
@@ -314,7 +314,10 @@
                 {
                     "name": "id",
                     "in": "path",
-                    "required": true
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
                 }
             ],
             "x-amazon-apigateway-any-method": {
@@ -360,9 +363,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "400": {
@@ -388,9 +388,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "403": {
@@ -416,9 +413,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "404": {
@@ -444,9 +438,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "500": {
@@ -472,9 +463,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     }
                 }
@@ -554,7 +542,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/PersonProfile"
+                                        "$ref": "#/components/schemas/Person"
                                     }
                                 }
                             }
@@ -1187,7 +1175,10 @@
                 {
                     "name": "id",
                     "in": "path",
-                    "required": true
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
                 }
             ],
             "x-amazon-apigateway-any-method": {
@@ -1233,9 +1224,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "400": {
@@ -1261,9 +1249,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "403": {
@@ -1289,9 +1274,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "404": {
@@ -1317,9 +1299,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "500": {
@@ -1345,9 +1324,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     }
                 }
@@ -1653,7 +1629,10 @@
                 {
                     "name": "id",
                     "in": "path",
-                    "required": true
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
                 }
             ],
             "x-amazon-apigateway-any-method": {
@@ -1699,9 +1678,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "400": {
@@ -1727,9 +1703,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "403": {
@@ -1755,9 +1728,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "404": {
@@ -1783,9 +1753,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "500": {
@@ -1811,9 +1778,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     }
                 }
@@ -2234,7 +2198,10 @@
                 {
                     "name": "id",
                     "in": "path",
-                    "required": true
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
                 }
             ],
             "x-amazon-apigateway-any-method": {
@@ -2280,9 +2247,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "400": {
@@ -2308,9 +2272,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "403": {
@@ -2336,9 +2297,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "404": {
@@ -2364,9 +2322,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "500": {
@@ -2392,9 +2347,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     }
                 }
@@ -2700,7 +2652,10 @@
                 {
                     "name": "id",
                     "in": "path",
-                    "required": true
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
                 }
             ],
             "x-amazon-apigateway-any-method": {
@@ -2746,9 +2701,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "400": {
@@ -2774,9 +2726,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "403": {
@@ -2802,9 +2751,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "404": {
@@ -2830,9 +2776,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "500": {
@@ -2858,13 +2801,172 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     }
                 }
             }
+        },
+        "/images": {
+            "summary": "Non-specific-image API endpoint",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "items",
+                        "description": "Images count per page",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "description": "Images page number (1-based)",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Image"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Normal response, sends an array with as many images as requested (and available)."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "List images",
+                "description": "GET a paged collection of customers."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Image"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the operation was a success and the new image is stored."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Insert a new image",
+                "description": "POST a new image entity and save it to the data store"
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET and POST methods."
+                    }
+                },
+                "summary": "Preflight check for non-specific image API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/images/{id}": {
+            "summary": "Specific-image API endpoint",
+            "description": "",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Image"
+                                }
+                            }
+                        },
+                        "description": "Normal response; the image exists and it is sent in the response body."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such image with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "operationId": "getImage",
+                "summary": "Find specific Image",
+                "description": "GET the image identified by a provided id parameter in the route path."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Image` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Image"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateImage",
+                "summary": "Update specific Image",
+                "description": "PUT changes to the image identified by a provided id parameter in the route path."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteImage",
+                "summary": "Delete specific Image",
+                "description": "DELETE an image with the id parameter, from the data store."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
+                    }
+                },
+                "summary": "Preflight check for specific-image API endpoint",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "A unique identifier for a `Image`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
         }
     },
     "components": {
@@ -2887,6 +2989,105 @@
                 },
                 "example": {
                     "id": 1
+                }
+            },
+            "Customer": {
+                "title": "Root Type for Customer",
+                "description": "Store customers. They directly relate to Person's in a one-to-one relationship.",
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "person": {
+                        "$ref": "#/components/schemas/Person",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "idCard": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "address": {
+                                "type": "string"
+                            },
+                            "phone1": {
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "phone2": {
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "id": 1,
+                    "person": {
+                        "name": "Lorem ipsum dolor sit amet",
+                        "idCard": "xxxxxxxxx",
+                        "email": "address@example.com",
+                        "address": "Excepteur sint occaecat cupidatat non proident",
+                        "phone1": 1234567,
+                        "phone2": 7654321
+                    }
+                }
+            },
+            "Image": {
+                "title": "Root Type for Image",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "filename": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "filename": "test.png",
+                    "url": "http://localhost:80/examplePath"
+                }
+            },
+            "Person": {
+                "title": "Root Type for Person",
+                "description": "Personal information about an individual.",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "idCard": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "phone1": {
+                        "type": "integer"
+                    },
+                    "phone2": {
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "name": "Lorem ipsum dolor sit amet",
+                    "idCard": "xxxxxxxxx",
+                    "email": "address@example.com",
+                    "address": "Excepteur sint occaecat cupidatat non proident",
+                    "phone1": 1234567,
+                    "phone2": 7654321
                 }
             },
             "Product": {
@@ -2920,6 +3121,13 @@
                     },
                     "price": {
                         "type": "integer"
+                    },
+                    "images": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Image"
+                        }
                     }
                 },
                 "example": {
@@ -2930,7 +3138,17 @@
                         "id": 1,
                         "name": "example product category"
                     },
-                    "price": 1000
+                    "price": 1000,
+                    "images": [
+                        {
+                            "url": "http://placeholder.org/example_photo.jpg",
+                            "filename": "example_photo.jpg"
+                        },
+                        {
+                            "url": "https://cdn.org/example_hash_uri",
+                            "filename": "second_example.png"
+                        }
+                    ]
                 }
             },
             "ProductFamily": {
@@ -2989,58 +3207,9 @@
                     }
                 }
             },
-            "Customer": {
-                "title": "Root Type for Customer",
-                "description": "Store customers. They directly relate to PersonProfile's in a one-to-one relationship.",
-                "required": [
-                    "id"
-                ],
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "person": {
-                        "$ref": "#/components/schemas/PersonProfile",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "idCard": {
-                                "type": "string"
-                            },
-                            "email": {
-                                "type": "string"
-                            },
-                            "address": {
-                                "type": "string"
-                            },
-                            "phone1": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "phone2": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
-                    }
-                },
-                "example": {
-                    "id": 1,
-                    "person": {
-                        "name": "Lorem ipsum dolor sit amet",
-                        "idCard": "xxxxxxxxx",
-                        "email": "address@example.com",
-                        "address": "Excepteur sint occaecat cupidatat non proident",
-                        "phone1": 1234567,
-                        "phone2": 7654321
-                    }
-                }
-            },
             "Salesperson": {
                 "title": "Root Type for Salesperson",
-                "description": "Store vendors/workers. Like Customers, they relate to PersonProfile's in a one-to-one relationship they could, but should not collide.",
+                "description": "Store vendors/workers. Like Customers, they relate to Person's in a one-to-one relationship they could, but should not collide.",
                 "required": [
                     "id"
                 ],
@@ -3050,7 +3219,7 @@
                         "type": "integer"
                     },
                     "person": {
-                        "$ref": "#/components/schemas/PersonProfile",
+                        "$ref": "#/components/schemas/Person",
                         "properties": {
                             "name": {
                                 "type": "string"
@@ -3085,39 +3254,6 @@
                         "phone1": 1234567,
                         "phone2": 7654321
                     }
-                }
-            },
-            "PersonProfile": {
-                "title": "Root Type for PersonProfile",
-                "description": "Personal information about an individual.",
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "idCard": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "address": {
-                        "type": "string"
-                    },
-                    "phone1": {
-                        "type": "integer"
-                    },
-                    "phone2": {
-                        "type": "integer"
-                    }
-                },
-                "example": {
-                    "name": "Lorem ipsum dolor sit amet",
-                    "idCard": "xxxxxxxxx",
-                    "email": "address@example.com",
-                    "address": "Excepteur sint occaecat cupidatat non proident",
-                    "phone1": 1234567,
-                    "phone2": 7654321
                 }
             },
             "SellDetail": {
@@ -3243,7 +3379,7 @@
                         "type": "string"
                     },
                     "profile": {
-                        "$ref": "#/components/schemas/PersonProfile",
+                        "$ref": "#/components/schemas/Person",
                         "properties": {
                             "id": {
                                 "format": "int32",
@@ -3274,8 +3410,7 @@
     },
     "security": [
         {
-            "AuthorizedRequest": [
-            ]
+            "AuthorizedRequest": []
         }
     ]
 }

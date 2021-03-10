@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Session API",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "description": "Resources to request new user accounts (register), logging in and out, request/update personal profile information, and request guest session tokens.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -22,7 +22,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PersonProfile"
+                                "$ref": "#/components/schemas/Person"
                             }
                         }
                     },
@@ -457,7 +457,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/PersonProfile"
+                                    "$ref": "#/components/schemas/Person"
                                 }
                             }
                         },
@@ -792,8 +792,62 @@
                 "description": "An object without properties.",
                 "type": "object"
             },
-            "PersonProfile": {
-                "title": "Root Type for PersonProfile",
+            "LoginCredentials": {
+                "title": "Root Type for LoginCredentials",
+                "description": "Data sent by an user to authenticate itself.",
+                "required": [
+                    "name",
+                    "password"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "an username",
+                    "password": "a password"
+                }
+            },
+            "PartialUserProfile": {
+                "title": "Root Type for PartialUserProfile",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "idCard": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "phone1": {
+                        "type": "integer"
+                    },
+                    "phone2": {
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "name": "Lorem ipsum dolor sit amet",
+                    "idCard": "xxxxxxxxx",
+                    "email": "address@example.com",
+                    "address": "Excepteur sint occaecat cupidatat non proident",
+                    "phone1": 1234567,
+                    "phone2": 7654321
+                }
+            },
+            "Person": {
+                "title": "Root Type for Person",
                 "description": "Personal information about an individual.",
                 "required": [
                     "email",
@@ -831,27 +885,6 @@
                     "phone2": 7654321
                 }
             },
-            "LoginCredentials": {
-                "title": "Root Type for LoginCredentials",
-                "description": "Data sent by an user to authenticate itself.",
-                "required": [
-                    "name",
-                    "password"
-                ],
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "password": {
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "name": "an username",
-                    "password": "a password"
-                }
-            },
             "UserRegistration": {
                 "title": "Root Type for UserRegistration",
                 "description": "Credentials and personal information for a new user account.",
@@ -866,7 +899,7 @@
                         "type": "string"
                     },
                     "profile": {
-                        "$ref": "#/components/schemas/PersonProfile",
+                        "$ref": "#/components/schemas/Person",
                         "properties": {
                             "name": {
                                 "type": "string"
@@ -905,39 +938,6 @@
                         "phone1": 1234567,
                         "phone2": 7654321
                     }
-                }
-            },
-            "PartialUserProfile": {
-                "title": "Root Type for PartialUserProfile",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "idCard": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "address": {
-                        "type": "string"
-                    },
-                    "phone1": {
-                        "type": "integer"
-                    },
-                    "phone2": {
-                        "type": "integer"
-                    }
-                },
-                "example": {
-                    "name": "Lorem ipsum dolor sit amet",
-                    "idCard": "xxxxxxxxx",
-                    "email": "address@example.com",
-                    "address": "Excepteur sint occaecat cupidatat non proident",
-                    "phone1": 1234567,
-                    "phone2": 7654321
                 }
             }
         },

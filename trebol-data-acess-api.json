@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Data Access API",
-        "version": "2.1.0",
+        "version": "2.1.1",
         "description": "Resources for API consumers to query their authorized resource and operation accesses on the Data Management API.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -297,8 +297,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "403": {
                         "description": "403 response",
@@ -323,8 +322,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "500": {
                         "description": "500 response",
@@ -349,8 +347,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     }
                 }
             }
@@ -481,8 +478,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "400": {
                         "description": "400 response",
@@ -507,8 +503,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "403": {
                         "description": "403 response",
@@ -533,8 +528,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "500": {
                         "description": "500 response",
@@ -559,8 +553,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     }
                 }
             }
@@ -691,8 +684,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "400": {
                         "description": "400 response",
@@ -717,8 +709,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "403": {
                         "description": "403 response",
@@ -743,8 +734,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "500": {
                         "description": "500 response",
@@ -769,8 +759,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     }
                 }
             }
@@ -901,8 +890,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "400": {
                         "description": "400 response",
@@ -927,8 +915,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "403": {
                         "description": "403 response",
@@ -953,8 +940,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "500": {
                         "description": "500 response",
@@ -979,8 +965,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     }
                 }
             }
@@ -1111,8 +1096,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "400": {
                         "description": "400 response",
@@ -1137,8 +1121,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "403": {
                         "description": "403 response",
@@ -1163,8 +1146,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     },
                     "500": {
                         "description": "500 response",
@@ -1189,8 +1171,7 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {}
+                        }
                     }
                 }
             }
