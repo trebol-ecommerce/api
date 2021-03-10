@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Store API",
-        "version": "2.3.1",
+        "version": "2.3.2",
         "description": "API resources to query products, categories, shop information, send payment requests and validate transaction statuses.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -402,7 +402,6 @@
                 "description": "POST cart details to initiate a virtual transaction in the shop."
             },
             "options": {
-                "requestBody": {},
                 "responses": {
                     "200": {
                         "description": "Normal, empty response, should include CORS headers and only allow the POST method."
@@ -749,7 +748,10 @@
                     "name": "id",
                     "description": "The product identifier",
                     "in": "path",
-                    "required": true
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
                 }
             ]
         },
@@ -791,7 +793,10 @@
                     "name": "id",
                     "description": "The transaction identifier",
                     "in": "path",
-                    "required": true
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
                 }
             ]
         }
