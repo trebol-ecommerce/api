@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Data Management API",
-        "version": "2.3.1",
+        "version": "2.4.0",
         "description": "Resources to read, write and delete data in varied contexts. Requires authorization tokens. Users can query Trébol Data Access API to acknowledge which resources and operations can they request.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2851,6 +2851,40 @@
                 },
                 "summary": "List images",
                 "description": "GET a paged collection of customers."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Image"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the operation was a success and the new image is stored."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Insert a new image",
+                "description": "POST a new image entity and save it to the data store"
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET and POST methods."
+                    }
+                },
+                "summary": "Preflight check for non-specific image API",
+                "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
         "/images/{id}": {
