@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Store API",
-        "version": "2.2.0",
+        "version": "2.3.0",
         "description": "API resources to query products, categories, shop information, send payment requests and validate transaction statuses.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -833,6 +833,13 @@
                             },
                             "price": {
                                 "type": "integer"
+                            },
+                            "images": {
+                                "description": "",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Image"
+                                }
                             }
                         }
                     },
@@ -868,6 +875,23 @@
                 },
                 "example": {
                     "id": 1
+                }
+            },
+            "Image": {
+                "title": "Root Type for Image",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "filename": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "filename": "test.png",
+                    "url": "http://localhost:80/examplePath"
                 }
             },
             "ProductFamily": {
