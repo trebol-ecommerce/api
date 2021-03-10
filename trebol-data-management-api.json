@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Data Management API",
-        "version": "2.2.3",
+        "version": "2.3.0",
         "description": "Resources to read, write and delete data in varied contexts. Requires authorization tokens. Users can query Trébol Data Access API to acknowledge which resources and operations can they request.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -539,7 +539,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/PersonProfile"
+                                        "$ref": "#/components/schemas/Person"
                                     }
                                 }
                             }
@@ -2944,7 +2944,7 @@
             },
             "Customer": {
                 "title": "Root Type for Customer",
-                "description": "Store customers. They directly relate to PersonProfile's in a one-to-one relationship.",
+                "description": "Store customers. They directly relate to Person's in a one-to-one relationship.",
                 "required": [
                     "id"
                 ],
@@ -2954,7 +2954,7 @@
                         "type": "integer"
                     },
                     "person": {
-                        "$ref": "#/components/schemas/PersonProfile",
+                        "$ref": "#/components/schemas/Person",
                         "properties": {
                             "name": {
                                 "type": "string"
@@ -3008,8 +3008,8 @@
                     "url": "http://localhost:80/examplePath"
                 }
             },
-            "PersonProfile": {
-                "title": "Root Type for PersonProfile",
+            "Person": {
+                "title": "Root Type for Person",
                 "description": "Personal information about an individual.",
                 "type": "object",
                 "properties": {
@@ -3160,7 +3160,7 @@
             },
             "Salesperson": {
                 "title": "Root Type for Salesperson",
-                "description": "Store vendors/workers. Like Customers, they relate to PersonProfile's in a one-to-one relationship they could, but should not collide.",
+                "description": "Store vendors/workers. Like Customers, they relate to Person's in a one-to-one relationship they could, but should not collide.",
                 "required": [
                     "id"
                 ],
@@ -3170,7 +3170,7 @@
                         "type": "integer"
                     },
                     "person": {
-                        "$ref": "#/components/schemas/PersonProfile",
+                        "$ref": "#/components/schemas/Person",
                         "properties": {
                             "name": {
                                 "type": "string"
@@ -3330,7 +3330,7 @@
                         "type": "string"
                     },
                     "profile": {
-                        "$ref": "#/components/schemas/PersonProfile",
+                        "$ref": "#/components/schemas/Person",
                         "properties": {
                             "id": {
                                 "format": "int32",
