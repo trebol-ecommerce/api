@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol Data Management API",
-        "version": "2.1.0",
+        "version": "2.2.1",
         "description": "Resources to read, write and delete data in varied contexts. Requires authorization tokens. Users can query Trébol Data Access API to acknowledge which resources and operations can they request.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -251,11 +251,11 @@
                     "403": {
                         "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
                     },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    },
                     "404": {
                         "description": "Empty response; there is no such customer with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
                 "summary": "Update specific customer",
@@ -269,11 +269,11 @@
                     "403": {
                         "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
                     },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    },
                     "404": {
                         "description": "Empty response; there is no such customer with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
                 "summary": "Delete specific customer",
@@ -360,9 +360,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "400": {
@@ -388,9 +385,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "403": {
@@ -416,9 +410,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "404": {
@@ -444,9 +435,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "500": {
@@ -472,9 +460,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     }
                 }
@@ -1233,9 +1218,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "400": {
@@ -1261,9 +1243,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "403": {
@@ -1289,9 +1268,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "404": {
@@ -1317,9 +1293,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "500": {
@@ -1345,9 +1318,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     }
                 }
@@ -1699,9 +1669,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "400": {
@@ -1727,9 +1694,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "403": {
@@ -1755,9 +1719,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "404": {
@@ -1783,9 +1744,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "500": {
@@ -1811,9 +1769,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     }
                 }
@@ -2280,9 +2235,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "400": {
@@ -2308,9 +2260,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "403": {
@@ -2336,9 +2285,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "404": {
@@ -2364,9 +2310,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "500": {
@@ -2392,9 +2335,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     }
                 }
@@ -2746,9 +2686,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "400": {
@@ -2774,9 +2711,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "403": {
@@ -2802,9 +2736,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "404": {
@@ -2830,9 +2761,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     },
                     "500": {
@@ -2858,9 +2786,6 @@
                                     "type": "string"
                                 }
                             }
-                        },
-                        "content": {
-
                         }
                     }
                 }
@@ -3419,8 +3344,7 @@
     },
     "security": [
         {
-            "AuthorizedRequest": [
-            ]
+            "AuthorizedRequest": []
         }
     ]
 }
