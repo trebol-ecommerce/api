@@ -2967,6 +2967,131 @@
                     "required": true
                 }
             ]
+        },
+        "/user_roles": {
+            "summary": "User roles API endpoint",
+            "get": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserRole"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Normal response, sends an array with all the user roles."
+                    },
+                    "403": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "500": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "List all user roles",
+                "description": "GET every user role available."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "summary": "Preflight check for user roles API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
         }
     },
     "components": {
@@ -3397,6 +3522,28 @@
                     "profile": {
                         "id": 1
                     }
+                }
+            },
+            "UserRole": {
+                "title": "Root Type for UserRole",
+                "description": "A role that holds a list of permissions to do certain tasks in the application ",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "id": 1,
+                    "name": "Administrator",
+                    "description": "Authority that holds all power"
                 }
             }
         },
