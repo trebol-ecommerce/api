@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.4.0-dev",
+        "version": "2.4.1-dev",
         "description": "",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -147,7 +147,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/AuthorizedAcess"
+                                    "$ref": "#/components/schemas/AuthorizedAccess"
                                 },
                                 "examples": {
                                     "Read-only": {
@@ -360,7 +360,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/AuthorizedAcess"
+                                    "$ref": "#/components/schemas/AuthorizedAccess"
                                 },
                                 "examples": {
                                     "Read-only": {
@@ -566,7 +566,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/AuthorizedAcess"
+                                    "$ref": "#/components/schemas/AuthorizedAccess"
                                 },
                                 "examples": {
                                     "Read-only": {
@@ -772,7 +772,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/AuthorizedAcess"
+                                    "$ref": "#/components/schemas/AuthorizedAccess"
                                 },
                                 "examples": {
                                     "Read-only": {
@@ -978,7 +978,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/AuthorizedAcess"
+                                    "$ref": "#/components/schemas/AuthorizedAccess"
                                 },
                                 "examples": {
                                     "Read-only": {
@@ -1366,268 +1366,6 @@
                 },
                 "summary": "Preflight check for non-specific client API",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/data/customers/{id}": {
-            "summary": "Specific-customer API endpoint",
-            "get": {
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Customer"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the customer exists and it is sent in the response body."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such customer with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Find specific customer",
-                "description": "GET the customer identified by a provided id parameter in the route path."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Customer"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response; the customer exists, the changes are valid and were saved."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such customer with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Update specific customer",
-                "description": "PUT changes to the customer identified by a provided id parameter in the route path."
-            },
-            "delete": {
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response; the customer exists, and its data was erased."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such customer with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Delete specific customer",
-                "description": "DELETE a customer with the id parameter, from the data store."
-            },
-            "options": {
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
-                    }
-                },
-                "summary": "Preflight check for specific-customer API endpoint",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "id",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ],
-            "x-amazon-apigateway-any-method": {
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "400 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "403 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "404 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "500 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                }
             }
         },
         "/data/people": {
@@ -2229,268 +1967,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/products/{id}": {
-            "summary": "Specific-product API endpoint",
-            "get": {
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Product"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the product exists and it is sent in the response body."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such product with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Find specific product",
-                "description": "GET the product identified by a provided id parameter in the route path."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Product"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response; the product exists, the changes are valid and were saved."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such product with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Update specific product",
-                "description": "PUT changes to the product identified by a provided id parameter in the route path."
-            },
-            "delete": {
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response; the product exists, and its data was erased."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such product with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Delete specific product",
-                "description": "DELETE a product with the id parameter, from the data store."
-            },
-            "options": {
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
-                    }
-                },
-                "summary": "Preflight check for specific-product API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "id",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ],
-            "x-amazon-apigateway-any-method": {
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "400 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "403 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "404 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "500 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/data/sales": {
             "summary": "Non-specific-sell API endpoint",
             "get": {
@@ -2683,268 +2159,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/sales/{id}": {
-            "summary": "Specific-sell API endpoint",
-            "get": {
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Sell"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the sell exists and it is sent in the response body."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such sell with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Find specific sell",
-                "description": "GET the sell identified by a provided id parameter in the route path."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Sell"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response; the sell exists, the changes are valid and were saved."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such sell with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Update specific sell",
-                "description": "PUT changes to the sell identified by a provided id parameter in the route path."
-            },
-            "delete": {
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response; the sell exists, and its data was erased."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such sell with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Delete specific sell",
-                "description": "DELETE a sell with the id parameter, from the data store."
-            },
-            "options": {
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
-                    }
-                },
-                "summary": "Preflight check for specific-sell API endpoint",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "id",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ],
-            "x-amazon-apigateway-any-method": {
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "400 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "403 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "404 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "500 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/data/sell_types": {
             "summary": "Sell types API endpoint",
             "get": {
@@ -3058,460 +2272,6 @@
                 },
                 "summary": "Preflight check for sell types API",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/data/sellers": {
-            "summary": "Non-specific-seller API endpoint",
-            "get": {
-                "parameters": [
-                    {
-                        "name": "items",
-                        "description": "Salespersons count per page",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "examples": {
-                            "Ascending order": {
-                                "value": "\"asc\""
-                            },
-                            "Descending order": {
-                                "value": "\"desc\""
-                            }
-                        },
-                        "name": "order",
-                        "description": "Salesperson sort order (ascending or descending)",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "name": "page",
-                        "description": "Salespersons page number (1-based)",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "name": "sortBy",
-                        "description": "Salesperson property to sort by",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Salesperson"
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Normal response, sends an array with as many sellers as requested (and available)."
-                    },
-                    "403": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "500": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "List sellers",
-                "description": "GET a paged collection of sellers."
-            },
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Salesperson"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response; the operation was a success and the new seller is stored."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Insert new seller",
-                "description": "POST a new seller entity and save it to the data store."
-            },
-            "options": {
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET and POST methods."
-                    }
-                },
-                "summary": "Preflight check for non-specific seller API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/data/sellers/{id}": {
-            "summary": "Specific-seller API endpoint",
-            "get": {
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Salesperson"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the seller exists and it is sent in the response body."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such seller with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Find specific seller",
-                "description": "GET the seller identified by a provided id parameter in the route path."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Salesperson"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response; the seller exists, the changes are valid and were saved."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such seller with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Update specific seller",
-                "description": "PUT changes to the seller identified by a provided id parameter in the route path."
-            },
-            "delete": {
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response; the seller exists, and its data was erased."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such seller with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Delete specific seller",
-                "description": "DELETE a seller with the id parameter, from the data store."
-            },
-            "options": {
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
-                    }
-                },
-                "summary": "Preflight check for specific-seller API endpoint",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "id",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ],
-            "x-amazon-apigateway-any-method": {
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "400 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "403 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "404 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "500 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                }
             }
         },
         "/data/users": {
@@ -3706,268 +2466,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/users/{id}": {
-            "summary": "Specific-user API endpoint",
-            "get": {
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the user exists and it is sent in the response body."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such user with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Find specific user",
-                "description": "GET the user identified by a provided id parameter in the route path."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/User"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response; the user exists, the changes are valid and were saved."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such user with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Update specific user",
-                "description": "PUT changes to the user identified by a provided id parameter in the route path."
-            },
-            "delete": {
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response; the user exists, and its data was erased."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such user with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "summary": "Delete specific user",
-                "description": "DELETE a user with the id parameter, from the data store."
-            },
-            "options": {
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
-                    }
-                },
-                "summary": "Preflight check for specific-user API endpoint",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "id",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ],
-            "x-amazon-apigateway-any-method": {
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "400 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "403 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "404 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "500 response",
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/data/images": {
             "summary": "Non-specific-image API endpoint",
             "get": {
@@ -4048,87 +2546,6 @@
                 "summary": "Preflight check for non-specific image API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
-        },
-        "/data/images/{id}": {
-            "summary": "Specific-image API endpoint",
-            "description": "",
-            "get": {
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Image"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the image exists and it is sent in the response body."
-                    },
-                    "403": {
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "404": {
-                        "description": "Empty response; there is no such image with the provided id route parameter."
-                    },
-                    "500": {
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "operationId": "getImage",
-                "summary": "Find specific Image",
-                "description": "GET the image identified by a provided id parameter in the route path."
-            },
-            "put": {
-                "requestBody": {
-                    "description": "Updated `Image` information.",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Image"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "202": {
-                        "description": "Successful response."
-                    }
-                },
-                "operationId": "updateImage",
-                "summary": "Update specific Image",
-                "description": "PUT changes to the image identified by a provided id parameter in the route path."
-            },
-            "delete": {
-                "responses": {
-                    "204": {
-                        "description": "Successful response."
-                    }
-                },
-                "operationId": "deleteImage",
-                "summary": "Delete specific Image",
-                "description": "DELETE an image with the id parameter, from the data store."
-            },
-            "options": {
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
-                    }
-                },
-                "summary": "Preflight check for specific-image API endpoint",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "id",
-                    "description": "A unique identifier for a `Image`.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
         },
         "/data/user_roles": {
             "summary": "User roles API endpoint",
@@ -4466,127 +2883,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/public/categories/{id}": {
-            "summary": "Product subcategories within specific main category",
-            "description": "",
-            "get": {
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/ProductType"
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Normal response. Sends an array with the requested subcategories."
-                    },
-                    "404": {
-                        "description": "The specified main category could not be found."
-                    },
-                    "500": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "summary": "Find and list product subcategories within specific main category",
-                "description": "GET the subcategories found within the provided main category ID."
-            },
-            "options": {
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "summary": "Preflight check for product subcategories",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "id",
-                    "description": "The main category identifier",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
         "/public/checkout": {
             "summary": "Payment request",
             "post": {
@@ -4853,191 +3149,6 @@
                         "type": "string"
                     },
                     "in": "query"
-                }
-            ]
-        },
-        "/public/product/{id}": {
-            "summary": "Find specific product",
-            "description": "",
-            "get": {
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Product"
-                                }
-                            }
-                        },
-                        "description": "A normal response, including an object containing the individual product data."
-                    },
-                    "404": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "The specified product could not be found."
-                    },
-                    "500": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "summary": "Find specific product",
-                "description": "GET complete public information about a specific product, matched by its ID, barcode, or whatever unique property is used to identify it."
-            },
-            "options": {
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "summary": "Preflight check for specific product",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "id",
-                    "description": "The product identifier",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
-        "/public/receipt/{id}": {
-            "summary": "Fetch details about a transaction",
-            "get": {
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Receipt"
-                                }
-                            }
-                        },
-                        "description": "A normal response, including an object containing the individual transaction data."
-                    },
-                    "404": {
-                        "description": "The specified transaction could not be found."
-                    },
-                    "500": {
-                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
-                    }
-                },
-                "summary": "Find specific transaction receipt",
-                "description": "GET complete public information about a transaction, matched by its ID, code, or whatever unique property is used to identify it."
-            },
-            "options": {
-                "responses": {
-                    "200": {
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
-                    }
-                },
-                "summary": "Preflight check for specific transaction receipt",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "id",
-                    "description": "The transaction identifier",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
                 }
             ]
         },
@@ -5548,7 +3659,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PartialUserProfile"
+                                "$ref": "#/components/schemas/Person"
                             }
                         }
                     },
@@ -5800,6 +3911,1900 @@
                 "summary": "Preflight check for session closer",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
+        },
+        "/data/customers/{idCard}": {
+            "summary": "Specific-customer API endpoint",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Customer"
+                                }
+                            }
+                        },
+                        "description": "Normal response; the customer exists and it is sent in the response body."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such customer with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Find specific customer",
+                "description": "GET the customer identified by a provided id parameter in the route path."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Customer"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the customer exists, the changes are valid and were saved."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such customer with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Update specific customer",
+                "description": "PUT changes to the customer identified by a provided id parameter in the route path."
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the customer exists, and its data was erased."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such customer with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Delete specific customer",
+                "description": "DELETE a customer with the id parameter, from the data store."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
+                    }
+                },
+                "summary": "Preflight check for specific-customer API endpoint",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "idCard",
+                    "description": "The unique ID card number of the customer.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ],
+            "x-amazon-apigateway-any-method": {
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "403 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "404 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "500 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/data/images/{code}": {
+            "summary": "Specific-image API endpoint",
+            "description": "",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Image"
+                                }
+                            }
+                        },
+                        "description": "Normal response; the image exists and it is sent in the response body."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such image with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "operationId": "getImage",
+                "summary": "Find specific Image",
+                "description": "GET the image identified by a provided id parameter in the route path."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Image` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Image"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateImage",
+                "summary": "Update specific Image",
+                "description": "PUT changes to the image identified by a provided id parameter in the route path."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteImage",
+                "summary": "Delete specific Image",
+                "description": "DELETE an image with the id parameter, from the data store."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
+                    }
+                },
+                "summary": "Preflight check for specific-image API endpoint",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "code",
+                    "description": "A unique identifier for a `Image`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/public/product/{code}": {
+            "summary": "Find specific product",
+            "description": "",
+            "get": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        },
+                        "description": "A normal response, including an object containing the individual product data."
+                    },
+                    "404": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The specified product could not be found."
+                    },
+                    "500": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
+                    }
+                },
+                "security": [
+                    {}
+                ],
+                "summary": "Find specific product",
+                "description": "GET complete public information about a specific product, matched by its ID, barcode, or whatever unique property is used to identify it."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "security": [
+                    {}
+                ],
+                "summary": "Preflight check for specific product",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "code",
+                    "description": "The product identifier",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/public/receipt/{code}": {
+            "summary": "Fetch details about a transaction",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Receipt"
+                                }
+                            }
+                        },
+                        "description": "A normal response, including an object containing the individual transaction data."
+                    },
+                    "404": {
+                        "description": "The specified transaction could not be found."
+                    },
+                    "500": {
+                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
+                    }
+                },
+                "summary": "Find specific transaction receipt",
+                "description": "GET complete public information about a transaction, matched by its ID, code, or whatever unique property is used to identify it."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "summary": "Preflight check for specific transaction receipt",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "code",
+                    "description": "The transaction identifier",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/public/categories/{code}": {
+            "summary": "Product subcategories within specific main category",
+            "description": "",
+            "get": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductType"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Normal response. Sends an array with the requested subcategories."
+                    },
+                    "404": {
+                        "description": "The specified main category could not be found."
+                    },
+                    "500": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
+                    }
+                },
+                "security": [
+                    {}
+                ],
+                "summary": "Find and list product subcategories within specific main category",
+                "description": "GET the subcategories found within the provided main category ID."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "security": [
+                    {}
+                ],
+                "summary": "Preflight check for product subcategories",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "code",
+                    "description": "The main category identifier",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/data/users/{name}": {
+            "summary": "Specific-user API endpoint",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        },
+                        "description": "Normal response; the user exists and it is sent in the response body."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such user with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Find specific user",
+                "description": "GET the user identified by a provided id parameter in the route path."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the user exists, the changes are valid and were saved."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such user with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Update specific user",
+                "description": "PUT changes to the user identified by a provided id parameter in the route path."
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the user exists, and its data was erased."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such user with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Delete specific user",
+                "description": "DELETE a user with the id parameter, from the data store."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
+                    }
+                },
+                "summary": "Preflight check for specific-user API endpoint",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "name",
+                    "description": "The name of the user.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ],
+            "x-amazon-apigateway-any-method": {
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "403 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "404 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "500 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/data/salespeople": {
+            "summary": "Non-specific-salesperson API endpoint",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "items",
+                        "description": "Salespersons count per page",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
+                        "name": "order",
+                        "description": "Salesperson sort order (ascending or descending)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "page",
+                        "description": "Salespersons page number (1-based)",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortBy",
+                        "description": "Salesperson property to sort by",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Salesperson"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Normal response, sends an array with as many salespeople as requested (and available)."
+                    },
+                    "403": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "500": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "List salespeople",
+                "description": "GET a paged collection of salespeople."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Salesperson"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the operation was a success and the new salesperson is stored."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Insert new salesperson",
+                "description": "POST a new salesperson entity and save it to the data store."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET and POST methods."
+                    }
+                },
+                "summary": "Preflight check for non-specific salesperson API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/data/salespeople/{idCard}": {
+            "summary": "Specific-salesperson API endpoint",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Salesperson"
+                                }
+                            }
+                        },
+                        "description": "Normal response; the salesperson exists and it is sent in the response body."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such salesperson with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Find specific salesperson",
+                "description": "GET the salesperson identified by a provided id parameter in the route path."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Salesperson"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the salesperson exists, the changes are valid and were saved."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such salesperson with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Update specific salesperson",
+                "description": "PUT changes to the salesperson identified by a provided id parameter in the route path."
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the salesperson exists, and its data was erased."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such salesperson with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Delete specific salesperson",
+                "description": "DELETE a salesperson with the id parameter, from the data store."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
+                    }
+                },
+                "summary": "Preflight check for specific-salesperson API endpoint",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "idCard",
+                    "description": "The unique ID card number of the salesperson.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ],
+            "x-amazon-apigateway-any-method": {
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "403 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "404 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "500 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/data/sales/{buyOrder}": {
+            "summary": "Specific-sell API endpoint",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Sell"
+                                }
+                            }
+                        },
+                        "description": "Normal response; the sell exists and it is sent in the response body."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such sell with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Find specific sell",
+                "description": "GET the sell identified by a provided id parameter in the route path."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Sell"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the sell exists, the changes are valid and were saved."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such sell with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Update specific sell",
+                "description": "PUT changes to the sell identified by a provided id parameter in the route path."
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the sell exists, and its data was erased."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such sell with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Delete specific sell",
+                "description": "DELETE a sell with the id parameter, from the data store."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
+                    }
+                },
+                "summary": "Preflight check for specific-sell API endpoint",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "buyOrder",
+                    "description": "The unique identifier of the sell.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ],
+            "x-amazon-apigateway-any-method": {
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "403 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "404 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "500 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/data/products/{code}": {
+            "summary": "Specific-product API endpoint",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        },
+                        "description": "Normal response; the product exists and it is sent in the response body."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such product with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Find specific product",
+                "description": "GET the product identified by a provided id parameter in the route path."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the product exists, the changes are valid and were saved."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such product with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Update specific product",
+                "description": "PUT changes to the product identified by a provided id parameter in the route path."
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Normal, empty response; the product exists, and its data was erased."
+                    },
+                    "403": {
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "404": {
+                        "description": "Empty response; there is no such product with the provided id route parameter."
+                    },
+                    "500": {
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "summary": "Delete specific product",
+                "description": "DELETE a product with the id parameter, from the data store."
+            },
+            "options": {
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
+                    }
+                },
+                "summary": "Preflight check for specific-product API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "code",
+                    "description": "A unique code for a Product.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ],
+            "x-amazon-apigateway-any-method": {
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "403 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "404 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "500 response",
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -5808,25 +5813,9 @@
                 "description": "An object without properties.",
                 "type": "object"
             },
-            "AbstractEntity": {
-                "title": "Root Type for AbstractEntity",
-                "description": "Representation of data that has an unique identifier.",
-                "required": [
-                    "id"
-                ],
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    }
-                },
-                "example": {
-                    "id": 1
-                }
-            },
             "LoginCredentials": {
                 "title": "Root Type for LoginCredentials",
-                "description": "Data sent by an user to authenticate itself.",
+                "description": "Data sent by an user to authenticate themselves.",
                 "required": [
                     "name",
                     "password"
@@ -5834,9 +5823,11 @@
                 "type": "object",
                 "properties": {
                     "name": {
+                        "description": "The user name.",
                         "type": "string"
                     },
                     "password": {
+                        "description": "The user password.",
                         "type": "string"
                     }
                 },
@@ -5845,60 +5836,33 @@
                     "password": "a password"
                 }
             },
-            "PartialUserProfile": {
-                "title": "Root Type for PartialUserProfile",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "idCard": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "address": {
-                        "type": "string"
-                    },
-                    "phone1": {
-                        "type": "integer"
-                    },
-                    "phone2": {
-                        "type": "integer"
-                    }
-                },
-                "example": {
-                    "name": "Lorem ipsum dolor sit amet",
-                    "idCard": "xxxxxxxxx",
-                    "email": "address@example.com",
-                    "address": "Excepteur sint occaecat cupidatat non proident",
-                    "phone1": 1234567,
-                    "phone2": 7654321
-                }
-            },
             "Person": {
                 "title": "Root Type for Person",
                 "description": "Personal information about an individual.",
                 "type": "object",
                 "properties": {
                     "name": {
+                        "description": "The full name of the individual.",
                         "type": "string"
                     },
                     "idCard": {
+                        "description": "The national identification number as issued by the individual's birth country government.",
                         "type": "string"
                     },
                     "email": {
+                        "description": "The e-mail address.",
                         "type": "string"
                     },
                     "address": {
+                        "description": "The full address of the individual.",
                         "type": "string"
                     },
                     "phone1": {
+                        "description": "The phone number (without pluses or parentheses)",
                         "type": "integer"
                     },
                     "phone2": {
+                        "description": "A second phone number (without pluses or parentheses)",
                         "type": "integer"
                     }
                 },
@@ -5977,30 +5941,15 @@
                 "properties": {
                     "product": {
                         "$ref": "#/components/schemas/Product",
-                        "properties": {
-                            "id": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "name": {
-                                "type": "string"
-                            },
-                            "barcode": {
-                                "type": "string"
-                            },
-                            "price": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
+                        "description": "The related product."
                     },
                     "units": {
+                        "description": "The amount, or quantity of the related product.",
                         "type": "integer"
                     }
                 },
                 "example": {
                     "product": {
-                        "id": 1,
                         "name": "example product",
                         "barcode": "EXMPL000001",
                         "price": 1000
@@ -6010,14 +5959,19 @@
             },
             "Image": {
                 "title": "Root Type for Image",
-                "description": "",
+                "description": "A reference to an image that can be found following a given URL.",
                 "type": "object",
                 "properties": {
                     "filename": {
+                        "description": "The file name of the image.",
                         "type": "string"
                     },
                     "url": {
+                        "description": "The URL to find the image at.",
                         "type": "string"
+                    },
+                    "code": {
+                        "description": "Unique identifier of the image. Allows URL-compatible characters only."
                     }
                 },
                 "example": {
@@ -6027,7 +5981,7 @@
             },
             "PaymentRedirection": {
                 "title": "Root Type for PaymentRedirection",
-                "description": "Representation of data used for redirecting the user towards a payment method.",
+                "description": "Metadata used to redirect the user towards a payment method.",
                 "required": [
                     "url",
                     "token"
@@ -6035,9 +5989,11 @@
                 "type": "object",
                 "properties": {
                     "url": {
+                        "description": "The url to access the payment service and undergo the transaction process.",
                         "type": "string"
                     },
                     "token": {
+                        "description": "A secret code that the external payment service will use to identify the transaction.",
                         "type": "string"
                     }
                 },
@@ -6048,50 +6004,42 @@
             },
             "Product": {
                 "title": "Root Type for product",
-                "description": "A physical item or a service that the shop stocks up on, displays, offers and sells to its customers.",
-                "required": [
-                    "id"
-                ],
+                "description": "A physical item or a service that the shop offers to the public.",
+                "required": [],
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
                     "name": {
+                        "description": "The given name of the product.",
                         "type": "string"
                     },
                     "barcode": {
+                        "description": "A unique identifier for the product. Normally issued by an external ERP service.",
                         "type": "string"
                     },
                     "productType": {
                         "$ref": "#/components/schemas/ProductType",
-                        "properties": {
-                            "id": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "name": {
-                                "type": "string"
-                            }
-                        }
+                        "description": "The category the product is associated to."
                     },
                     "price": {
-                        "type": "integer"
+                        "description": "The price of the product, valued by the store's local currency.",
+                        "type": "number"
                     },
                     "images": {
-                        "description": "",
+                        "description": "A list of images that illustrate this product.",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/Image"
                         }
+                    },
+                    "code": {
+                        "description": "A unique identifier for the product. Read-only after creation.",
+                        "type": "string"
                     }
                 },
                 "example": {
-                    "id": 1,
                     "name": "example product",
                     "barcode": "EXMPL00001",
                     "productType": {
-                        "id": 1,
                         "name": "example product category"
                     },
                     "price": 1000,
@@ -6110,87 +6058,77 @@
             "ProductFamily": {
                 "title": "Root Type for ProductFamily",
                 "description": "A Product group/category. Each one can be divided into smaller subsets (ProductType).",
-                "required": [
-                    "id"
-                ],
+                "required": [],
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
                     "name": {
+                        "description": "The name displayed for the category.",
+                        "type": "string"
+                    },
+                    "code": {
+                        "description": "A unique identifier for the category.",
                         "type": "string"
                     }
                 },
                 "example": {
-                    "id": 1,
+                    "code": "EXPL",
                     "name": "example category"
                 }
             },
             "ProductType": {
                 "title": "Root Type for ProductType",
                 "description": "A smaller Product group/category. Belongs to a bigger set (ProductFamily).",
-                "required": [
-                    "id"
-                ],
+                "required": [],
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
                     "name": {
+                        "description": "The name displayed for the category.",
                         "type": "string"
                     },
                     "productFamily": {
                         "$ref": "#/components/schemas/ProductFamily",
-                        "properties": {
-                            "id": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "name": {
-                                "type": "string"
-                            }
-                        }
+                        "description": "The 'parent' category."
+                    },
+                    "code": {
+                        "description": "A unique identifier for the category.",
+                        "type": "string"
                     }
                 },
                 "example": {
-                    "id": 1,
-                    "name": "example child category",
+                    "name": "EXPL1",
                     "productFamily": {
-                        "id": 1,
+                        "code": "EXPL",
                         "name": "example category"
                     }
                 }
             },
             "Receipt": {
                 "title": "Root Type for Receipt",
-                "description": "A representation of data about a transaction.",
-                "required": [
-                    "details",
-                    "date",
-                    "buyOrder",
-                    "amount",
-                    "status"
-                ],
+                "description": "Metadata about an existing transaction.",
+                "required": [],
                 "type": "object",
                 "properties": {
                     "buyOrder": {
                         "format": "int32",
+                        "description": "The unique identifier for the transaction.",
                         "type": "integer"
                     },
                     "amount": {
                         "format": "int32",
+                        "description": "The total value paid in the receipt.",
                         "type": "integer"
                     },
                     "status": {
+                        "description": "The current status of the transaction.",
                         "type": "string"
                     },
                     "date": {
                         "format": "date",
+                        "description": "The hour and date that the transaction was confirmed.",
                         "type": "string"
                     },
                     "details": {
+                        "description": "A list that provides full information about the acquired products or services.",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/ReceiptDetail"
@@ -6205,7 +6143,6 @@
                     "details": [
                         {
                             "product": {
-                                "id": 1,
                                 "name": "example product",
                                 "price": 5000
                             },
@@ -6216,7 +6153,7 @@
             },
             "ReceiptDetail": {
                 "title": "Root Type for CartDetail",
-                "description": "Representation of data about a single product within a shopping cart.",
+                "description": "Part of a receipt's contents, related to a given Product.",
                 "required": [
                     "units",
                     "product"
@@ -6225,30 +6162,15 @@
                 "properties": {
                     "product": {
                         "$ref": "#/components/schemas/Product",
-                        "properties": {
-                            "id": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "name": {
-                                "type": "string"
-                            },
-                            "barcode": {
-                                "type": "string"
-                            },
-                            "price": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
+                        "description": "The related product."
                     },
                     "units": {
+                        "description": "The amount or quantity of the given product.",
                         "type": "integer"
                     }
                 },
                 "example": {
                     "product": {
-                        "id": 1,
                         "name": "example product",
                         "barcode": "EXMPL000001",
                         "price": 1000
@@ -6288,16 +6210,12 @@
             "Customer": {
                 "title": "Root Type for Customer",
                 "description": "Store customers. They directly relate to Person's in a one-to-one relationship.",
-                "required": [
-                    "id"
-                ],
+                "required": [],
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
                     "person": {
                         "$ref": "#/components/schemas/Person",
+                        "description": "The person this customer \"is\".",
                         "properties": {
                             "name": {
                                 "type": "string"
@@ -6323,7 +6241,6 @@
                     }
                 },
                 "example": {
-                    "id": 1,
                     "person": {
                         "name": "Lorem ipsum dolor sit amet",
                         "idCard": "xxxxxxxxx",
@@ -6337,16 +6254,12 @@
             "Salesperson": {
                 "title": "Root Type for Salesperson",
                 "description": "Store vendors/workers. Like Customers, they relate to Person's in a one-to-one relationship they could, but should not collide.",
-                "required": [
-                    "id"
-                ],
+                "required": [],
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
                     "person": {
                         "$ref": "#/components/schemas/Person",
+                        "description": "The person this salesperson \"is\".",
                         "properties": {
                             "name": {
                                 "type": "string"
@@ -6372,7 +6285,6 @@
                     }
                 },
                 "example": {
-                    "id": 1,
                     "person": {
                         "name": "Lorem ipsum dolor sit amet",
                         "idCard": "xxxxxxxxx",
@@ -6389,23 +6301,7 @@
                 "type": "object",
                 "properties": {
                     "product": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "name": {
-                                "type": "string"
-                            },
-                            "barcode": {
-                                "type": "string"
-                            },
-                            "price": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
+                        "$ref": "#/components/schemas/Product"
                     },
                     "units": {
                         "format": "int32",
@@ -6414,7 +6310,6 @@
                 },
                 "example": {
                     "product": {
-                        "id": 1,
                         "name": "example product",
                         "barcode": "EXMPL000001",
                         "price": 1000
@@ -6424,21 +6319,16 @@
             },
             "SellType": {
                 "title": "Root Type for ProductType",
-                "description": "",
-                "required": [
-                    "id"
-                ],
+                "description": "The types of sell dictate taxes to be applied.",
+                "required": [],
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
                     "name": {
+                        "description": "The name given to this sell type.",
                         "type": "string"
                     }
                 },
                 "example": {
-                    "id": 1,
                     "name": "example sell type"
                 }
             },
@@ -6447,53 +6337,29 @@
                 "description": "",
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "format": "int32",
-                        "type": "integer"
-                    },
                     "details": {
+                        "description": "A list that provides full information about the acquired products or services.",
                         "type": "array",
                         "items": {
-                            "type": "object",
-                            "properties": {
-                                "product": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "format": "int32",
-                                            "type": "integer"
-                                        }
-                                    }
-                                },
-                                "units": {
-                                    "format": "int32",
-                                    "type": "integer"
-                                }
-                            }
+                            "$ref": "#/components/schemas/SellDetail"
                         }
                     },
                     "sellType": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
+                        "$ref": "#/components/schemas/SellType",
+                        "description": "The requested type of sell (for tax purposes)."
                     }
                 },
                 "example": {
-                    "id": 1,
                     "details": [
                         {
                             "product": {
-                                "id": 1
+                                "barcode": "test"
                             },
                             "units": 1
                         }
                     ],
                     "sellType": {
-                        "id": 1
+                        "name": "type1"
                     }
                 }
             },
@@ -6503,26 +6369,18 @@
                 "type": "object",
                 "properties": {
                     "name": {
+                        "description": "A unique name that the user logs in with.",
                         "type": "string"
                     },
-                    "profile": {
+                    "person": {
                         "$ref": "#/components/schemas/Person",
-                        "properties": {
-                            "id": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
-                    },
-                    "password": {
-                        "description": "",
-                        "type": "string"
+                        "description": "The person this user \"is\"."
                     }
                 },
                 "example": {
                     "name": "an username",
-                    "profile": {
-                        "id": 1
+                    "person": {
+                        "idCard": "xxxxxxxx"
                     }
                 }
             },
@@ -6531,10 +6389,6 @@
                 "description": "A role that holds a list of permissions to do certain tasks in the application ",
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "format": "int32",
-                        "type": "integer"
-                    },
                     "name": {
                         "type": "string"
                     },
@@ -6543,23 +6397,24 @@
                     }
                 },
                 "example": {
-                    "id": 1,
-                    "name": "Administrator",
-                    "description": "Authority that holds all power"
+                    "name": "example role",
+                    "description": "this role has access to read most data, excepting users"
                 }
             },
-            "AuthorizedAcess": {
+            "AuthorizedAccess": {
                 "title": "Root Type for AuthorizedAcess",
                 "description": "A generic container of API resource paths or actions on a specific resource, for which access is granted",
                 "type": "object",
                 "properties": {
                     "routes": {
+                        "description": "A list of authorized routes to consume.",
                         "type": "array",
                         "items": {
                             "type": "string"
                         }
                     },
                     "permissions": {
+                        "description": "A list of authorized actions for a specific route.",
                         "type": "array",
                         "items": {
                             "type": "string"
@@ -6572,7 +6427,7 @@
                         "products",
                         "people",
                         "sales",
-                        "sellers",
+                        "salespeople",
                         "users"
                     ]
                 }
