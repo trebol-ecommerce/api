@@ -2,8 +2,8 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.4.1-dev",
-        "description": "",
+        "version": "2.4.2-dev",
+        "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
             "email": "bg.lamadrid@gmail.com"
@@ -17,6 +17,9 @@
         "/access/": {
             "summary": "Allowed (authorized) access to API routes",
             "get": {
+                "tags": [
+                    "authorization"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -104,10 +107,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "access-routes-get",
                 "summary": "Query allowed API routes",
                 "description": "GET the API resource paths that the current session is authorized to use."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -135,6 +142,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET method."
                     }
                 },
+                "operationId": "access-routes-options",
                 "summary": "Preflight check for API resource accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -142,6 +150,9 @@
         "/access/products": {
             "summary": "Allowed (authorized) access to products API",
             "get": {
+                "tags": [
+                    "authorization"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -196,10 +207,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "access-products-actions-get",
                 "summary": "Query allowed products API operations",
                 "description": "GET actions that the current session is authorized to do using the products API."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -227,6 +242,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET method."
                     }
                 },
+                "operationId": "access-products-options",
                 "summary": "Preflight check for products API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -355,6 +371,9 @@
         "/access/sales": {
             "summary": "Allowed (authorized) access to sales API",
             "get": {
+                "tags": [
+                    "authorization"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -409,10 +428,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "access-sales-actions-get",
                 "summary": "Query allowed sales API operations",
                 "description": "GET actions that the current session is authorized to do using the sales API."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -440,6 +463,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET method."
                     }
                 },
+                "operationId": "access-sales-actions-options",
                 "summary": "Preflight check for sales API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -561,6 +585,9 @@
         "/access/users": {
             "summary": "Allowed (authorized) access to users API",
             "get": {
+                "tags": [
+                    "authorization"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -615,10 +642,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "access-users-actions-get",
                 "summary": "Query allowed users API operations",
                 "description": "GET actions that the current session is authorized to do using the users API."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -646,6 +677,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET method."
                     }
                 },
+                "operationId": "access-users-actions-options",
                 "summary": "Preflight check for users API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -767,6 +799,9 @@
         "/access/customers": {
             "summary": "Allowed (authorized) access to customers API",
             "get": {
+                "tags": [
+                    "authorization"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -821,10 +856,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "access-customers-actions-get",
                 "summary": "Query allowed customers API operations",
                 "description": "GET actions that the current session is authorized to do using the customers API."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -852,6 +891,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET method."
                     }
                 },
+                "operationId": "access-customers-options",
                 "summary": "Preflight check for customers API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -973,6 +1013,9 @@
         "/access/salespeople": {
             "summary": "Allowed (authorized) access to salespeople API",
             "get": {
+                "tags": [
+                    "authorization"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -1027,10 +1070,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "access-salespeople-actions-get",
                 "summary": "Query allowed salespeople API operations",
                 "description": "GET actions that the current session is authorized to do using the salespeople API."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -1058,6 +1105,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET method."
                     }
                 },
+                "operationId": "access-salespeople-actions-options",
                 "summary": "Preflight check for salespeople API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -1179,6 +1227,11 @@
         "/data/customers": {
             "summary": "Non-specific-customer API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "parameters": [
                     {
                         "name": "items",
@@ -1308,6 +1361,7 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-customers-get",
                 "summary": "List customers",
                 "description": "GET a paged collection of customers."
             },
@@ -1322,6 +1376,11 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "create",
+                    "new",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the operation was a success and the new client is stored."
@@ -1333,10 +1392,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-customers-post",
                 "summary": "Insert new customer",
                 "description": "POST a new customer entity and save it to the data store"
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -1364,6 +1427,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET and POST methods."
                     }
                 },
+                "operationId": "data-customers-options",
                 "summary": "Preflight check for non-specific client API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -1371,6 +1435,11 @@
         "/data/people": {
             "summary": "People API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "parameters": [
                     {
                         "name": "items",
@@ -1500,10 +1569,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "access-people-get",
                 "summary": "List people",
                 "description": "GET a paged collection of people."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -1531,6 +1604,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET method."
                     }
                 },
+                "operationId": "access-people-options",
                 "summary": "Preflight check for people API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -1538,6 +1612,11 @@
         "/data/product_families": {
             "summary": "Product families API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -1625,10 +1704,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-product-families-get",
                 "summary": "List all product families",
                 "description": "GET every product family available."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -1656,6 +1739,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET method."
                     }
                 },
+                "operationId": "data-product-families-options",
                 "summary": "Preflight check for product families API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -1663,6 +1747,11 @@
         "/data/product_types": {
             "summary": "Product types API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -1740,10 +1829,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-product-types-get",
                 "summary": "List all product types",
                 "description": "GET every product type available."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -1771,6 +1864,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET method."
                     }
                 },
+                "operationId": "data-product-types-options",
                 "summary": "Preflight check for product types API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -1778,6 +1872,11 @@
         "/data/products": {
             "summary": "Non-specific-product API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "parameters": [
                     {
                         "name": "items",
@@ -1907,6 +2006,7 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-products-get",
                 "summary": "List products",
                 "description": "GET a paged collection of products."
             },
@@ -1921,6 +2021,11 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "create",
+                    "new",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the operation was a success and the new product is stored."
@@ -1932,10 +2037,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-products-post",
                 "summary": "Insert new product",
                 "description": "POST a new product entity and save it to the data store"
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -1963,6 +2072,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET and POST methods."
                     }
                 },
+                "operationId": "data-products-options",
                 "summary": "Preflight check for non-specific client API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -1970,6 +2080,11 @@
         "/data/sales": {
             "summary": "Non-specific-sell API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "parameters": [
                     {
                         "name": "items",
@@ -2099,6 +2214,7 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-sales-get",
                 "summary": "List sales",
                 "description": "GET a paged collection of sales."
             },
@@ -2113,6 +2229,11 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "create",
+                    "new",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the operation was a success and the new sell is stored."
@@ -2124,10 +2245,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-sales-post",
                 "summary": "Insert new sell",
                 "description": "POST a new sell entity and save it to the data store."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -2155,6 +2280,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET and POST methods."
                     }
                 },
+                "operationId": "data-sales-options",
                 "summary": "Preflight check for non-specific sell API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -2162,6 +2288,11 @@
         "/data/sell_types": {
             "summary": "Sell types API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -2239,10 +2370,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-sell-types-get",
                 "summary": "List all sell types",
                 "description": "GET every sell type available."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -2270,6 +2405,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET method."
                     }
                 },
+                "operationId": "data-sell-types-options",
                 "summary": "Preflight check for sell types API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -2277,6 +2413,11 @@
         "/data/users": {
             "summary": "Non-specific-user API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "parameters": [
                     {
                         "name": "items",
@@ -2406,6 +2547,7 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-users-get",
                 "summary": "List users",
                 "description": "GET a paged collection of users."
             },
@@ -2420,6 +2562,11 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "create",
+                    "new",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the operation was a success and the new user is stored."
@@ -2431,10 +2578,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-users-post",
                 "summary": "Insert new user",
                 "description": "POST a new user entity and save it to the data store."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -2462,6 +2613,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET and POST methods."
                     }
                 },
+                "operationId": "data-users-options",
                 "summary": "Preflight check for non-specific user API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -2469,6 +2621,11 @@
         "/data/images": {
             "summary": "Non-specific-image API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "parameters": [
                     {
                         "name": "items",
@@ -2509,6 +2666,7 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-images-get",
                 "summary": "List images",
                 "description": "GET a paged collection of customers."
             },
@@ -2523,6 +2681,11 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "create",
+                    "new",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the operation was a success and the new image is stored."
@@ -2534,15 +2697,20 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-images-post",
                 "summary": "Insert a new image",
                 "description": "POST a new image entity and save it to the data store"
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response, should include CORS headers and only allow the GET and POST methods."
                     }
                 },
+                "operationId": "data-images-options",
                 "summary": "Preflight check for non-specific image API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -2550,6 +2718,11 @@
         "/data/user_roles": {
             "summary": "User roles API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -2637,10 +2810,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-user-roles-get",
                 "summary": "List all user roles",
                 "description": "GET every user role available."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -2668,6 +2845,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET method."
                     }
                 },
+                "operationId": "data-user-roles-options",
                 "summary": "Preflight check for user roles API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -2676,6 +2854,10 @@
             "summary": "Info on the shop",
             "description": "Public resource for general information about the company behind the shop.",
             "get": {
+                "tags": [
+                    "fetch",
+                    "metadata"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -2738,10 +2920,14 @@
                 "security": [
                     {}
                 ],
+                "operationId": "metadata-get",
                 "summary": "Request info on the shop",
                 "description": "GET general information regarding the company behind the shop."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -2772,6 +2958,7 @@
                 "security": [
                     {}
                 ],
+                "operationId": "metadata-options",
                 "summary": "Preflight check for shop information",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -2780,6 +2967,11 @@
             "summary": "Product main categories",
             "description": "",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -2845,10 +3037,14 @@
                 "security": [
                     {}
                 ],
+                "operationId": "categories-get",
                 "summary": "List product main categories",
                 "description": "GET the main (bigger) categories where to browse the products available for sale at the shop."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -2879,6 +3075,7 @@
                 "security": [
                     {}
                 ],
+                "operationId": "categories-options",
                 "summary": "Preflight check for product categories",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -2899,6 +3096,9 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "transaction"
+                ],
                 "parameters": [
                     {
                         "examples": {
@@ -2935,10 +3135,14 @@
                         "AuthorizedRequest": []
                     }
                 ],
+                "operationId": "checkout-request",
                 "summary": "Send a payment request",
                 "description": "POST cart details to initiate a virtual transaction in the shop."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response, should include CORS headers and only allow the POST method."
@@ -2949,6 +3153,7 @@
                         "AuthorizedRequest": []
                     }
                 ],
+                "operationId": "checkout-options",
                 "summary": "Preflight check for payment request",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -2956,6 +3161,9 @@
         "/public/checkout/validate": {
             "summary": "Payment confirmation",
             "post": {
+                "tags": [
+                    "transaction"
+                ],
                 "responses": {
                     "303": {
                         "description": "Normal response; the transaction was approved. \n\n'Location' response header should be included to redirect the user to the result page."
@@ -2972,10 +3180,14 @@
                         "AuthorizedRequest": []
                     }
                 ],
+                "operationId": "validate-checkout-request",
                 "summary": "Send payment result",
                 "description": "POST response from the payment method to confirm the transaction end result."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response, should include CORS headers and only allow the POST method."
@@ -2986,6 +3198,7 @@
                         "AuthorizedRequest": []
                     }
                 ],
+                "operationId": "validate-checkout-options",
                 "summary": "Preflight check for payment confirmation",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -2994,6 +3207,11 @@
             "summary": "Available products",
             "description": "",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3059,10 +3277,14 @@
                 "security": [
                     {}
                 ],
+                "operationId": "store-front-request",
                 "summary": "List available products",
                 "description": "GET all products currently on sale at the shop. May accept sorting, ordering, paging and filtering conditions in query parameters."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3093,6 +3315,7 @@
                 "security": [
                     {}
                 ],
+                "operationId": "store-front-options",
                 "summary": "Preflight check for available products",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -3166,6 +3389,9 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "session"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3251,10 +3477,14 @@
                 "security": [
                     {}
                 ],
+                "operationId": "guest-session-request",
                 "summary": "Start a guest session",
                 "description": "POST personal information to generate a token for a temporary guest session."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3282,6 +3512,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the POST method."
                     }
                 },
+                "operationId": "guest-session-options",
                 "summary": "Preflight check for guest session opener",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -3299,6 +3530,9 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "account"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3384,10 +3618,14 @@
                 "security": [
                     {}
                 ],
+                "operationId": "register-request",
                 "summary": "Request a new user account",
                 "description": "POST details for a new user account, including its profile information."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3415,6 +3653,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the POST method."
                     }
                 },
+                "operationId": "register-options",
                 "summary": "Preflight check for account registrar",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -3432,6 +3671,10 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "account",
+                    "session"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3524,10 +3767,14 @@
                 "security": [
                     {}
                 ],
+                "operationId": "login-request",
                 "summary": "Start a logged-in session",
                 "description": "POST credentials to authenticate, generate an authorization token and start a new session."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3555,6 +3802,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the POST method."
                     }
                 },
+                "operationId": "login-options",
                 "summary": "Preflight check for session opener",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -3562,6 +3810,10 @@
         "/profile": {
             "summary": "User profile information",
             "get": {
+                "tags": [
+                    "fetch",
+                    "account"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3651,6 +3903,7 @@
                         "AuthorizedRequest": []
                     }
                 ],
+                "operationId": "profile-get",
                 "summary": "Fetch current user's profile",
                 "description": "GET the current user's stored profile information"
             },
@@ -3665,6 +3918,10 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "update",
+                    "account"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3747,10 +4004,14 @@
                         "AuthorizedRequest": []
                     }
                 ],
+                "operationId": "profile-put",
                 "summary": "Update current user's profile",
                 "description": "PUT changes into the current user's profile information."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3783,6 +4044,7 @@
                         "AuthorizedRequest": []
                     }
                 ],
+                "operationId": "profile-options",
                 "summary": "Preflight check for user profile information",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -3790,6 +4052,10 @@
         "/logout": {
             "summary": "Session closer",
             "post": {
+                "tags": [
+                    "account",
+                    "session"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3877,10 +4143,14 @@
                         "AuthorizedRequest": []
                     }
                 ],
+                "operationId": "logout-request",
                 "summary": "Terminate current session",
                 "description": "POST a request to close the currently opened session."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -3908,6 +4178,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the POST method."
                     }
                 },
+                "operationId": "logout-options",
                 "summary": "Preflight check for session closer",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -3915,6 +4186,11 @@
         "/data/customers/{idCard}": {
             "summary": "Specific-customer API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -3936,6 +4212,7 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-customer-get",
                 "summary": "Find specific customer",
                 "description": "GET the customer identified by a provided id parameter in the route path."
             },
@@ -3950,6 +4227,11 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "update",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the customer exists, the changes are valid and were saved."
@@ -3964,10 +4246,16 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-customer-put",
                 "summary": "Update specific customer",
                 "description": "PUT changes to the customer identified by a provided id parameter in the route path."
             },
             "delete": {
+                "tags": [
+                    "remove",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the customer exists, and its data was erased."
@@ -3982,10 +4270,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-customer-delete",
                 "summary": "Delete specific customer",
                 "description": "DELETE a customer with the id parameter, from the data store."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -4013,6 +4305,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
                     }
                 },
+                "operationId": "data-customer-options",
                 "summary": "Preflight check for specific-customer API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -4179,6 +4472,11 @@
             "summary": "Specific-image API endpoint",
             "description": "",
             "get": {
+                "tags": [
+                    "fetch",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -4200,7 +4498,7 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
-                "operationId": "getImage",
+                "operationId": "data-image-get",
                 "summary": "Find specific Image",
                 "description": "GET the image identified by a provided id parameter in the route path."
             },
@@ -4216,31 +4514,45 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "update",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "202": {
                         "description": "Successful response."
                     }
                 },
-                "operationId": "updateImage",
+                "operationId": "data-image-put",
                 "summary": "Update specific Image",
                 "description": "PUT changes to the image identified by a provided id parameter in the route path."
             },
             "delete": {
+                "tags": [
+                    "remove",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "204": {
                         "description": "Successful response."
                     }
                 },
-                "operationId": "deleteImage",
+                "operationId": "data-image-delete",
                 "summary": "Delete specific Image",
                 "description": "DELETE an image with the id parameter, from the data store."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
                     }
                 },
+                "operationId": "data-image-options",
                 "summary": "Preflight check for specific-image API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -4260,6 +4572,11 @@
             "summary": "Find specific product",
             "description": "",
             "get": {
+                "tags": [
+                    "fetch",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -4347,10 +4664,14 @@
                 "security": [
                     {}
                 ],
+                "operationId": "store-product-request",
                 "summary": "Find specific product",
                 "description": "GET complete public information about a specific product, matched by its ID, barcode, or whatever unique property is used to identify it."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -4381,6 +4702,7 @@
                 "security": [
                     {}
                 ],
+                "operationId": "store-product-options",
                 "summary": "Preflight check for specific product",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -4399,6 +4721,11 @@
         "/public/receipt/{code}": {
             "summary": "Fetch details about a transaction",
             "get": {
+                "tags": [
+                    "fetch",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -4417,15 +4744,20 @@
                         "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
                     }
                 },
+                "operationId": "store-receipt-request",
                 "summary": "Find specific transaction receipt",
                 "description": "GET complete public information about a transaction, matched by its ID, code, or whatever unique property is used to identify it."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response, should include CORS headers and only allow the GET method."
                     }
                 },
+                "operationId": "store-receipt-options",
                 "summary": "Preflight check for specific transaction receipt",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -4445,6 +4777,11 @@
             "summary": "Product subcategories within specific main category",
             "description": "",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -4513,10 +4850,14 @@
                 "security": [
                     {}
                 ],
+                "operationId": "category-get",
                 "summary": "Find and list product subcategories within specific main category",
                 "description": "GET the subcategories found within the provided main category ID."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -4547,6 +4888,7 @@
                 "security": [
                     {}
                 ],
+                "operationId": "category-options",
                 "summary": "Preflight check for product subcategories",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -4565,6 +4907,11 @@
         "/data/users/{name}": {
             "summary": "Specific-user API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -4586,6 +4933,7 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-user-get",
                 "summary": "Find specific user",
                 "description": "GET the user identified by a provided id parameter in the route path."
             },
@@ -4600,6 +4948,11 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "update",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the user exists, the changes are valid and were saved."
@@ -4614,10 +4967,16 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-user-put",
                 "summary": "Update specific user",
                 "description": "PUT changes to the user identified by a provided id parameter in the route path."
             },
             "delete": {
+                "tags": [
+                    "remove",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the user exists, and its data was erased."
@@ -4632,10 +4991,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-user-delete",
                 "summary": "Delete specific user",
                 "description": "DELETE a user with the id parameter, from the data store."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -4663,6 +5026,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
                     }
                 },
+                "operationId": "data-user-options",
                 "summary": "Preflight check for specific-user API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -4828,6 +5192,11 @@
         "/data/salespeople": {
             "summary": "Non-specific-salesperson API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
                 "parameters": [
                     {
                         "name": "items",
@@ -4957,6 +5326,7 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-salespeople-get",
                 "summary": "List salespeople",
                 "description": "GET a paged collection of salespeople."
             },
@@ -4971,6 +5341,11 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "create",
+                    "new",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the operation was a success and the new salesperson is stored."
@@ -4982,10 +5357,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-salespeople-post",
                 "summary": "Insert new salesperson",
                 "description": "POST a new salesperson entity and save it to the data store."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -5013,6 +5392,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET and POST methods."
                     }
                 },
+                "operationId": "data-salespeople-options",
                 "summary": "Preflight check for non-specific salesperson API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
@@ -5020,6 +5400,11 @@
         "/data/salespeople/{idCard}": {
             "summary": "Specific-salesperson API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -5041,6 +5426,7 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-salesperson-get",
                 "summary": "Find specific salesperson",
                 "description": "GET the salesperson identified by a provided id parameter in the route path."
             },
@@ -5055,6 +5441,11 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "update",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the salesperson exists, the changes are valid and were saved."
@@ -5069,10 +5460,16 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-salesperson-put",
                 "summary": "Update specific salesperson",
                 "description": "PUT changes to the salesperson identified by a provided id parameter in the route path."
             },
             "delete": {
+                "tags": [
+                    "remove",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the salesperson exists, and its data was erased."
@@ -5087,10 +5484,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-salesperson-delete",
                 "summary": "Delete specific salesperson",
                 "description": "DELETE a salesperson with the id parameter, from the data store."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -5118,6 +5519,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
                     }
                 },
+                "operationId": "data-salesperson-options",
                 "summary": "Preflight check for specific-salesperson API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -5283,6 +5685,11 @@
         "/data/sales/{buyOrder}": {
             "summary": "Specific-sell API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -5304,6 +5711,7 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-sell-get",
                 "summary": "Find specific sell",
                 "description": "GET the sell identified by a provided id parameter in the route path."
             },
@@ -5318,6 +5726,11 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "update",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the sell exists, the changes are valid and were saved."
@@ -5332,10 +5745,16 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-sell-put",
                 "summary": "Update specific sell",
                 "description": "PUT changes to the sell identified by a provided id parameter in the route path."
             },
             "delete": {
+                "tags": [
+                    "remove",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the sell exists, and its data was erased."
@@ -5350,10 +5769,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-sell-delete",
                 "summary": "Delete specific sell",
                 "description": "DELETE a sell with the id parameter, from the data store."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -5381,6 +5804,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
                     }
                 },
+                "operationId": "data-sell-options",
                 "summary": "Preflight check for specific-sell API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
@@ -5546,6 +5970,11 @@
         "/data/products/{code}": {
             "summary": "Specific-product API endpoint",
             "get": {
+                "tags": [
+                    "fetch",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -5567,6 +5996,7 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-product-get",
                 "summary": "Find specific product",
                 "description": "GET the product identified by a provided id parameter in the route path."
             },
@@ -5581,6 +6011,11 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "update",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the product exists, the changes are valid and were saved."
@@ -5595,10 +6030,16 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-product-put",
                 "summary": "Update specific product",
                 "description": "PUT changes to the product identified by a provided id parameter in the route path."
             },
             "delete": {
+                "tags": [
+                    "remove",
+                    "existing",
+                    "one"
+                ],
                 "responses": {
                     "200": {
                         "description": "Normal, empty response; the product exists, and its data was erased."
@@ -5613,10 +6054,14 @@
                         "description": "The API is having a general malfunction or is unavailable."
                     }
                 },
+                "operationId": "data-product-delete",
                 "summary": "Delete specific product",
                 "description": "DELETE a product with the id parameter, from the data store."
             },
             "options": {
+                "tags": [
+                    "preflight"
+                ],
                 "responses": {
                     "200": {
                         "headers": {
@@ -5644,6 +6089,7 @@
                         "description": "Normal, empty response, should include CORS headers and only allow the GET, PUT and DELETE methods."
                     }
                 },
+                "operationId": "data-product-options",
                 "summary": "Preflight check for specific-product API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
