@@ -1,9 +1,9 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Trébol Data Access API",
+        "title": "Trébol Access API",
         "version": "2.1.1",
-        "description": "Resources for API consumers to query their authorized resource and operation accesses on the Data Management API.",
+        "description": "Resources for API consumers to query their authorized resource and operation accesses on the Data API.",
         "contact": {
             "name": "Benjamin La Madrid",
             "email": "bg.lamadrid@gmail.com"

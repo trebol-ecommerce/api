@@ -1,9 +1,9 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Trébol Store API",
+        "title": "Trébol Public API",
         "version": "2.3.2",
-        "description": "API resources to query products, categories, shop information, send payment requests and validate transaction statuses.",
+        "description": "API resources that anyone can consume to interact with the store, such as: query the product catalog, image list, categories list and general shop information; send transaction and payment requests; commit and validate transaction statuses; query saved information about previous transactions, among others.",
         "contact": {
             "name": "Benjamin La Madrid",
             "email": "bg.lamadrid@gmail.com"

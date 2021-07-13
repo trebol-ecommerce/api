@@ -1,9 +1,9 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Trébol Data Management API",
+        "title": "Trébol Data API",
         "version": "2.4.0",
-        "description": "Resources to read, write and delete data in varied contexts. Requires authorization tokens. Users can query Trébol Data Access API to acknowledge which resources and operations can they request.",
+        "description": "Resources to read, write and delete data in available contexts. All methods require proper authentication and authorization. Users can query Trébol Access API to acknowledge granted permissions to this API.",
         "contact": {
             "name": "Benjamin La Madrid",
             "email": "bg.lamadrid@gmail.com"
