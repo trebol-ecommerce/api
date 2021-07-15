@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.4.2-dev",
+        "version": "2.4.3-dev",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -1609,266 +1609,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/product_families": {
-            "summary": "Product families API endpoint",
-            "get": {
-                "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
-                ],
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/ProductFamily"
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Normal response, sends an array with all the product families."
-                    },
-                    "403": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "500": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "operationId": "data-product-families-get",
-                "summary": "List all product families",
-                "description": "GET every product family available."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
-                    }
-                },
-                "operationId": "data-product-families-options",
-                "summary": "Preflight check for product families API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/data/product_types": {
-            "summary": "Product types API endpoint",
-            "get": {
-                "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
-                ],
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal response, sends an array with all the product types."
-                    },
-                    "403": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
-                    },
-                    "500": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "The API is having a general malfunction or is unavailable."
-                    }
-                },
-                "operationId": "data-product-types-get",
-                "summary": "List all product types",
-                "description": "GET every product type available."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
-                    }
-                },
-                "operationId": "data-product-types-options",
-                "summary": "Preflight check for product types API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
         "/data/products": {
             "summary": "Non-specific-product API endpoint",
             "get": {
@@ -3001,7 +2741,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/ProductFamily"
+                                        "$ref": "#/components/schemas/ProductCategory"
                                     }
                                 }
                             }
@@ -4811,7 +4551,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/ProductType"
+                                        "$ref": "#/components/schemas/ProductCategory"
                                     }
                                 }
                             }
@@ -6251,6 +5991,284 @@
                     }
                 }
             }
+        },
+        "/data/product_categories": {
+            "summary": "Root product categories API endpoint",
+            "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductCategory"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Normal response, sends an array with all the product categories."
+                    },
+                    "403": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "500": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "operationId": "data-product-categories-get",
+                "summary": "List all first-level product categories",
+                "description": "GET every product category available without a parent set."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "operationId": "data-product-categories-options",
+                "summary": "Preflight check for product categories API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/data/product_categories/{code}": {
+            "summary": "Children product categories API endpoint",
+            "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductCategory"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Normal response, sends an array with all the corresponding product categories."
+                    },
+                    "403": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Empty response; the request did not meet the security requirements, or has no authorization to access to this resource, or the API at all."
+                    },
+                    "500": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "The API is having a general malfunction or is unavailable."
+                    }
+                },
+                "operationId": "data-child-product-categories-get",
+                "summary": "List children product categories",
+                "description": "GET every category that is a child of the one identified by the provided code."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                    }
+                },
+                "operationId": "data-child-product-categories-options",
+                "summary": "Preflight check for children product categories API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "code",
+                    "description": "A unique identifier for a (presumably) parent product category.",
+                    "in": "path",
+                    "required": true
+                }
+            ]
         }
     },
     "components": {
@@ -6462,10 +6480,6 @@
                         "description": "A unique identifier for the product. Normally issued by an external ERP service.",
                         "type": "string"
                     },
-                    "productType": {
-                        "$ref": "#/components/schemas/ProductType",
-                        "description": "The category the product is associated to."
-                    },
                     "price": {
                         "description": "The price of the product, valued by the store's local currency.",
                         "type": "number"
@@ -6480,6 +6494,10 @@
                     "code": {
                         "description": "A unique identifier for the product. Read-only after creation.",
                         "type": "string"
+                    },
+                    "category": {
+                        "$ref": "#/components/schemas/ProductCategory",
+                        "description": "The category the product is associated to."
                     }
                 },
                 "example": {
@@ -6499,53 +6517,6 @@
                             "filename": "second_example.png"
                         }
                     ]
-                }
-            },
-            "ProductFamily": {
-                "title": "Root Type for ProductFamily",
-                "description": "A Product group/category. Each one can be divided into smaller subsets (ProductType).",
-                "required": [],
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "description": "The name displayed for the category.",
-                        "type": "string"
-                    },
-                    "code": {
-                        "description": "A unique identifier for the category.",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "code": "EXPL",
-                    "name": "example category"
-                }
-            },
-            "ProductType": {
-                "title": "Root Type for ProductType",
-                "description": "A smaller Product group/category. Belongs to a bigger set (ProductFamily).",
-                "required": [],
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "description": "The name displayed for the category.",
-                        "type": "string"
-                    },
-                    "productFamily": {
-                        "$ref": "#/components/schemas/ProductFamily",
-                        "description": "The 'parent' category."
-                    },
-                    "code": {
-                        "description": "A unique identifier for the category.",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "name": "EXPL1",
-                    "productFamily": {
-                        "code": "EXPL",
-                        "name": "example category"
-                    }
                 }
             },
             "Receipt": {
@@ -6876,6 +6847,30 @@
                         "salespeople",
                         "users"
                     ]
+                }
+            },
+            "ProductCategory": {
+                "title": "Root Type for ProductFamily",
+                "description": "A Product group/category. Each one can be divided into smaller subsets (ProductType).",
+                "required": [],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "The name displayed for the category.",
+                        "type": "string"
+                    },
+                    "code": {
+                        "description": "A unique identifier for the category.",
+                        "type": "string"
+                    },
+                    "parent": {
+                        "$ref": "#/components/schemas/ProductCategory",
+                        "description": "A category existing one level above the current."
+                    }
+                },
+                "example": {
+                    "code": "EXPL",
+                    "name": "example category"
                 }
             }
         },
