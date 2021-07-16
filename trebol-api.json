@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.4.3-dev",
+        "version": "2.5.0-dev",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -1301,10 +1301,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Customer"
-                                    }
+                                    "$ref": "#/components/schemas/DataPage"
                                 }
                             }
                         },
@@ -1509,10 +1506,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Person"
-                                    }
+                                    "$ref": "#/components/schemas/DataPage"
                                 }
                             }
                         },
@@ -1686,10 +1680,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Product"
-                                    }
+                                    "$ref": "#/components/schemas/DataPage"
                                 }
                             }
                         },
@@ -1894,10 +1885,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Sell"
-                                    }
+                                    "$ref": "#/components/schemas/DataPage"
                                 }
                             }
                         },
@@ -2227,10 +2215,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/User"
-                                    }
+                                    "$ref": "#/components/schemas/DataPage"
                                 }
                             }
                         },
@@ -2390,10 +2375,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Image"
-                                    }
+                                    "$ref": "#/components/schemas/DataPage"
                                 }
                             }
                         },
@@ -5006,10 +4988,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Salesperson"
-                                    }
+                                    "$ref": "#/components/schemas/DataPage"
                                 }
                             }
                         },
@@ -6871,6 +6850,44 @@
                 "example": {
                     "code": "EXPL",
                     "name": "example category"
+                }
+            },
+            "DataPage": {
+                "description": "A pageable representation of data.",
+                "type": "object",
+                "properties": {
+                    "items": {
+                        "description": "The contents of the page.",
+                        "type": "array",
+                        "items": {}
+                    },
+                    "pageIndex": {
+                        "description": "The index of the page (0-based)",
+                        "type": "integer"
+                    },
+                    "totalCount": {
+                        "description": "The total amount of items matched under the same search criteria used to fetch the current page.",
+                        "type": "integer"
+                    },
+                    "pageSize": {
+                        "description": "The amount of items requested and (presumably) contained in the page.",
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "items": [
+                        {
+                            "name": "example product",
+                            "code": "EXMPL001"
+                        },
+                        {
+                            "name": "example product 2",
+                            "code": "EXMPL002"
+                        }
+                    ],
+                    "pageIndex": 2,
+                    "totalCount": 32,
+                    "pageSize": 15
                 }
             }
         },
