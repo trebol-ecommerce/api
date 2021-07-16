@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.5.1-dev",
+        "version": "2.6.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -14,41 +14,6 @@
         }
     },
     "paths": {
-        "/access/": {
-            "summary": "Allowed (authorized) access to API routes",
-            "get": {
-                "tags": [
-                    "authorization"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AuthorizedAccessToRoutes"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "operationId": "access-routes-get",
-                "summary": "Query allowed API routes",
-                "description": "GET the API resource paths that the current session is authorized to use."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "operationId": "access-routes-options",
-                "summary": "Preflight check for API resource accesses",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
         "/access/products": {
             "summary": "Allowed (authorized) access to products API",
             "get": {
@@ -652,39 +617,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/SellType"
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Normal response, sends an array with all the sell types."
+                        "$ref": "#/components/responses/MultipleSellTypes"
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -924,39 +857,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/UserRole"
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Normal response, sends an array with all the user roles."
+                        "$ref": "#/components/responses/MultipleUserRoles"
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -1025,29 +926,7 @@
                         "description": "Normal response. Sends an object containing information about the shop."
                     },
                     "500": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "The resource found at this path is having a general malfunction. May be temporally, or permanently, unavailable."
+                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "security": [
@@ -1085,39 +964,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/ProductCategory"
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Normal response. Sends an array with all main product categories."
+                        "$ref": "#/components/responses/MultipleProductCategories"
                     },
                     "500": {
                         "$ref": "#/components/responses/UnknownError"
@@ -1242,7 +1089,7 @@
                         "description": "Normal, empty response, sent when the transaction was approved. Redirects the user.\n\n'Location' response header should be included with a URL to the result page."
                     },
                     "400": {
-                        "description": "Erroneous, empty response, sent when the transaction is not in a 'Pending' state."
+                        "$ref": "#/components/responses/BadRequestBody"
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
@@ -1279,531 +1126,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/guest": {
-            "summary": "Guest session opener",
-            "description": "",
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Person"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "session"
-                ],
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "Authorization": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal response; a guest token was generated. It is included in the response headers and body."
-                    },
-                    "403": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Erroneous, empty response to improper use; the user was already logged in or using a valid guest token."
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "guest-session-request",
-                "summary": "Start a guest session",
-                "description": "POST personal information to generate a token for a temporary guest session."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the POST method."
-                    }
-                },
-                "operationId": "guest-session-options",
-                "summary": "Preflight check for guest session opener",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/register": {
-            "summary": "Account registrar",
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UserRegistration"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "account"
-                ],
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "Authorization": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response; the registration was succesful and the user account was created. The user should log in with the same input credentials."
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "register-request",
-                "summary": "Request a new user account",
-                "description": "POST details for a new user account, including its profile information."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodPOST"
-                    }
-                },
-                "operationId": "register-options",
-                "summary": "Preflight check for account registrar",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/login": {
-            "summary": "Session opener",
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/LoginCredentials"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "account",
-                    "session"
-                ],
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "Authorization": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the credentials are correct, and an authorization token was generated. It is included in the response headers and body."
-                    },
-                    "403": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Erroneous, empty response, sent when the credentials are rejected."
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "login-request",
-                "summary": "Start a logged-in session",
-                "description": "POST credentials to authenticate, generate an authorization token and start a new session."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the POST method."
-                    }
-                },
-                "operationId": "login-options",
-                "summary": "Preflight check for session opener",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/profile": {
-            "summary": "User profile information",
-            "get": {
-                "tags": [
-                    "fetch",
-                    "account"
-                ],
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Person"
-                                }
-                            }
-                        },
-                        "description": "Normal response. Sends a representation of the profile information."
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "profile-get",
-                "summary": "Fetch current user's profile",
-                "description": "GET the current user's stored profile information"
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Person"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "update",
-                    "account"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "profile-put",
-                "summary": "Update current user's profile",
-                "description": "PUT changes into the current user's profile information."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-PUT"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "profile-options",
-                "summary": "Preflight check for user profile information",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/logout": {
-            "summary": "Session closer",
-            "post": {
-                "tags": [
-                    "account",
-                    "session"
-                ],
-                "responses": {
-                    "200": {
-                        "headers": {
-                            "Authorization": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the session was terminated."
-                    },
-                    "403": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Erroneous, empty response to improper use; the user is not logged in or its token was already terminated."
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "logout-request",
-                "summary": "Terminate current session",
-                "description": "POST a request to close the currently opened session."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodPOST"
-                    }
-                },
-                "operationId": "logout-options",
-                "summary": "Preflight check for session closer",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
         "/data/customers/{idCard}": {
             "summary": "Specific-customer API endpoint",
             "get": {
@@ -1814,14 +1136,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Customer"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the customer exists and it is sent in the response body."
+                        "$ref": "#/components/responses/SingleCustomer"
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -1934,14 +1249,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Image"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the image exists and it is sent in the response body."
+                        "$ref": "#/components/responses/SingleImage"
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -2054,14 +1362,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Receipt"
-                                }
-                            }
-                        },
-                        "description": "A normal response, including an object containing the individual transaction data."
+                        "$ref": "#/components/responses/SingleReceipt"
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
@@ -2110,39 +1411,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/ProductCategory"
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Normal response. Sends an array with the requested subcategories."
+                        "$ref": "#/components/responses/MultipleProductCategories"
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
@@ -2196,14 +1465,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the user exists and it is sent in the response body."
+                        "$ref": "#/components/responses/SingleUser"
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -2428,14 +1690,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Salesperson"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the salesperson exists and it is sent in the response body."
+                        "$ref": "#/components/responses/SingleSalesperson"
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -2547,14 +1802,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Sell"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the sell exists and it is sent in the response body."
+                        "$ref": "#/components/responses/SingleSell"
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -2666,14 +1914,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Product"
-                                }
-                            }
-                        },
-                        "description": "Normal response; the product exists and it is sent in the response body."
+                        "$ref": "#/components/responses/SingleProduct"
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -2785,39 +2026,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/ProductCategory"
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Normal response, sends an array with all the product categories."
+                        "$ref": "#/components/responses/MultipleProductCategories"
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -2836,29 +2045,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "description": "Normal, empty response, should include CORS headers and only allow the GET method."
+                        "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
                 "operationId": "data-product-categories-options",
@@ -2876,39 +2063,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/ProductCategory"
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Normal response, sends an array with all the corresponding product categories."
+                        "$ref": "#/components/responses/MultipleProductCategories"
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -3047,7 +2202,317 @@
                 ],
                 "responses": {
                     "200": {
+                        "$ref": "#/components/responses/SingleProduct"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "store-product-request",
+                "summary": "Find specific product",
+                "description": "GET complete public information about a specific product."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "security": [
+                    {}
+                ],
+                "operationId": "store-product-options",
+                "summary": "Preflight check for specific product",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "code",
+                    "description": "The unique product identifier",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/account/logout": {
+            "summary": "Session closer",
+            "post": {
+                "tags": [
+                    "account",
+                    "session"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
                         "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Erroneous, empty response to improper use; the user is not logged in or its token was already terminated."
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "logout-request",
+                "summary": "Terminate current session",
+                "description": "POST a request to close the currently opened session."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodPOST"
+                    }
+                },
+                "operationId": "logout-options",
+                "summary": "Preflight check for session closer",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/account/profile": {
+            "summary": "User profile information",
+            "get": {
+                "tags": [
+                    "fetch",
+                    "account"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/SinglePerson"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "profile-get",
+                "summary": "Fetch current user's profile",
+                "description": "GET the current user's stored profile information"
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Person"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "account"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "profile-put",
+                "summary": "Update current user's profile",
+                "description": "PUT changes into the current user's profile information."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET-PUT"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "profile-options",
+                "summary": "Preflight check for user profile information",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/public/guest": {
+            "summary": "Guest session opener",
+            "description": "",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Person"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "session"
+                ],
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "Authorization": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal response; a guest token was generated. It is included in the response headers and body."
+                    },
+                    "403": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Erroneous, empty response to improper use; the user was already logged in or using a valid guest token."
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "security": [
+                    {}
+                ],
+                "operationId": "guest-session-request",
+                "summary": "Start a guest session",
+                "description": "POST personal information to generate a token for a temporary guest session."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodPOST"
+                    }
+                },
+                "operationId": "guest-session-options",
+                "summary": "Preflight check for guest session opener",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/public/login": {
+            "summary": "Session opener",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginCredentials"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "account",
+                    "session"
+                ],
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "Authorization": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
                             "X-Requested-With": {
                                 "schema": {
                                     "type": "string"
@@ -3072,22 +2537,157 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Product"
+                                    "type": "string"
                                 }
                             }
                         },
-                        "description": "A normal response, including an object containing the individual product data."
+                        "description": "Normal response; the credentials are correct, and an authorization token was generated. It is included in the response headers and body."
                     },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
+                    "403": {
+                        "headers": {
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Erroneous, empty response, sent when the credentials are rejected."
                     },
                     "500": {
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "operationId": "store-product-request",
-                "summary": "Find specific product",
-                "description": "GET complete public information about a specific product, matched by its ID, barcode, or whatever unique property is used to identify it."
+                "security": [
+                    {}
+                ],
+                "operationId": "login-request",
+                "summary": "Start a logged-in session",
+                "description": "POST credentials to authenticate, generate an authorization token and start a new session."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodPOST"
+                    }
+                },
+                "operationId": "login-options",
+                "summary": "Preflight check for session opener",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/public/register": {
+            "summary": "Account registrar",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserRegistration"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "account"
+                ],
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "Authorization": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Normal, empty response; sent when the registration is succesful and the user account is created. The user should proceed log in with the same input credentials."
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "security": [
+                    {}
+                ],
+                "operationId": "register-request",
+                "summary": "Request a new user account",
+                "description": "POST details for a new user account, including its profile information."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodPOST"
+                    }
+                },
+                "operationId": "register-options",
+                "summary": "Preflight check for account registrar",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/access": {
+            "summary": "Allowed (authorized) access to API routes",
+            "get": {
+                "tags": [
+                    "authorization"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AuthorizedAccessToRoutes"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "access-routes-get",
+                "summary": "Query allowed API routes",
+                "description": "GET the API resource paths that the current session is authorized to use."
             },
             "options": {
                 "tags": [
@@ -3098,24 +2698,10 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {}
-                ],
-                "operationId": "store-product-options",
-                "summary": "Preflight check for specific product",
+                "operationId": "access-routes-options",
+                "summary": "Preflight check for API resource accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "code",
-                    "description": "The product identifier",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
+            }
         }
     },
     "components": {
@@ -3822,6 +3408,125 @@
             },
             "BadRequestBody": {
                 "description": "Erroneous response, sent when the request does not meet certain expectations. This probably because required properties were not included in the request body, or because certain data constraints (duplicate code numbers, for example) were not met."
+            },
+            "SingleProduct": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Product"
+                        }
+                    }
+                },
+                "description": "Normal response, sends an object representation of an individual product."
+            },
+            "SingleSell": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Sell"
+                        }
+                    }
+                },
+                "description": "Normal response, sends an object representation of an individual sell."
+            },
+            "SingleReceipt": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Receipt"
+                        }
+                    }
+                },
+                "description": "Normal response, sends an object representation of an individual transaction receipt."
+            },
+            "MultipleProductCategories": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ProductCategory"
+                            }
+                        }
+                    }
+                },
+                "description": "Normal response, sends an array of product categories."
+            },
+            "MultipleUserRoles": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/UserRole"
+                            }
+                        }
+                    }
+                },
+                "description": "Normal response, sends an array of user roles."
+            },
+            "SingleImage": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Image"
+                        }
+                    }
+                },
+                "description": "Normal response, sends an object representation of an individual image."
+            },
+            "SingleCustomer": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Customer"
+                        }
+                    }
+                },
+                "description": "Normal response, sends an object representation of an individual customer."
+            },
+            "SingleSalesperson": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Salesperson"
+                        }
+                    }
+                },
+                "description": "Normal response, sends an object representation of an individual salesperson."
+            },
+            "MultipleSellTypes": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/SellType"
+                            }
+                        }
+                    }
+                },
+                "description": "Normal response, sends an array of user roles."
+            },
+            "SingleUser": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                },
+                "description": "Normal response, sends an object representation of an individual user."
+            },
+            "SinglePerson": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Person"
+                        }
+                    }
+                },
+                "description": "Normal response, sends an object representation of an individual person."
             }
         },
         "securitySchemes": {
