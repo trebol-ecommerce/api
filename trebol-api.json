@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.6.0",
+        "version": "2.6.2",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -23,14 +23,13 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-products-actions-get",
                 "summary": "Query allowed products API operations",
                 "description": "GET actions that the current session is authorized to do using the products API."
@@ -44,6 +43,11 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-products-options",
                 "summary": "Preflight check for products API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -58,14 +62,13 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-sales-actions-get",
                 "summary": "Query allowed sales API operations",
                 "description": "GET actions that the current session is authorized to do using the sales API."
@@ -79,6 +82,11 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-sales-actions-options",
                 "summary": "Preflight check for sales API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -93,14 +101,13 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-users-actions-get",
                 "summary": "Query allowed users API operations",
                 "description": "GET actions that the current session is authorized to do using the users API."
@@ -114,6 +121,11 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-users-actions-options",
                 "summary": "Preflight check for users API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -128,14 +140,13 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-customers-actions-get",
                 "summary": "Query allowed customers API operations",
                 "description": "GET actions that the current session is authorized to do using the customers API."
@@ -149,6 +160,11 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-customers-options",
                 "summary": "Preflight check for customers API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -163,14 +179,13 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-salespeople-actions-get",
                 "summary": "Query allowed salespeople API operations",
                 "description": "GET actions that the current session is authorized to do using the salespeople API."
@@ -184,6 +199,11 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-salespeople-actions-options",
                 "summary": "Preflight check for salespeople API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -242,14 +262,13 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/PaginatedCollection"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-customers-get",
                 "summary": "List customers",
                 "description": "GET a paged collection of customers."
@@ -298,7 +317,7 @@
                     }
                 },
                 "operationId": "data-customers-options",
-                "summary": "Preflight check for non-specific client API",
+                "summary": "Preflight check for non-specific customer API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
@@ -490,7 +509,7 @@
                     }
                 },
                 "operationId": "data-products-options",
-                "summary": "Preflight check for non-specific client API",
+                "summary": "Preflight check for non-specific product API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
@@ -1148,6 +1167,11 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-customer-get",
                 "summary": "Find specific customer",
                 "description": "GET the customer identified by a provided id parameter in the route path."
@@ -2049,7 +2073,7 @@
                     }
                 },
                 "operationId": "data-product-categories-options",
-                "summary": "Preflight check for product categories API",
+                "summary": "Preflight check for root product categories API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
@@ -2278,9 +2302,6 @@
                             }
                         },
                         "description": "Erroneous, empty response to improper use; the user is not logged in or its token was already terminated."
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "security": [
@@ -2680,11 +2701,13 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-routes-get",
                 "summary": "Query allowed API routes",
                 "description": "GET the API resource paths that the current session is authorized to use."
@@ -2698,6 +2721,11 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-routes-options",
                 "summary": "Preflight check for API resource accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
