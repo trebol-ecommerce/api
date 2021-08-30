@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.6.4",
+        "version": "2.6.5",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -3420,6 +3420,51 @@
                 "example": {
                     "idNumber": "idNumber example",
                     "name": "name test"
+                }
+            },
+            "Shipper": {
+                "title": "Root Type for Shipper",
+                "description": "",
+                "required": [
+                    "person"
+                ],
+                "type": "object",
+                "properties": {
+                    "person": {
+                        "$ref": "#/components/schemas/Person",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "idCard": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "address": {
+                                "type": "string"
+                            },
+                            "phone1": {
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "phone2": {
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "person": {
+                        "name": "Lorem ipsum dolor sit amet",
+                        "idCard": "xxxxxxxxx",
+                        "email": "address@example.com",
+                        "address": "Excepteur sint occaecat cupidatat non proident",
+                        "phone1": 1234567,
+                        "phone2": 7654321
+                    }
                 }
             }
         },
