@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.6.2",
+        "version": "2.6.3",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -3371,6 +3371,39 @@
             "EmptyObject": {
                 "description": "An object without properties.",
                 "type": "object"
+            },
+            "Address": {
+                "title": "Root Type for Address",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "firstLine": {
+                        "type": "string"
+                    },
+                    "secondLine": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "municipality": {
+                        "type": "string"
+                    },
+                    "postalCode": {
+                        "type": "string"
+                    },
+                    "notes": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "firstLine": "first line test",
+                    "secondLine": "second line test",
+                    "city": "city example",
+                    "municipality": "municipality example",
+                    "postalCode": "postal code test",
+                    "notes": "lorem ipsum"
+                }
             }
         },
         "responses": {
