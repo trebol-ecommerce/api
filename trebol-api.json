@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.6.3",
+        "version": "2.6.4",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -3403,6 +3403,23 @@
                     "municipality": "municipality example",
                     "postalCode": "postal code test",
                     "notes": "lorem ipsum"
+                }
+            },
+            "BillingCompany": {
+                "title": "Root Type for BillingCompany",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "idNumber": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "idNumber": "idNumber example",
+                    "name": "name test"
                 }
             }
         },
