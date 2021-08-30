@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.6.7",
+        "version": "2.6.8",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2774,10 +2774,6 @@
                         "description": "The e-mail address.",
                         "type": "string"
                     },
-                    "address": {
-                        "description": "The full address of the individual.",
-                        "type": "string"
-                    },
                     "phone1": {
                         "description": "The phone number (without pluses or parentheses)",
                         "type": "integer"
@@ -2791,7 +2787,6 @@
                     "name": "Lorem ipsum dolor sit amet",
                     "idCard": "xxxxxxxxx",
                     "email": "address@example.com",
-                    "address": "Excepteur sint occaecat cupidatat non proident",
                     "phone1": 1234567,
                     "phone2": 7654321
                 }
