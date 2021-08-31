@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.1",
+        "version": "2.7.2",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -3202,20 +3202,67 @@
                         }
                     },
                     "billingType": {
-                        "description": "",
+                        "description": "The name of the chosen method for generating a bill of the sell.",
                         "type": "string"
+                    },
+                    "billingAddress": {
+                        "$ref": "#/components/schemas/Address",
+                        "description": "The address designated to bill."
+                    },
+                    "shippingAddress": {
+                        "$ref": "#/components/schemas/Address",
+                        "description": "The address designated to ship."
+                    },
+                    "shipper": {
+                        "$ref": "#/components/schemas/Shipper",
+                        "description": "The shipper that was chosen."
+                    },
+                    "date": {
+                        "format": "date-time",
+                        "description": "(UTC) The date and time that the transaction was acknowledged.",
+                        "type": "string"
+                    },
+                    "paymentType": {
+                        "$ref": "#/components/schemas/PaymentType",
+                        "description": ""
                     }
                 },
                 "example": {
                     "details": [
                         {
                             "product": {
-                                "barcode": "test"
+                                "barcode": "some text"
                             },
-                            "units": 1
+                            "units": 27
                         }
                     ],
-                    "billingType": "Enterprise Invoice"
+                    "billingType": "some text",
+                    "billingAddress": {
+                        "firstLine": "some text",
+                        "secondLine": "some text",
+                        "city": "some text",
+                        "municipality": "some text",
+                        "postalCode": "some text",
+                        "notes": "some text"
+                    },
+                    "shippingAddress": {
+                        "firstLine": "some text",
+                        "secondLine": "some text",
+                        "city": "some text",
+                        "municipality": "some text",
+                        "postalCode": "some text",
+                        "notes": "some text"
+                    },
+                    "shipper": {
+                        "person": {
+                            "name": "some text",
+                            "idCard": "some text",
+                            "email": "some text",
+                            "phone1": "some text",
+                            "phone2": "some text"
+                        }
+                    },
+                    "date": "2018-02-10T09:30Z"
                 }
             },
             "User": {
@@ -3467,10 +3514,11 @@
             },
             "PaymentType": {
                 "title": "Root Type for PaymentType",
-                "description": "",
+                "description": "Designates the method that the customer used to pay their bill.",
                 "type": "object",
                 "properties": {
                     "name": {
+                        "description": "The name given to this payment type.",
                         "type": "string"
                     }
                 },
