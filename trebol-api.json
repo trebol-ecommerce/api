@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.10",
+        "version": "2.7.11",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -3159,8 +3159,8 @@
                         "type": "string"
                     },
                     "paymentType": {
-                        "$ref": "#/components/schemas/PaymentType",
-                        "description": "The selected method for payment for this transaction."
+                        "description": "The selected method for payment for this transaction.",
+                        "type": "string"
                     },
                     "salesperson": {
                         "$ref": "#/components/schemas/Salesperson",
@@ -3217,9 +3217,7 @@
                     },
                     "status": "Pending",
                     "date": "2018-02-10T09:30Z",
-                    "paymentType": {
-                        "name": "some text"
-                    },
+                    "paymentType": "some payment method",
                     "salesperson": {
                         "person": {
                             "idNumber": "some text"
