@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.0",
+        "version": "2.7.1",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -3202,8 +3202,8 @@
                         }
                     },
                     "billingType": {
-                        "$ref": "#/components/schemas/BillingType",
-                        "description": ""
+                        "description": "",
+                        "type": "string"
                     }
                 },
                 "example": {
@@ -3215,9 +3215,7 @@
                             "units": 1
                         }
                     ],
-                    "billingType": {
-                        "name": "type1"
-                    }
+                    "billingType": "Enterprise Invoice"
                 }
             },
             "User": {
