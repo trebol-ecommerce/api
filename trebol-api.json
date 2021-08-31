@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.7",
+        "version": "2.7.8",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -3366,21 +3366,27 @@
                 "type": "object",
                 "properties": {
                     "firstLine": {
+                        "description": "The main line of address.",
                         "type": "string"
                     },
                     "secondLine": {
+                        "description": "Further information of the address, such as apartment or office.",
                         "type": "string"
                     },
                     "city": {
+                        "description": "The name of the city where the address is located.",
                         "type": "string"
                     },
                     "municipality": {
+                        "description": "The province where the address is located.",
                         "type": "string"
                     },
                     "postalCode": {
+                        "description": "Sometimes called ZIP.",
                         "type": "string"
                     },
                     "notes": {
+                        "description": "Extra bits of information or comments. Mostly helpful to Shippers.",
                         "type": "string"
                     }
                 },
