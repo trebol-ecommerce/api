@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.2",
+        "version": "2.7.3",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2787,11 +2787,11 @@
                     }
                 },
                 "example": {
-                    "name": "Lorem ipsum dolor sit amet",
-                    "idCard": "xxxxxxxxx",
-                    "email": "address@example.com",
-                    "phone1": 1234567,
-                    "phone2": 7654321
+                    "name": "some text",
+                    "idCard": "some text",
+                    "email": "some text",
+                    "phone1": "some text",
+                    "phone2": "some text"
                 }
             },
             "UserRegistration": {
@@ -2808,45 +2808,22 @@
                         "type": "string"
                     },
                     "profile": {
-                        "$ref": "#/components/schemas/Person",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "idCard": {
-                                "type": "string"
-                            },
-                            "address": {
-                                "type": "string"
-                            },
-                            "email": {
-                                "type": "string"
-                            },
-                            "phone1": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "phone2": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
+                        "$ref": "#/components/schemas/Person"
                     },
                     "name": {
                         "type": "string"
                     }
                 },
                 "example": {
-                    "name": "an username",
-                    "password": "a password",
+                    "password": "some text",
                     "profile": {
-                        "name": "Lorem ipsum dolor sit amet",
-                        "idCard": "xxxxxxxxx",
-                        "email": "address@example.com",
-                        "address": "Excepteur sint occaecat cupidatat non proident",
-                        "phone1": 1234567,
-                        "phone2": 7654321
-                    }
+                        "name": "some text",
+                        "idCard": "some text",
+                        "email": "some text",
+                        "phone1": "some text",
+                        "phone2": "some text"
+                    },
+                    "name": "some text"
                 }
             },
             "CartDetail": {
@@ -3086,40 +3063,16 @@
                 "type": "object",
                 "properties": {
                     "person": {
-                        "$ref": "#/components/schemas/Person",
-                        "description": "The person this customer \"is\".",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "idCard": {
-                                "type": "string"
-                            },
-                            "email": {
-                                "type": "string"
-                            },
-                            "address": {
-                                "type": "string"
-                            },
-                            "phone1": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "phone2": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
+                        "$ref": "#/components/schemas/Person"
                     }
                 },
                 "example": {
                     "person": {
-                        "name": "Lorem ipsum dolor sit amet",
-                        "idCard": "xxxxxxxxx",
-                        "email": "address@example.com",
-                        "address": "Excepteur sint occaecat cupidatat non proident",
-                        "phone1": 1234567,
-                        "phone2": 7654321
+                        "name": "some text",
+                        "idCard": "some text",
+                        "email": "some text",
+                        "phone1": "some text",
+                        "phone2": "some text"
                     }
                 }
             },
@@ -3131,39 +3084,16 @@
                 "properties": {
                     "person": {
                         "$ref": "#/components/schemas/Person",
-                        "description": "The person this salesperson \"is\".",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "idCard": {
-                                "type": "string"
-                            },
-                            "email": {
-                                "type": "string"
-                            },
-                            "address": {
-                                "type": "string"
-                            },
-                            "phone1": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "phone2": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
+                        "description": "The person this salesperson \"is\"."
                     }
                 },
                 "example": {
                     "person": {
-                        "name": "Lorem ipsum dolor sit amet",
-                        "idCard": "xxxxxxxxx",
-                        "email": "address@example.com",
-                        "address": "Excepteur sint occaecat cupidatat non proident",
-                        "phone1": 1234567,
-                        "phone2": 7654321
+                        "name": "some text",
+                        "idCard": "some text",
+                        "email": "some text",
+                        "phone1": "some text",
+                        "phone2": "some text"
                     }
                 }
             },
@@ -3224,7 +3154,11 @@
                     },
                     "paymentType": {
                         "$ref": "#/components/schemas/PaymentType",
-                        "description": ""
+                        "description": "The selected method for payment for this transaction."
+                    },
+                    "salesperson": {
+                        "$ref": "#/components/schemas/Salesperson",
+                        "description": "The employee that authorized the sell."
                     }
                 },
                 "example": {
@@ -3233,7 +3167,7 @@
                             "product": {
                                 "barcode": "some text"
                             },
-                            "units": 27
+                            "units": 42
                         }
                     ],
                     "billingType": "some text",
@@ -3255,14 +3189,18 @@
                     },
                     "shipper": {
                         "person": {
-                            "name": "some text",
-                            "idCard": "some text",
-                            "email": "some text",
-                            "phone1": "some text",
-                            "phone2": "some text"
+                            "idCard": "some text"
                         }
                     },
-                    "date": "2018-02-10T09:30Z"
+                    "date": "2018-02-10T09:30Z",
+                    "paymentType": {
+                        "name": "some text"
+                    },
+                    "salesperson": {
+                        "person": {
+                            "idCard": "some text"
+                        }
+                    }
                 }
             },
             "User": {
@@ -3459,39 +3397,16 @@
                 "type": "object",
                 "properties": {
                     "person": {
-                        "$ref": "#/components/schemas/Person",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "idCard": {
-                                "type": "string"
-                            },
-                            "email": {
-                                "type": "string"
-                            },
-                            "address": {
-                                "type": "string"
-                            },
-                            "phone1": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "phone2": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
+                        "$ref": "#/components/schemas/Person"
                     }
                 },
                 "example": {
                     "person": {
-                        "name": "Lorem ipsum dolor sit amet",
-                        "idCard": "xxxxxxxxx",
-                        "email": "address@example.com",
-                        "address": "Excepteur sint occaecat cupidatat non proident",
-                        "phone1": 1234567,
-                        "phone2": 7654321
+                        "name": "some text",
+                        "idCard": "some text",
+                        "email": "some text",
+                        "phone1": "some text",
+                        "phone2": "some text"
                     }
                 }
             },
