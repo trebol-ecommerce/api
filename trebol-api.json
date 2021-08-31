@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.8",
+        "version": "2.7.9",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -3362,7 +3362,7 @@
             },
             "Address": {
                 "title": "Root Type for Address",
-                "description": "",
+                "description": "Information about a physical address.",
                 "type": "object",
                 "properties": {
                     "firstLine": {
@@ -3401,13 +3401,15 @@
             },
             "BillingCompany": {
                 "title": "Root Type for BillingCompany",
-                "description": "",
+                "description": "A company or similar organization, enabled to pay taxes.",
                 "type": "object",
                 "properties": {
                     "idNumber": {
+                        "description": "The national identification number for the company.",
                         "type": "string"
                     },
                     "name": {
+                        "description": "The name of the organization.",
                         "type": "string"
                     }
                 },
