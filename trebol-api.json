@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.12",
+        "version": "2.7.13",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2892,9 +2892,7 @@
                         "notes": "some text"
                     },
                     "shipper": {
-                        "person": {
-                            "idNumber": "some text"
-                        }
+                        "name": "some text"
                     },
                     "status": "Pending",
                     "date": "2018-02-10T09:30Z",
@@ -3103,22 +3101,16 @@
                 "title": "Root Type for Shipper",
                 "description": "",
                 "required": [
-                    "person"
+                    "name"
                 ],
                 "type": "object",
                 "properties": {
-                    "person": {
-                        "$ref": "#/components/schemas/Person"
+                    "name": {
+                        "type": "string"
                     }
                 },
                 "example": {
-                    "person": {
-                        "name": "some text",
-                        "idNumber": "some text",
-                        "email": "some text",
-                        "phone1": "some text",
-                        "phone2": "some text"
-                    }
+                    "name": "some text"
                 }
             },
             "SellStatus": {
