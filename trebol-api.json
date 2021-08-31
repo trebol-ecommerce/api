@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.6.8",
+        "version": "2.6.9",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2775,12 +2775,14 @@
                         "type": "string"
                     },
                     "phone1": {
-                        "description": "The phone number (without pluses or parentheses)",
-                        "type": "integer"
+                        "description": "The phone number",
+                        "pattern": "^(\\\\((\\\\+)?[0-9]{3}\\\\))?[0-9]{3,4}[ -]?[0-9]{4}$",
+                        "type": "string"
                     },
                     "phone2": {
                         "description": "A second phone number (without pluses or parentheses)",
-                        "type": "integer"
+                        "pattern": "^(\\\\((\\\\+)?[0-9]{3}\\\\))?[0-9]{3,4}[ -]?[0-9]{4}$",
+                        "type": "string"
                     }
                 },
                 "example": {
