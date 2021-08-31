@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.6.9",
+        "version": "2.7.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -623,43 +623,6 @@
                 },
                 "operationId": "data-sales-options",
                 "summary": "Preflight check for non-specific sell API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/data/sell_types": {
-            "summary": "Sell types API endpoint",
-            "get": {
-                "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/MultipleSellTypes"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "operationId": "data-sell-types-get",
-                "summary": "List all sell types",
-                "description": "GET every sell type available."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "operationId": "data-sell-types-options",
-                "summary": "Preflight check for sell types API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
@@ -2730,6 +2693,43 @@
                 "summary": "Preflight check for API resource accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
+        },
+        "/data/billing_types": {
+            "summary": "Billing types API endpoint",
+            "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/MultipleBillingTypes"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "data-billing-types-get",
+                "summary": "List all billing types",
+                "description": "GET every billing type available."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "operationId": "data-billing-types-options",
+                "summary": "Preflight check for billing types API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
         }
     },
     "components": {
@@ -2760,6 +2760,7 @@
             "Person": {
                 "title": "Root Type for Person",
                 "description": "Personal information about an individual.",
+                "required": [],
                 "type": "object",
                 "properties": {
                     "name": {
@@ -3188,21 +3189,6 @@
                     "units": 1
                 }
             },
-            "SellType": {
-                "title": "Root Type for ProductType",
-                "description": "The types of sell dictate taxes to be applied.",
-                "required": [],
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "description": "The name given to this sell type.",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "name": "example sell type"
-                }
-            },
             "Sell": {
                 "title": "Root Type for Sell",
                 "description": "",
@@ -3215,9 +3201,9 @@
                             "$ref": "#/components/schemas/SellDetail"
                         }
                     },
-                    "sellType": {
-                        "$ref": "#/components/schemas/SellType",
-                        "description": "The requested type of sell (for tax purposes)."
+                    "billingType": {
+                        "$ref": "#/components/schemas/BillingType",
+                        "description": ""
                     }
                 },
                 "example": {
@@ -3229,7 +3215,7 @@
                             "units": 1
                         }
                     ],
-                    "sellType": {
+                    "billingType": {
                         "name": "type1"
                     }
                 }
@@ -3493,6 +3479,21 @@
                 "example": {
                     "name": "Enterprise Invoice"
                 }
+            },
+            "BillingType": {
+                "title": "Root Type for ProductType",
+                "description": "Dictates taxes to be applied to a given Sell.",
+                "required": [],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "The name given to this billing type.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "Enterprise Invoice"
+                }
             }
         },
         "responses": {
@@ -3645,19 +3646,6 @@
                 },
                 "description": "Normal response, sends an object representation of an individual salesperson."
             },
-            "MultipleSellTypes": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/components/schemas/SellType"
-                            }
-                        }
-                    }
-                },
-                "description": "Normal response, sends an array of user roles."
-            },
             "SingleUser": {
                 "content": {
                     "application/json": {
@@ -3677,6 +3665,19 @@
                     }
                 },
                 "description": "Normal response, sends an object representation of an individual person."
+            },
+            "MultipleBillingTypes": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/BillingType"
+                            }
+                        }
+                    }
+                },
+                "description": "Normal response, sends an array of user roles."
             }
         },
         "securitySchemes": {
