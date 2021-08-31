@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.4",
+        "version": "2.7.5",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -3122,6 +3122,10 @@
             "Sell": {
                 "title": "Root Type for Sell",
                 "description": "",
+                "required": [
+                    "paymentType",
+                    "date"
+                ],
                 "type": "object",
                 "properties": {
                     "details": {
