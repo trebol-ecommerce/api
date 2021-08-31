@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.9",
+        "version": "2.7.10",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -1108,7 +1108,7 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/customers/{idCard}": {
+        "/data/customers/{idNumber}": {
             "summary": "Specific-customer API endpoint",
             "get": {
                 "tags": [
@@ -1215,7 +1215,7 @@
             },
             "parameters": [
                 {
-                    "name": "idCard",
+                    "name": "idNumber",
                     "description": "The unique ID card number of the customer.",
                     "schema": {
                         "type": "integer"
@@ -1667,7 +1667,7 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/salespeople/{idCard}": {
+        "/data/salespeople/{idNumber}": {
             "summary": "Specific-salesperson API endpoint",
             "get": {
                 "tags": [
@@ -1769,7 +1769,7 @@
             },
             "parameters": [
                 {
-                    "name": "idCard",
+                    "name": "idNumber",
                     "description": "The unique ID card number of the salesperson.",
                     "schema": {
                         "type": "integer"
@@ -2760,15 +2760,13 @@
             "Person": {
                 "title": "Root Type for Person",
                 "description": "Personal information about an individual.",
-                "required": [],
+                "required": [
+                    "idNumber"
+                ],
                 "type": "object",
                 "properties": {
                     "name": {
                         "description": "The full name of the individual.",
-                        "type": "string"
-                    },
-                    "idCard": {
-                        "description": "The national identification number as issued by the individual's birth country government.",
                         "type": "string"
                     },
                     "email": {
@@ -2784,11 +2782,15 @@
                         "description": "A second phone number (without pluses or parentheses)",
                         "pattern": "^(\\\\((\\\\+)?[0-9]{3}\\\\))?[0-9]{3,4}[ -]?[0-9]{4}$",
                         "type": "string"
+                    },
+                    "idNumber": {
+                        "description": "The national identification number as issued by the individual's birth country government.",
+                        "type": "string"
                     }
                 },
                 "example": {
                     "name": "some text",
-                    "idCard": "some text",
+                    "idNumber": "some text",
                     "email": "some text",
                     "phone1": "some text",
                     "phone2": "some text"
@@ -2818,7 +2820,7 @@
                     "password": "some text",
                     "profile": {
                         "name": "some text",
-                        "idCard": "some text",
+                        "idNumber": "some text",
                         "email": "some text",
                         "phone1": "some text",
                         "phone2": "some text"
@@ -3069,7 +3071,7 @@
                 "example": {
                     "person": {
                         "name": "some text",
-                        "idCard": "some text",
+                        "idNumber": "some text",
                         "email": "some text",
                         "phone1": "some text",
                         "phone2": "some text"
@@ -3090,7 +3092,7 @@
                 "example": {
                     "person": {
                         "name": "some text",
-                        "idCard": "some text",
+                        "idNumber": "some text",
                         "email": "some text",
                         "phone1": "some text",
                         "phone2": "some text"
@@ -3210,7 +3212,7 @@
                     },
                     "shipper": {
                         "person": {
-                            "idCard": "some text"
+                            "idNumber": "some text"
                         }
                     },
                     "status": "Pending",
@@ -3220,7 +3222,7 @@
                     },
                     "salesperson": {
                         "person": {
-                            "idCard": "some text"
+                            "idNumber": "some text"
                         }
                     }
                 }
@@ -3242,7 +3244,7 @@
                 "example": {
                     "name": "an username",
                     "person": {
-                        "idCard": "xxxxxxxx"
+                        "idNumber": "xxxxxxxx"
                     }
                 }
             },
@@ -3433,7 +3435,7 @@
                 "example": {
                     "person": {
                         "name": "some text",
-                        "idCard": "some text",
+                        "idNumber": "some text",
                         "email": "some text",
                         "phone1": "some text",
                         "phone2": "some text"
