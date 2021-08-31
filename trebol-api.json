@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.11",
+        "version": "2.7.12",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -25,11 +25,6 @@
                         "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "access-products-actions-get",
                 "summary": "Query allowed products API operations",
                 "description": "GET actions that the current session is authorized to do using the products API."
@@ -43,11 +38,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "access-products-options",
                 "summary": "Preflight check for products API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -64,11 +54,6 @@
                         "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "access-sales-actions-get",
                 "summary": "Query allowed sales API operations",
                 "description": "GET actions that the current session is authorized to do using the sales API."
@@ -82,11 +67,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "access-sales-actions-options",
                 "summary": "Preflight check for sales API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -103,11 +83,6 @@
                         "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "access-users-actions-get",
                 "summary": "Query allowed users API operations",
                 "description": "GET actions that the current session is authorized to do using the users API."
@@ -121,11 +96,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "access-users-actions-options",
                 "summary": "Preflight check for users API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -142,11 +112,6 @@
                         "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "access-customers-actions-get",
                 "summary": "Query allowed customers API operations",
                 "description": "GET actions that the current session is authorized to do using the customers API."
@@ -160,11 +125,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "access-customers-options",
                 "summary": "Preflight check for customers API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -181,11 +141,6 @@
                         "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "access-salespeople-actions-get",
                 "summary": "Query allowed salespeople API operations",
                 "description": "GET actions that the current session is authorized to do using the salespeople API."
@@ -199,11 +154,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "access-salespeople-actions-options",
                 "summary": "Preflight check for salespeople API operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -264,11 +214,6 @@
                         "$ref": "#/components/responses/PaginatedCollection"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "data-customers-get",
                 "summary": "List customers",
                 "description": "GET a paged collection of customers."
@@ -876,28 +821,6 @@
                 ],
                 "responses": {
                     "200": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -911,9 +834,6 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "metadata-get",
                 "summary": "Request info on the shop",
                 "description": "GET general information regarding the company behind the shop."
@@ -927,9 +847,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "metadata-options",
                 "summary": "Preflight check for shop information",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -952,9 +869,6 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "categories-get",
                 "summary": "List product main categories",
                 "description": "GET the main (bigger) categories where to browse the products available for sale at the shop."
@@ -968,9 +882,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "categories-options",
                 "summary": "Preflight check for product categories",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1032,11 +943,6 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "checkout-request",
                 "summary": "Send a payment request",
                 "description": "POST cart details to initiate a virtual transaction in the shop."
@@ -1050,11 +956,6 @@
                         "$ref": "#/components/responses/AllowMethodPOST"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "checkout-options",
                 "summary": "Preflight check for payment request",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1080,11 +981,6 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "validate-checkout-request",
                 "summary": "Send payment result",
                 "description": "POST response from the payment method to confirm the transaction end result."
@@ -1098,11 +994,6 @@
                         "$ref": "#/components/responses/AllowMethodPOST"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "validate-checkout-options",
                 "summary": "Preflight check for payment confirmation",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1130,11 +1021,6 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "data-customer-get",
                 "summary": "Find specific customer",
                 "description": "GET the customer identified by a provided id parameter in the route path."
@@ -1407,9 +1293,6 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "category-get",
                 "summary": "Find and list product subcategories within specific main category",
                 "description": "GET the subcategories found within the provided main category ID."
@@ -1423,9 +1306,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "category-options",
                 "summary": "Preflight check for product subcategories",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2115,9 +1995,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "store-front-options",
                 "summary": "Preflight check for available products",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2211,9 +2088,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "store-product-options",
                 "summary": "Preflight check for specific product",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2242,36 +2116,9 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
                         "description": "Erroneous, empty response to improper use; the user is not logged in or its token was already terminated."
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "logout-request",
                 "summary": "Terminate current session",
                 "description": "POST a request to close the currently opened session."
@@ -2308,11 +2155,6 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "profile-get",
                 "summary": "Fetch current user's profile",
                 "description": "GET the current user's stored profile information"
@@ -2346,11 +2188,6 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "profile-put",
                 "summary": "Update current user's profile",
                 "description": "PUT changes into the current user's profile information."
@@ -2364,11 +2201,6 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "profile-options",
                 "summary": "Preflight check for user profile information",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2393,67 +2225,15 @@
                 ],
                 "responses": {
                     "200": {
-                        "headers": {
-                            "Authorization": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
                         "description": "Normal response; a guest token was generated. It is included in the response headers and body."
                     },
                     "403": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
                         "description": "Erroneous, empty response to improper use; the user was already logged in or using a valid guest token."
                     },
                     "500": {
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "guest-session-request",
                 "summary": "Start a guest session",
                 "description": "POST personal information to generate a token for a temporary guest session."
@@ -2491,74 +2271,15 @@
                 ],
                 "responses": {
                     "200": {
-                        "headers": {
-                            "Authorization": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
                         "description": "Normal response; the credentials are correct, and an authorization token was generated. It is included in the response headers and body."
                     },
                     "403": {
-                        "headers": {
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
                         "description": "Erroneous, empty response, sent when the credentials are rejected."
                     },
                     "500": {
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "login-request",
                 "summary": "Start a logged-in session",
                 "description": "POST credentials to authenticate, generate an authorization token and start a new session."
@@ -2595,33 +2316,6 @@
                 ],
                 "responses": {
                     "200": {
-                        "headers": {
-                            "Authorization": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "X-Requested-With": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Origin": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Methods": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            },
-                            "Access-Control-Allow-Headers": {
-                                "schema": {
-                                    "type": "string"
-                                }
-                            }
-                        },
                         "description": "Normal, empty response; sent when the registration is succesful and the user account is created. The user should proceed log in with the same input credentials."
                     },
                     "400": {
@@ -2631,9 +2325,6 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "register-request",
                 "summary": "Request a new user account",
                 "description": "POST details for a new user account, including its profile information."
@@ -2666,11 +2357,6 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "access-routes-get",
                 "summary": "Query allowed API routes",
                 "description": "GET the API resource paths that the current session is authorized to use."
@@ -2684,11 +2370,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
                 "operationId": "access-routes-options",
                 "summary": "Preflight check for API resource accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
