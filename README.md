@@ -1,6 +1,6 @@
 # The Trébol backend API
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Declares the resources that instances of the Trébol backend must expose. Involves working with internal data, user accounts, public information, etc... [The documentation can be found here.](https://studio-ws.apicur.io/sharing/b0bc9a13-4e93-4be2-8636-108986e75ce4)
@@ -17,6 +17,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="http://benjaminlamadrid.cl"><img src="https://avatars.githubusercontent.com/u/68207359?v=4?s=100" width="100px;" alt=""/><br /><sub><b>bglamadrid</b></sub></a><br /><a href="#design-bglamadrid" title="Design">🎨</a></td>
+    <td align="center"><a href="http://www.apicur.io/"><img src="https://avatars.githubusercontent.com/u/28107283?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Apicurio</b></sub></a><br /><a href="#tool-Apicurio" title="Tools">🔧</a></td>
   </tr>
 </table>
 
