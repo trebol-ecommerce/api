@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.5",
+        "version": "2.7.6",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -3167,6 +3167,10 @@
                     "billingCompany": {
                         "$ref": "#/components/schemas/BillingCompany",
                         "description": "The company that will pay the bill."
+                    },
+                    "netValue": {
+                        "description": "The total value derived from the products included at the moment of transaction.",
+                        "type": "number"
                     }
                 },
                 "example": {
@@ -3191,6 +3195,7 @@
                         "idNumber": "some text",
                         "name": "some text"
                     },
+                    "netValue": 549.99,
                     "shippingAddress": {
                         "firstLine": "some text",
                         "secondLine": "some text",
