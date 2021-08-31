@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.6.2",
+        "version": "2.7.11",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -626,43 +626,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/sell_types": {
-            "summary": "Sell types API endpoint",
-            "get": {
-                "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/MultipleSellTypes"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "operationId": "data-sell-types-get",
-                "summary": "List all sell types",
-                "description": "GET every sell type available."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "operationId": "data-sell-types-options",
-                "summary": "Preflight check for sell types API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
         "/data/users": {
             "summary": "Non-specific-user API endpoint",
             "get": {
@@ -1145,7 +1108,7 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/customers/{idCard}": {
+        "/data/customers/{idNumber}": {
             "summary": "Specific-customer API endpoint",
             "get": {
                 "tags": [
@@ -1252,7 +1215,7 @@
             },
             "parameters": [
                 {
-                    "name": "idCard",
+                    "name": "idNumber",
                     "description": "The unique ID card number of the customer.",
                     "schema": {
                         "type": "integer"
@@ -1704,7 +1667,7 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/salespeople/{idCard}": {
+        "/data/salespeople/{idNumber}": {
             "summary": "Specific-salesperson API endpoint",
             "get": {
                 "tags": [
@@ -1806,7 +1769,7 @@
             },
             "parameters": [
                 {
-                    "name": "idCard",
+                    "name": "idNumber",
                     "description": "The unique ID card number of the salesperson.",
                     "schema": {
                         "type": "integer"
@@ -2730,6 +2693,43 @@
                 "summary": "Preflight check for API resource accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
+        },
+        "/data/billing_types": {
+            "summary": "Billing types API endpoint",
+            "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/MultipleBillingTypes"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "data-billing-types-get",
+                "summary": "List all billing types",
+                "description": "GET every billing type available."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "operationId": "data-billing-types-options",
+                "summary": "Preflight check for billing types API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
         }
     },
     "components": {
@@ -2760,40 +2760,40 @@
             "Person": {
                 "title": "Root Type for Person",
                 "description": "Personal information about an individual.",
+                "required": [
+                    "idNumber"
+                ],
                 "type": "object",
                 "properties": {
                     "name": {
                         "description": "The full name of the individual.",
                         "type": "string"
                     },
-                    "idCard": {
-                        "description": "The national identification number as issued by the individual's birth country government.",
-                        "type": "string"
-                    },
                     "email": {
                         "description": "The e-mail address.",
                         "type": "string"
                     },
-                    "address": {
-                        "description": "The full address of the individual.",
-                        "type": "string"
-                    },
                     "phone1": {
-                        "description": "The phone number (without pluses or parentheses)",
-                        "type": "integer"
+                        "description": "The phone number",
+                        "pattern": "^(\\\\((\\\\+)?[0-9]{3}\\\\))?[0-9]{3,4}[ -]?[0-9]{4}$",
+                        "type": "string"
                     },
                     "phone2": {
                         "description": "A second phone number (without pluses or parentheses)",
-                        "type": "integer"
+                        "pattern": "^(\\\\((\\\\+)?[0-9]{3}\\\\))?[0-9]{3,4}[ -]?[0-9]{4}$",
+                        "type": "string"
+                    },
+                    "idNumber": {
+                        "description": "The national identification number as issued by the individual's birth country government.",
+                        "type": "string"
                     }
                 },
                 "example": {
-                    "name": "Lorem ipsum dolor sit amet",
-                    "idCard": "xxxxxxxxx",
-                    "email": "address@example.com",
-                    "address": "Excepteur sint occaecat cupidatat non proident",
-                    "phone1": 1234567,
-                    "phone2": 7654321
+                    "name": "some text",
+                    "idNumber": "some text",
+                    "email": "some text",
+                    "phone1": "some text",
+                    "phone2": "some text"
                 }
             },
             "UserRegistration": {
@@ -2810,45 +2810,22 @@
                         "type": "string"
                     },
                     "profile": {
-                        "$ref": "#/components/schemas/Person",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "idCard": {
-                                "type": "string"
-                            },
-                            "address": {
-                                "type": "string"
-                            },
-                            "email": {
-                                "type": "string"
-                            },
-                            "phone1": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "phone2": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
+                        "$ref": "#/components/schemas/Person"
                     },
                     "name": {
                         "type": "string"
                     }
                 },
                 "example": {
-                    "name": "an username",
-                    "password": "a password",
+                    "password": "some text",
                     "profile": {
-                        "name": "Lorem ipsum dolor sit amet",
-                        "idCard": "xxxxxxxxx",
-                        "email": "address@example.com",
-                        "address": "Excepteur sint occaecat cupidatat non proident",
-                        "phone1": 1234567,
-                        "phone2": 7654321
-                    }
+                        "name": "some text",
+                        "idNumber": "some text",
+                        "email": "some text",
+                        "phone1": "some text",
+                        "phone2": "some text"
+                    },
+                    "name": "some text"
                 }
             },
             "CartDetail": {
@@ -3088,40 +3065,16 @@
                 "type": "object",
                 "properties": {
                     "person": {
-                        "$ref": "#/components/schemas/Person",
-                        "description": "The person this customer \"is\".",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "idCard": {
-                                "type": "string"
-                            },
-                            "email": {
-                                "type": "string"
-                            },
-                            "address": {
-                                "type": "string"
-                            },
-                            "phone1": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "phone2": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
+                        "$ref": "#/components/schemas/Person"
                     }
                 },
                 "example": {
                     "person": {
-                        "name": "Lorem ipsum dolor sit amet",
-                        "idCard": "xxxxxxxxx",
-                        "email": "address@example.com",
-                        "address": "Excepteur sint occaecat cupidatat non proident",
-                        "phone1": 1234567,
-                        "phone2": 7654321
+                        "name": "some text",
+                        "idNumber": "some text",
+                        "email": "some text",
+                        "phone1": "some text",
+                        "phone2": "some text"
                     }
                 }
             },
@@ -3133,39 +3086,16 @@
                 "properties": {
                     "person": {
                         "$ref": "#/components/schemas/Person",
-                        "description": "The person this salesperson \"is\".",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "idCard": {
-                                "type": "string"
-                            },
-                            "email": {
-                                "type": "string"
-                            },
-                            "address": {
-                                "type": "string"
-                            },
-                            "phone1": {
-                                "format": "int32",
-                                "type": "integer"
-                            },
-                            "phone2": {
-                                "format": "int32",
-                                "type": "integer"
-                            }
-                        }
+                        "description": "The person this salesperson \"is\"."
                     }
                 },
                 "example": {
                     "person": {
-                        "name": "Lorem ipsum dolor sit amet",
-                        "idCard": "xxxxxxxxx",
-                        "email": "address@example.com",
-                        "address": "Excepteur sint occaecat cupidatat non proident",
-                        "phone1": 1234567,
-                        "phone2": 7654321
+                        "name": "some text",
+                        "idNumber": "some text",
+                        "email": "some text",
+                        "phone1": "some text",
+                        "phone2": "some text"
                     }
                 }
             },
@@ -3191,24 +3121,13 @@
                     "units": 1
                 }
             },
-            "SellType": {
-                "title": "Root Type for ProductType",
-                "description": "The types of sell dictate taxes to be applied.",
-                "required": [],
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "description": "The name given to this sell type.",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "name": "example sell type"
-                }
-            },
             "Sell": {
                 "title": "Root Type for Sell",
                 "description": "",
+                "required": [
+                    "paymentType",
+                    "date"
+                ],
                 "type": "object",
                 "properties": {
                     "details": {
@@ -3218,22 +3137,91 @@
                             "$ref": "#/components/schemas/SellDetail"
                         }
                     },
-                    "sellType": {
-                        "$ref": "#/components/schemas/SellType",
-                        "description": "The requested type of sell (for tax purposes)."
+                    "billingType": {
+                        "description": "The name of the chosen method for generating a bill of the sell.",
+                        "type": "string"
+                    },
+                    "billingAddress": {
+                        "$ref": "#/components/schemas/Address",
+                        "description": "The address designated to bill."
+                    },
+                    "shippingAddress": {
+                        "$ref": "#/components/schemas/Address",
+                        "description": "The address designated to ship."
+                    },
+                    "shipper": {
+                        "$ref": "#/components/schemas/Shipper",
+                        "description": "The shipper that was chosen."
+                    },
+                    "date": {
+                        "format": "date-time",
+                        "description": "(UTC) The date and time that the transaction was acknowledged.",
+                        "type": "string"
+                    },
+                    "paymentType": {
+                        "description": "The selected method for payment for this transaction.",
+                        "type": "string"
+                    },
+                    "salesperson": {
+                        "$ref": "#/components/schemas/Salesperson",
+                        "description": "The employee that authorized the sell."
+                    },
+                    "billingCompany": {
+                        "$ref": "#/components/schemas/BillingCompany",
+                        "description": "The company that will pay the bill."
+                    },
+                    "netValue": {
+                        "description": "The total value derived from the products included at the moment of transaction.",
+                        "type": "number"
+                    },
+                    "status": {
+                        "description": "The step that the transaction is in.",
+                        "type": "string"
                     }
                 },
                 "example": {
                     "details": [
                         {
                             "product": {
-                                "barcode": "test"
+                                "barcode": "some text"
                             },
-                            "units": 1
+                            "units": 42
                         }
                     ],
-                    "sellType": {
-                        "name": "type1"
+                    "billingType": "some text",
+                    "billingAddress": {
+                        "firstLine": "some text",
+                        "secondLine": "some text",
+                        "city": "some text",
+                        "municipality": "some text",
+                        "postalCode": "some text",
+                        "notes": "some text"
+                    },
+                    "billingCompany": {
+                        "idNumber": "some text",
+                        "name": "some text"
+                    },
+                    "netValue": 549.99,
+                    "shippingAddress": {
+                        "firstLine": "some text",
+                        "secondLine": "some text",
+                        "city": "some text",
+                        "municipality": "some text",
+                        "postalCode": "some text",
+                        "notes": "some text"
+                    },
+                    "shipper": {
+                        "person": {
+                            "idNumber": "some text"
+                        }
+                    },
+                    "status": "Pending",
+                    "date": "2018-02-10T09:30Z",
+                    "paymentType": "some payment method",
+                    "salesperson": {
+                        "person": {
+                            "idNumber": "some text"
+                        }
                     }
                 }
             },
@@ -3254,7 +3242,7 @@
                 "example": {
                     "name": "an username",
                     "person": {
-                        "idCard": "xxxxxxxx"
+                        "idNumber": "xxxxxxxx"
                     }
                 }
             },
@@ -3371,6 +3359,132 @@
             "EmptyObject": {
                 "description": "An object without properties.",
                 "type": "object"
+            },
+            "Address": {
+                "title": "Root Type for Address",
+                "description": "Information about a physical address.",
+                "type": "object",
+                "properties": {
+                    "firstLine": {
+                        "description": "The main line of address.",
+                        "type": "string"
+                    },
+                    "secondLine": {
+                        "description": "Further information of the address, such as apartment or office.",
+                        "type": "string"
+                    },
+                    "city": {
+                        "description": "The name of the city where the address is located.",
+                        "type": "string"
+                    },
+                    "municipality": {
+                        "description": "The province where the address is located.",
+                        "type": "string"
+                    },
+                    "postalCode": {
+                        "description": "Sometimes called ZIP.",
+                        "type": "string"
+                    },
+                    "notes": {
+                        "description": "Extra bits of information or comments. Mostly helpful to Shippers.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "firstLine": "first line test",
+                    "secondLine": "second line test",
+                    "city": "city example",
+                    "municipality": "municipality example",
+                    "postalCode": "postal code test",
+                    "notes": "lorem ipsum"
+                }
+            },
+            "BillingCompany": {
+                "title": "Root Type for BillingCompany",
+                "description": "A company or similar organization, enabled to pay taxes.",
+                "type": "object",
+                "properties": {
+                    "idNumber": {
+                        "description": "The national identification number for the company.",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "The name of the organization.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "idNumber": "some text",
+                    "name": "some text"
+                }
+            },
+            "Shipper": {
+                "title": "Root Type for Shipper",
+                "description": "",
+                "required": [
+                    "person"
+                ],
+                "type": "object",
+                "properties": {
+                    "person": {
+                        "$ref": "#/components/schemas/Person"
+                    }
+                },
+                "example": {
+                    "person": {
+                        "name": "some text",
+                        "idNumber": "some text",
+                        "email": "some text",
+                        "phone1": "some text",
+                        "phone2": "some text"
+                    }
+                }
+            },
+            "SellStatus": {
+                "title": "Root Type for SellStatus",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "code": "-1",
+                    "name": "invalid"
+                }
+            },
+            "PaymentType": {
+                "title": "Root Type for PaymentType",
+                "description": "Designates the method that the customer used to pay their bill.",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "The name given to this payment type.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "Enterprise Invoice"
+                }
+            },
+            "BillingType": {
+                "title": "Root Type for ProductType",
+                "description": "Dictates taxes to be applied to a given Sell.",
+                "required": [],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "The name given to this billing type.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "Enterprise Invoice"
+                }
             }
         },
         "responses": {
@@ -3523,19 +3637,6 @@
                 },
                 "description": "Normal response, sends an object representation of an individual salesperson."
             },
-            "MultipleSellTypes": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/components/schemas/SellType"
-                            }
-                        }
-                    }
-                },
-                "description": "Normal response, sends an array of user roles."
-            },
             "SingleUser": {
                 "content": {
                     "application/json": {
@@ -3555,6 +3656,19 @@
                     }
                 },
                 "description": "Normal response, sends an object representation of an individual person."
+            },
+            "MultipleBillingTypes": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/BillingType"
+                            }
+                        }
+                    }
+                },
+                "description": "Normal response, sends an array of user roles."
             }
         },
         "securitySchemes": {
