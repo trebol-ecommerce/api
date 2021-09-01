@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.13",
+        "version": "2.7.14",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -1104,7 +1104,7 @@
                     "name": "idNumber",
                     "description": "The unique ID card number of the customer.",
                     "schema": {
-                        "type": "integer"
+                        "type": "string"
                     },
                     "in": "path",
                     "required": true
@@ -1266,7 +1266,7 @@
                     "name": "code",
                     "description": "The transaction identifier",
                     "schema": {
-                        "type": "integer"
+                        "type": "string"
                     },
                     "in": "path",
                     "required": true
@@ -1315,7 +1315,7 @@
                     "name": "code",
                     "description": "The main category identifier",
                     "schema": {
-                        "type": "integer"
+                        "type": "string"
                     },
                     "in": "path",
                     "required": true
@@ -1427,7 +1427,7 @@
                     "name": "name",
                     "description": "The name of the user.",
                     "schema": {
-                        "type": "integer"
+                        "type": "string"
                     },
                     "in": "path",
                     "required": true
@@ -1652,7 +1652,7 @@
                     "name": "idNumber",
                     "description": "The unique ID card number of the salesperson.",
                     "schema": {
-                        "type": "integer"
+                        "type": "string"
                     },
                     "in": "path",
                     "required": true
@@ -1960,6 +1960,9 @@
                 {
                     "name": "code",
                     "description": "A unique identifier for a (presumably) parent product category.",
+                    "schema": {
+                        "type": "string"
+                    },
                     "in": "path",
                     "required": true
                 }
@@ -2052,55 +2055,6 @@
                         "type": "string"
                     },
                     "in": "query"
-                }
-            ]
-        },
-        "/public/products/{code}": {
-            "summary": "Find specific product",
-            "description": "",
-            "get": {
-                "tags": [
-                    "fetch",
-                    "existing",
-                    "one"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/SingleProduct"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "operationId": "store-product-request",
-                "summary": "Find specific product",
-                "description": "GET complete public information about a specific product."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "operationId": "store-product-options",
-                "summary": "Preflight check for specific product",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "code",
-                    "description": "The unique product identifier",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
                 }
             ]
         },
@@ -2411,6 +2365,55 @@
                 "summary": "Preflight check for billing types API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
+        },
+        "/public/products/{barcode}": {
+            "summary": "Find specific product",
+            "description": "",
+            "get": {
+                "tags": [
+                    "fetch",
+                    "existing",
+                    "one"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/SingleProduct"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "store-product-request",
+                "summary": "Find specific product",
+                "description": "GET complete public information about a specific product."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "operationId": "store-product-options",
+                "summary": "Preflight check for specific product",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "barcode",
+                    "description": "The unique product identifier",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
         }
     },
     "components": {
