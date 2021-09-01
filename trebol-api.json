@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.14",
+        "version": "2.7.15",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -1273,55 +1273,6 @@
                 }
             ]
         },
-        "/public/categories/{code}": {
-            "summary": "Product subcategories within specific main category",
-            "description": "",
-            "get": {
-                "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/MultipleProductCategories"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "operationId": "category-get",
-                "summary": "Find and list product subcategories within specific main category",
-                "description": "GET the subcategories found within the provided main category ID."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "operationId": "category-options",
-                "summary": "Preflight check for product subcategories",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "code",
-                    "description": "The main category identifier",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
         "/data/users/{name}": {
             "summary": "Specific-user API endpoint",
             "get": {
@@ -1920,54 +1871,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/product_categories/{code}": {
-            "summary": "Children product categories API endpoint",
-            "get": {
-                "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/MultipleProductCategories"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "operationId": "data-child-product-categories-get",
-                "summary": "List children product categories",
-                "description": "GET every category that is a child of the one identified by the provided code."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "operationId": "data-child-product-categories-options",
-                "summary": "Preflight check for children product categories API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "code",
-                    "description": "A unique identifier for a (presumably) parent product category.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
         "/public/products": {
             "summary": "Products available for sale",
             "description": "",
@@ -2414,6 +2317,103 @@
                     "required": true
                 }
             ]
+        },
+        "/public/categories/{parentId}": {
+            "summary": "Product subcategories within specific main category",
+            "description": "",
+            "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/MultipleProductCategories"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "category-get",
+                "summary": "Find and list product subcategories within specific main category",
+                "description": "GET the subcategories found within the provided main category ID."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "operationId": "category-options",
+                "summary": "Preflight check for product subcategories",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "parentId",
+                    "description": "The main category identifier",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/data/product_categories/{parentId}": {
+            "summary": "Children product categories API endpoint",
+            "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/MultipleProductCategories"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "data-child-product-categories-get",
+                "summary": "List children product categories",
+                "description": "GET every category that is a child of the one identified by the provided code."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "operationId": "data-child-product-categories-options",
+                "summary": "Preflight check for children product categories API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "parentId",
+                    "description": "A unique identifier for a (presumably) parent product category.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
         }
     },
     "components": {
@@ -2621,7 +2621,7 @@
                 "example": {
                     "name": "example product",
                     "barcode": "EXMPL00001",
-                    "productType": {
+                    "category": {
                         "name": "example product category"
                     },
                     "price": 1000,
@@ -2986,13 +2986,13 @@
                         "description": "The name displayed for the category.",
                         "type": "string"
                     },
-                    "code": {
-                        "description": "A unique identifier for the category.",
-                        "type": "string"
-                    },
                     "parent": {
                         "$ref": "#/components/schemas/ProductCategory",
                         "description": "A category existing one level above the current."
+                    },
+                    "id": {
+                        "description": "A unique identifier for the category.",
+                        "type": "integer"
                     }
                 },
                 "example": {
