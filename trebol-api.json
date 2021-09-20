@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.15",
+        "version": "2.7.16",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2861,9 +2861,14 @@
                     "status": {
                         "description": "The step that the transaction is in.",
                         "type": "string"
+                    },
+                    "buyOrder": {
+                        "description": "Unique transaction identifier.",
+                        "type": "integer"
                     }
                 },
                 "example": {
+                    "buyOrder": 1,
                     "details": [
                         {
                             "product": {
