@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "2.7.16",
+        "version": "2.7.17",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -1960,39 +1960,6 @@
                     "in": "query"
                 }
             ]
-        },
-        "/account/logout": {
-            "summary": "Session closer",
-            "post": {
-                "tags": [
-                    "account",
-                    "session"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "403": {
-                        "description": "Erroneous, empty response to improper use; the user is not logged in or its token was already terminated."
-                    }
-                },
-                "operationId": "logout-request",
-                "summary": "Terminate current session",
-                "description": "POST a request to close the currently opened session."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodPOST"
-                    }
-                },
-                "operationId": "logout-options",
-                "summary": "Preflight check for session closer",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
         },
         "/account/profile": {
             "summary": "User profile information",
