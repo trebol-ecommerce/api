@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2777,7 +2777,8 @@
                 "description": "",
                 "required": [
                     "paymentType",
-                    "date"
+                    "date",
+                    "customer"
                 ],
                 "type": "object",
                 "properties": {
@@ -2832,6 +2833,10 @@
                     "buyOrder": {
                         "description": "Unique transaction identifier.",
                         "type": "integer"
+                    },
+                    "customer": {
+                        "$ref": "#/components/schemas/Customer",
+                        "description": "The customer that initiated the transaction."
                     }
                 },
                 "example": {
