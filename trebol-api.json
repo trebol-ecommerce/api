@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2334,7 +2334,7 @@
                 }
             ]
         },
-        "/data/product_categories/{parentId}": {
+        "/data/product_categories/{parentCode}": {
             "summary": "Children product categories API endpoint",
             "get": {
                 "tags": [
@@ -2372,8 +2372,8 @@
             },
             "parameters": [
                 {
-                    "name": "parentId",
-                    "description": "A unique identifier for a (presumably) parent product category.",
+                    "name": "parentCode",
+                    "description": "Unique identifier of a parent product category.",
                     "schema": {
                         "type": "integer"
                     },
@@ -2969,13 +2969,13 @@
                         "$ref": "#/components/schemas/ProductCategory",
                         "description": "A category existing one level above the current."
                     },
-                    "id": {
+                    "code": {
                         "description": "A unique identifier for the category.",
                         "type": "integer"
                     }
                 },
                 "example": {
-                    "code": "EXPL",
+                    "code": 1,
                     "name": "example category"
                 }
             },
