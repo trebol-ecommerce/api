@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2882,6 +2882,9 @@
             "User": {
                 "title": "Root Type for User",
                 "description": "A representation of data for users of the application that consumes the entire API.",
+                "required": [
+                    "name"
+                ],
                 "type": "object",
                 "properties": {
                     "name": {
@@ -2891,6 +2894,10 @@
                     "person": {
                         "$ref": "#/components/schemas/Person",
                         "description": "The person this user \"is\"."
+                    },
+                    "role": {
+                        "description": "The name of the role this user has.",
+                        "type": "string"
                     }
                 },
                 "example": {
