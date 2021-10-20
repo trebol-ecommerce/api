@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "1.0.3",
+        "version": "1.0.4",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2509,6 +2509,11 @@
             "Image": {
                 "title": "Root Type for Image",
                 "description": "A reference to an image that can be found following a given URL.",
+                "required": [
+                    "filename",
+                    "url",
+                    "code"
+                ],
                 "type": "object",
                 "properties": {
                     "filename": {
@@ -2520,7 +2525,8 @@
                         "type": "string"
                     },
                     "code": {
-                        "description": "Unique identifier of the image. Allows URL-compatible characters only."
+                        "description": "Unique identifier of the image. Allows URL-compatible characters only.",
+                        "type": "string"
                     }
                 },
                 "example": {
@@ -2554,7 +2560,9 @@
             "Product": {
                 "title": "Root Type for product",
                 "description": "A physical item or a service that the shop offers to the public.",
-                "required": [],
+                "required": [
+                    "barcode"
+                ],
                 "type": "object",
                 "properties": {
                     "name": {
@@ -2583,6 +2591,10 @@
                     "category": {
                         "$ref": "#/components/schemas/ProductCategory",
                         "description": "The category the product is associated to."
+                    },
+                    "description": {
+                        "description": "A summary of the product qualities",
+                        "type": "string"
                     }
                 },
                 "example": {
@@ -2607,18 +2619,21 @@
             "Receipt": {
                 "title": "Root Type for Receipt",
                 "description": "Metadata about an existing transaction.",
-                "required": [],
+                "required": [
+                    "amount",
+                    "buyOrder",
+                    "date",
+                    "status"
+                ],
                 "type": "object",
                 "properties": {
                     "buyOrder": {
-                        "format": "int32",
                         "description": "The unique identifier for the transaction.",
                         "type": "integer"
                     },
                     "amount": {
-                        "format": "int32",
                         "description": "The total value paid in the receipt.",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "status": {
                         "description": "The current status of the transaction.",
@@ -2682,7 +2697,7 @@
             },
             "ShopOwnerDetails": {
                 "title": "Root Type for ShopOwnerDetails",
-                "description": "Representation of data about the shop owner - be it an individual or an organization.",
+                "description": "Information about the shop owner(s).",
                 "required": [
                     "name",
                     "logoImageURL"
@@ -2712,11 +2727,14 @@
             "Customer": {
                 "title": "Root Type for Customer",
                 "description": "Store customers. They directly relate to Person's in a one-to-one relationship.",
-                "required": [],
+                "required": [
+                    "person"
+                ],
                 "type": "object",
                 "properties": {
                     "person": {
-                        "$ref": "#/components/schemas/Person"
+                        "$ref": "#/components/schemas/Person",
+                        "description": "The customer's personal information."
                     }
                 },
                 "example": {
@@ -2732,12 +2750,14 @@
             "Salesperson": {
                 "title": "Root Type for Salesperson",
                 "description": "Store vendors/workers. Like Customers, they relate to Person's in a one-to-one relationship they could, but should not collide.",
-                "required": [],
+                "required": [
+                    "person"
+                ],
                 "type": "object",
                 "properties": {
                     "person": {
                         "$ref": "#/components/schemas/Person",
-                        "description": "The person this salesperson \"is\"."
+                        "description": "The salesperson' personal information."
                     }
                 },
                 "example": {
@@ -2753,13 +2773,18 @@
             "SellDetail": {
                 "title": "Root Type for SellDetail",
                 "description": "Representation of data about a single product within a single sell.",
+                "required": [
+                    "product",
+                    "units"
+                ],
                 "type": "object",
                 "properties": {
                     "product": {
-                        "$ref": "#/components/schemas/Product"
+                        "$ref": "#/components/schemas/Product",
+                        "description": "The product related to this detail."
                     },
                     "units": {
-                        "format": "int32",
+                        "description": "The amount of products in this detail.",
                         "type": "integer"
                     }
                 },
@@ -2774,9 +2799,10 @@
             },
             "Sell": {
                 "title": "Root Type for Sell",
-                "description": "",
+                "description": "A transaction already requested or yet to be requested.",
                 "required": [
                     "paymentType",
+                    "details",
                     "date",
                     "customer"
                 ],
@@ -2820,7 +2846,7 @@
                     },
                     "billingCompany": {
                         "$ref": "#/components/schemas/BillingCompany",
-                        "description": "The company that will pay the bill."
+                        "description": "The company, if any, that will pay the bill."
                     },
                     "netValue": {
                         "description": "The total value derived from the products included at the moment of transaction.",
@@ -2886,7 +2912,7 @@
             },
             "User": {
                 "title": "Root Type for User",
-                "description": "A representation of data for users of the application that consumes the entire API.",
+                "description": "Identified users of the application",
                 "required": [
                     "name"
                 ],
@@ -2914,7 +2940,7 @@
             },
             "UserRole": {
                 "title": "Root Type for UserRole",
-                "description": "A role that holds a list of permissions to do certain tasks in the application ",
+                "description": "A user role holds permissions to consume certain APIs.",
                 "type": "object",
                 "properties": {
                     "name": {
@@ -2963,7 +2989,9 @@
             "ProductCategory": {
                 "title": "Root Type for ProductFamily",
                 "description": "A Product group/category. Each one can be divided into smaller subsets (ProductType).",
-                "required": [],
+                "required": [
+                    "name"
+                ],
                 "type": "object",
                 "properties": {
                     "name": {
@@ -3029,6 +3057,11 @@
             "Address": {
                 "title": "Root Type for Address",
                 "description": "Information about a physical address.",
+                "required": [
+                    "firstLine",
+                    "municipality",
+                    "city"
+                ],
                 "type": "object",
                 "properties": {
                     "firstLine": {
@@ -3068,6 +3101,9 @@
             "BillingCompany": {
                 "title": "Root Type for BillingCompany",
                 "description": "A company or similar organization, enabled to pay taxes.",
+                "required": [
+                    "idNumber"
+                ],
                 "type": "object",
                 "properties": {
                     "idNumber": {
@@ -3086,13 +3122,14 @@
             },
             "Shipper": {
                 "title": "Root Type for Shipper",
-                "description": "",
+                "description": "External representatives that handle shipping.",
                 "required": [
                     "name"
                 ],
                 "type": "object",
                 "properties": {
                     "name": {
+                        "description": "The name of the representative.",
                         "type": "string"
                     }
                 },
@@ -3102,13 +3139,19 @@
             },
             "SellStatus": {
                 "title": "Root Type for SellStatus",
-                "description": "",
+                "description": "Representation of a step in the checkout process.",
+                "required": [
+                    "code",
+                    "name"
+                ],
                 "type": "object",
                 "properties": {
                     "code": {
-                        "type": "string"
+                        "description": "Unique identifier. Negative values represent error states, positive values represent steps in the checkout process.",
+                        "type": "integer"
                     },
                     "name": {
+                        "description": "The name of the status.",
                         "type": "string"
                     }
                 },
@@ -3120,6 +3163,9 @@
             "PaymentType": {
                 "title": "Root Type for PaymentType",
                 "description": "Designates the method that the customer used to pay their bill.",
+                "required": [
+                    "name"
+                ],
                 "type": "object",
                 "properties": {
                     "name": {
@@ -3134,7 +3180,9 @@
             "BillingType": {
                 "title": "Root Type for ProductType",
                 "description": "Dictates taxes to be applied to a given Sell.",
-                "required": [],
+                "required": [
+                    "name"
+                ],
                 "type": "object",
                 "properties": {
                     "name": {
