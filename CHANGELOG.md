@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.0.5] - 2021-10-19
+
+### Added
+- Add entity tags to entity-related resources, such as `products`, `customers` and `sales`
+
+### Changed
+- Path `/data/people`: change `operationId`
+- Update tags:
+  - remove `fetch`, `one`, `many` and `existing`
+  - add `fetch-one` and `fetch-many`
+
+
 ## [1.0.4] - 2021-10-19
 
 ### Added
@@ -18,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Entity `ProductCategory`: require property `name` as base schema information; fix example
 - Entity `Receipt`: require properties `amount`, `buyOrder`, `date`, and `status` as base schema information; remove `format` metadata from `buyOrder` and `amount`
 - Entity `Sell`: include description; require property `details` in addition to others as base schema information; update description of `billingCompany` property
-- Entity `SellDetail`: require properties `product` and `units` as base schema information; add description to both; remove `format` metadata from `units` 
+- Entity `SellDetail`: require properties `product` and `units` as base schema information; add description to both; remove `format` metadata from `units`
 - Entity `SellStatus`: add description, require properties `code` and `name`, include descriptions of both, update data type of `code` to `integer`
 - Entity `Shipper`: add description, include description of property `name`
 - Entities `ShopOwnerDetails`, `User` and `UserRole`: update description

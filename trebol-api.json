@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -163,9 +163,8 @@
             "summary": "Non-specific-customer API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "customers"
                 ],
                 "parameters": [
                     {
@@ -231,8 +230,7 @@
                 },
                 "tags": [
                     "create",
-                    "new",
-                    "one"
+                    "customers"
                 ],
                 "responses": {
                     "200": {
@@ -270,9 +268,8 @@
             "summary": "People API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "people"
                 ],
                 "parameters": [
                     {
@@ -327,7 +324,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
-                "operationId": "access-people-get",
+                "operationId": "data-people-get",
                 "summary": "List people",
                 "description": "GET a paged collection of people."
             },
@@ -349,9 +346,8 @@
             "summary": "Non-specific-product API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "products"
                 ],
                 "parameters": [
                     {
@@ -423,8 +419,7 @@
                 },
                 "tags": [
                     "create",
-                    "new",
-                    "one"
+                    "products"
                 ],
                 "responses": {
                     "200": {
@@ -462,9 +457,8 @@
             "summary": "Non-specific-sell API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "sales"
                 ],
                 "parameters": [
                     {
@@ -536,8 +530,7 @@
                 },
                 "tags": [
                     "create",
-                    "new",
-                    "one"
+                    "sales"
                 ],
                 "responses": {
                     "200": {
@@ -575,9 +568,8 @@
             "summary": "Non-specific-user API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "users"
                 ],
                 "parameters": [
                     {
@@ -649,8 +641,7 @@
                 },
                 "tags": [
                     "create",
-                    "new",
-                    "one"
+                    "users"
                 ],
                 "responses": {
                     "200": {
@@ -688,9 +679,8 @@
             "summary": "Non-specific-image API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "images"
                 ],
                 "parameters": [
                     {
@@ -739,8 +729,7 @@
                 },
                 "tags": [
                     "create",
-                    "new",
-                    "one"
+                    "images"
                 ],
                 "responses": {
                     "200": {
@@ -778,9 +767,8 @@
             "summary": "User roles API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "user-roles"
                 ],
                 "responses": {
                     "200": {
@@ -816,7 +804,6 @@
             "description": "Public resource for general information about the company behind the shop.",
             "get": {
                 "tags": [
-                    "fetch",
                     "metadata"
                 ],
                 "responses": {
@@ -857,9 +844,8 @@
             "description": "",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "product-categories"
                 ],
                 "responses": {
                     "200": {
@@ -1003,9 +989,8 @@
             "summary": "Specific-customer API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "existing",
-                    "one"
+                    "fetch-one",
+                    "customers"
                 ],
                 "responses": {
                     "200": {
@@ -1038,8 +1023,7 @@
                 },
                 "tags": [
                     "update",
-                    "existing",
-                    "one"
+                    "customers"
                 ],
                 "responses": {
                     "200": {
@@ -1065,8 +1049,7 @@
             "delete": {
                 "tags": [
                     "remove",
-                    "existing",
-                    "one"
+                    "customers"
                 ],
                 "responses": {
                     "200": {
@@ -1116,9 +1099,8 @@
             "description": "",
             "get": {
                 "tags": [
-                    "fetch",
-                    "existing",
-                    "one"
+                    "fetch-one",
+                    "images"
                 ],
                 "responses": {
                     "200": {
@@ -1152,8 +1134,7 @@
                 },
                 "tags": [
                     "update",
-                    "existing",
-                    "one"
+                    "images"
                 ],
                 "responses": {
                     "200": {
@@ -1179,8 +1160,7 @@
             "delete": {
                 "tags": [
                     "remove",
-                    "existing",
-                    "one"
+                    "images"
                 ],
                 "responses": {
                     "200": {
@@ -1229,9 +1209,7 @@
             "summary": "Fetch details about a transaction",
             "get": {
                 "tags": [
-                    "fetch",
-                    "existing",
-                    "one"
+                    "transaction"
                 ],
                 "responses": {
                     "200": {
@@ -1277,9 +1255,8 @@
             "summary": "Specific-user API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "existing",
-                    "one"
+                    "fetch-one",
+                    "users"
                 ],
                 "responses": {
                     "200": {
@@ -1312,8 +1289,7 @@
                 },
                 "tags": [
                     "update",
-                    "existing",
-                    "one"
+                    "users"
                 ],
                 "responses": {
                     "200": {
@@ -1339,8 +1315,7 @@
             "delete": {
                 "tags": [
                     "remove",
-                    "existing",
-                    "one"
+                    "users"
                 ],
                 "responses": {
                     "200": {
@@ -1389,9 +1364,8 @@
             "summary": "Non-specific-salesperson API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "salespeople"
                 ],
                 "parameters": [
                     {
@@ -1463,8 +1437,7 @@
                 },
                 "tags": [
                     "create",
-                    "new",
-                    "one"
+                    "salespeople"
                 ],
                 "responses": {
                     "200": {
@@ -1502,9 +1475,8 @@
             "summary": "Specific-salesperson API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "existing",
-                    "one"
+                    "fetch-one",
+                    "salespeople"
                 ],
                 "responses": {
                     "200": {
@@ -1537,8 +1509,7 @@
                 },
                 "tags": [
                     "update",
-                    "existing",
-                    "one"
+                    "salespeople"
                 ],
                 "responses": {
                     "200": {
@@ -1564,8 +1535,7 @@
             "delete": {
                 "tags": [
                     "remove",
-                    "existing",
-                    "one"
+                    "salespeople"
                 ],
                 "responses": {
                     "200": {
@@ -1614,9 +1584,8 @@
             "summary": "Specific-sell API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "existing",
-                    "one"
+                    "fetch-one",
+                    "sales"
                 ],
                 "responses": {
                     "200": {
@@ -1649,8 +1618,7 @@
                 },
                 "tags": [
                     "update",
-                    "existing",
-                    "one"
+                    "sales"
                 ],
                 "responses": {
                     "200": {
@@ -1676,8 +1644,7 @@
             "delete": {
                 "tags": [
                     "remove",
-                    "existing",
-                    "one"
+                    "sales"
                 ],
                 "responses": {
                     "200": {
@@ -1726,9 +1693,8 @@
             "summary": "Specific-product API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "existing",
-                    "one"
+                    "fetch-one",
+                    "products"
                 ],
                 "responses": {
                     "200": {
@@ -1761,8 +1727,7 @@
                 },
                 "tags": [
                     "update",
-                    "existing",
-                    "one"
+                    "products"
                 ],
                 "responses": {
                     "200": {
@@ -1788,8 +1753,7 @@
             "delete": {
                 "tags": [
                     "remove",
-                    "existing",
-                    "one"
+                    "products"
                 ],
                 "responses": {
                     "200": {
@@ -1838,9 +1802,8 @@
             "summary": "Root product categories API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "product-categories"
                 ],
                 "responses": {
                     "200": {
@@ -1876,9 +1839,8 @@
             "description": "",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "products"
                 ],
                 "responses": {
                     "200": {
@@ -1965,7 +1927,7 @@
             "summary": "User profile information",
             "get": {
                 "tags": [
-                    "fetch",
+                    "fetch-one",
                     "account"
                 ],
                 "responses": {
@@ -2045,6 +2007,7 @@
                     "required": true
                 },
                 "tags": [
+                    "account",
                     "session"
                 ],
                 "responses": {
@@ -2203,9 +2166,8 @@
             "summary": "Billing types API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "billing-types"
                 ],
                 "responses": {
                     "200": {
@@ -2241,9 +2203,8 @@
             "description": "",
             "get": {
                 "tags": [
-                    "fetch",
-                    "existing",
-                    "one"
+                    "fetch-one",
+                    "products"
                 ],
                 "responses": {
                     "200": {
@@ -2290,9 +2251,8 @@
             "description": "",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "product-categories"
                 ],
                 "responses": {
                     "200": {
@@ -2338,9 +2298,8 @@
             "summary": "Children product categories API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "product-categories"
                 ],
                 "responses": {
                     "200": {
