@@ -25,6 +25,7 @@ Follow given advices and use corresponding replacements for all use cases involv
   - `/data/images/{code}`: use `/data/images?code={}` instead
   - `/data/product_categories/{parentCode}`: use `/data/product_categories?parentCode={}` and `/data/product_categories?code={}` instead
   - `/data/products/{code}`: use `/data/products?barcode={}` instead
+  - `/data/sales/{buyOrder}`: use `/data/sales?buyOrder={}` instead
 
 ## [1.0.5] - 2021-10-19
 
