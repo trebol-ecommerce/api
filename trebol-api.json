@@ -1102,7 +1102,7 @@
         },
         "/data/user_roles": {
             "summary": "User role data API endpoint",
-            "description": "Operations to fetch, create, edit and remove user roles and their metadata.",
+            "description": "Operations to fetch user roles data. \nEditing operations cannot be done through this resource.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -2645,6 +2645,7 @@
         },
         "/data/billing_types": {
             "summary": "Billing types API endpoint",
+            "description": "Operations to fetch billing types data. \nEditing operations cannot be done through this resource.",
             "get": {
                 "tags": [
                     "fetch-many",
