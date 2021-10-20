@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Path `/data/product_categories`: include method `POST` for creating new categories
+- Path `/data/product_categories/{parentCode}` with methods `GET`, `PUT` and `DELETE`, to manage product categories
+
+### Deprecated
+- Path `/public/categories`: to be unsupported in next minor version. Use `/data/product_categories` instead.
+- Path `/public/categories/{parentId}`: to be unsupported in next minor version. Use `/data/product_categories/{parentCode}` instead.
 
 ## [1.0.5] - 2021-10-19
 

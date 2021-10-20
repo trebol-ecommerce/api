@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "1.0.5",
+        "version": "1.1.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -855,6 +855,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "categories-get",
                 "summary": "List product main categories",
                 "description": "GET the main (bigger) categories where to browse the products available for sale at the shop."
@@ -868,6 +869,7 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "deprecated": true,
                 "operationId": "categories-options",
                 "summary": "Preflight check for product categories",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1820,6 +1822,40 @@
                 "summary": "List all first-level product categories",
                 "description": "GET every product category available without a parent set."
             },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategory"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "create",
+                    "new",
+                    "one"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "data-product-categories-post",
+                "summary": "Insert a new product category",
+                "description": "POST a new product category entity and save it to the data store."
+            },
             "options": {
                 "tags": [
                     "preflight"
@@ -1833,6 +1869,115 @@
                 "summary": "Preflight check for root product categories API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
+        },
+        "/data/product_categories/{parentCode}": {
+            "summary": "Children product categories API endpoint",
+            "get": {
+                "tags": [
+                    "fetch",
+                    "many",
+                    "existing"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/MultipleProductCategories"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "data-child-product-categories-get",
+                "summary": "List children product categories",
+                "description": "GET every category that is a child of the one identified by the provided code."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategory"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "existing",
+                    "one"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "data-child-product-categories-put",
+                "summary": "Update specific product category",
+                "description": "PUT changes to the product category identified by a provided code parameter in the route path."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "existing",
+                    "one"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "data-child-product-categories-delete",
+                "summary": "Delete specific product category",
+                "description": "DELETE a product category with the code parameter, from the data store."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "operationId": "data-child-product-categories-options",
+                "summary": "Preflight check for children product categories API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "parentCode",
+                    "description": "Unique identifier of a parent product category.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
         },
         "/public/products": {
             "summary": "Products available for sale",
@@ -2265,6 +2410,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "category-get",
                 "summary": "Find and list product subcategories within specific main category",
                 "description": "GET the subcategories found within the provided main category ID."
@@ -2278,6 +2424,7 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "deprecated": true,
                 "operationId": "category-options",
                 "summary": "Preflight check for product subcategories",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2286,53 +2433,6 @@
                 {
                     "name": "parentId",
                     "description": "The main category identifier",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
-        "/data/product_categories/{parentCode}": {
-            "summary": "Children product categories API endpoint",
-            "get": {
-                "tags": [
-                    "fetch-many",
-                    "product-categories"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/MultipleProductCategories"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "operationId": "data-child-product-categories-get",
-                "summary": "List children product categories",
-                "description": "GET every category that is a child of the one identified by the provided code."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "operationId": "data-child-product-categories-options",
-                "summary": "Preflight check for children product categories API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "parentCode",
-                    "description": "Unique identifier of a parent product category.",
                     "schema": {
                         "type": "integer"
                     },
