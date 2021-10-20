@@ -911,6 +911,39 @@
                 "summary": "List users",
                 "description": "GET a paged collection of users."
             },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "users"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-users-put",
+                "summary": "Update users",
+                "description": "PUT changes to all users matching the provided query parameters."
+            },
             "post": {
                 "requestBody": {
                     "content": {
@@ -941,8 +974,28 @@
                     }
                 },
                 "operationId": "data-users-post",
-                "summary": "Insert new user",
+                "summary": "Insert new users",
                 "description": "POST a new user entity and save it to the data store."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "users"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-users-delete",
+                "summary": "Delete users",
+                "description": "DELETE users matching the provided query parameters, from the data store."
             },
             "options": {
                 "tags": [
@@ -956,7 +1009,33 @@
                 "operationId": "data-users-options",
                 "summary": "Preflight check for non-specific user API",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            }
+            },
+            "parameters": [
+                {
+                    "name": "name",
+                    "description": "The exact name of the user. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "nameLike",
+                    "description": "A portion of the user's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "emailLike",
+                    "description": "A portion of the user's email address. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
         },
         "/data/images": {
             "summary": "Image data API endpoint",
@@ -1620,6 +1699,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-user-get",
                 "summary": "Find specific user",
                 "description": "GET the user identified by a provided id parameter in the route path."
@@ -1656,6 +1736,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-user-put",
                 "summary": "Update specific user",
                 "description": "PUT changes to the user identified by a provided id parameter in the route path."
@@ -1679,6 +1760,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-user-delete",
                 "summary": "Delete specific user",
                 "description": "DELETE a user with the id parameter, from the data store."
@@ -1692,6 +1774,7 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-user-options",
                 "summary": "Preflight check for specific-user API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."

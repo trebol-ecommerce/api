@@ -27,6 +27,7 @@ Follow given advices and use corresponding replacements for all use cases involv
   - `/data/products/{code}`: use `/data/products?barcode={}` instead
   - `/data/sales/{buyOrder}`: use `/data/sales?buyOrder={}` instead
   - `/data/salespeople/{idNumber}`: use `/data/salespeople?idNumber={}` instead
+  - `/data/users/{name}`: use `/data/users?name={}` instead
 
 ## [1.0.5] - 2021-10-19
 
