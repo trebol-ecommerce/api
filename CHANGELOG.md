@@ -15,12 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Deprecated
 These will be unsupported in the minor version that follows this one.
+Follow given advices and use corresponding replacements for all use cases involved.
 
 - Reducing redundant API resources
   - `/public/categories`: use `/data/product_categories` instead
   - `/public/categories/{parentId}`: use `/data/product_categories/{parentCode}` instead
 - Replacing parameterized paths with simpler paths and use of query parameters (all available methods apply)
   - `/data/customers/{idNumber}`: use `/data/customers?idNumber={}` instead
+  - `/data/images/{code}`: use `/data/images?code={}` instead
 
 ## [1.0.5] - 2021-10-19
 

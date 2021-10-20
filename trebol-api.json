@@ -773,7 +773,40 @@
                 },
                 "operationId": "data-images-get",
                 "summary": "List images",
-                "description": "GET a paged collection of customers."
+                "description": "GET a paged collection of images."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Image"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "images"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-images-put",
+                "summary": "Update images",
+                "description": "PUT changes to all images matching the provided query parameters."
             },
             "post": {
                 "requestBody": {
@@ -805,8 +838,28 @@
                     }
                 },
                 "operationId": "data-images-post",
-                "summary": "Insert a new image",
+                "summary": "Insert new images",
                 "description": "POST a new image entity and save it to the data store"
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "images"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-images-delete",
+                "summary": "Delete images",
+                "description": "DELETE images matching the provided query parameters, from the data store."
             },
             "options": {
                 "tags": [
@@ -1182,6 +1235,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-image-get",
                 "summary": "Find specific Image",
                 "description": "GET the image identified by a provided id parameter in the route path."
@@ -1219,6 +1273,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-image-put",
                 "summary": "Update specific Image",
                 "description": "PUT changes to the image identified by a provided id parameter in the route path."
@@ -1242,6 +1297,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-image-delete",
                 "summary": "Delete specific Image",
                 "description": "DELETE an image with the id parameter, from the data store."
@@ -1255,6 +1311,7 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-image-options",
                 "summary": "Preflight check for specific-image API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
