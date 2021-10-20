@@ -218,6 +218,39 @@
                 "summary": "List customers",
                 "description": "GET a paged collection of customers."
             },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Customer"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "customers"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-customers-put",
+                "summary": "Update customers",
+                "description": "PUT changes to all customers matching the provided query parameters."
+            },
             "post": {
                 "requestBody": {
                     "content": {
@@ -248,8 +281,28 @@
                     }
                 },
                 "operationId": "data-customers-post",
-                "summary": "Insert new customer",
-                "description": "POST a new customer entity and save it to the data store"
+                "summary": "Insert new customers",
+                "description": "POST new customer entities and save them to the data store."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "customers"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-customers-delete",
+                "summary": "Delete customers",
+                "description": "DELETE customers matching the provided query parameters, from the data store."
             },
             "options": {
                 "tags": [
@@ -1015,6 +1068,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-customer-get",
                 "summary": "Find specific customer",
                 "description": "GET the customer identified by a provided id parameter in the route path."
@@ -1051,6 +1105,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-customer-put",
                 "summary": "Update specific customer",
                 "description": "PUT changes to the customer identified by a provided id parameter in the route path."
@@ -1074,6 +1129,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-customer-delete",
                 "summary": "Delete specific customer",
                 "description": "DELETE a customer with the id parameter, from the data store."
@@ -1087,6 +1143,7 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-customer-options",
                 "summary": "Preflight check for specific-customer API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."

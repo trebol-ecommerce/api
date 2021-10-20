@@ -14,8 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Paths in `/data` without path parameters: Updated summary and description.
 
 ### Deprecated
-- Path `/public/categories`: to be unsupported in next minor version. Use `/data/product_categories` instead.
-- Path `/public/categories/{parentId}`: to be unsupported in next minor version. Use `/data/product_categories/{parentCode}` instead.
+These will be unsupported in the minor version that follows this one.
+
+- Reducing redundant API resources
+  - `/public/categories`: use `/data/product_categories` instead
+  - `/public/categories/{parentId}`: use `/data/product_categories/{parentCode}` instead
+- Replacing parameterized paths with simpler paths and use of query parameters (all available methods apply)
+  - `/data/customers/{idNumber}`: use `/data/customers?idNumber={}` instead
 
 ## [1.0.5] - 2021-10-19
 
