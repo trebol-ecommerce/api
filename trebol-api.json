@@ -169,32 +169,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "Customers count per page",
+                        "name": "pageSize",
+                        "description": "Number of customers per page",
                         "schema": {
                             "type": "integer"
                         },
                         "in": "query"
                     },
                     {
-                        "examples": {
-                            "Ascending order": {
-                                "value": "\"asc\""
-                            },
-                            "Descending order": {
-                                "value": "\"desc\""
-                            }
-                        },
-                        "name": "order",
-                        "description": "Customer sort order (ascending or descending)",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "name": "page",
-                        "description": "Customers page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -203,6 +187,14 @@
                     {
                         "name": "sortBy",
                         "description": "Customer property to sort by",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "order",
+                        "description": "Sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },
@@ -378,8 +370,8 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "People count per page",
+                        "name": "pageSize",
+                        "description": "Number of people per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -402,8 +394,8 @@
                         "in": "query"
                     },
                     {
-                        "name": "page",
-                        "description": "People page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -457,8 +449,8 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "Products count per page",
+                        "name": "pageSize",
+                        "description": "Number of products per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -481,8 +473,8 @@
                         "in": "query"
                     },
                     {
-                        "name": "page",
-                        "description": "Products page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -672,8 +664,8 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "Sales count per page",
+                        "name": "pageSize",
+                        "description": "Number of sales per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -696,8 +688,8 @@
                         "in": "query"
                     },
                     {
-                        "name": "page",
-                        "description": "Sales page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -856,8 +848,8 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "Users count per page",
+                        "name": "pageSize",
+                        "description": "Number of users per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -880,8 +872,8 @@
                         "in": "query"
                     },
                     {
-                        "name": "page",
-                        "description": "Users page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -1047,8 +1039,8 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "Images count per page",
+                        "name": "pageSize",
+                        "description": "Number of images per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -1056,8 +1048,8 @@
                         "required": false
                     },
                     {
-                        "name": "page",
-                        "description": "Images page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -2433,7 +2425,7 @@
             },
             "parameters": [
                 {
-                    "name": "page",
+                    "name": "pageIndex",
                     "description": "Products page number (1-based)",
                     "schema": {
                         "type": "integer"
@@ -2442,7 +2434,7 @@
                     "required": false
                 },
                 {
-                    "name": "items",
+                    "name": "pageSize",
                     "description": "Products count per page",
                     "schema": {
                         "type": "integer"
@@ -2871,8 +2863,8 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "Salespersons count per page",
+                        "name": "pageSize",
+                        "description": "Number of salespeople per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -2895,8 +2887,8 @@
                         "in": "query"
                     },
                     {
-                        "name": "page",
-                        "description": "Salespersons page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },

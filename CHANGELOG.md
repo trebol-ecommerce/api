@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Path `/data/product_categories/{parentCode}` with methods `GET`, `PUT` and `DELETE`, to manage product categories
 
 ### Changed
-- Paths in `/data` without path parameters: Updated summary and description.
+- Paths in `/data` without path parameters: Updated summary and description; paging query parameters are now aptly named `pageSize` and `pageIndex`
 
 ### Deprecated
 These will be unsupported in the minor version that follows this one.
