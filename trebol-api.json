@@ -3102,35 +3102,40 @@
                 ],
                 "type": "object",
                 "properties": {
-                    "name": {
-                        "description": "The full name of the individual.",
-                        "type": "string"
-                    },
                     "email": {
                         "description": "The e-mail address.",
                         "type": "string"
                     },
                     "phone1": {
-                        "description": "The phone number",
+                        "description": "The preferred personal phone number",
                         "pattern": "^(\\\\((\\\\+)?[0-9]{3}\\\\))?[0-9]{3,4}[ -]?[0-9]{4}$",
                         "type": "string"
                     },
                     "phone2": {
-                        "description": "A second phone number (without pluses or parentheses)",
+                        "description": "A second phone number",
                         "pattern": "^(\\\\((\\\\+)?[0-9]{3}\\\\))?[0-9]{3,4}[ -]?[0-9]{4}$",
                         "type": "string"
                     },
                     "idNumber": {
                         "description": "The national identification number as issued by the individual's birth country government.",
                         "type": "string"
+                    },
+                    "firstName": {
+                        "description": "The individual's first name.",
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "description": "The individual's last or family name.",
+                        "type": "string"
                     }
                 },
                 "example": {
-                    "name": "some text",
-                    "idNumber": "some text",
-                    "email": "some text",
-                    "phone1": "some text",
-                    "phone2": "some text"
+                    "firstName": "Isaac Sebastian",
+                    "lastName": "Williams McGregor",
+                    "idNumber": "123456789-0",
+                    "email": "example@email.com",
+                    "phone1": "(+2)784 876 823",
+                    "phone2": "4444 9820"
                 }
             },
             "UserRegistration": {
