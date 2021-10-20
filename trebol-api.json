@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Trébol API",
+        "title": "Trébol API (Draft)",
         "version": "1.1.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
@@ -160,7 +160,8 @@
             }
         },
         "/data/customers": {
-            "summary": "Non-specific-customer API endpoint",
+            "summary": "Customer data API endpoint",
+            "description": "Operations to fetch, create, edit and remove customers and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -265,7 +266,8 @@
             }
         },
         "/data/people": {
-            "summary": "People API endpoint",
+            "summary": "Person data API endpoint",
+            "description": "Operations to fetch people data. \nEditing operations cannot be done through this resource.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -343,7 +345,8 @@
             }
         },
         "/data/products": {
-            "summary": "Non-specific-product API endpoint",
+            "summary": "Product data API endpoint",
+            "description": "Operations to fetch, create, edit and remove products and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -454,7 +457,8 @@
             }
         },
         "/data/sales": {
-            "summary": "Non-specific-sell API endpoint",
+            "summary": "Sell data API endpoint",
+            "description": "Operations to fetch, create, edit and remove sales and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -565,7 +569,8 @@
             }
         },
         "/data/users": {
-            "summary": "Non-specific-user API endpoint",
+            "summary": "User data API endpoint",
+            "description": "Operations to fetch, create, edit and remove users and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -676,7 +681,8 @@
             }
         },
         "/data/images": {
-            "summary": "Non-specific-image API endpoint",
+            "summary": "Image data API endpoint",
+            "description": "Operations to fetch, create, edit and remove images and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -764,7 +770,8 @@
             }
         },
         "/data/user_roles": {
-            "summary": "User roles API endpoint",
+            "summary": "User role data API endpoint",
+            "description": "Operations to fetch, create, edit and remove user roles and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -1363,7 +1370,8 @@
             ]
         },
         "/data/salespeople": {
-            "summary": "Non-specific-salesperson API endpoint",
+            "summary": "Salesperson data API endpoint",
+            "description": "Operations to fetch, create, edit and remove salespeople and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -1801,7 +1809,8 @@
             ]
         },
         "/data/product_categories": {
-            "summary": "Root product categories API endpoint",
+            "summary": "Product category data API endpoint",
+            "description": "Operations to fetch, create, edit and remove product categories and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",

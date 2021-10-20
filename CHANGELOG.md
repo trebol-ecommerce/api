@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Path `/data/product_categories`: include method `POST` for creating new categories
 - Path `/data/product_categories/{parentCode}` with methods `GET`, `PUT` and `DELETE`, to manage product categories
 
+### Changed
+- Paths in `/data` without path parameters: Updated summary and description.
+
 ### Deprecated
 - Path `/public/categories`: to be unsupported in next minor version. Use `/data/product_categories` instead.
 - Path `/public/categories/{parentId}`: to be unsupported in next minor version. Use `/data/product_categories/{parentCode}` instead.
