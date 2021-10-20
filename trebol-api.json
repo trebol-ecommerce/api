@@ -462,6 +462,39 @@
                 "summary": "List products",
                 "description": "GET a paged collection of products."
             },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "products"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-products-put",
+                "summary": "Update products",
+                "description": "PUT changes to all products matching the provided query parameters."
+            },
             "post": {
                 "requestBody": {
                     "content": {
@@ -492,8 +525,28 @@
                     }
                 },
                 "operationId": "data-products-post",
-                "summary": "Insert new product",
+                "summary": "Insert new products",
                 "description": "POST a new product entity and save it to the data store"
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "products"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-products-delete",
+                "summary": "Delete products",
+                "description": "DELETE products matching the provided query parameters, from the data store."
             },
             "options": {
                 "tags": [
@@ -507,7 +560,57 @@
                 "operationId": "data-products-options",
                 "summary": "Preflight check for non-specific product API",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            }
+            },
+            "parameters": [
+                {
+                    "name": "barcode",
+                    "description": "The exact barcode of the product. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "barcodeLike",
+                    "description": "A portion of the product's barcode. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "name",
+                    "description": "The exact name of the product. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "nameLike",
+                    "description": "A portion the product's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "productCategory",
+                    "description": "The exact name of the product's category. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "productCategoryLike",
+                    "description": "A portion of the product category's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
         },
         "/data/sales": {
             "summary": "Sell data API endpoint",
@@ -1834,6 +1937,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-product-get",
                 "summary": "Find specific product",
                 "description": "GET the product identified by a provided id parameter in the route path."
@@ -1870,6 +1974,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-product-put",
                 "summary": "Update specific product",
                 "description": "PUT changes to the product identified by a provided id parameter in the route path."
@@ -1893,6 +1998,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-product-delete",
                 "summary": "Delete specific product",
                 "description": "DELETE a product with the id parameter, from the data store."
@@ -1906,6 +2012,7 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-product-options",
                 "summary": "Preflight check for specific-product API",
                 "description": "Fetch OPTIONS for communicating with this resource."
