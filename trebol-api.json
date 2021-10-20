@@ -1835,8 +1835,7 @@
                 },
                 "tags": [
                     "create",
-                    "new",
-                    "one"
+                    "product-categories"
                 ],
                 "responses": {
                     "200": {
@@ -1874,9 +1873,8 @@
             "summary": "Children product categories API endpoint",
             "get": {
                 "tags": [
-                    "fetch",
-                    "many",
-                    "existing"
+                    "fetch-many",
+                    "product-categories"
                 ],
                 "responses": {
                     "200": {
@@ -1906,8 +1904,7 @@
                 },
                 "tags": [
                     "update",
-                    "existing",
-                    "one"
+                    "product-categories"
                 ],
                 "responses": {
                     "200": {
@@ -1933,8 +1930,7 @@
             "delete": {
                 "tags": [
                     "remove",
-                    "existing",
-                    "one"
+                    "product-categories"
                 ],
                 "responses": {
                     "200": {
