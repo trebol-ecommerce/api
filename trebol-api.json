@@ -316,7 +316,57 @@
                 "operationId": "data-customers-options",
                 "summary": "Preflight check for non-specific customer API",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            }
+            },
+            "parameters": [
+                {
+                    "name": "idNumber",
+                    "description": "The unique identifying number of the customer. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "name",
+                    "description": "The exact name of the customer. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "idNumberLike",
+                    "description": "A portion of the customer's identifying number. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "nameLike",
+                    "description": "A portion of the customer's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "email",
+                    "description": "The exact email address of the customer. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "emailLike",
+                    "description": "A portion of the customer's email address. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
         },
         "/data/people": {
             "summary": "Person data API endpoint",
@@ -1658,118 +1708,6 @@
                 }
             ]
         },
-        "/data/salespeople": {
-            "summary": "Salesperson data API endpoint",
-            "description": "Operations to fetch, create, edit and remove salespeople and their metadata.",
-            "get": {
-                "tags": [
-                    "fetch-many",
-                    "salespeople"
-                ],
-                "parameters": [
-                    {
-                        "name": "items",
-                        "description": "Salespersons count per page",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "examples": {
-                            "Ascending order": {
-                                "value": "\"asc\""
-                            },
-                            "Descending order": {
-                                "value": "\"desc\""
-                            }
-                        },
-                        "name": "order",
-                        "description": "Salesperson sort order (ascending or descending)",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "name": "page",
-                        "description": "Salespersons page number (1-based)",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "name": "sortBy",
-                        "description": "Salesperson property to sort by",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/PaginatedCollection"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "operationId": "data-salespeople-get",
-                "summary": "List salespeople",
-                "description": "GET a paged collection of salespeople."
-            },
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Salesperson"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "create",
-                    "salespeople"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "operationId": "data-salespeople-post",
-                "summary": "Insert new salesperson",
-                "description": "POST a new salesperson entity and save it to the data store."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
-                    }
-                },
-                "operationId": "data-salespeople-options",
-                "summary": "Preflight check for non-specific salesperson API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
         "/data/salespeople/{idNumber}": {
             "summary": "Specific-salesperson API endpoint",
             "get": {
@@ -1791,6 +1729,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-salesperson-get",
                 "summary": "Find specific salesperson",
                 "description": "GET the salesperson identified by a provided id parameter in the route path."
@@ -1827,6 +1766,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-salesperson-put",
                 "summary": "Update specific salesperson",
                 "description": "PUT changes to the salesperson identified by a provided id parameter in the route path."
@@ -1850,6 +1790,7 @@
                         "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-salesperson-delete",
                 "summary": "Delete specific salesperson",
                 "description": "DELETE a salesperson with the id parameter, from the data store."
@@ -1863,6 +1804,7 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-salesperson-options",
                 "summary": "Preflight check for specific-salesperson API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2832,6 +2774,221 @@
                     },
                     "in": "path",
                     "required": true
+                }
+            ]
+        },
+        "/data/salespeople": {
+            "summary": "Salesperson data API endpoint",
+            "description": "Operations to fetch, create, edit and remove salespeople and their metadata.",
+            "get": {
+                "tags": [
+                    "fetch-many",
+                    "salespeople"
+                ],
+                "parameters": [
+                    {
+                        "name": "items",
+                        "description": "Salespersons count per page",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
+                        "name": "order",
+                        "description": "Salesperson sort order (ascending or descending)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "page",
+                        "description": "Salespersons page number (1-based)",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortBy",
+                        "description": "Salesperson property to sort by",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/PaginatedCollection"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "data-salespeople-get",
+                "summary": "List salespeople",
+                "description": "GET a paged collection of salespeople."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Salesperson"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "salespeople"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-salespeople-put",
+                "summary": "Update salespeople",
+                "description": "PUT changes to all salespeople matching the provided query parameters."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Salesperson"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "create",
+                    "salespeople"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "data-salespeople-post",
+                "summary": "Insert new salespeople",
+                "description": "POST a new salesperson entity and save it to the data store."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "salespeople"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-salespeople-delete",
+                "summary": "Delete salespeople",
+                "description": "DELETE salespeople matching the provided query parameters, from the data store."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                    }
+                },
+                "operationId": "data-salespeople-options",
+                "summary": "Preflight check for non-specific salesperson API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "idNumber",
+                    "description": "The unique identifying number of the salesperson. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "name",
+                    "description": "The exact name of the salesperson. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "idNumberLike",
+                    "description": "A portion of the salesperson's identifying number. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "nameLike",
+                    "description": "A portion of the salesperson's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "email",
+                    "description": "The exact email address of the salesperson. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "emailLike",
+                    "description": "A portion of the salesperson's email address. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
                 }
             ]
         }
