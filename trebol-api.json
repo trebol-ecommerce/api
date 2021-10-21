@@ -3554,6 +3554,22 @@
                     "customer": {
                         "$ref": "#/components/schemas/Customer",
                         "description": "The customer that initiated the transaction."
+                    },
+                    "taxValue": {
+                        "description": "The amount of income destined to pay taxes.",
+                        "type": "number"
+                    },
+                    "totalValue": {
+                        "description": "The sum between net, transport and taxes values.",
+                        "type": "number"
+                    },
+                    "totalItems": {
+                        "description": "The sum amount of product units purchased.",
+                        "type": "integer"
+                    },
+                    "token": {
+                        "description": "An unique code that identifies the transaction.",
+                        "type": "string"
                     }
                 },
                 "example": {
@@ -3579,7 +3595,6 @@
                         "idNumber": "some text",
                         "name": "some text"
                     },
-                    "netValue": 549.99,
                     "shippingAddress": {
                         "firstLine": "some text",
                         "secondLine": "some text",
@@ -3598,7 +3613,13 @@
                         "person": {
                             "idNumber": "some text"
                         }
-                    }
+                    },
+                    "token": "ANSDg900viery9e",
+                    "netValue": 549.99,
+                    "taxValue": 30.15,
+                    "transportValue": 0,
+                    "totalValue": 580.14,
+                    "totalItems": 42
                 }
             },
             "User": {
