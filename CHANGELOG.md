@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Path `/data/product_categories`: include method `POST` for creating new categories
 - Path `/data/product_categories/{parentCode}` with methods `GET`, `PUT` and `DELETE`, to manage product categories
 - Entity `Sell`: introduce properties `token`, `taxValue`, `transportValue`, `totalValue` and `totalItems`
+- Entity `SellDetail`: introduce property `unitValue`
 
 ### Changed
 - __Breaking change__: Entity `Person`: property `name` split into two, `firstName` and `lastName`

@@ -3477,15 +3477,18 @@
                     "units": {
                         "description": "The amount of products in this detail.",
                         "type": "integer"
+                    },
+                    "unitValue": {
+                        "description": "A copy of the value for each unit of the product in the parent transaction.",
+                        "type": "number"
                     }
                 },
                 "example": {
                     "product": {
-                        "name": "example product",
-                        "barcode": "EXMPL000001",
-                        "price": 1000
+                        "barcode": "EXMPL000001"
                     },
-                    "units": 1
+                    "units": 1,
+                    "unitValue": 1000
                 }
             },
             "Sell": {
