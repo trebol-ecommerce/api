@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Trébol API",
-        "version": "1.0.5",
+        "title": "Trébol API (Draft)",
+        "version": "1.1.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -160,7 +160,8 @@
             }
         },
         "/data/customers": {
-            "summary": "Non-specific-customer API endpoint",
+            "summary": "Customer data API endpoint",
+            "description": "Operations to fetch, create, edit and remove customers and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -168,32 +169,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "Customers count per page",
+                        "name": "pageSize",
+                        "description": "Number of customers per page",
                         "schema": {
                             "type": "integer"
                         },
                         "in": "query"
                     },
                     {
-                        "examples": {
-                            "Ascending order": {
-                                "value": "\"asc\""
-                            },
-                            "Descending order": {
-                                "value": "\"desc\""
-                            }
-                        },
-                        "name": "order",
-                        "description": "Customer sort order (ascending or descending)",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "name": "page",
-                        "description": "Customers page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -202,6 +187,14 @@
                     {
                         "name": "sortBy",
                         "description": "Customer property to sort by",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "order",
+                        "description": "Sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },
@@ -216,6 +209,39 @@
                 "operationId": "data-customers-get",
                 "summary": "List customers",
                 "description": "GET a paged collection of customers."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Customer"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "customers"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-customers-put",
+                "summary": "Update customers",
+                "description": "PUT changes to all customers matching the provided query parameters."
             },
             "post": {
                 "requestBody": {
@@ -241,14 +267,31 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-customers-post",
-                "summary": "Insert new customer",
-                "description": "POST a new customer entity and save it to the data store"
+                "summary": "Insert new customers",
+                "description": "POST new customer entities and save them to the data store."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "customers"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-customers-delete",
+                "summary": "Delete customers",
+                "description": "DELETE customers matching the provided query parameters, from the data store."
             },
             "options": {
                 "tags": [
@@ -262,10 +305,61 @@
                 "operationId": "data-customers-options",
                 "summary": "Preflight check for non-specific customer API",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            }
+            },
+            "parameters": [
+                {
+                    "name": "idNumber",
+                    "description": "The unique identifying number of the customer. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "name",
+                    "description": "The exact name of the customer. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "idNumberLike",
+                    "description": "A portion of the customer's identifying number. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "nameLike",
+                    "description": "A portion of the customer's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "email",
+                    "description": "The exact email address of the customer. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "emailLike",
+                    "description": "A portion of the customer's email address. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
         },
         "/data/people": {
-            "summary": "People API endpoint",
+            "summary": "Person data API endpoint",
+            "description": "Operations to fetch people data. \nEditing operations cannot be done through this resource.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -273,8 +367,8 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "People count per page",
+                        "name": "pageSize",
+                        "description": "Number of people per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -297,8 +391,8 @@
                         "in": "query"
                     },
                     {
-                        "name": "page",
-                        "description": "People page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -319,9 +413,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-people-get",
@@ -343,7 +434,8 @@
             }
         },
         "/data/products": {
-            "summary": "Non-specific-product API endpoint",
+            "summary": "Product data API endpoint",
+            "description": "Operations to fetch, create, edit and remove products and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -351,8 +443,8 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "Products count per page",
+                        "name": "pageSize",
+                        "description": "Number of products per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -375,8 +467,8 @@
                         "in": "query"
                     },
                     {
-                        "name": "page",
-                        "description": "Products page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -397,14 +489,44 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-products-get",
                 "summary": "List products",
                 "description": "GET a paged collection of products."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "products"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-products-put",
+                "summary": "Update products",
+                "description": "PUT changes to all products matching the provided query parameters."
             },
             "post": {
                 "requestBody": {
@@ -430,14 +552,31 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-products-post",
-                "summary": "Insert new product",
+                "summary": "Insert new products",
                 "description": "POST a new product entity and save it to the data store"
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "products"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-products-delete",
+                "summary": "Delete products",
+                "description": "DELETE products matching the provided query parameters, from the data store."
             },
             "options": {
                 "tags": [
@@ -451,10 +590,61 @@
                 "operationId": "data-products-options",
                 "summary": "Preflight check for non-specific product API",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            }
+            },
+            "parameters": [
+                {
+                    "name": "barcode",
+                    "description": "The exact barcode of the product. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "barcodeLike",
+                    "description": "A portion of the product's barcode. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "name",
+                    "description": "The exact name of the product. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "nameLike",
+                    "description": "A portion the product's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "productCategory",
+                    "description": "The exact name of the product's category. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "productCategoryLike",
+                    "description": "A portion of the product category's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
         },
         "/data/sales": {
-            "summary": "Non-specific-sell API endpoint",
+            "summary": "Sell data API endpoint",
+            "description": "Operations to fetch, create, edit and remove sales and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -462,8 +652,8 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "Sales count per page",
+                        "name": "pageSize",
+                        "description": "Number of sales per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -486,8 +676,8 @@
                         "in": "query"
                     },
                     {
-                        "name": "page",
-                        "description": "Sales page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -508,14 +698,44 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-sales-get",
                 "summary": "List sales",
                 "description": "GET a paged collection of sales."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Sell"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "sales"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-sales-put",
+                "summary": "Update sales",
+                "description": "PUT changes to all sales matching the provided query parameters."
             },
             "post": {
                 "requestBody": {
@@ -541,14 +761,31 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-sales-post",
-                "summary": "Insert new sell",
+                "summary": "Insert new sales",
                 "description": "POST a new sell entity and save it to the data store."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "sales"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-sales-delete",
+                "summary": "Delete sales",
+                "description": "DELETE sales matching the provided query parameters, from the data store."
             },
             "options": {
                 "tags": [
@@ -562,10 +799,30 @@
                 "operationId": "data-sales-options",
                 "summary": "Preflight check for non-specific sell API",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            }
+            },
+            "parameters": [
+                {
+                    "name": "buyOrder",
+                    "description": "The unique number associated to a sell.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "date",
+                    "description": "The exact date & time of transaction.",
+                    "schema": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
         },
         "/data/users": {
-            "summary": "Non-specific-user API endpoint",
+            "summary": "User data API endpoint",
+            "description": "Operations to fetch, create, edit and remove users and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -573,8 +830,8 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "Users count per page",
+                        "name": "pageSize",
+                        "description": "Number of users per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -597,8 +854,8 @@
                         "in": "query"
                     },
                     {
-                        "name": "page",
-                        "description": "Users page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -619,14 +876,44 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-users-get",
                 "summary": "List users",
                 "description": "GET a paged collection of users."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "users"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-users-put",
+                "summary": "Update users",
+                "description": "PUT changes to all users matching the provided query parameters."
             },
             "post": {
                 "requestBody": {
@@ -652,14 +939,31 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-users-post",
-                "summary": "Insert new user",
+                "summary": "Insert new users",
                 "description": "POST a new user entity and save it to the data store."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "users"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-users-delete",
+                "summary": "Delete users",
+                "description": "DELETE users matching the provided query parameters, from the data store."
             },
             "options": {
                 "tags": [
@@ -673,10 +977,37 @@
                 "operationId": "data-users-options",
                 "summary": "Preflight check for non-specific user API",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            }
+            },
+            "parameters": [
+                {
+                    "name": "name",
+                    "description": "The exact name of the user. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "nameLike",
+                    "description": "A portion of the user's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "emailLike",
+                    "description": "A portion of the user's email address. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
         },
         "/data/images": {
-            "summary": "Non-specific-image API endpoint",
+            "summary": "Image data API endpoint",
+            "description": "Operations to fetch, create, edit and remove images and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -684,8 +1015,8 @@
                 ],
                 "parameters": [
                     {
-                        "name": "items",
-                        "description": "Images count per page",
+                        "name": "pageSize",
+                        "description": "Number of images per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -693,8 +1024,8 @@
                         "required": false
                     },
                     {
-                        "name": "page",
-                        "description": "Images page number (1-based)",
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -707,14 +1038,44 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-images-get",
                 "summary": "List images",
-                "description": "GET a paged collection of customers."
+                "description": "GET a paged collection of images."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Image"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "images"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-images-put",
+                "summary": "Update images",
+                "description": "PUT changes to all images matching the provided query parameters."
             },
             "post": {
                 "requestBody": {
@@ -740,14 +1101,31 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-images-post",
-                "summary": "Insert a new image",
+                "summary": "Insert new images",
                 "description": "POST a new image entity and save it to the data store"
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "images"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-images-delete",
+                "summary": "Delete images",
+                "description": "DELETE images matching the provided query parameters, from the data store."
             },
             "options": {
                 "tags": [
@@ -764,7 +1142,8 @@
             }
         },
         "/data/user_roles": {
-            "summary": "User roles API endpoint",
+            "summary": "User role data API endpoint",
+            "description": "Operations to fetch user roles data. \nEditing operations cannot be done through this resource.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -776,9 +1155,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-user-roles-get",
@@ -816,9 +1192,6 @@
                             }
                         },
                         "description": "Normal response. Sends an object containing information about the shop."
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "metadata-get",
@@ -850,11 +1223,9 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/MultipleProductCategories"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "categories-get",
                 "summary": "List product main categories",
                 "description": "GET the main (bigger) categories where to browse the products available for sale at the shop."
@@ -868,6 +1239,7 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "deprecated": true,
                 "operationId": "categories-options",
                 "summary": "Preflight check for product categories",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -924,9 +1296,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "checkout-request",
@@ -962,9 +1331,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "validate-checkout-request",
@@ -1001,11 +1367,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-customer-get",
                 "summary": "Find specific customer",
                 "description": "GET the customer identified by a provided id parameter in the route path."
@@ -1037,11 +1401,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-customer-put",
                 "summary": "Update specific customer",
                 "description": "PUT changes to the customer identified by a provided id parameter in the route path."
@@ -1060,11 +1422,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-customer-delete",
                 "summary": "Delete specific customer",
                 "description": "DELETE a customer with the id parameter, from the data store."
@@ -1078,6 +1438,7 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-customer-options",
                 "summary": "Preflight check for specific-customer API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1111,11 +1472,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-image-get",
                 "summary": "Find specific Image",
                 "description": "GET the image identified by a provided id parameter in the route path."
@@ -1148,11 +1507,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-image-put",
                 "summary": "Update specific Image",
                 "description": "PUT changes to the image identified by a provided id parameter in the route path."
@@ -1171,11 +1528,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-image-delete",
                 "summary": "Delete specific Image",
                 "description": "DELETE an image with the id parameter, from the data store."
@@ -1189,6 +1544,7 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-image-options",
                 "summary": "Preflight check for specific-image API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1217,9 +1573,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "store-receipt-request",
@@ -1267,11 +1620,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-user-get",
                 "summary": "Find specific user",
                 "description": "GET the user identified by a provided id parameter in the route path."
@@ -1303,11 +1654,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-user-put",
                 "summary": "Update specific user",
                 "description": "PUT changes to the user identified by a provided id parameter in the route path."
@@ -1326,11 +1675,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-user-delete",
                 "summary": "Delete specific user",
                 "description": "DELETE a user with the id parameter, from the data store."
@@ -1344,6 +1691,7 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-user-options",
                 "summary": "Preflight check for specific-user API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1359,117 +1707,6 @@
                     "required": true
                 }
             ]
-        },
-        "/data/salespeople": {
-            "summary": "Non-specific-salesperson API endpoint",
-            "get": {
-                "tags": [
-                    "fetch-many",
-                    "salespeople"
-                ],
-                "parameters": [
-                    {
-                        "name": "items",
-                        "description": "Salespersons count per page",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "examples": {
-                            "Ascending order": {
-                                "value": "\"asc\""
-                            },
-                            "Descending order": {
-                                "value": "\"desc\""
-                            }
-                        },
-                        "name": "order",
-                        "description": "Salesperson sort order (ascending or descending)",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "name": "page",
-                        "description": "Salespersons page number (1-based)",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "name": "sortBy",
-                        "description": "Salesperson property to sort by",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/PaginatedCollection"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "operationId": "data-salespeople-get",
-                "summary": "List salespeople",
-                "description": "GET a paged collection of salespeople."
-            },
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Salesperson"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "create",
-                    "salespeople"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
-                    }
-                },
-                "operationId": "data-salespeople-post",
-                "summary": "Insert new salesperson",
-                "description": "POST a new salesperson entity and save it to the data store."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
-                    }
-                },
-                "operationId": "data-salespeople-options",
-                "summary": "Preflight check for non-specific salesperson API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
         },
         "/data/salespeople/{idNumber}": {
             "summary": "Specific-salesperson API endpoint",
@@ -1487,11 +1724,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-salesperson-get",
                 "summary": "Find specific salesperson",
                 "description": "GET the salesperson identified by a provided id parameter in the route path."
@@ -1523,11 +1758,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-salesperson-put",
                 "summary": "Update specific salesperson",
                 "description": "PUT changes to the salesperson identified by a provided id parameter in the route path."
@@ -1546,11 +1779,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-salesperson-delete",
                 "summary": "Delete specific salesperson",
                 "description": "DELETE a salesperson with the id parameter, from the data store."
@@ -1564,6 +1795,7 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-salesperson-options",
                 "summary": "Preflight check for specific-salesperson API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1596,11 +1828,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-sell-get",
                 "summary": "Find specific sell",
                 "description": "GET the sell identified by a provided id parameter in the route path."
@@ -1632,11 +1862,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-sell-put",
                 "summary": "Update specific sell",
                 "description": "PUT changes to the sell identified by a provided id parameter in the route path."
@@ -1655,11 +1883,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-sell-delete",
                 "summary": "Delete specific sell",
                 "description": "DELETE a sell with the id parameter, from the data store."
@@ -1673,6 +1899,7 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-sell-options",
                 "summary": "Preflight check for specific-sell API endpoint",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1705,11 +1932,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-product-get",
                 "summary": "Find specific product",
                 "description": "GET the product identified by a provided id parameter in the route path."
@@ -1741,11 +1966,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-product-put",
                 "summary": "Update specific product",
                 "description": "PUT changes to the product identified by a provided id parameter in the route path."
@@ -1764,11 +1987,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-product-delete",
                 "summary": "Delete specific product",
                 "description": "DELETE a product with the id parameter, from the data store."
@@ -1782,6 +2003,7 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
                     }
                 },
+                "deprecated": true,
                 "operationId": "data-product-options",
                 "summary": "Preflight check for specific-product API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1799,7 +2021,8 @@
             ]
         },
         "/data/product_categories": {
-            "summary": "Root product categories API endpoint",
+            "summary": "Product category data API endpoint",
+            "description": "Operations to fetch, create, edit and remove product categories and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -1811,14 +2034,94 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-product-categories-get",
-                "summary": "List all first-level product categories",
-                "description": "GET every product category available without a parent set."
+                "summary": "List product categories",
+                "description": "GET a paged collection of product categories.\nBy default, it fetches parent-less categories first."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategory"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "product-categories"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-product-categories-put",
+                "summary": "Update product categories",
+                "description": "PUT changes to all product categories matching the provided query parameters."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategory"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "create",
+                    "product-categories"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "operationId": "data-product-categories-post",
+                "summary": "Insert new product categories",
+                "description": "POST a new product category entity and save it to the data store."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "product-categories"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-product-categories-delete",
+                "summary": "Delete product categories",
+                "description": "DELETE product categories matching the provided query parameters, from the data store."
             },
             "options": {
                 "tags": [
@@ -1832,7 +2135,143 @@
                 "operationId": "data-product-categories-options",
                 "summary": "Preflight check for root product categories API",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            }
+            },
+            "parameters": [
+                {
+                    "name": "parentCode",
+                    "description": "The code of a parent category. If left empty, no exclusions are made.\n\nValid numbers exclude root categories.\n`null` makes it so only root categories are included.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "query",
+                    "required": false
+                },
+                {
+                    "name": "code",
+                    "description": "The code of the category.\nWhen specified, rules out all other query parameters.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "name",
+                    "description": "The exact name of the category. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "nameLike",
+                    "description": "A portion of the category's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
+        },
+        "/data/product_categories/{parentCode}": {
+            "summary": "Children product categories API endpoint",
+            "get": {
+                "tags": [
+                    "fetch-many",
+                    "product-categories"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/MultipleProductCategories"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "deprecated": true,
+                "operationId": "data-child-product-categories-get",
+                "summary": "List children product categories",
+                "description": "GET every category that is a child of the one identified by the provided code."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategory"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "product-categories"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "deprecated": true,
+                "operationId": "data-child-product-categories-put",
+                "summary": "Update specific product category",
+                "description": "PUT changes to the product category identified by a provided code parameter in the route path."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "product-categories"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "deprecated": true,
+                "operationId": "data-child-product-categories-delete",
+                "summary": "Delete specific product category",
+                "description": "DELETE a product category with the code parameter, from the data store."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "deprecated": true,
+                "operationId": "data-child-product-categories-options",
+                "summary": "Preflight check for children product categories API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "parentCode",
+                    "description": "Unique identifier of a parent product category.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
         },
         "/public/products": {
             "summary": "Products available for sale",
@@ -1845,9 +2284,6 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/PaginatedCollection"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "store-front-request",
@@ -1869,7 +2305,7 @@
             },
             "parameters": [
                 {
-                    "name": "page",
+                    "name": "pageIndex",
                     "description": "Products page number (1-based)",
                     "schema": {
                         "type": "integer"
@@ -1878,7 +2314,7 @@
                     "required": false
                 },
                 {
-                    "name": "items",
+                    "name": "pageSize",
                     "description": "Products count per page",
                     "schema": {
                         "type": "integer"
@@ -1936,9 +2372,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "profile-get",
@@ -1969,9 +2402,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "profile-put",
@@ -2016,9 +2446,6 @@
                     },
                     "403": {
                         "description": "Erroneous, empty response to improper use; the user was already logged in or using a valid guest token."
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "guest-session-request",
@@ -2062,9 +2489,6 @@
                     },
                     "403": {
                         "description": "Erroneous, empty response, sent when the credentials are rejected."
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "login-request",
@@ -2107,9 +2531,6 @@
                     },
                     "400": {
                         "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "register-request",
@@ -2164,6 +2585,7 @@
         },
         "/data/billing_types": {
             "summary": "Billing types API endpoint",
+            "description": "Operations to fetch billing types data. \nEditing operations cannot be done through this resource.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -2175,9 +2597,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-billing-types-get",
@@ -2212,9 +2631,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "store-product-request",
@@ -2260,11 +2676,9 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
+                "deprecated": true,
                 "operationId": "category-get",
                 "summary": "Find and list product subcategories within specific main category",
                 "description": "GET the subcategories found within the provided main category ID."
@@ -2278,6 +2692,7 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "deprecated": true,
                 "operationId": "category-options",
                 "summary": "Preflight check for product subcategories",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2294,27 +2709,150 @@
                 }
             ]
         },
-        "/data/product_categories/{parentCode}": {
-            "summary": "Children product categories API endpoint",
+        "/data/salespeople": {
+            "summary": "Salesperson data API endpoint",
+            "description": "Operations to fetch, create, edit and remove salespeople and their metadata.",
             "get": {
                 "tags": [
                     "fetch-many",
-                    "product-categories"
+                    "salespeople"
+                ],
+                "parameters": [
+                    {
+                        "name": "pageSize",
+                        "description": "Number of salespeople per page",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
+                        "name": "order",
+                        "description": "Salesperson sort order (ascending or descending)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortBy",
+                        "description": "Salesperson property to sort by",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/MultipleProductCategories"
+                        "$ref": "#/components/responses/PaginatedCollection"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "operationId": "data-salespeople-get",
+                "summary": "List salespeople",
+                "description": "GET a paged collection of salespeople."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Salesperson"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "salespeople"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
                     },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
                     }
                 },
-                "operationId": "data-child-product-categories-get",
-                "summary": "List children product categories",
-                "description": "GET every category that is a child of the one identified by the provided code."
+                "operationId": "data-salespeople-put",
+                "summary": "Update salespeople",
+                "description": "PUT changes to all salespeople matching the provided query parameters."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Salesperson"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "create",
+                    "salespeople"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "operationId": "data-salespeople-post",
+                "summary": "Insert new salespeople",
+                "description": "POST a new salesperson entity and save it to the data store."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "salespeople"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-salespeople-delete",
+                "summary": "Delete salespeople",
+                "description": "DELETE salespeople matching the provided query parameters, from the data store."
             },
             "options": {
                 "tags": [
@@ -2322,22 +2860,230 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
+                        "$ref": "#/components/responses/AllowMethodGET-POST"
                     }
                 },
-                "operationId": "data-child-product-categories-options",
-                "summary": "Preflight check for children product categories API",
+                "operationId": "data-salespeople-options",
+                "summary": "Preflight check for non-specific salesperson API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
             "parameters": [
                 {
-                    "name": "parentCode",
-                    "description": "Unique identifier of a parent product category.",
+                    "name": "idNumber",
+                    "description": "The unique identifying number of the salesperson. Case sensitive.",
                     "schema": {
-                        "type": "integer"
+                        "type": "string"
                     },
-                    "in": "path",
+                    "in": "query"
+                },
+                {
+                    "name": "name",
+                    "description": "The exact name of the salesperson. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "idNumberLike",
+                    "description": "A portion of the salesperson's identifying number. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "nameLike",
+                    "description": "A portion of the salesperson's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "email",
+                    "description": "The exact email address of the salesperson. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "emailLike",
+                    "description": "A portion of the salesperson's email address. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
+        },
+        "/data/shippers": {
+            "summary": "User data API endpoint",
+            "description": "Operations to fetch, create, edit and remove users and their metadata.",
+            "get": {
+                "tags": [
+                    "fetch-many",
+                    "shippers"
+                ],
+                "parameters": [
+                    {
+                        "name": "pageSize",
+                        "description": "Number of users per page",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
+                        "name": "order",
+                        "description": "User sort order (ascending or descending)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortBy",
+                        "description": "User property to sort by",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/PaginatedCollection"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "operationId": "data-shippers-get",
+                "summary": "List shippers",
+                "description": "GET a paged collection of shippers."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
                     "required": true
+                },
+                "tags": [
+                    "update",
+                    "shippers"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-shippers-put",
+                "summary": "Update shippers",
+                "description": "PUT changes to all shippers matching the provided query parameters."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "create",
+                    "shippers"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "operationId": "data-shippers-post",
+                "summary": "Insert new shippers",
+                "description": "POST a new shipper entity and save it to the data store."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "shippers"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-shippers-delete",
+                "summary": "Delete shippers",
+                "description": "DELETE shippers matching the provided query parameters, from the data store."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                    }
+                },
+                "operationId": "data-shippers-options",
+                "summary": "Preflight check for shipper API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "name",
+                    "description": "The exact name of the shipper. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
                 }
             ]
         }
@@ -2375,35 +3121,40 @@
                 ],
                 "type": "object",
                 "properties": {
-                    "name": {
-                        "description": "The full name of the individual.",
-                        "type": "string"
-                    },
                     "email": {
                         "description": "The e-mail address.",
                         "type": "string"
                     },
                     "phone1": {
-                        "description": "The phone number",
+                        "description": "The preferred personal phone number",
                         "pattern": "^(\\\\((\\\\+)?[0-9]{3}\\\\))?[0-9]{3,4}[ -]?[0-9]{4}$",
                         "type": "string"
                     },
                     "phone2": {
-                        "description": "A second phone number (without pluses or parentheses)",
+                        "description": "A second phone number",
                         "pattern": "^(\\\\((\\\\+)?[0-9]{3}\\\\))?[0-9]{3,4}[ -]?[0-9]{4}$",
                         "type": "string"
                     },
                     "idNumber": {
                         "description": "The national identification number as issued by the individual's birth country government.",
                         "type": "string"
+                    },
+                    "firstName": {
+                        "description": "The individual's first name.",
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "description": "The individual's last or family name.",
+                        "type": "string"
                     }
                 },
                 "example": {
-                    "name": "some text",
-                    "idNumber": "some text",
-                    "email": "some text",
-                    "phone1": "some text",
-                    "phone2": "some text"
+                    "firstName": "Isaac Sebastian",
+                    "lastName": "Williams McGregor",
+                    "idNumber": "123456789-0",
+                    "email": "example@email.com",
+                    "phone1": "(+2)784 876 823",
+                    "phone2": "4444 9820"
                 }
             },
             "UserRegistration": {
@@ -2745,15 +3496,18 @@
                     "units": {
                         "description": "The amount of products in this detail.",
                         "type": "integer"
+                    },
+                    "unitValue": {
+                        "description": "A copy of the value for each unit of the product in the parent transaction.",
+                        "type": "number"
                     }
                 },
                 "example": {
                     "product": {
-                        "name": "example product",
-                        "barcode": "EXMPL000001",
-                        "price": 1000
+                        "barcode": "EXMPL000001"
                     },
-                    "units": 1
+                    "units": 1,
+                    "unitValue": 1000
                 }
             },
             "Sell": {
@@ -2822,6 +3576,22 @@
                     "customer": {
                         "$ref": "#/components/schemas/Customer",
                         "description": "The customer that initiated the transaction."
+                    },
+                    "taxValue": {
+                        "description": "The amount of income destined to pay taxes.",
+                        "type": "number"
+                    },
+                    "totalValue": {
+                        "description": "The sum between net, transport and taxes values.",
+                        "type": "number"
+                    },
+                    "totalItems": {
+                        "description": "The sum amount of product units purchased.",
+                        "type": "integer"
+                    },
+                    "token": {
+                        "description": "An unique code that identifies the transaction.",
+                        "type": "string"
                     }
                 },
                 "example": {
@@ -2847,7 +3617,6 @@
                         "idNumber": "some text",
                         "name": "some text"
                     },
-                    "netValue": 549.99,
                     "shippingAddress": {
                         "firstLine": "some text",
                         "secondLine": "some text",
@@ -2866,7 +3635,13 @@
                         "person": {
                             "idNumber": "some text"
                         }
-                    }
+                    },
+                    "token": "ANSDg900viery9e",
+                    "netValue": 549.99,
+                    "taxValue": 30.15,
+                    "transportValue": 0,
+                    "totalValue": 580.14,
+                    "totalItems": 42
                 }
             },
             "User": {
@@ -3167,9 +3942,6 @@
             },
             "Forbidden": {
                 "description": "Erroneous, empty response for requests not meeting security requirements. Most likely, it does not have authorization to access specific privileged resource(s), or does not include any form of authentication while requesting some privileged resource(s)."
-            },
-            "UnknownError": {
-                "description": "Erroneous response sent when the API server is having a general malfunction or is unavailable."
             },
             "AuthorizedAccessToSingleRoute": {
                 "content": {

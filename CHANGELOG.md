@@ -4,17 +4,55 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Path `/data/product_categories`
+  - include methods `GET`, `POST`, `PUT` and `DELETE` to manage product categories
+- Path `/data/shippers`
+  - include method  `GET`, `POST`, `PUT` and `DELETE` to manage shippers
+- Entity `Sell`
+  - introduce properties `token`, `taxValue`, `transportValue`, `totalValue` and `totalItems`
+- Entity `SellDetail`
+  - introduce property `unitValue`
+
+### Changed
+- Entity `Person`
+  - [__Breaking change__] Property `name` split into two, `firstName` and `lastName`
+- Paths in `/data` without path parameters
+  - updated summary and description
+  - paging query parameters are now (aptly) named `pageSize` and `pageIndex`
+
+### Deprecated
+__The following will be removed in the minor version that follows this one.__
+Please follow given advices and use corresponding replacements before that.
+
+- Reduce redundant API resources
+  - `/public/categories` - use `/data/product_categories` instead
+  - `/public/categories/{parentId}` - use `/data/product_categories?parentCode={}` instead
+- Replace parameterized paths with simpler paths and use of query parameters (for all available methods)
+  - `/data/customers/{idNumber}` - use `/data/customers?idNumber={}` instead
+  - `/data/images/{code}` - use `/data/images?code={}` instead
+  - `/data/products/{code}` - use `/data/products?barcode={}` instead
+  - `/data/sales/{buyOrder}` - use `/data/sales?buyOrder={}` instead
+  - `/data/salespeople/{idNumber}` - use `/data/salespeople?idNumber={}` instead
+  - `/data/users/{name}` - use `/data/users?name={}` instead
+
+### Removed
+- All `500 Internal Server Error` responses, and the `UnknownError` predefined response
+
 
 ## [1.0.5] - 2021-10-19
 
 ### Added
-- Add entity tags to entity-related resources, such as `products`, `customers` and `sales`
+- Tags
+  - add entity tags to entity-related resources, such as `products`, `customers` and `sales`
 
 ### Changed
-- Path `/data/people`: change `operationId`
-- Update tags:
-  - remove `fetch`, `one`, `many` and `existing`
-  - add `fetch-one` and `fetch-many`
+- Path `/data/people`
+  - change `operationId`
+- Tags
+  - instead of `fetch`, `one`, `many` and `existing`, only use `fetch-one` and `fetch-many`
 
 
 ## [1.0.4] - 2021-10-19
@@ -23,38 +61,68 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Entity `Product`: include property `description` as `string`
 
 ### Changed
-- Entity `Address`: require properties `firstLine`, `municipality` and `city` as base schema information
-- Entity `BillingCompany`: require property `idNumber` as base schema information
-- Entity `Image`: require properties `filename`, `url` and `code` as base schema information; set `code` data type to `string`
-- Entity `Product`: require properties `barcode` as base schema information
-- Entity `ProductCategory`: require property `name` as base schema information; fix example
-- Entity `Receipt`: require properties `amount`, `buyOrder`, `date`, and `status` as base schema information; remove `format` metadata from `buyOrder` and `amount`
-- Entity `Sell`: include description; require property `details` in addition to others as base schema information; update description of `billingCompany` property
-- Entity `SellDetail`: require properties `product` and `units` as base schema information; add description to both; remove `format` metadata from `units`
-- Entity `SellStatus`: add description, require properties `code` and `name`, include descriptions of both, update data type of `code` to `integer`
-- Entity `Shipper`: add description, include description of property `name`
-- Entities `ShopOwnerDetails`, `User` and `UserRole`: update description
-- Entities `Customer` and `Salesperson`: require property `person` as base schema information; add a description to it
-- Entities `PaymentType` and `BillingType`: require property `name` as base schema information
+- Entity `Address`
+  - require properties `firstLine`, `municipality` and `city` as base schema information
+- Entity `BillingCompany`
+  - require property `idNumber` as base schema information
+- Entity `Image`
+  - require properties `filename`, `url` and `code` as base schema information
+  - set `code` data type to `string`
+- Entity `Product`
+  - require properties `barcode` as base schema information
+- Entity `ProductCategory`
+  - require property `name` as base schema information
+  - fix example
+- Entity `Receipt`
+  - require properties `amount`, `buyOrder`, `date`, and `status` as base schema information
+  - remove `format` metadata from `buyOrder` and `amount`
+- Entity `Sell`
+  - add description
+  - require property `details` in addition to others as base schema information
+  - update description of `billingCompany` property
+- Entity `SellDetail`
+  - require properties `product` and `units` as base schema information
+  - add description to both properties
+  - remove `format` metadata from `units` property
+- Entity `SellStatus`
+  - add description
+  - require properties `code` and `name`
+  - add description to both properties
+  - update data type of `code` to `integer`
+- Entity `Shipper`
+  - add description
+  - add description to `name` property
+- Entities `ShopOwnerDetails`, `User` and `UserRole`
+  - update description
+- Entities `Customer` and `Salesperson`
+  - require property `person` as base schema information
+  - add a description to `person` property
+- Entities `PaymentType` and `BillingType`
+  - require property `name` as base schema information
 
 
 ## [1.0.3] - 2021-09-21
 
 ### Added
-- Entity `Sell`: include required property `customer` as `Person`
+- Entity `Sell`
+  - include required property `customer` as `Person`
 
 
 ## [1.0.2] - 2021-09-20
 
 ### Changed
-- Path `/data/product_categories/{parentId}`: parameter `parentId` renamed to `parentCode`
-- Entity `ProductCategory`: property `id` renamed to `code`
+- Path `/data/product_categories/{parentId}`
+  - parameter `parentId` renamed to `parentCode`
+- Entity `ProductCategory`
+  - property `id` renamed to `code`
 
 
 ## [1.0.1] - 2021-09-20
 
 ### Added
-- Entity `User`: require property `name` as base schema information; include property `role` as `string`
+- Entity `User`
+  - require property `name` as base schema information
+  - include property `role` as `string`
 
 
 ## [1.0.0] - 2021-09-20
