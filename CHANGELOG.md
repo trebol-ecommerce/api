@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Path `/data/product_categories`: include method `POST` for creating new categories
-- Path `/data/product_categories/{parentCode}` with methods `GET`, `PUT` and `DELETE`, to manage product categories
+- Path `/data/product_categories`: include methods `GET`, `POST`, `PUT` and `DELETE` to manage product categories
+- Path `/data/shippers`: include method  `GET`, `POST`, `PUT` and `DELETE` to manage shippers
 - Entity `Sell`: introduce properties `token`, `taxValue`, `transportValue`, `totalValue` and `totalItems`
 - Entity `SellDetail`: introduce property `unitValue`
 
@@ -22,11 +22,10 @@ Follow given advices and use corresponding replacements for all use cases involv
 
 - Reducing redundant API resources
   - `/public/categories`: use `/data/product_categories` instead
-  - `/public/categories/{parentId}`: use `/data/product_categories/{parentCode}` instead
+  - `/public/categories/{parentId}`: use `/data/product_categories?parentCode={}` instead
 - Replacing parameterized paths with simpler paths and use of query parameters (all available methods apply)
   - `/data/customers/{idNumber}`: use `/data/customers?idNumber={}` instead
   - `/data/images/{code}`: use `/data/images?code={}` instead
-  - `/data/product_categories/{parentCode}`: use `/data/product_categories?parentCode={}` and `/data/product_categories?code={}` instead
   - `/data/products/{code}`: use `/data/products?barcode={}` instead
   - `/data/sales/{buyOrder}`: use `/data/sales?buyOrder={}` instead
   - `/data/salespeople/{idNumber}`: use `/data/salespeople?idNumber={}` instead

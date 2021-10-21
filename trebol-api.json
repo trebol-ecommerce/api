@@ -3067,6 +3067,181 @@
                     "in": "query"
                 }
             ]
+        },
+        "/data/shippers": {
+            "summary": "User data API endpoint",
+            "description": "Operations to fetch, create, edit and remove users and their metadata.",
+            "get": {
+                "tags": [
+                    "fetch-many",
+                    "shippers"
+                ],
+                "parameters": [
+                    {
+                        "name": "pageSize",
+                        "description": "Number of users per page",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
+                        "name": "order",
+                        "description": "User sort order (ascending or descending)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortBy",
+                        "description": "User property to sort by",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/PaginatedCollection"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "data-shippers-get",
+                "summary": "List shippers",
+                "description": "GET a paged collection of shippers."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "shippers"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-shippers-put",
+                "summary": "Update shippers",
+                "description": "PUT changes to all shippers matching the provided query parameters."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "create",
+                    "shippers"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/UnknownError"
+                    }
+                },
+                "operationId": "data-shippers-post",
+                "summary": "Insert new shippers",
+                "description": "POST a new shipper entity and save it to the data store."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "shippers"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-shippers-delete",
+                "summary": "Delete shippers",
+                "description": "DELETE shippers matching the provided query parameters, from the data store."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                    }
+                },
+                "operationId": "data-shippers-options",
+                "summary": "Preflight check for shipper API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "name",
+                    "description": "The exact name of the shipper. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
         }
     },
     "components": {
