@@ -13,11 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Entity `SellDetail`: introduce property `unitValue`
 
 ### Changed
-- __Breaking change__: Entity `Person`: property `name` split into two, `firstName` and `lastName`
+- [__Breaking change__] Entity `Person`: property `name` split into two, `firstName` and `lastName`
 - Paths in `/data` without path parameters: Updated summary and description; paging query parameters are now aptly named `pageSize` and `pageIndex`
 
 ### Deprecated
-These will be unsupported in the minor version that follows this one.
+__The following will be removed in the minor version that follows this one.__
 Follow given advices and use corresponding replacements for all use cases involved.
 
 - Reducing redundant API resources
@@ -30,6 +30,10 @@ Follow given advices and use corresponding replacements for all use cases involv
   - `/data/sales/{buyOrder}`: use `/data/sales?buyOrder={}` instead
   - `/data/salespeople/{idNumber}`: use `/data/salespeople?idNumber={}` instead
   - `/data/users/{name}`: use `/data/users?name={}` instead
+
+### Removed
+- All 500 Internal Server Error responses, and the `UnknownError` predefined response
+
 
 ## [1.0.5] - 2021-10-19
 

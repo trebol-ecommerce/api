@@ -267,9 +267,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-customers-post",
@@ -416,9 +413,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-people-get",
@@ -495,9 +489,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-products-get",
@@ -561,9 +552,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-products-post",
@@ -710,9 +698,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-sales-get",
@@ -776,9 +761,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-sales-post",
@@ -894,9 +876,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-users-get",
@@ -960,9 +939,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-users-post",
@@ -1062,9 +1038,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-images-get",
@@ -1128,9 +1101,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-images-post",
@@ -1185,9 +1155,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-user-roles-get",
@@ -1225,9 +1192,6 @@
                             }
                         },
                         "description": "Normal response. Sends an object containing information about the shop."
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "metadata-get",
@@ -1259,9 +1223,6 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/MultipleProductCategories"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1335,9 +1296,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "checkout-request",
@@ -1373,9 +1331,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "validate-checkout-request",
@@ -1412,9 +1367,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1449,9 +1401,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1473,9 +1422,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1526,9 +1472,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1564,9 +1507,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1588,9 +1528,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1636,9 +1573,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "store-receipt-request",
@@ -1686,9 +1620,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1723,9 +1654,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1747,9 +1675,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1799,9 +1724,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1836,9 +1758,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1860,9 +1779,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1912,9 +1828,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1949,9 +1862,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -1973,9 +1883,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -2025,9 +1932,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -2062,9 +1966,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -2086,9 +1987,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -2136,9 +2034,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-product-categories-get",
@@ -2202,9 +2097,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-product-categories-post",
@@ -2293,9 +2185,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -2330,9 +2219,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -2354,9 +2240,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -2401,9 +2284,6 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/PaginatedCollection"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "store-front-request",
@@ -2492,9 +2372,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "profile-get",
@@ -2525,9 +2402,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "profile-put",
@@ -2572,9 +2446,6 @@
                     },
                     "403": {
                         "description": "Erroneous, empty response to improper use; the user was already logged in or using a valid guest token."
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "guest-session-request",
@@ -2618,9 +2489,6 @@
                     },
                     "403": {
                         "description": "Erroneous, empty response, sent when the credentials are rejected."
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "login-request",
@@ -2663,9 +2531,6 @@
                     },
                     "400": {
                         "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "register-request",
@@ -2732,9 +2597,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-billing-types-get",
@@ -2769,9 +2631,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "store-product-request",
@@ -2817,9 +2676,6 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "deprecated": true,
@@ -2909,9 +2765,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-salespeople-get",
@@ -2975,9 +2828,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-salespeople-post",
@@ -3124,9 +2974,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-shippers-get",
@@ -3190,9 +3037,6 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/UnknownError"
                     }
                 },
                 "operationId": "data-shippers-post",
@@ -4098,9 +3942,6 @@
             },
             "Forbidden": {
                 "description": "Erroneous, empty response for requests not meeting security requirements. Most likely, it does not have authorization to access specific privileged resource(s), or does not include any form of authentication while requesting some privileged resource(s)."
-            },
-            "UnknownError": {
-                "description": "Erroneous response sent when the API server is having a general malfunction or is unavailable."
             },
             "AuthorizedAccessToSingleRoute": {
                 "content": {
