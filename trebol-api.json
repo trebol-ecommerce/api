@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Trébol API (Draft)",
-        "version": "1.1.0",
+        "title": "Trébol API",
+        "version": "1.1.1",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -3330,10 +3330,12 @@
                 "title": "Root Type for Receipt",
                 "description": "Metadata about an existing transaction.",
                 "required": [
-                    "amount",
+                    "totalValue",
                     "buyOrder",
                     "date",
-                    "status"
+                    "status",
+                    "totalItems",
+                    "token"
                 ],
                 "type": "object",
                 "properties": {
@@ -3341,7 +3343,7 @@
                         "description": "The unique identifier for the transaction.",
                         "type": "integer"
                     },
-                    "amount": {
+                    "totalValue": {
                         "description": "The total value paid in the receipt.",
                         "type": "number"
                     },
@@ -3351,22 +3353,40 @@
                     },
                     "date": {
                         "format": "date",
-                        "description": "The hour and date that the transaction was confirmed.",
+                        "description": "The timestamp at which the transaction was confirmed.",
                         "type": "string"
                     },
                     "details": {
-                        "description": "A list that provides full information about the acquired products or services.",
+                        "description": "List of all acquired products or services.",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/ReceiptDetail"
                         }
+                    },
+                    "taxValue": {
+                        "description": "The paid amount that was destined to taxes.",
+                        "type": "number"
+                    },
+                    "totalItems": {
+                        "description": "The sum amount of product units purchased.",
+                        "type": "integer"
+                    },
+                    "token": {
+                        "description": "An unique code that identifies the transaction.",
+                        "type": "string"
+                    },
+                    "transportValue": {
+                        "description": "The amount paid for transport.",
+                        "type": "number"
                     }
                 },
                 "example": {
                     "buyOrder": 1,
-                    "amount": 10000,
-                    "status": "delivered",
-                    "date": "2020-12-25",
+                    "totalValue": 11000,
+                    "taxValue": 1000,
+                    "transportValue": 0,
+                    "status": "complete",
+                    "date": "2020-12-25 15:40:53 GMT",
                     "details": [
                         {
                             "product": {
@@ -3379,11 +3399,12 @@
                 }
             },
             "ReceiptDetail": {
-                "title": "Root Type for CartDetail",
+                "title": "Root Type for ReceiptDetail",
                 "description": "Part of a receipt's contents, related to a given Product.",
                 "required": [
                     "units",
-                    "product"
+                    "product",
+                    "unitValue"
                 ],
                 "type": "object",
                 "properties": {
@@ -3394,15 +3415,19 @@
                     "units": {
                         "description": "The amount or quantity of the given product.",
                         "type": "integer"
+                    },
+                    "unitValue": {
+                        "description": "A copy of the value for each unit of the product in the parent transaction.",
+                        "type": "number"
                     }
                 },
                 "example": {
                     "product": {
                         "name": "example product",
-                        "barcode": "EXMPL000001",
-                        "price": 1000
+                        "barcode": "EXMPL000001"
                     },
-                    "units": 1
+                    "units": 1,
+                    "unitValue": 1000
                 }
             },
             "ShopOwnerDetails": {
@@ -3592,6 +3617,10 @@
                     "token": {
                         "description": "An unique code that identifies the transaction.",
                         "type": "string"
+                    },
+                    "transportValue": {
+                        "description": "The amount paid for transport.",
+                        "type": "number"
                     }
                 },
                 "example": {

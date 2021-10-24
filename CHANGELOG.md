@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2021-10-24
+
+### Added
+- Entity `Receipt`
+  - introduce properties `token`, `taxValue`, `transportValue` and `totalItems`
+
+### Changed
+- Entity `Receipt`
+  - rename `amount` property to `totalValue`
+  - require properties `token` and `totalItems` in addition to base schema properties
+
+### Fixed
+- Entity `Sell`
+  - include missing property `transportValue` - _this was wrongly documented as an addition in v1.1.0; changelog was updated_
+
+
 ## [1.1.0] - 2021-10-20
 
 ### Added
@@ -12,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Path `/data/shippers`
   - include method  `GET`, `POST`, `PUT` and `DELETE` to manage shippers
 - Entity `Sell`
-  - introduce properties `token`, `taxValue`, `transportValue`, `totalValue` and `totalItems`
+  - introduce properties `token`, `taxValue`, `totalValue` and `totalItems`
 - Entity `SellDetail`
   - introduce property `unitValue`
 
