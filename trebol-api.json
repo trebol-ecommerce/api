@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol API",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2150,7 +2150,7 @@
                     "name": "code",
                     "description": "The code of the category.\nWhen specified, rules out all other query parameters.",
                     "schema": {
-                        "type": "integer"
+                        "type": "string"
                     },
                     "in": "query"
                 },
@@ -3753,7 +3753,8 @@
                 "title": "Root Type for ProductFamily",
                 "description": "A Product group/category. Each one can be divided into smaller subsets (ProductType).",
                 "required": [
-                    "name"
+                    "name",
+                    "code"
                 ],
                 "type": "object",
                 "properties": {
@@ -3767,7 +3768,7 @@
                     },
                     "code": {
                         "description": "A unique identifier for the category.",
-                        "type": "integer"
+                        "type": "string"
                     }
                 },
                 "example": {
