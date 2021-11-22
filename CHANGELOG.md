@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Entity `ProductCategory` and Path `/data/product_categories`
   - property & query parameter `code` changed from type `integer` to `string`
+  - query parameter `parentCode` changed from type `integer` to `string`
 
 ## [1.1.1] - 2021-10-24
 
