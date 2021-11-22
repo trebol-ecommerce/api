@@ -1916,7 +1916,7 @@
                 }
             ]
         },
-        "/data/products/{code}": {
+        "/data/products/{barcode}": {
             "summary": "Specific-product API endpoint",
             "get": {
                 "tags": [
@@ -2010,7 +2010,7 @@
             },
             "parameters": [
                 {
-                    "name": "code",
+                    "name": "barcode",
                     "description": "A unique code for a Product.",
                     "schema": {
                         "type": "integer"
