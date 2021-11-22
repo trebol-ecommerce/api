@@ -2141,7 +2141,7 @@
                     "name": "parentCode",
                     "description": "The code of a parent category. If left empty, no exclusions are made.\n\nValid numbers exclude root categories.\n`null` makes it so only root categories are included.",
                     "schema": {
-                        "type": "integer"
+                        "type": "string"
                     },
                     "in": "query",
                     "required": false
