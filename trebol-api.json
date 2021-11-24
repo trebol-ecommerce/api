@@ -2013,7 +2013,7 @@
                     "name": "barcode",
                     "description": "A unique code for a Product.",
                     "schema": {
-                        "type": "integer"
+                        "type": "string"
                     },
                     "in": "path",
                     "required": true
@@ -2985,7 +2985,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/User"
+                                "$ref": "#/components/schemas/Shipper"
                             }
                         }
                     },
@@ -3018,7 +3018,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/User"
+                                "$ref": "#/components/schemas/Shipper"
                             }
                         }
                     },
@@ -3080,6 +3080,14 @@
                 {
                     "name": "name",
                     "description": "The exact name of the shipper. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "nameLike",
+                    "description": "A portion of the shipper's name. Case insensitive.",
                     "schema": {
                         "type": "string"
                     },
