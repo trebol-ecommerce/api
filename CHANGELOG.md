@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - with properties `code`, `name` and `totalCount`
 - New path `/data/product_lists`
   - supports methods `GET`, `POST`, `PUT` and `DELETE`
+- New path `/data/product_list_contents`
+  - supports methods `GET`, `POST`, `PUT` and `DELETE`
+  - requires `listCode` in query parameters
 
 ### Fixed
 - Outdated response refs in some `OPTIONS` resources
