@@ -199,7 +199,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-customers-options",
@@ -484,7 +484,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-products-options",
@@ -693,7 +693,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-sales-options",
@@ -871,7 +871,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-users-options",
@@ -1056,7 +1056,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-images-options",
@@ -1426,7 +1426,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-product-categories-options",
@@ -2012,7 +2012,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-salespeople-options",
@@ -2221,7 +2221,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-shippers-options",
@@ -2356,7 +2356,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-product-lists-options",

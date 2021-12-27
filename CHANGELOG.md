@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New path `/data/product_lists`
   - supports methods `GET`, `POST`, `PUT` and `DELETE`
 
+### Fixed
+- Outdated response refs in some `OPTIONS` resources
+
 ### Changed
 - Replaced all `/access` sub-paths with wildcard `/access/*`
 - Renamed response `AuthorizedAccessToSingleRoute` to `AuthorizedAccessToResource`
