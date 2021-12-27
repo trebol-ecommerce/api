@@ -2246,6 +2246,149 @@
                     "in": "query"
                 }
             ]
+        },
+        "/data/product_lists": {
+            "summary": "Product list data API endpoint",
+            "description": "Operations to fetch, create, edit and remove product lists and their metadata.",
+            "get": {
+                "tags": [
+                    "fetch-many",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/MultipleProductCategories"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "operationId": "data-product-lists-get",
+                "summary": "List product lists",
+                "description": "GET a paged collection of product lists."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategory"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-product-lists-put",
+                "summary": "Update product lists",
+                "description": "PUT changes to all product lists matching the provided query parameters."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategory"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "create",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "operationId": "data-product-lists-post",
+                "summary": "Insert new product lists",
+                "description": "POST a new product list entity and save it to the data store."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-product-lists-delete",
+                "summary": "Delete product lists",
+                "description": "DELETE product listsmatching the provided query parameters, from the data store."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "operationId": "data-product-lists-options",
+                "summary": "Preflight check for root product lists API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "code",
+                    "description": "The exact code of the list",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "name",
+                    "description": "The exact name of the list. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "nameLike",
+                    "description": "A portion of the list name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
         }
     },
     "components": {

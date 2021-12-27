@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - New entity `ProductList`
   - with properties `code`, `name` and `totalCount`
+- New path `/data/product_lists`
+  - supports methods `GET`, `POST`, `PUT` and `DELETE`
 
 ### Changed
 - Replaced all `/access` sub-paths with wildcard `/access/*`
