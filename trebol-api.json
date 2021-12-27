@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Trébol eCommerce API",
-        "version": "1.2.0",
+        "title": "Trébol eCommerce API (Preview)",
+        "version": "1.2.1",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2442,7 +2442,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/MultipleProductCategories"
+                        "$ref": "#/components/responses/PaginatedCollection"
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -2457,7 +2457,10 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/ProductCategory"
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
                             }
                         }
                     },
@@ -2490,7 +2493,10 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/ProductCategory"
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
                             }
                         }
                     },
