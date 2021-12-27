@@ -3464,7 +3464,6 @@
             "ProductList": {
                 "description": "A named, editable collection of items.",
                 "required": [
-                    "name",
                     "code"
                 ],
                 "type": "object",
