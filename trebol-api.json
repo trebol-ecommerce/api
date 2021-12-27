@@ -3117,6 +3117,44 @@
                 "example": {
                     "name": "Enterprise Invoice"
                 }
+            },
+            "ProductList": {
+                "description": "A named, editable collection of items.",
+                "required": [
+                    "name",
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "totalCount": {
+                        "description": "The total amount of products in the list",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Unique name of the list",
+                        "type": "string"
+                    },
+                    "code": {
+                        "description": "Unique code of the list",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "example list",
+                    "items": [
+                        {
+                            "name": "example product",
+                            "code": "EXMPL001"
+                        },
+                        {
+                            "name": "example product 2",
+                            "code": "EXMPL002"
+                        }
+                    ],
+                    "pageIndex": 2,
+                    "totalCount": 32,
+                    "pageSize": 15
+                }
             }
         },
         "responses": {

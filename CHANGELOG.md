@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- New entity `ProductList`
+  - with properties `code`, `name` and `totalCount`
+
 ### Changed
 - Replaced all `/access` sub-paths with wildcard `/access/*`
 - Renamed response `AuthorizedAccessToSingleRoute` to `AuthorizedAccessToResource`
