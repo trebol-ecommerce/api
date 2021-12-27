@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- Replaced all `/access` sub-paths with wildcard `/access/*`
+- Renamed response `AuthorizedAccessToSingleRoute` to `AuthorizedAccessToResource`
+
+### Deleted
+- Paths marked for deprecation:
+  - `/data/customers/{idNumber}`
+  - `/data/images/{code}`
+  - `/data/product_categories/{parentCode}`
+  - `/data/products/{barcode}`
+  - `/data/sales/{buyOrder}`
+  - `/data/salespeople/{idNumber}`
+  - `/data/users/{name}`
+  - `/public/categories/{parentId}`
+
+### Deprecated
+- Path `/public/products/{barcode}` should be superseded with query parameters
+
 ## [v1.1.3] - 2021-12-27
 
 ### Fixed
