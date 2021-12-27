@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Trébol API",
-        "version": "1.1.2",
+        "title": "Trébol eCommerce API",
+        "version": "1.1.3",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -170,7 +170,7 @@
                 "parameters": [
                     {
                         "name": "pageSize",
-                        "description": "Expected maximum number of items per page",
+                        "description": "Number of customers per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -178,7 +178,7 @@
                     },
                     {
                         "name": "pageIndex",
-                        "description": "0-based index of page",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -186,7 +186,7 @@
                     },
                     {
                         "name": "sortBy",
-                        "description": "Property to sort by",
+                        "description": "Customer property to sort by",
                         "schema": {
                             "type": "string"
                         },
@@ -194,7 +194,15 @@
                     },
                     {
                         "name": "order",
-                        "description": "Sort order (ascending/descending)",
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
+                        "description": "Sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },
@@ -368,7 +376,7 @@
                 "parameters": [
                     {
                         "name": "pageSize",
-                        "description": "Expected maximum number of items per page",
+                        "description": "Number of people per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -376,7 +384,7 @@
                     },
                     {
                         "name": "pageIndex",
-                        "description": "0-based index of page",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -384,15 +392,23 @@
                     },
                     {
                         "name": "sortBy",
-                        "description": "Property to sort by",
+                        "description": "People property to sort by",
                         "schema": {
                             "type": "string"
                         },
                         "in": "query"
                     },
                     {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
                         "name": "order",
-                        "description": "Sort order (ascending/descending)",
+                        "description": "People sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },
@@ -436,7 +452,7 @@
                 "parameters": [
                     {
                         "name": "pageSize",
-                        "description": "Expected maximum number of items per page",
+                        "description": "Number of products per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -444,7 +460,7 @@
                     },
                     {
                         "name": "pageIndex",
-                        "description": "0-based index of page",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -452,15 +468,23 @@
                     },
                     {
                         "name": "sortBy",
-                        "description": "Property to sort by",
+                        "description": "Product property to sort by",
                         "schema": {
                             "type": "string"
                         },
                         "in": "query"
                     },
                     {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
                         "name": "order",
-                        "description": "Sort order (ascending/descending)",
+                        "description": "Product sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },
@@ -637,7 +661,7 @@
                 "parameters": [
                     {
                         "name": "pageSize",
-                        "description": "Expected maximum number of items per page",
+                        "description": "Number of sales per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -645,7 +669,7 @@
                     },
                     {
                         "name": "pageIndex",
-                        "description": "0-based index of page",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -653,15 +677,23 @@
                     },
                     {
                         "name": "sortBy",
-                        "description": "Property to sort by",
+                        "description": "Sell property to sort by",
                         "schema": {
                             "type": "string"
                         },
                         "in": "query"
                     },
                     {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
                         "name": "order",
-                        "description": "Sort order (ascending/descending)",
+                        "description": "Sell sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },
@@ -807,7 +839,7 @@
                 "parameters": [
                     {
                         "name": "pageSize",
-                        "description": "Expected maximum number of items per page",
+                        "description": "Number of users per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -815,7 +847,7 @@
                     },
                     {
                         "name": "pageIndex",
-                        "description": "0-based index of page",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -823,15 +855,23 @@
                     },
                     {
                         "name": "sortBy",
-                        "description": "Property to sort by",
+                        "description": "User property to sort by",
                         "schema": {
                             "type": "string"
                         },
                         "in": "query"
                     },
                     {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
                         "name": "order",
-                        "description": "Sort order (ascending/descending)",
+                        "description": "User sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },
@@ -984,7 +1024,7 @@
                 "parameters": [
                     {
                         "name": "pageSize",
-                        "description": "Expected maximum number of items per page",
+                        "description": "Number of images per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -992,7 +1032,7 @@
                     },
                     {
                         "name": "pageIndex",
-                        "description": "0-based index of page",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -1007,6 +1047,14 @@
                         "in": "query"
                     },
                     {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
                         "name": "order",
                         "description": "Sort order (ascending/descending)",
                         "schema": {
@@ -2510,7 +2558,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Normal, empty response; sent when the registration is succesful and the user account is created. The user should proceed log in with the same input credentials."
+                        "$ref": "#/components/responses/Empty"
                     },
                     "400": {
                         "$ref": "#/components/responses/BadRequestBody"
@@ -2703,7 +2751,7 @@
                 "parameters": [
                     {
                         "name": "pageSize",
-                        "description": "Expected maximum number of items per page",
+                        "description": "Number of salespeople per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -2711,7 +2759,7 @@
                     },
                     {
                         "name": "pageIndex",
-                        "description": "0-based index of page",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -2719,15 +2767,23 @@
                     },
                     {
                         "name": "sortBy",
-                        "description": "Property to sort by",
+                        "description": "Salesperson property to sort by",
                         "schema": {
                             "type": "string"
                         },
                         "in": "query"
                     },
                     {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
                         "name": "order",
-                        "description": "Sort order (ascending/descending)",
+                        "description": "Salesperson sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },
@@ -2904,7 +2960,7 @@
                 "parameters": [
                     {
                         "name": "pageSize",
-                        "description": "Expected maximum number of items per page",
+                        "description": "Number of users per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -2912,7 +2968,7 @@
                     },
                     {
                         "name": "pageIndex",
-                        "description": "0-based index of page",
+                        "description": "Index of page (0-based)",
                         "schema": {
                             "type": "integer"
                         },
@@ -2920,15 +2976,23 @@
                     },
                     {
                         "name": "sortBy",
-                        "description": "Property to sort by",
+                        "description": "User property to sort by",
                         "schema": {
                             "type": "string"
                         },
                         "in": "query"
                     },
                     {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
                         "name": "order",
-                        "description": "Sort order (ascending/descending)",
+                        "description": "User sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },

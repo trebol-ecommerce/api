@@ -4,7 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.2] - 2021-12-07
+## [v1.1.3] - 2021-12-27
+
+### Fixed
+- Use ref to predefined response for `/public/register [200 OK]`
+- Missing examples for some specifications of `sort` as a query parameter
+
+### Changed
+- Several parameter descriptions
+
+
+## [v1.1.2] - 2021-12-07
 
 ### Changed
 - Entity `ProductCategory` and Path `/data/product_categories`
@@ -12,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - query parameter `parentCode` changed from type `integer` to `string`
 - All GET resources within `/data` include pagination parameters `pageIndex`, `pageSize`, `sortBy`, `sortOrder`
 
-## [1.1.1] - 2021-10-24
+## [v1.1.1] - 2021-10-24
 
 ### Added
 - Entity `Receipt`
@@ -28,7 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - include missing property `transportValue` - _this was wrongly documented as an addition in v1.1.0; changelog was updated_
 
 
-## [1.1.0] - 2021-10-20
+## [v1.1.0] - 2021-10-20
 
 ### Added
 - Path `/data/product_categories`
@@ -66,7 +76,7 @@ Please follow given advices and use corresponding replacements before that.
 - All `500 Internal Server Error` responses, and the `UnknownError` predefined response
 
 
-## [1.0.5] - 2021-10-19
+## [v1.0.5] - 2021-10-19
 
 ### Added
 - Tags
@@ -79,7 +89,7 @@ Please follow given advices and use corresponding replacements before that.
   - instead of `fetch`, `one`, `many` and `existing`, only use `fetch-one` and `fetch-many`
 
 
-## [1.0.4] - 2021-10-19
+## [v1.0.4] - 2021-10-19
 
 ### Added
 - Entity `Product`: include property `description` as `string`
@@ -125,14 +135,14 @@ Please follow given advices and use corresponding replacements before that.
   - require property `name` as base schema information
 
 
-## [1.0.3] - 2021-09-21
+## [v1.0.3] - 2021-09-21
 
 ### Added
 - Entity `Sell`
   - include required property `customer` as `Person`
 
 
-## [1.0.2] - 2021-09-20
+## [v1.0.2] - 2021-09-20
 
 ### Changed
 - Path `/data/product_categories/{parentId}`
@@ -141,7 +151,7 @@ Please follow given advices and use corresponding replacements before that.
   - property `id` renamed to `code`
 
 
-## [1.0.1] - 2021-09-20
+## [v1.0.1] - 2021-09-20
 
 ### Added
 - Entity `User`
@@ -149,6 +159,6 @@ Please follow given advices and use corresponding replacements before that.
   - include property `role` as `string`
 
 
-## [1.0.0] - 2021-09-20
+## [v1.0.0] - 2021-09-20
 
 First public version.
