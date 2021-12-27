@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Replaced all `/access` sub-paths with wildcard `/access/*`
 - Renamed response `AuthorizedAccessToSingleRoute` to `AuthorizedAccessToResource`
+- Renamed category-related query parameters in `/data/products`
+  - `productCategory` to `categoryCode`
+  - `productCategoryLike` to `categoryCodeLike`
 
 ### Deleted
 - Paths marked for deprecation:

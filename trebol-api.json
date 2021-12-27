@@ -85,7 +85,6 @@
                         "in": "query"
                     },
                     {
-                        "name": "order",
                         "examples": {
                             "Ascending order": {
                                 "value": "\"asc\""
@@ -94,6 +93,7 @@
                                 "value": "\"desc\""
                             }
                         },
+                        "name": "order",
                         "description": "Sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
@@ -525,16 +525,16 @@
                     "in": "query"
                 },
                 {
-                    "name": "productCategory",
-                    "description": "The exact name of the product's category. Case sensitive.",
+                    "name": "categoryCode",
+                    "description": "The exact code of the product's category. Case sensitive.",
                     "schema": {
                         "type": "string"
                     },
                     "in": "query"
                 },
                 {
-                    "name": "productCategoryLike",
-                    "description": "A portion of the product category's name. Case insensitive.",
+                    "name": "categoryCodeLike",
+                    "description": "A portion of the product category's code. Case insensitive.",
                     "schema": {
                         "type": "string"
                     },
