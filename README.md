@@ -1,11 +1,9 @@
-# The Trébol backend API
+# Trébol eCommerce API
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Declares the resources that instances of the Trébol backend must expose. [Review the documentation here.](https://studio-ws.apicur.io/sharing/b0bc9a13-4e93-4be2-8636-108986e75ce4)
-
-This API has been designed using [APICurio](https://www.apicur.io/), a beautiful web platform and free service made for the job.
 
 ## Specification
 
@@ -14,20 +12,22 @@ Below is a short summary of available paths and their purposes. Unless stated ot
 ### `/access` - Allowed privileges for the API consumer
 
 - `/` - Lists all paths in `/data` that the API consumer has any level of access to
-- `/{context}` - Lists allowed CRUD operations on a given context. Can contain any combination of these four: `create`, `read`, `update` and `delete`
+- `/{resource}` - Lists allowed CRUD operations on a given resource. Can contain any combination of these four: `create`, `read`, `update` and `delete`
 
 ### `/account` - Resources for the API consumer and their user account
 
 - `/profile` - Fetch or update existing personal and contact information
 
-### `/data` - Execution of CRUD operations for all supported contexts
+### `/data` - CRUD operations
 
 - `/billing_types` - Options for generating bill receipts
 - `/customers` - Correlation of stored personal information towards clients that have actually requested to purchase through the store
 - `/images` - Metadata of photos and pictures uploaded and served through any internal and/or external web service, assumed to be accesible from the internet
 - `/people` - Stored contact and/or personal information about real-life individuals
-- `/product_categories` - Tree-like schema of organization for products
 - `/products` - The items that the store displays to the public and makes available for purchase. Includes products not available for purchase
+- `/product_categories` - Tree-like schema of organization for products
+- `/product_lists` - Named groups used to organize and link specific products together
+- `/product_list_contents` - Pagination of products as queried by list
 - `/sales` - The purchases acknowledged through the store; they follow a certain transaction flow; updating their state to `requested`, `paid`, `cancelled`, `failed`, `delivered`, among others
 - `/salespeople` - Correlation of stored personal information towards employees that earn sales through the store
 - `/shippers` - Metadata of internal and/or external logistics services for shipping and delivery of physical items

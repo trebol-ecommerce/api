@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.1.3",
+        "version": "1.2.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -14,20 +14,21 @@
         }
     },
     "paths": {
-        "/access/products": {
-            "summary": "Allowed (authorized) access to products API",
+        "/access/{resource}": {
+            "summary": "Authorized access to a certain resource",
+            "description": "Operation that hints the API consumer on what actions can be performed against another resource in the /data API.",
             "get": {
                 "tags": [
                     "authorization"
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
+                        "$ref": "#/components/responses/AuthorizedAccessToResource"
                     }
                 },
-                "operationId": "access-products-actions-get",
-                "summary": "Query allowed products API operations",
-                "description": "GET actions that the current session is authorized to do using the products API."
+                "operationId": "access-resource-actions-get",
+                "summary": "Query allowed API operations on the resource",
+                "description": "GET operations that the current user is authorized to request against the resource."
             },
             "options": {
                 "tags": [
@@ -38,126 +39,17 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "operationId": "access-products-options",
-                "summary": "Preflight check for products API operation accesses",
+                "operationId": "access-resource-options",
+                "summary": "Preflight check for resource operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/access/sales": {
-            "summary": "Allowed (authorized) access to sales API",
-            "get": {
-                "tags": [
-                    "authorization"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
-                    }
-                },
-                "operationId": "access-sales-actions-get",
-                "summary": "Query allowed sales API operations",
-                "description": "GET actions that the current session is authorized to do using the sales API."
             },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "operationId": "access-sales-actions-options",
-                "summary": "Preflight check for sales API operation accesses",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/access/users": {
-            "summary": "Allowed (authorized) access to users API",
-            "get": {
-                "tags": [
-                    "authorization"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
-                    }
-                },
-                "operationId": "access-users-actions-get",
-                "summary": "Query allowed users API operations",
-                "description": "GET actions that the current session is authorized to do using the users API."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "operationId": "access-users-actions-options",
-                "summary": "Preflight check for users API operation accesses",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/access/customers": {
-            "summary": "Allowed (authorized) access to customers API",
-            "get": {
-                "tags": [
-                    "authorization"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
-                    }
-                },
-                "operationId": "access-customers-actions-get",
-                "summary": "Query allowed customers API operations",
-                "description": "GET actions that the current session is authorized to do using the customers API."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "operationId": "access-customers-options",
-                "summary": "Preflight check for customers API operation accesses",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/access/salespeople": {
-            "summary": "Allowed (authorized) access to salespeople API",
-            "get": {
-                "tags": [
-                    "authorization"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AuthorizedAccessToSingleRoute"
-                    }
-                },
-                "operationId": "access-salespeople-actions-get",
-                "summary": "Query allowed salespeople API operations",
-                "description": "GET actions that the current session is authorized to do using the salespeople API."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "operationId": "access-salespeople-actions-options",
-                "summary": "Preflight check for salespeople API operation accesses",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
+            "parameters": [
+                {
+                    "name": "resource",
+                    "in": "path",
+                    "required": true
+                }
+            ]
         },
         "/data/customers": {
             "summary": "Customer data API endpoint",
@@ -193,7 +85,6 @@
                         "in": "query"
                     },
                     {
-                        "name": "order",
                         "examples": {
                             "Ascending order": {
                                 "value": "\"asc\""
@@ -202,6 +93,7 @@
                                 "value": "\"desc\""
                             }
                         },
+                        "name": "order",
                         "description": "Sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
@@ -307,7 +199,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-customers-options",
@@ -592,7 +484,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-products-options",
@@ -633,16 +525,16 @@
                     "in": "query"
                 },
                 {
-                    "name": "productCategory",
-                    "description": "The exact name of the product's category. Case sensitive.",
+                    "name": "categoryCode",
+                    "description": "The exact code of the product's category. Case sensitive.",
                     "schema": {
                         "type": "string"
                     },
                     "in": "query"
                 },
                 {
-                    "name": "productCategoryLike",
-                    "description": "A portion of the product category's name. Case insensitive.",
+                    "name": "categoryCodeLike",
+                    "description": "A portion of the product category's code. Case insensitive.",
                     "schema": {
                         "type": "string"
                     },
@@ -801,7 +693,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-sales-options",
@@ -979,7 +871,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-users-options",
@@ -1164,7 +1056,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-images-options",
@@ -1382,216 +1274,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/customers/{idNumber}": {
-            "summary": "Specific-customer API endpoint",
-            "get": {
-                "tags": [
-                    "fetch-one",
-                    "customers"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/SingleCustomer"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-customer-get",
-                "summary": "Find specific customer",
-                "description": "GET the customer identified by a provided id parameter in the route path."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Customer"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "update",
-                    "customers"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-customer-put",
-                "summary": "Update specific customer",
-                "description": "PUT changes to the customer identified by a provided id parameter in the route path."
-            },
-            "delete": {
-                "tags": [
-                    "remove",
-                    "customers"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-customer-delete",
-                "summary": "Delete specific customer",
-                "description": "DELETE a customer with the id parameter, from the data store."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-customer-options",
-                "summary": "Preflight check for specific-customer API endpoint",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "idNumber",
-                    "description": "The unique ID card number of the customer.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
-        "/data/images/{code}": {
-            "summary": "Specific-image API endpoint",
-            "description": "",
-            "get": {
-                "tags": [
-                    "fetch-one",
-                    "images"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/SingleImage"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-image-get",
-                "summary": "Find specific Image",
-                "description": "GET the image identified by a provided id parameter in the route path."
-            },
-            "put": {
-                "requestBody": {
-                    "description": "",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Image"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "update",
-                    "images"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-image-put",
-                "summary": "Update specific Image",
-                "description": "PUT changes to the image identified by a provided id parameter in the route path."
-            },
-            "delete": {
-                "tags": [
-                    "remove",
-                    "images"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-image-delete",
-                "summary": "Delete specific Image",
-                "description": "DELETE an image with the id parameter, from the data store."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-image-options",
-                "summary": "Preflight check for specific-image API endpoint",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "code",
-                    "description": "A unique identifier for a `Image`.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
         "/public/receipt/{code}": {
             "summary": "Fetch details about a transaction",
             "get": {
@@ -1627,422 +1309,6 @@
                 {
                     "name": "code",
                     "description": "The transaction identifier",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
-        "/data/users/{name}": {
-            "summary": "Specific-user API endpoint",
-            "get": {
-                "tags": [
-                    "fetch-one",
-                    "users"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/SingleUser"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-user-get",
-                "summary": "Find specific user",
-                "description": "GET the user identified by a provided id parameter in the route path."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/User"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "update",
-                    "users"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-user-put",
-                "summary": "Update specific user",
-                "description": "PUT changes to the user identified by a provided id parameter in the route path."
-            },
-            "delete": {
-                "tags": [
-                    "remove",
-                    "users"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-user-delete",
-                "summary": "Delete specific user",
-                "description": "DELETE a user with the id parameter, from the data store."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-user-options",
-                "summary": "Preflight check for specific-user API endpoint",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "name",
-                    "description": "The name of the user.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
-        "/data/salespeople/{idNumber}": {
-            "summary": "Specific-salesperson API endpoint",
-            "get": {
-                "tags": [
-                    "fetch-one",
-                    "salespeople"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/SingleSalesperson"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-salesperson-get",
-                "summary": "Find specific salesperson",
-                "description": "GET the salesperson identified by a provided id parameter in the route path."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Salesperson"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "update",
-                    "salespeople"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-salesperson-put",
-                "summary": "Update specific salesperson",
-                "description": "PUT changes to the salesperson identified by a provided id parameter in the route path."
-            },
-            "delete": {
-                "tags": [
-                    "remove",
-                    "salespeople"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-salesperson-delete",
-                "summary": "Delete specific salesperson",
-                "description": "DELETE a salesperson with the id parameter, from the data store."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-salesperson-options",
-                "summary": "Preflight check for specific-salesperson API endpoint",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "idNumber",
-                    "description": "The unique ID card number of the salesperson.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
-        "/data/sales/{buyOrder}": {
-            "summary": "Specific-sell API endpoint",
-            "get": {
-                "tags": [
-                    "fetch-one",
-                    "sales"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/SingleSell"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-sell-get",
-                "summary": "Find specific sell",
-                "description": "GET the sell identified by a provided id parameter in the route path."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Sell"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "update",
-                    "sales"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-sell-put",
-                "summary": "Update specific sell",
-                "description": "PUT changes to the sell identified by a provided id parameter in the route path."
-            },
-            "delete": {
-                "tags": [
-                    "remove",
-                    "sales"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-sell-delete",
-                "summary": "Delete specific sell",
-                "description": "DELETE a sell with the id parameter, from the data store."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-sell-options",
-                "summary": "Preflight check for specific-sell API endpoint",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "buyOrder",
-                    "description": "The unique identifier of the sell.",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
-        "/data/products/{barcode}": {
-            "summary": "Specific-product API endpoint",
-            "get": {
-                "tags": [
-                    "fetch-one",
-                    "products"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/SingleProduct"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-product-get",
-                "summary": "Find specific product",
-                "description": "GET the product identified by a provided id parameter in the route path."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Product"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "update",
-                    "products"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-product-put",
-                "summary": "Update specific product",
-                "description": "PUT changes to the product identified by a provided id parameter in the route path."
-            },
-            "delete": {
-                "tags": [
-                    "remove",
-                    "products"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-product-delete",
-                "summary": "Delete specific product",
-                "description": "DELETE a product with the id parameter, from the data store."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-PUT-DELETE"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-product-options",
-                "summary": "Preflight check for specific-product API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "barcode",
-                    "description": "A unique code for a Product.",
                     "schema": {
                         "type": "string"
                     },
@@ -2160,7 +1426,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-product-categories-options",
@@ -2200,107 +1466,6 @@
                         "type": "string"
                     },
                     "in": "query"
-                }
-            ]
-        },
-        "/data/product_categories/{parentCode}": {
-            "summary": "Children product categories API endpoint",
-            "get": {
-                "tags": [
-                    "fetch-many",
-                    "product-categories"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/MultipleProductCategories"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-child-product-categories-get",
-                "summary": "List children product categories",
-                "description": "GET every category that is a child of the one identified by the provided code."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/ProductCategory"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "update",
-                    "product-categories"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-child-product-categories-put",
-                "summary": "Update specific product category",
-                "description": "PUT changes to the product category identified by a provided code parameter in the route path."
-            },
-            "delete": {
-                "tags": [
-                    "remove",
-                    "product-categories"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-child-product-categories-delete",
-                "summary": "Delete specific product category",
-                "description": "DELETE a product category with the code parameter, from the data store."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "data-child-product-categories-options",
-                "summary": "Preflight check for children product categories API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "parentCode",
-                    "description": "Unique identifier of a parent product category.",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
                 }
             ]
         },
@@ -2392,6 +1557,7 @@
         },
         "/account/profile": {
             "summary": "User profile information",
+            "description": "Operations against the current user's profile.",
             "get": {
                 "tags": [
                     "fetch-one",
@@ -2584,6 +1750,7 @@
         },
         "/access": {
             "summary": "Allowed (authorized) access to API routes",
+            "description": "Operation that hints the API consumer on what paths, routes, or resources can be accessed in the /data API.",
             "get": {
                 "tags": [
                     "authorization"
@@ -2664,6 +1831,7 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "deprecated": true,
                 "operationId": "store-product-request",
                 "summary": "Find specific product",
                 "description": "GET complete public information about a specific product."
@@ -2687,53 +1855,6 @@
                     "description": "The unique product identifier",
                     "schema": {
                         "type": "string"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
-        "/public/categories/{parentId}": {
-            "summary": "Product subcategories within specific main category",
-            "description": "",
-            "get": {
-                "tags": [
-                    "fetch-many",
-                    "product-categories"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/MultipleProductCategories"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "category-get",
-                "summary": "Find and list product subcategories within specific main category",
-                "description": "GET the subcategories found within the provided main category ID."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "deprecated": true,
-                "operationId": "category-options",
-                "summary": "Preflight check for product subcategories",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "parentId",
-                    "description": "The main category identifier",
-                    "schema": {
-                        "type": "integer"
                     },
                     "in": "path",
                     "required": true
@@ -2891,7 +2012,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-salespeople-options",
@@ -3100,7 +2221,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET-POST"
+                        "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
                 "operationId": "data-shippers-options",
@@ -3119,6 +2240,343 @@
                 {
                     "name": "nameLike",
                     "description": "A portion of the shipper's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
+        },
+        "/data/product_lists": {
+            "summary": "Product list data API endpoint",
+            "description": "Operations to fetch, create, edit and remove product lists and their metadata.",
+            "get": {
+                "tags": [
+                    "fetch-many",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/MultipleProductCategories"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "operationId": "data-product-lists-get",
+                "summary": "List product lists",
+                "description": "GET a paged collection of product lists."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategory"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-product-lists-put",
+                "summary": "Update product lists",
+                "description": "PUT changes to all product lists matching the provided query parameters."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategory"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "create",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "operationId": "data-product-lists-post",
+                "summary": "Insert new product lists",
+                "description": "POST a new product list entity and save it to the data store."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-product-lists-delete",
+                "summary": "Delete product lists",
+                "description": "DELETE product listsmatching the provided query parameters, from the data store."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowAllMethods"
+                    }
+                },
+                "operationId": "data-product-lists-options",
+                "summary": "Preflight check for root product lists API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "code",
+                    "description": "The exact code of the list",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "name",
+                    "description": "The exact name of the list. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "nameLike",
+                    "description": "A portion of the list name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
+        },
+        "/data/product_list_contents": {
+            "summary": "Product list contents data API endpoint",
+            "description": "Operations to fetch, edit and remove contents from specific product lists.",
+            "get": {
+                "tags": [
+                    "fetch-many",
+                    "product-lists"
+                ],
+                "parameters": [
+                    {
+                        "name": "pageSize",
+                        "description": "Number of products per page",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortBy",
+                        "description": "Product property to sort by",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
+                        "name": "order",
+                        "description": "Product sort order (ascending or descending)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/MultipleProductCategories"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "operationId": "data-product-list-contents-get",
+                "summary": "Fetch products stored in a list",
+                "description": "GET a paged collection of product within a list's contents."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategory"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "update",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-product-list-contents-put",
+                "summary": "Update full contents of list",
+                "description": "PUT provided products to replace the entire contents of the list."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategory"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "create",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "operationId": "data-product-list-contents-post",
+                "summary": "Insert new product lists",
+                "description": "POST a product entity and save it to the list."
+            },
+            "delete": {
+                "tags": [
+                    "remove",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "data-product-list-contents-delete",
+                "summary": "Delete product lists",
+                "description": "DELETE products matching the provided query parameters, from the list."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowAllMethods"
+                    }
+                },
+                "operationId": "data-product-list-contents-options",
+                "summary": "Preflight check for root product lists API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "listCode",
+                    "description": "The exact code of the list",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query",
+                    "required": true
+                },
+                {
+                    "name": "productCode",
+                    "description": "The exact code of a product. Case sensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "productCodeLike",
+                    "description": "A portion of a product's code. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "productNameLike",
+                    "description": "A portion of a product's name. Case insensitive.",
                     "schema": {
                         "type": "string"
                     },
@@ -3996,6 +3454,44 @@
                 "example": {
                     "name": "Enterprise Invoice"
                 }
+            },
+            "ProductList": {
+                "description": "A named, editable collection of items.",
+                "required": [
+                    "name",
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "totalCount": {
+                        "description": "The total amount of products in the list",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Unique name of the list",
+                        "type": "string"
+                    },
+                    "code": {
+                        "description": "Unique code of the list",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "example list",
+                    "items": [
+                        {
+                            "name": "example product",
+                            "code": "EXMPL001"
+                        },
+                        {
+                            "name": "example product 2",
+                            "code": "EXMPL002"
+                        }
+                    ],
+                    "pageIndex": 2,
+                    "totalCount": 32,
+                    "pageSize": 15
+                }
             }
         },
         "responses": {
@@ -4012,7 +3508,7 @@
             "Forbidden": {
                 "description": "Erroneous, empty response for requests not meeting security requirements. Most likely, it does not have authorization to access specific privileged resource(s), or does not include any form of authentication while requesting some privileged resource(s)."
             },
-            "AuthorizedAccessToSingleRoute": {
+            "AuthorizedAccessToResource": {
                 "content": {
                     "application/json": {
                         "schema": {

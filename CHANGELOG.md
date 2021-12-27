@@ -4,6 +4,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.0] - 2021-12-27
+
+### Added
+- New entity `ProductList`
+  - with properties `code`, `name` and `totalCount`
+- New path `/data/product_lists`
+  - supports methods `GET`, `POST`, `PUT` and `DELETE`
+- New path `/data/product_list_contents`
+  - supports methods `GET`, `POST`, `PUT` and `DELETE`
+  - requires `listCode` in query parameters
+
+### Fixed
+- Outdated response refs in some `OPTIONS` resources
+
+### Changed
+- Replaced all `/access` sub-paths with wildcard `/access/*`
+- Renamed response `AuthorizedAccessToSingleRoute` to `AuthorizedAccessToResource`
+- Renamed category-related query parameters in `/data/products`
+  - `productCategory` to `categoryCode`
+  - `productCategoryLike` to `categoryCodeLike`
+
+### Deleted
+- Paths marked for deprecation:
+  - `/data/customers/{idNumber}`
+  - `/data/images/{code}`
+  - `/data/product_categories/{parentCode}`
+  - `/data/products/{barcode}`
+  - `/data/sales/{buyOrder}`
+  - `/data/salespeople/{idNumber}`
+  - `/data/users/{name}`
+  - `/public/categories/{parentId}`
+
+### Deprecated
+- Path `/public/products/{barcode}` should be superseded with query parameters
+
 ## [v1.1.3] - 2021-12-27
 
 ### Fixed
