@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `GET /data/product_categories`
   - `GET /data/shippers`
 
+### Deprecated
+- Path `/public/products` will be superseded by `/data/products`
+
 ## [v1.2.0] - 2021-12-27
 
 ### Added

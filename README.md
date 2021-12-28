@@ -41,7 +41,6 @@ Below is a short summary of available paths and their purposes. Unless stated ot
   - `/validate` - Endpoint of return from payment page. Must redirect to a result page served through the corresponding frontend of the store.
 - `/guest` - Request a short-lived token that can be used for calls to `/checkout`
 - `/login` - Request for authentication with an existing user account, and generation + fetching of new auth token
-- `/products` - Similar to `/data/products`
 - `/receipt/{code}` - Metadata for a specific `Sell`. The `code` variable must identify only one transaction, but its exact meaning can vary
 - `/register` - Request for creation of a new user account
 
