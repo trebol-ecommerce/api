@@ -8,10 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Incorrect request body specifications for `/data/product_list_contents`
+- Added a security schema to all methods
 
 ### Changed
 - Entity `ProductList`
   - made property `name` optional
+- Methods in `/data` are now publicly available
+  - `GET /data/billing_types`
+  - `GET /data/products`
+  - `GET /data/product_lists`
+  - `GET /data/product_list_contents`
+  - `GET /data/product_categories`
+  - `GET /data/shippers`
 
 ## [v1.2.0] - 2021-12-27
 

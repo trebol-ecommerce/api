@@ -7,7 +7,7 @@ Declares the resources that instances of the Trébol backend must expose. [Revie
 
 ## Specification
 
-Below is a short summary of available paths and their purposes. Unless stated otherwise, they all impose the need of a Bearer token auth.
+Below is a short summary of available paths and their purposes. Unless stated otherwise, they all impose the need of a Bearer token for authorization.
 
 ### `/access` - Allowed privileges for the API consumer
 
@@ -20,28 +20,28 @@ Below is a short summary of available paths and their purposes. Unless stated ot
 
 ### `/data` - CRUD operations
 
-- `/billing_types` - Options for generating bill receipts
+- `/billing_types` - [Public] Options for generating bill receipts
 - `/customers` - Correlation of stored personal information towards clients that have actually requested to purchase through the store
 - `/images` - Metadata of photos and pictures uploaded and served through any internal and/or external web service, assumed to be accesible from the internet
 - `/people` - Stored contact and/or personal information about real-life individuals
-- `/products` - The items that the store displays to the public and makes available for purchase. Includes products not available for purchase
-- `/product_categories` - Tree-like schema of organization for products
-- `/product_lists` - Named groups used to organize and link specific products together
-- `/product_list_contents` - Pagination of products as queried by list
+- `/products` - [Public] The items that the store displays to the public and makes available for purchase. Includes products not available for purchase
+- `/product_categories` - [Public] Tree-like schema of organization for products
+- `/product_lists` - [Public] Named groups used to organize and link specific products together
+- `/product_list_contents` - [Public] Pagination of products contained on given lists
 - `/sales` - The purchases acknowledged through the store; they follow a certain transaction flow; updating their state to `requested`, `paid`, `cancelled`, `failed`, `delivered`, among others
 - `/salespeople` - Correlation of stored personal information towards employees that earn sales through the store
-- `/shippers` - Metadata of internal and/or external logistics services for shipping and delivery of physical items
+- `/shippers` - [Public] Metadata of internal and/or external logistics services for shipping and delivery of physical items
 - `/user_roles` - Metadata of available privilege groupings for users
 - `/users` - Metadata of available accounts to access API resources
 
 ### `/public` - API resources that may not require auth
 
 - `/about` - Metadata about the store and their respective owners
-- `/checkout` - (Needs auth) Transaction request; where consumers submit a cart with products and receive details to be redirected to the payment page.
+- `/checkout` - [Auth required] Transaction request; where consumers submit a cart with products and receive details to be redirected to the payment page.
   - `/validate` - Endpoint of return from payment page. Must redirect to a result page served through the corresponding frontend of the store.
-- `/guest` - Request a short-lived auth token that can be used for calls to `/checkout`
+- `/guest` - Request a short-lived token that can be used for calls to `/checkout`
 - `/login` - Request for authentication with an existing user account, and generation + fetching of new auth token
-- `/products` - Similar to `/data/products`, but will only fetch products available to the public
+- `/products` - Similar to `/data/products`
 - `/receipt/{code}` - Metadata for a specific `Sell`. The `code` variable must identify only one transaction, but its exact meaning can vary
 - `/register` - Request for creation of a new user account
 

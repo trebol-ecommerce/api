@@ -24,8 +24,16 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/AuthorizedAccessToResource"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-resource-actions-get",
                 "summary": "Query allowed API operations on the resource",
                 "description": "GET operations that the current user is authorized to request against the resource."
@@ -39,6 +47,9 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "access-resource-options",
                 "summary": "Preflight check for resource operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -104,8 +115,16 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/PaginatedCollection"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-customers-get",
                 "summary": "List customers",
                 "description": "GET a paged collection of customers."
@@ -139,6 +158,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-customers-put",
                 "summary": "Update customers",
                 "description": "PUT changes to all customers matching the provided query parameters."
@@ -169,6 +193,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-customers-post",
                 "summary": "Insert new customers",
                 "description": "POST new customer entities and save them to the data store."
@@ -189,6 +218,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-customers-delete",
                 "summary": "Delete customers",
                 "description": "DELETE customers matching the provided query parameters, from the data store."
@@ -202,6 +236,9 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-customers-options",
                 "summary": "Preflight check for non-specific customer API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -315,6 +352,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-people-get",
                 "summary": "List people",
                 "description": "GET a paged collection of people."
@@ -328,6 +370,9 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "access-people-options",
                 "summary": "Preflight check for people API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -386,11 +431,11 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/PaginatedCollection"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-products-get",
                 "summary": "List products",
                 "description": "GET a paged collection of products."
@@ -424,6 +469,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-products-put",
                 "summary": "Update products",
                 "description": "PUT changes to all products matching the provided query parameters."
@@ -454,6 +504,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-products-post",
                 "summary": "Insert new products",
                 "description": "POST a new product entity and save it to the data store"
@@ -474,6 +529,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-products-delete",
                 "summary": "Delete products",
                 "description": "DELETE products matching the provided query parameters, from the data store."
@@ -487,6 +547,9 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-products-options",
                 "summary": "Preflight check for non-specific product API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -600,6 +663,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-sales-get",
                 "summary": "List sales",
                 "description": "GET a paged collection of sales."
@@ -633,6 +701,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-sales-put",
                 "summary": "Update sales",
                 "description": "PUT changes to all sales matching the provided query parameters."
@@ -663,6 +736,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-sales-post",
                 "summary": "Insert new sales",
                 "description": "POST a new sell entity and save it to the data store."
@@ -683,6 +761,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-sales-delete",
                 "summary": "Delete sales",
                 "description": "DELETE sales matching the provided query parameters, from the data store."
@@ -696,6 +779,9 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-sales-options",
                 "summary": "Preflight check for non-specific sell API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -778,6 +864,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-users-get",
                 "summary": "List users",
                 "description": "GET a paged collection of users."
@@ -811,6 +902,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-users-put",
                 "summary": "Update users",
                 "description": "PUT changes to all users matching the provided query parameters."
@@ -841,6 +937,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-users-post",
                 "summary": "Insert new users",
                 "description": "POST a new user entity and save it to the data store."
@@ -861,6 +962,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-users-delete",
                 "summary": "Delete users",
                 "description": "DELETE users matching the provided query parameters, from the data store."
@@ -874,6 +980,9 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-users-options",
                 "summary": "Preflight check for non-specific user API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -963,6 +1072,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-images-get",
                 "summary": "List images",
                 "description": "GET a paged collection of images."
@@ -996,6 +1110,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-images-put",
                 "summary": "Update images",
                 "description": "PUT changes to all images matching the provided query parameters."
@@ -1026,6 +1145,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-images-post",
                 "summary": "Insert new images",
                 "description": "POST a new image entity and save it to the data store"
@@ -1046,6 +1170,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-images-delete",
                 "summary": "Delete images",
                 "description": "DELETE images matching the provided query parameters, from the data store."
@@ -1059,6 +1188,9 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-images-options",
                 "summary": "Preflight check for non-specific image API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1080,6 +1212,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-user-roles-get",
                 "summary": "List all user roles",
                 "description": "GET every user role available."
@@ -1093,6 +1230,9 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-user-roles-options",
                 "summary": "Preflight check for user roles API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1117,6 +1257,9 @@
                         "description": "Normal response. Sends an object containing information about the shop."
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "metadata-get",
                 "summary": "Request info on the shop",
                 "description": "GET general information regarding the company behind the shop."
@@ -1130,6 +1273,9 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "metadata-options",
                 "summary": "Preflight check for shop information",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1149,6 +1295,9 @@
                     }
                 },
                 "deprecated": true,
+                "security": [
+                    {}
+                ],
                 "operationId": "categories-get",
                 "summary": "List product main categories",
                 "description": "GET the main (bigger) categories where to browse the products available for sale at the shop."
@@ -1162,6 +1311,9 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "deprecated": true,
                 "operationId": "categories-options",
                 "summary": "Preflight check for product categories",
@@ -1221,6 +1373,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "checkout-request",
                 "summary": "Send a payment request",
                 "description": "POST cart details to initiate a virtual transaction in the shop."
@@ -1234,6 +1391,9 @@
                         "$ref": "#/components/responses/AllowMethodPOST"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "checkout-options",
                 "summary": "Preflight check for payment request",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1256,9 +1416,12 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "validate-checkout-request",
                 "summary": "Send payment result",
-                "description": "POST response from the payment method to confirm the transaction end result."
+                "description": "POST (ping) response from the payment method to confirm the transaction end result."
             },
             "options": {
                 "tags": [
@@ -1269,6 +1432,9 @@
                         "$ref": "#/components/responses/AllowMethodPOST"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "validate-checkout-options",
                 "summary": "Preflight check for payment confirmation",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1288,6 +1454,9 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "store-receipt-request",
                 "summary": "Find specific transaction receipt",
                 "description": "GET complete public information about a transaction, matched by its ID, code, or whatever unique property is used to identify it."
@@ -1301,6 +1470,9 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "store-receipt-options",
                 "summary": "Preflight check for specific transaction receipt",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1328,11 +1500,11 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/MultipleProductCategories"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-product-categories-get",
                 "summary": "List product categories",
                 "description": "GET a paged collection of product categories.\nBy default, it fetches parent-less categories first."
@@ -1366,6 +1538,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-product-categories-put",
                 "summary": "Update product categories",
                 "description": "PUT changes to all product categories matching the provided query parameters."
@@ -1396,6 +1573,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-product-categories-post",
                 "summary": "Insert new product categories",
                 "description": "POST a new product category entity and save it to the data store."
@@ -1416,6 +1598,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-product-categories-delete",
                 "summary": "Delete product categories",
                 "description": "DELETE product categories matching the provided query parameters, from the data store."
@@ -1429,6 +1616,9 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-product-categories-options",
                 "summary": "Preflight check for root product categories API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1482,6 +1672,9 @@
                         "$ref": "#/components/responses/PaginatedCollection"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "store-front-request",
                 "summary": "List available products",
                 "description": "GET all products currently on sale at the shop. May accept sorting, ordering, paging and filtering conditions in query parameters."
@@ -1495,6 +1688,9 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "store-front-options",
                 "summary": "Preflight check for available products",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1571,6 +1767,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "profile-get",
                 "summary": "Fetch current user's profile",
                 "description": "GET the current user's stored profile information"
@@ -1601,6 +1802,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "profile-put",
                 "summary": "Update current user's profile",
                 "description": "PUT changes into the current user's profile information."
@@ -1614,6 +1820,9 @@
                         "$ref": "#/components/responses/AllowMethodGET-PUT"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "profile-options",
                 "summary": "Preflight check for user profile information",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1645,6 +1854,9 @@
                         "description": "Erroneous, empty response to improper use; the user was already logged in or using a valid guest token."
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "guest-session-request",
                 "summary": "Start a guest session",
                 "description": "POST personal information to generate a token for a temporary guest session."
@@ -1658,6 +1870,9 @@
                         "$ref": "#/components/responses/AllowMethodPOST"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "guest-session-options",
                 "summary": "Preflight check for guest session opener",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1688,6 +1903,9 @@
                         "description": "Erroneous, empty response, sent when the credentials are rejected."
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "login-request",
                 "summary": "Start a logged-in session",
                 "description": "POST credentials to authenticate, generate an authorization token and start a new session."
@@ -1701,6 +1919,9 @@
                         "$ref": "#/components/responses/AllowMethodPOST"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "login-options",
                 "summary": "Preflight check for session opener",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1730,6 +1951,9 @@
                         "$ref": "#/components/responses/BadRequestBody"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "register-request",
                 "summary": "Request a new user account",
                 "description": "POST details for a new user account, including its profile information."
@@ -1743,6 +1967,9 @@
                         "$ref": "#/components/responses/AllowMethodPOST"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "register-options",
                 "summary": "Preflight check for account registrar",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1763,6 +1990,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "access-routes-get",
                 "summary": "Query allowed API routes",
                 "description": "GET the API resource paths that the current session is authorized to use."
@@ -1776,6 +2008,9 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "access-routes-options",
                 "summary": "Preflight check for API resource accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1792,11 +2027,11 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/MultipleBillingTypes"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-billing-types-get",
                 "summary": "List all billing types",
                 "description": "GET every billing type available."
@@ -1810,6 +2045,9 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-billing-types-options",
                 "summary": "Preflight check for billing types API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1832,6 +2070,9 @@
                     }
                 },
                 "deprecated": true,
+                "security": [
+                    {}
+                ],
                 "operationId": "store-product-request",
                 "summary": "Find specific product",
                 "description": "GET complete public information about a specific product."
@@ -1845,6 +2086,9 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "store-product-options",
                 "summary": "Preflight check for specific product",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -1919,6 +2163,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-salespeople-get",
                 "summary": "List salespeople",
                 "description": "GET a paged collection of salespeople."
@@ -1952,6 +2201,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-salespeople-put",
                 "summary": "Update salespeople",
                 "description": "PUT changes to all salespeople matching the provided query parameters."
@@ -1982,6 +2236,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-salespeople-post",
                 "summary": "Insert new salespeople",
                 "description": "POST a new salesperson entity and save it to the data store."
@@ -2002,6 +2261,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-salespeople-delete",
                 "summary": "Delete salespeople",
                 "description": "DELETE salespeople matching the provided query parameters, from the data store."
@@ -2015,6 +2279,9 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-salespeople-options",
                 "summary": "Preflight check for non-specific salesperson API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2123,11 +2390,11 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/PaginatedCollection"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-shippers-get",
                 "summary": "List shippers",
                 "description": "GET a paged collection of shippers."
@@ -2161,6 +2428,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-shippers-put",
                 "summary": "Update shippers",
                 "description": "PUT changes to all shippers matching the provided query parameters."
@@ -2191,6 +2463,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-shippers-post",
                 "summary": "Insert new shippers",
                 "description": "POST a new shipper entity and save it to the data store."
@@ -2211,6 +2488,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-shippers-delete",
                 "summary": "Delete shippers",
                 "description": "DELETE shippers matching the provided query parameters, from the data store."
@@ -2224,6 +2506,9 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-shippers-options",
                 "summary": "Preflight check for shipper API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2258,11 +2543,11 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/MultipleProductCategories"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-product-lists-get",
                 "summary": "List product lists",
                 "description": "GET a paged collection of product lists."
@@ -2296,6 +2581,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-product-lists-put",
                 "summary": "Update product lists",
                 "description": "PUT changes to all product lists matching the provided query parameters."
@@ -2326,6 +2616,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-product-lists-post",
                 "summary": "Insert new product lists",
                 "description": "POST a new product list entity and save it to the data store."
@@ -2346,6 +2641,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-product-lists-delete",
                 "summary": "Delete product lists",
                 "description": "DELETE product listsmatching the provided query parameters, from the data store."
@@ -2359,6 +2659,9 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-product-lists-options",
                 "summary": "Preflight check for root product lists API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2443,11 +2746,11 @@
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/PaginatedCollection"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-product-list-contents-get",
                 "summary": "Fetch products stored in a list",
                 "description": "GET a paged collection of product within a list's contents."
@@ -2484,6 +2787,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-product-list-contents-put",
                 "summary": "Update full contents of list",
                 "description": "PUT provided products to replace the entire contents of the list."
@@ -2517,6 +2825,11 @@
                         "$ref": "#/components/responses/Forbidden"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-product-list-contents-post",
                 "summary": "Insert new product lists",
                 "description": "POST a product entity and save it to the list."
@@ -2537,6 +2850,11 @@
                         "$ref": "#/components/responses/NotFound"
                     }
                 },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
                 "operationId": "data-product-list-contents-delete",
                 "summary": "Delete product lists",
                 "description": "DELETE products matching the provided query parameters, from the list."
@@ -2550,6 +2868,9 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
+                "security": [
+                    {}
+                ],
                 "operationId": "data-product-list-contents-options",
                 "summary": "Preflight check for root product lists API",
                 "description": "Fetch OPTIONS for communicating with this resource."
