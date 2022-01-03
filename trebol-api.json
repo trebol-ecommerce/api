@@ -1337,7 +1337,8 @@
                     "required": true
                 },
                 "tags": [
-                    "transaction"
+                    "transaction",
+                    "create_request"
                 ],
                 "parameters": [
                     {
@@ -1403,7 +1404,8 @@
             "summary": "Payment confirmation for a 'Pending' transaction.",
             "post": {
                 "tags": [
-                    "transaction"
+                    "transaction",
+                    "update_state"
                 ],
                 "responses": {
                     "303": {
@@ -2912,6 +2914,93 @@
                     "in": "query"
                 }
             ]
+        },
+        "/upload_request": {
+            "summary": "File upload requests",
+            "description": "Endpoint that may be reached with POST method to request to upload files, be it through the server itself or an external service.\nA second PUT method can then communicate changes in state of given upload requests to the server.",
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "upload",
+                    "update_state"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "upload-put",
+                "summary": "PUT updates on the state of a specific upload",
+                "description": "Submit metadata so the state of a previously acknowledged file upload request is updated."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "upload",
+                    "create_request"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {}
+                        },
+                        "description": "Normal response. The request was accepted, and details to initiate the upload are included."
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "upload-post",
+                "summary": "POST request to upload new file",
+                "description": "Submit metadata in order to request the underlying server to make space for a new file upload"
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodPOST-PUT"
+                    }
+                },
+                "security": [
+                    {}
+                ],
+                "operationId": "upload-options",
+                "summary": "Preflight check for file upload requests"
+            }
         }
     },
     "components": {
@@ -4001,6 +4090,9 @@
                     }
                 },
                 "description": "Normal response, sends an array of user roles."
+            },
+            "AllowMethodPOST-PUT": {
+                "description": "Normal, empty response to some OPTIONS requests. Should include CORS headers and indicate that only the POST and PUT methods are allowed."
             }
         },
         "securitySchemes": {
