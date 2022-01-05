@@ -3961,6 +3961,18 @@
                     "service": {
                         "description": "The identifying name of the service that actually handles the upload.",
                         "type": "string"
+                    },
+                    "requestMethod": {
+                        "description": "The accepted method to forward an upload with (POST, PUT)",
+                        "type": "string"
+                    },
+                    "requestPayloadType": {
+                        "description": "The accepted format of the data payload to send to that URL (form data, JSON)",
+                        "type": "string"
+                    },
+                    "tokenInclusion": {
+                        "description": "The place where the token must be included (request body or header)",
+                        "type": "string"
                     }
                 },
                 "example": {
@@ -3969,9 +3981,12 @@
                     "extension": "txt",
                     "tokenName": "some text",
                     "tokenValue": "some text",
+                    "tokenInclusion": "request-headers",
                     "state": "waiting",
                     "filename": "test.txt",
-                    "service": "some service"
+                    "service": "some service",
+                    "requestMethod": "post",
+                    "requestPayloadType": "form-data"
                 }
             }
         },

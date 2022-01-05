@@ -11,8 +11,18 @@ First changes in 2022! Happy new year y'all 💞
 ### Added
 - New path `/upload_request`
   - supports methods `POST` and `PUT`
-- New data type `UploadRequest`
-  - with properties `uploadUrl`, `mimeType`, `extension`, `tokenName`, `tokenValue`, `state`, `filename` and `service`
+- New data type `UploadRequest` with properties:
+  - `uploadUrl`
+  - `mimeType`
+  - `extension`
+  - `tokenName`
+  - `tokenValue`
+  - `state`
+  - `filename`
+  - `requestMethod`
+  - `requestPayloadType`
+  - `tokenInclusion`
+  - `service`
 
 ### Changed
 - Tags for `/public/checkout`
