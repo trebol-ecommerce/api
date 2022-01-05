@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.2.1",
+        "version": "1.3.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2921,7 +2921,11 @@
             "put": {
                 "requestBody": {
                     "content": {
-                        "application/json": {}
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UploadRequest"
+                            }
+                        }
                     },
                     "required": true
                 },
@@ -2955,7 +2959,11 @@
             "post": {
                 "requestBody": {
                     "content": {
-                        "application/json": {}
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UploadRequest"
+                            }
+                        }
                     },
                     "required": true
                 },
@@ -2966,7 +2974,11 @@
                 "responses": {
                     "200": {
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UploadRequest"
+                                }
+                            }
                         },
                         "description": "Normal response. The request was accepted, and details to initiate the upload are included."
                     },
@@ -3908,6 +3920,58 @@
                     "pageIndex": 2,
                     "totalCount": 32,
                     "pageSize": 15
+                }
+            },
+            "UploadRequest": {
+                "title": "Root Type for PaymentRedirection",
+                "description": "Information about a particular file upload request.",
+                "required": [
+                    "filename"
+                ],
+                "type": "object",
+                "properties": {
+                    "uploadUrl": {
+                        "description": "The url that was created to do the upload at.",
+                        "type": "string"
+                    },
+                    "mimeType": {
+                        "description": "The MIME type of the file.",
+                        "type": "string"
+                    },
+                    "extension": {
+                        "description": "The extension of the file (after the dot e.g. `txt`, `png`, `html`)",
+                        "type": "string"
+                    },
+                    "tokenName": {
+                        "description": "The name of the variable that will hold the token verified by the service that handles the upload itself.",
+                        "type": "string"
+                    },
+                    "tokenValue": {
+                        "description": "The value of the token that is verified by the service handling the upload.",
+                        "type": "string"
+                    },
+                    "state": {
+                        "description": "The current state that the upload request is in.",
+                        "type": "string"
+                    },
+                    "filename": {
+                        "description": "The complete name of the file (extension included) that was to be uploaded.",
+                        "type": "string"
+                    },
+                    "service": {
+                        "description": "The identifying name of the service that actually handles the upload.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "uploadUrl": "https://upload.to/url",
+                    "mimeType": "text/plain",
+                    "extension": "txt",
+                    "tokenName": "some text",
+                    "tokenValue": "some text",
+                    "state": "waiting",
+                    "filename": "test.txt",
+                    "service": "some service"
                 }
             }
         },
