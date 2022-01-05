@@ -1281,45 +1281,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/public/categories": {
-            "summary": "Product main categories",
-            "description": "",
-            "get": {
-                "tags": [
-                    "fetch-many",
-                    "product-categories"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/MultipleProductCategories"
-                    }
-                },
-                "deprecated": true,
-                "security": [
-                    {}
-                ],
-                "operationId": "categories-get",
-                "summary": "List product main categories",
-                "description": "GET the main (bigger) categories where to browse the products available for sale at the shop."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "deprecated": true,
-                "operationId": "categories-options",
-                "summary": "Preflight check for product categories",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
         "/public/checkout": {
             "summary": "Payment request",
             "post": {
@@ -1661,100 +1622,6 @@
                 }
             ]
         },
-        "/public/products": {
-            "summary": "Products available for sale",
-            "description": "",
-            "get": {
-                "tags": [
-                    "fetch-many",
-                    "products"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/PaginatedCollection"
-                    }
-                },
-                "deprecated": true,
-                "security": [
-                    {}
-                ],
-                "operationId": "store-front-request",
-                "summary": "List available products",
-                "description": "GET all products currently on sale at the shop. May accept sorting, ordering, paging and filtering conditions in query parameters."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "deprecated": true,
-                "security": [
-                    {}
-                ],
-                "operationId": "store-front-options",
-                "summary": "Preflight check for available products",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "pageIndex",
-                    "description": "Products page number (1-based)",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "query",
-                    "required": false
-                },
-                {
-                    "name": "pageSize",
-                    "description": "Products count per page",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "query"
-                },
-                {
-                    "examples": {
-                        "Sort by name": {
-                            "value": "\"name\""
-                        },
-                        "Sort by barcode": {
-                            "value": "\"barcode\""
-                        },
-                        "Sort by price": {
-                            "value": "\"price\""
-                        }
-                    },
-                    "name": "sortBy",
-                    "description": "Product property to sort by",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query",
-                    "required": false
-                },
-                {
-                    "examples": {
-                        "Ascending order": {
-                            "value": "\"asc\""
-                        },
-                        "Descending order": {
-                            "value": "\"desc\""
-                        }
-                    },
-                    "name": "order",
-                    "description": "Product sort order (ascending or descending)",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                }
-            ]
-        },
         "/account/profile": {
             "summary": "User profile information",
             "description": "Operations against the current user's profile.",
@@ -2056,58 +1923,6 @@
                 "summary": "Preflight check for billing types API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
-        },
-        "/public/products/{barcode}": {
-            "summary": "Find specific product",
-            "description": "",
-            "get": {
-                "tags": [
-                    "fetch-one",
-                    "products"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/SingleProduct"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "security": [
-                    {}
-                ],
-                "operationId": "store-product-request",
-                "summary": "Find specific product",
-                "description": "GET complete public information about a specific product."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "store-product-options",
-                "summary": "Preflight check for specific product",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "barcode",
-                    "description": "The unique product identifier",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
         },
         "/data/salespeople": {
             "summary": "Salesperson data API endpoint",
