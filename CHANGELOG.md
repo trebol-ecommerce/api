@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.3.0] - 2022-01-05
+
+First changes in 2022! Happy new year y'all 💞
+
+### Added
+- New path `/upload_request`
+  - supports methods `POST` and `PUT`
+- New data type `UploadRequest`
+  - with properties `uploadUrl`, `mimeType`, `extension`, `tokenName`, `tokenValue`, `state`, `filename` and `service`
+
+### Changed
+- Tags for `/public/checkout`
+
 ## [v1.2.1] - 2021-12-29
 
 ### Fixed
