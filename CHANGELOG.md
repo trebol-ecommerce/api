@@ -27,6 +27,12 @@ First changes in 2022! Happy new year y'all 💞
 ### Changed
 - Tags for `/public/checkout`
 
+### Deleted
+- Paths previously marked for deprecation:
+  - `/public/products`
+  - `/public/products/{barcode}`
+  - `/public/categories`
+
 ## [v1.2.1] - 2021-12-29
 
 ### Fixed
