@@ -3722,19 +3722,8 @@
                 },
                 "example": {
                     "name": "example list",
-                    "items": [
-                        {
-                            "name": "example product",
-                            "code": "EXMPL001"
-                        },
-                        {
-                            "name": "example product 2",
-                            "code": "EXMPL002"
-                        }
-                    ],
-                    "pageIndex": 2,
-                    "totalCount": 32,
-                    "pageSize": 15
+                    "code": "example",
+                    "totalCount": 32
                 }
             },
             "UploadRequest": {
