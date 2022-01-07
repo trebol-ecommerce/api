@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.2.1",
+        "version": "1.2.2",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2697,7 +2697,7 @@
         },
         "/data/product_list_contents": {
             "summary": "Product list contents data API endpoint",
-            "description": "Operations to fetch, edit and remove contents from specific product lists.",
+            "description": "Operations to fetch and edit contents of specific product lists.",
             "get": {
                 "tags": [
                     "fetch-many",
@@ -2739,6 +2739,30 @@
                         },
                         "name": "order",
                         "description": "Product sort order (ascending or descending)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "productCode",
+                        "description": "The exact code of a product. Case sensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "productCodeLike",
+                        "description": "A portion of a product's code. Case insensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "productNameLike",
+                        "description": "A portion of a product's name. Case insensitive.",
                         "schema": {
                             "type": "string"
                         },
@@ -2795,7 +2819,7 @@
                     }
                 ],
                 "operationId": "data-product-list-contents-put",
-                "summary": "Update full contents of list",
+                "summary": "Update full contents of a list",
                 "description": "PUT provided products to replace the entire contents of the list."
             },
             "post": {
@@ -2803,10 +2827,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/Product"
-                                }
+                                "$ref": "#/components/schemas/Product"
                             }
                         }
                     },
@@ -2833,13 +2854,39 @@
                     }
                 ],
                 "operationId": "data-product-list-contents-post",
-                "summary": "Insert new product lists",
+                "summary": "Insert product into a list",
                 "description": "POST a product entity and save it to the list."
             },
             "delete": {
                 "tags": [
                     "remove",
                     "product-lists"
+                ],
+                "parameters": [
+                    {
+                        "name": "productCode",
+                        "description": "The exact code of a product. Case sensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "productCodeLike",
+                        "description": "A portion of a product's code. Case insensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "productNameLike",
+                        "description": "A portion of a product's name. Case insensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -2858,7 +2905,7 @@
                     }
                 ],
                 "operationId": "data-product-list-contents-delete",
-                "summary": "Delete product lists",
+                "summary": "Remove products from a list",
                 "description": "DELETE products matching the provided query parameters, from the list."
             },
             "options": {
@@ -2886,30 +2933,6 @@
                     },
                     "in": "query",
                     "required": true
-                },
-                {
-                    "name": "productCode",
-                    "description": "The exact code of a product. Case sensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "productCodeLike",
-                    "description": "A portion of a product's code. Case insensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "productNameLike",
-                    "description": "A portion of a product's name. Case insensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
                 }
             ]
         }
