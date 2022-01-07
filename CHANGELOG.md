@@ -31,6 +31,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/public/products/{barcode}`
   - `/public/categories`
 
+## [v1.2.2] - 2022-01-07
+
+### Changed
+- Means to use `/data/product_list_contents`
+  - `POST` accepts a single `Product` entity at a time
+  - Remove most query parameters from `PUT` and `POST`
+    - Only keep `listCode` as globally supported
+    - `GET` and `DELETE` do support them all
+  - Update descriptions
+
 ## [v1.2.1] - 2021-12-29
 
 ### Fixed
