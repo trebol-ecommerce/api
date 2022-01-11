@@ -44,6 +44,8 @@ Below is a short summary of available paths and their purposes. Unless stated ot
 - `/receipt/{code}` - Metadata for a specific `Sell`. The `code` variable must identify only one transaction, but its exact meaning can vary
 - `/register` - Request for creation of a new user account
 
+### `/upload_request` - Single endpoint for uploading and fetching resources through a service supported by the implementation
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
