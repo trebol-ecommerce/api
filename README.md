@@ -3,48 +3,52 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Declares the resources that instances of the Trébol backend must expose. [Review the documentation here.](https://studio-ws.apicur.io/sharing/b0bc9a13-4e93-4be2-8636-108986e75ce4)
+The contract that Trébol as a whole must comply with.
+[Documentation for the most recent release](https://studio-ws.apicur.io/sharing/b0bc9a13-4e93-4be2-8636-108986e75ce4).
+[Documentation with latest changes](https://studio-ws.apicur.io/sharing/817cd752-6043-4a6e-a230-ac0d70d07a43) (quality may be inconsistent).
 
 ## Specification
 
-Below is a short summary of available paths and their purposes. Unless stated otherwise, they all impose the need of a Bearer token for authorization.
+Below is a short summary of all available paths and their purposes.
 
-### `/access` - Allowed privileges for the API consumer
+### `/access` - Permissions for the API consumer
 
-- `/` - Lists all paths in `/data` that the API consumer has any level of access to
-- `/{resource}` - Lists allowed CRUD operations on a given resource. Can contain any combination of these four: `create`, `read`, `update` and `delete`
+- `/` [Bearer] - Lists all paths in `/data` that the API consumer has any level of access to
+- `/{resource}` [Bearer] - Lists allowed CRUD operations on a given resource. Can contain any combination of these four: `create`, `read`, `update` and `delete`
 
 ### `/account` - Resources for the API consumer and their user account
 
-- `/profile` - Fetch or update existing personal and contact information
+- `/profile` [Bearer] - Fetch or update existing personal and contact information
 
 ### `/data` - CRUD operations
 
-- `/billing_types` - [Public] Options for generating bill receipts
-- `/customers` - Correlation of stored personal information towards clients that have actually requested to purchase through the store
-- `/images` - Metadata of photos and pictures uploaded and served through any internal and/or external web service, assumed to be accesible from the internet
-- `/people` - Stored contact and/or personal information about real-life individuals
-- `/products` - [Public] The items that the store displays to the public and makes available for purchase. Includes products not available for purchase
-- `/product_categories` - [Public] Tree-like schema of organization for products
-- `/product_lists` - [Public] Named groups used to organize and link specific products together
-- `/product_list_contents` - [Public] Pagination of products contained on given lists
-- `/sales` - The purchases acknowledged through the store; they follow a certain transaction flow; updating their state to `requested`, `paid`, `cancelled`, `failed`, `delivered`, among others
-- `/salespeople` - Correlation of stored personal information towards employees that earn sales through the store
-- `/shippers` - [Public] Metadata of internal and/or external logistics services for shipping and delivery of physical items
-- `/user_roles` - Metadata of available privilege groupings for users
-- `/users` - Metadata of available accounts to access API resources
+- `/billing_types` [Public] - Options for generating bill receipts
+- `/customers` [Bearer] - Correlation of stored personal information towards clients that have actually requested to purchase through the store
+- `/images` [Bearer] - Metadata of photos and pictures uploaded and served through any internal and/or external web service, assumed to be accesible from the internet
+- `/people` [Bearer] - Stored contact and/or personal information about real-life individuals
+- `/products` [Public] - The items that the store displays to the public and makes available for purchase. Includes products not available for purchase
+- `/product_categories` [Public] - Tree-like schema of organization for products
+- `/product_lists` [Public] - Named groups used to organize and link specific products together
+- `/product_list_contents` [Public] - Pagination of products contained on given lists
+- `/sales` [Bearer] - The purchases acknowledged through the store; they follow a certain transaction flow; updating their state to `requested`, `paid`, `cancelled`, `failed`, `delivered`, among others
+- `/salespeople` [Bearer] - Correlation of stored personal information towards employees that earn sales through the store
+- `/shippers` [Public] - Metadata of internal and/or external logistics services for shipping and delivery of physical items
+- `/user_roles` [Bearer] - Metadata of available privilege groupings for users
+- `/users` [Bearer] - Metadata of available accounts to access API resources
 
 ### `/public` - API resources that may not require auth
 
-- `/about` - Metadata about the store and their respective owners
-- `/checkout` - [Auth required] Transaction request; where consumers submit a cart with products and receive details to be redirected to the payment page.
-  - `/validate` - Endpoint of return from payment page. Must redirect to a result page served through the corresponding frontend of the store.
-- `/guest` - Request a short-lived token that can be used for calls to `/checkout`
-- `/login` - Request for authentication with an existing user account, and generation + fetching of new auth token
-- `/receipt/{code}` - Metadata for a specific `Sell`. The `code` variable must identify only one transaction, but its exact meaning can vary
-- `/register` - Request for creation of a new user account
+- `/about` [Public] - Metadata about the store and their respective owners
+- `/checkout` [Bearer] - Transaction request; where consumers submit a cart with products and receive details to be redirected to the payment page.
+  - `/validate` [Public] - Endpoint of return from payment page. Must redirect to a result page served through the corresponding frontend of the store.
+- `/guest` [Public] - Request a short-lived token that can be used for calls to `/checkout`
+- `/login` [Public] - Request for authentication with an existing user account, and generation + fetching of new auth token
+- `/receipt/{code}` [Public] - Metadata for a specific `Sell`. The `code` variable must identify only one transaction, but its exact meaning can vary
+- `/register` [Public] - Request for creation of a new user account
 
-### `/upload_request` - Single endpoint for uploading and fetching resources through a service supported by the implementation
+### `/upload_request` - Integration with upload services (internal or external) supported by the implementation
+
+- `/` [Bearer] - Single endpoint for requesting to upload files, and updating status of previous uploads
 
 ## Contributors ✨
 
