@@ -4,8 +4,10 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The contract that Trébol as a whole must comply with.
-[Documentation for the most recent release](https://studio-ws.apicur.io/sharing/b0bc9a13-4e93-4be2-8636-108986e75ce4).
-[Documentation with latest changes](https://studio-ws.apicur.io/sharing/817cd752-6043-4a6e-a230-ac0d70d07a43) (quality may be inconsistent).
+
+## Documentation
+- [Most recent release](https://studio-ws.apicur.io/sharing/b0bc9a13-4e93-4be2-8636-108986e75ce4)
+- [Unreleased changes](https://studio-ws.apicur.io/sharing/817cd752-6043-4a6e-a230-ac0d70d07a43) (quality may be inconsistent)
 
 ## Specification
 
