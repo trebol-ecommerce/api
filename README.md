@@ -48,10 +48,6 @@ Below is a short summary of all available paths and their purposes.
 - `/receipt/{code}` [Public] - Metadata for a specific `Sell`. The `code` variable must identify only one transaction, but its exact meaning can vary
 - `/register` [Public] - Request for creation of a new user account
 
-### `/upload_request` - Integration with upload services (internal or external) supported by the implementation
-
-- `/` [Bearer] - Single endpoint for requesting to upload files, and updating status of previous uploads
-
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
