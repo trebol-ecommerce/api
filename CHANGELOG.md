@@ -4,33 +4,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-
-### Added
-- New path `/upload_request`
-  - supports methods `POST` and `PUT`
-- New data type `UploadRequest` with properties:
-  - `uploadUrl`
-  - `mimeType`
-  - `extension`
-  - `tokenName`
-  - `tokenValue`
-  - `state`
-  - `filename`
-  - `requestMethod`
-  - `requestPayloadType`
-  - `tokenInclusion`
-  - `service`
-
-### Changed
-- Tags for `/public/checkout`
-
-### Deleted
-- Paths previously marked for deprecation:
-  - `/public/products`
-  - `/public/products/{barcode}`
-  - `/public/categories`
-
 ## [v1.2.2] - 2022-01-07
 
 ### Changed
