@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.3.0",
+        "version": "1.2.2",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -1281,6 +1281,45 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
+        "/public/categories": {
+            "summary": "Product main categories",
+            "description": "",
+            "get": {
+                "tags": [
+                    "fetch-many",
+                    "product-categories"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/MultipleProductCategories"
+                    }
+                },
+                "deprecated": true,
+                "security": [
+                    {}
+                ],
+                "operationId": "categories-get",
+                "summary": "List product main categories",
+                "description": "GET the main (bigger) categories where to browse the products available for sale at the shop."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "security": [
+                    {}
+                ],
+                "deprecated": true,
+                "operationId": "categories-options",
+                "summary": "Preflight check for product categories",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
         "/public/checkout": {
             "summary": "Payment request",
             "post": {
@@ -1298,8 +1337,7 @@
                     "required": true
                 },
                 "tags": [
-                    "transaction",
-                    "create_request"
+                    "transaction"
                 ],
                 "parameters": [
                     {
@@ -1365,8 +1403,7 @@
             "summary": "Payment confirmation for a 'Pending' transaction.",
             "post": {
                 "tags": [
-                    "transaction",
-                    "update_state"
+                    "transaction"
                 ],
                 "responses": {
                     "303": {
@@ -1615,6 +1652,100 @@
                 {
                     "name": "nameLike",
                     "description": "A portion of the category's name. Case insensitive.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
+        },
+        "/public/products": {
+            "summary": "Products available for sale",
+            "description": "",
+            "get": {
+                "tags": [
+                    "fetch-many",
+                    "products"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/PaginatedCollection"
+                    }
+                },
+                "deprecated": true,
+                "security": [
+                    {}
+                ],
+                "operationId": "store-front-request",
+                "summary": "List available products",
+                "description": "GET all products currently on sale at the shop. May accept sorting, ordering, paging and filtering conditions in query parameters."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "deprecated": true,
+                "security": [
+                    {}
+                ],
+                "operationId": "store-front-options",
+                "summary": "Preflight check for available products",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "pageIndex",
+                    "description": "Products page number (1-based)",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "query",
+                    "required": false
+                },
+                {
+                    "name": "pageSize",
+                    "description": "Products count per page",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "query"
+                },
+                {
+                    "examples": {
+                        "Sort by name": {
+                            "value": "\"name\""
+                        },
+                        "Sort by barcode": {
+                            "value": "\"barcode\""
+                        },
+                        "Sort by price": {
+                            "value": "\"price\""
+                        }
+                    },
+                    "name": "sortBy",
+                    "description": "Product property to sort by",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query",
+                    "required": false
+                },
+                {
+                    "examples": {
+                        "Ascending order": {
+                            "value": "\"asc\""
+                        },
+                        "Descending order": {
+                            "value": "\"desc\""
+                        }
+                    },
+                    "name": "order",
+                    "description": "Product sort order (ascending or descending)",
                     "schema": {
                         "type": "string"
                     },
@@ -1923,6 +2054,58 @@
                 "summary": "Preflight check for billing types API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
+        },
+        "/public/products/{barcode}": {
+            "summary": "Find specific product",
+            "description": "",
+            "get": {
+                "tags": [
+                    "fetch-one",
+                    "products"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/SingleProduct"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "deprecated": true,
+                "security": [
+                    {}
+                ],
+                "operationId": "store-product-request",
+                "summary": "Find specific product",
+                "description": "GET complete public information about a specific product."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "security": [
+                    {}
+                ],
+                "operationId": "store-product-options",
+                "summary": "Preflight check for specific product",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            },
+            "parameters": [
+                {
+                    "name": "barcode",
+                    "description": "The unique product identifier",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
         },
         "/data/salespeople": {
             "summary": "Salesperson data API endpoint",
@@ -2752,105 +2935,6 @@
                     "required": true
                 }
             ]
-        },
-        "/upload_request": {
-            "summary": "File upload requests",
-            "description": "Endpoint that may be reached with POST method to request to upload files, be it through the server itself or an external service.\nA second PUT method can then communicate changes in state of given upload requests to the server.",
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UploadRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "upload",
-                    "update_state"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "upload-put",
-                "summary": "PUT updates on the state of a specific upload",
-                "description": "Submit metadata so the state of a previously acknowledged file upload request is updated."
-            },
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UploadRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "upload",
-                    "create_request"
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/UploadRequest"
-                                }
-                            }
-                        },
-                        "description": "Normal response. The request was accepted, and details to initiate the upload are included."
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "upload-post",
-                "summary": "POST request to upload new file",
-                "description": "Submit metadata in order to request the underlying server to make space for a new file upload"
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodPOST-PUT"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "upload-options",
-                "summary": "Preflight check for file upload requests"
-            }
         }
     },
     "components": {
@@ -3745,75 +3829,19 @@
                 },
                 "example": {
                     "name": "example list",
-                    "code": "example",
-                    "totalCount": 32
-                }
-            },
-            "UploadRequest": {
-                "title": "Root Type for PaymentRedirection",
-                "description": "Information about a particular file upload request.",
-                "required": [
-                    "filename"
-                ],
-                "type": "object",
-                "properties": {
-                    "uploadUrl": {
-                        "description": "The url that was created to do the upload at.",
-                        "type": "string"
-                    },
-                    "mimeType": {
-                        "description": "The MIME type of the file.",
-                        "type": "string"
-                    },
-                    "extension": {
-                        "description": "The extension of the file (after the dot e.g. `txt`, `png`, `html`)",
-                        "type": "string"
-                    },
-                    "tokenName": {
-                        "description": "The name of the variable that will hold the token verified by the service that handles the upload itself.",
-                        "type": "string"
-                    },
-                    "tokenValue": {
-                        "description": "The value of the token that is verified by the service handling the upload.",
-                        "type": "string"
-                    },
-                    "state": {
-                        "description": "The current state that the upload request is in.",
-                        "type": "string"
-                    },
-                    "filename": {
-                        "description": "The complete name of the file (extension included) that was to be uploaded.",
-                        "type": "string"
-                    },
-                    "service": {
-                        "description": "The identifying name of the service that actually handles the upload.",
-                        "type": "string"
-                    },
-                    "requestMethod": {
-                        "description": "The accepted method to forward an upload with (POST, PUT)",
-                        "type": "string"
-                    },
-                    "requestPayloadType": {
-                        "description": "The accepted format of the data payload to send to that URL (form data, JSON)",
-                        "type": "string"
-                    },
-                    "tokenInclusion": {
-                        "description": "The place where the token must be included (request body or header)",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "uploadUrl": "https://upload.to/url",
-                    "mimeType": "text/plain",
-                    "extension": "txt",
-                    "tokenName": "some text",
-                    "tokenValue": "some text",
-                    "tokenInclusion": "request-headers",
-                    "state": "waiting",
-                    "filename": "test.txt",
-                    "service": "some service",
-                    "requestMethod": "post",
-                    "requestPayloadType": "form-data"
+                    "items": [
+                        {
+                            "name": "example product",
+                            "code": "EXMPL001"
+                        },
+                        {
+                            "name": "example product 2",
+                            "code": "EXMPL002"
+                        }
+                    ],
+                    "pageIndex": 2,
+                    "totalCount": 32,
+                    "pageSize": 15
                 }
             }
         },
@@ -3996,9 +4024,6 @@
                     }
                 },
                 "description": "Normal response, sends an array of user roles."
-            },
-            "AllowMethodPOST-PUT": {
-                "description": "Normal, empty response to some OPTIONS requests. Should include CORS headers and indicate that only the POST and PUT methods are allowed."
             }
         },
         "securitySchemes": {
