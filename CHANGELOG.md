@@ -9,8 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - New path `/upload_request`
   - supports methods `POST` and `PUT`
-- New data type `UploadRequest` to be used as body of requests and responses from `/upload_request`
-  - holds properties `uploadUrl`, `mimeType`, `extension`, `tokenName`, `tokenValue`, `state`, `filename`, `requestMethod`, `requestPayloadType`, `tokenInclusion` and `service`
+- New data type `UploadRequest` with properties:
+  - `uploadUrl`
+  - `mimeType`
+  - `extension`
+  - `tokenName`
+  - `tokenValue`
+  - `state`
+  - `filename`
+  - `requestMethod`
+  - `requestPayloadType`
+  - `tokenInclusion`
+  - `service`
 
 ### Changed
 - Tags for `/public/checkout`
