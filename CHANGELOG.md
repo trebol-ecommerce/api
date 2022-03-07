@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Removed some empty security schema specs
 
+### Fixed
+- Added missing data type ref to path parameter in `/access/{resource}` path
+
 ## [v1.2.2] - 2022-01-07
 
 ### Changed
