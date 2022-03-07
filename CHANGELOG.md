@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Added missing data type ref to path parameter in `/access/{resource}` path
 
+### Removed
+- Deprecated resource paths
+  - `/public/categories` - Since v1.1.0
+  - `/public/products` - Since v1.2.1
+  - `/public/products/{barcode}` - Since v1.2.0
+
 ## [v1.2.2] - 2022-01-07
 
 ### Changed
