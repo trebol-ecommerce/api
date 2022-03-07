@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Query parameters specification for `/data/product_lists`
+
 ### Changed
 - Removed some empty security schema specs
 

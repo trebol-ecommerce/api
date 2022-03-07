@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.2.4",
+        "version": "1.3.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2339,6 +2339,80 @@
                 "tags": [
                     "fetch-many",
                     "product-lists"
+                ],
+                "parameters": [
+                    {
+                        "name": "pageSize",
+                        "description": "Number of lists per page",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortBy",
+                        "description": "List property to sort by",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
+                        "name": "order",
+                        "description": "Lists sort order (ascending or descending)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "code",
+                        "description": "The exact code of a list. Case sensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The exact name of a list. Case sensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "codeLike",
+                        "description": "A portion of a list's code. Case insensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "nameLike",
+                        "description": "A portion of a list's name. Case insensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
                 ],
                 "responses": {
                     "200": {
