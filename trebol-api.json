@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.3.0",
+        "version": "1.4.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -790,6 +790,150 @@
                     "in": "query"
                 }
             ]
+        },
+        "/data/sales/confirmation": {
+            "summary": "Sell confirmation API endpoint",
+            "description": "Operation to mark sales/orders as confirmed.",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Sell"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "sales"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-sales-confirmation-post",
+                "summary": "Confirm sales",
+                "description": "POST confirmation of a given order"
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodPOST"
+                    }
+                },
+                "operationId": "data-sales-confirmation-options",
+                "summary": "Preflight check for sell confirmation API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/data/sales/rejection": {
+            "summary": "Sell rejection API endpoint",
+            "description": "Operation to mark sales/orders as rejected.",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Sell"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "sales"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-sales-rejection-post",
+                "summary": "Reject sales",
+                "description": "POST rejection of a given order"
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodPOST"
+                    }
+                },
+                "operationId": "data-sales-rejection-options",
+                "summary": "Preflight check for sell rejection API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/data/sales/completion": {
+            "summary": "Sell completion API endpoint",
+            "description": "Operation to mark sales/orders as completed/delivered.",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Sell"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "sales"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-sales-completion-post",
+                "summary": "Finish completed sales",
+                "description": "POST completion of a given order"
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodPOST"
+                    }
+                },
+                "operationId": "data-sales-completion-options",
+                "summary": "Preflight check for sell completion API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
         },
 
         "/data/users": {
