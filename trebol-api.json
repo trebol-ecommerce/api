@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.2.2",
+        "version": "1.2.3",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -47,9 +47,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "access-resource-options",
                 "summary": "Preflight check for resource operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -236,9 +233,6 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-customers-options",
                 "summary": "Preflight check for non-specific customer API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -370,9 +364,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "access-people-options",
                 "summary": "Preflight check for people API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -433,9 +424,6 @@
                         "$ref": "#/components/responses/PaginatedCollection"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-products-get",
                 "summary": "List products",
                 "description": "GET a paged collection of products."
@@ -547,9 +535,6 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-products-options",
                 "summary": "Preflight check for non-specific product API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -779,9 +764,6 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-sales-options",
                 "summary": "Preflight check for non-specific sell API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2508,9 +2490,6 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-shippers-options",
                 "summary": "Preflight check for shipper API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2547,9 +2526,6 @@
                         "$ref": "#/components/responses/MultipleProductCategories"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-product-lists-get",
                 "summary": "List product lists",
                 "description": "GET a paged collection of product lists."
@@ -2661,9 +2637,6 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-product-lists-options",
                 "summary": "Preflight check for root product lists API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2774,9 +2747,6 @@
                         "$ref": "#/components/responses/PaginatedCollection"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-product-list-contents-get",
                 "summary": "Fetch products stored in a list",
                 "description": "GET a paged collection of product within a list's contents."
@@ -2917,9 +2887,6 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-product-list-contents-options",
                 "summary": "Preflight check for root product lists API",
                 "description": "Fetch OPTIONS for communicating with this resource."
