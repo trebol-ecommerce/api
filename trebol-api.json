@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.4.0",
+        "version": "1.4.1",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -641,6 +641,15 @@
                             "type": "string"
                         },
                         "in": "query"
+                    },
+                    {
+                        "name": "date",
+                        "description": "The exact date & time of transaction.",
+                        "schema": {
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -777,15 +786,6 @@
                     "description": "The unique number associated to a sell.",
                     "schema": {
                         "type": "integer"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "date",
-                    "description": "The exact date & time of transaction.",
-                    "schema": {
-                        "format": "date-time",
-                        "type": "string"
                     },
                     "in": "query"
                 }

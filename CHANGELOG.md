@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Added missing data type ref to path parameter in `/access/{resource}` path
+- Moved `date` query parameter for `/data/sales` to be used only in its `GET` method
 
 ### Removed
 - Deprecated resource paths
