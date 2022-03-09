@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.4.1",
+        "version": "1.5.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -644,10 +644,34 @@
                     },
                     {
                         "name": "date",
-                        "description": "The exact date & time of transaction.",
+                        "description": "The exact date & time of transaction. If invoked, `afterDate` and `beforeDate` parameters are ignored.",
                         "schema": {
                             "format": "date-time",
                             "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "afterDate",
+                        "description": "Minimum date & time to account transactions by (datetime range start)",
+                        "schema": {
+                            "type": "date-time"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "beforeDate",
+                        "description": "Limit date & time to account transactions by (datetime range end)",
+                        "schema": {
+                            "type": "date-time"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "statusCode",
+                        "description": "Numeric status code (such as pending, paid, delivered)",
+                        "schema": {
+                            "type": "integer"
                         },
                         "in": "query"
                     }

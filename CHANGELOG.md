@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `POST /data/sales/confirmation` - Should confirm a given sell that is in a `Paid` or similar state
   - `POST /data/sales/reject` - Should reject a given sell that is in a `Paid` or similar state
   - `POST /data/sales/completion` - Should mark a sell as `Completed` or `Delivered`, given that it is in a `Confirmed` or similar state
+- New query parameters for `GET /data/sales` - `afterDate`, `beforeDate` and `statusCode`
 
 ### Changed
 - Removed some empty security schema specs
