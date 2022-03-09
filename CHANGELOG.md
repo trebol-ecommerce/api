@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Query parameters specification for `/data/product_lists`
+  - `ProductList` specific query params are `code`, `name`, `codeLike` and `nameLike`
 - Three resources to interact with processing of sales
   - `/data/sales/confirmation` - Should confirm a given sell that is in a `Paid` or similar state
   - `/data/sales/reject` - Should reject a given sell that is in a `Paid` or similar state
