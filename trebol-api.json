@@ -14,6 +14,47 @@
         }
     },
     "paths": {
+        "/access": {
+            "summary": "Allowed (authorized) access to API routes",
+            "description": "Operation that hints the API consumer on what paths, routes, or resources can be accessed in the /data API.",
+            "get": {
+                "tags": [
+                    "authorization"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AuthorizedAccessToRoutes"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "access-routes-get",
+                "summary": "Query allowed API routes",
+                "description": "GET the API resource paths that the current session is authorized to use."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "security": [
+                    {}
+                ],
+                "operationId": "access-routes-options",
+                "summary": "Preflight check for API resource accesses",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
         "/access/{resource}": {
             "summary": "Authorized access to a certain resource",
             "description": "Operation that hints the API consumer on what actions can be performed against another resource in the /data API.",
@@ -1995,47 +2036,6 @@
                 ],
                 "operationId": "register-options",
                 "summary": "Preflight check for account registrar",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/access": {
-            "summary": "Allowed (authorized) access to API routes",
-            "description": "Operation that hints the API consumer on what paths, routes, or resources can be accessed in the /data API.",
-            "get": {
-                "tags": [
-                    "authorization"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AuthorizedAccessToRoutes"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "access-routes-get",
-                "summary": "Query allowed API routes",
-                "description": "GET the API resource paths that the current session is authorized to use."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "access-routes-options",
-                "summary": "Preflight check for API resource accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
