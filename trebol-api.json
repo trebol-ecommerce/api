@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.2.2",
+        "version": "1.5.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -14,6 +14,47 @@
         }
     },
     "paths": {
+        "/access": {
+            "summary": "Allowed (authorized) access to API routes",
+            "description": "Operation that hints the API consumer on what paths, routes, or resources can be accessed in the /data API.",
+            "get": {
+                "tags": [
+                    "authorization"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AuthorizedAccessToRoutes"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "access-routes-get",
+                "summary": "Query allowed API routes",
+                "description": "GET the API resource paths that the current session is authorized to use."
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodGET"
+                    }
+                },
+                "security": [
+                    {}
+                ],
+                "operationId": "access-routes-options",
+                "summary": "Preflight check for API resource accesses",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
         "/access/{resource}": {
             "summary": "Authorized access to a certain resource",
             "description": "Operation that hints the API consumer on what actions can be performed against another resource in the /data API.",
@@ -47,9 +88,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "access-resource-options",
                 "summary": "Preflight check for resource operation accesses",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -58,7 +96,10 @@
                 {
                     "name": "resource",
                     "in": "path",
-                    "required": true
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
                 }
             ]
         },
@@ -236,9 +277,6 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-customers-options",
                 "summary": "Preflight check for non-specific customer API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -370,9 +408,6 @@
                         "$ref": "#/components/responses/AllowMethodGET"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "access-people-options",
                 "summary": "Preflight check for people API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -433,9 +468,6 @@
                         "$ref": "#/components/responses/PaginatedCollection"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-products-get",
                 "summary": "List products",
                 "description": "GET a paged collection of products."
@@ -547,9 +579,6 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-products-options",
                 "summary": "Preflight check for non-specific product API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -651,6 +680,39 @@
                         "description": "Sell sort order (ascending or descending)",
                         "schema": {
                             "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "date",
+                        "description": "The exact date & time of transaction. If invoked, `afterDate` and `beforeDate` parameters are ignored.",
+                        "schema": {
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "afterDate",
+                        "description": "Minimum date & time to account transactions by (datetime range start)",
+                        "schema": {
+                            "type": "date-time"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "beforeDate",
+                        "description": "Limit date & time to account transactions by (datetime range end)",
+                        "schema": {
+                            "type": "date-time"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "statusCode",
+                        "description": "Numeric status code (such as pending, paid, delivered)",
+                        "schema": {
+                            "type": "integer"
                         },
                         "in": "query"
                     }
@@ -779,9 +841,6 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-sales-options",
                 "summary": "Preflight check for non-specific sell API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -794,18 +853,154 @@
                         "type": "integer"
                     },
                     "in": "query"
-                },
-                {
-                    "name": "date",
-                    "description": "The exact date & time of transaction.",
-                    "schema": {
-                        "format": "date-time",
-                        "type": "string"
-                    },
-                    "in": "query"
                 }
             ]
         },
+        "/data/sales/confirmation": {
+            "summary": "Sell confirmation API endpoint",
+            "description": "Operation to mark sales/orders as confirmed.",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Sell"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "sales"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-sales-confirmation-post",
+                "summary": "Confirm sales",
+                "description": "POST confirmation of a given order"
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodPOST"
+                    }
+                },
+                "operationId": "data-sales-confirmation-options",
+                "summary": "Preflight check for sell confirmation API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/data/sales/rejection": {
+            "summary": "Sell rejection API endpoint",
+            "description": "Operation to mark sales/orders as rejected.",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Sell"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "sales"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-sales-rejection-post",
+                "summary": "Reject sales",
+                "description": "POST rejection of a given order"
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodPOST"
+                    }
+                },
+                "operationId": "data-sales-rejection-options",
+                "summary": "Preflight check for sell rejection API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+        "/data/sales/completion": {
+            "summary": "Sell completion API endpoint",
+            "description": "Operation to mark sales/orders as completed/delivered.",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Sell"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "sales"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Empty"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-sales-completion-post",
+                "summary": "Finish completed sales",
+                "description": "POST completion of a given order"
+            },
+            "options": {
+                "tags": [
+                    "preflight"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/AllowMethodPOST"
+                    }
+                },
+                "operationId": "data-sales-completion-options",
+                "summary": "Preflight check for sell completion API",
+                "description": "Fetch OPTIONS for communicating with this resource."
+            }
+        },
+
         "/data/users": {
             "summary": "User data API endpoint",
             "description": "Operations to fetch, create, edit and remove users and their metadata.",
@@ -1281,45 +1476,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/public/categories": {
-            "summary": "Product main categories",
-            "description": "",
-            "get": {
-                "tags": [
-                    "fetch-many",
-                    "product-categories"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/MultipleProductCategories"
-                    }
-                },
-                "deprecated": true,
-                "security": [
-                    {}
-                ],
-                "operationId": "categories-get",
-                "summary": "List product main categories",
-                "description": "GET the main (bigger) categories where to browse the products available for sale at the shop."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "deprecated": true,
-                "operationId": "categories-options",
-                "summary": "Preflight check for product categories",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
         "/public/checkout": {
             "summary": "Payment request",
             "post": {
@@ -1659,100 +1815,6 @@
                 }
             ]
         },
-        "/public/products": {
-            "summary": "Products available for sale",
-            "description": "",
-            "get": {
-                "tags": [
-                    "fetch-many",
-                    "products"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/PaginatedCollection"
-                    }
-                },
-                "deprecated": true,
-                "security": [
-                    {}
-                ],
-                "operationId": "store-front-request",
-                "summary": "List available products",
-                "description": "GET all products currently on sale at the shop. May accept sorting, ordering, paging and filtering conditions in query parameters."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "deprecated": true,
-                "security": [
-                    {}
-                ],
-                "operationId": "store-front-options",
-                "summary": "Preflight check for available products",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "pageIndex",
-                    "description": "Products page number (1-based)",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "query",
-                    "required": false
-                },
-                {
-                    "name": "pageSize",
-                    "description": "Products count per page",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "query"
-                },
-                {
-                    "examples": {
-                        "Sort by name": {
-                            "value": "\"name\""
-                        },
-                        "Sort by barcode": {
-                            "value": "\"barcode\""
-                        },
-                        "Sort by price": {
-                            "value": "\"price\""
-                        }
-                    },
-                    "name": "sortBy",
-                    "description": "Product property to sort by",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query",
-                    "required": false
-                },
-                {
-                    "examples": {
-                        "Ascending order": {
-                            "value": "\"asc\""
-                        },
-                        "Descending order": {
-                            "value": "\"desc\""
-                        }
-                    },
-                    "name": "order",
-                    "description": "Product sort order (ascending or descending)",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                }
-            ]
-        },
         "/account/profile": {
             "summary": "User profile information",
             "description": "Operations against the current user's profile.",
@@ -1977,47 +2039,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/access": {
-            "summary": "Allowed (authorized) access to API routes",
-            "description": "Operation that hints the API consumer on what paths, routes, or resources can be accessed in the /data API.",
-            "get": {
-                "tags": [
-                    "authorization"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AuthorizedAccessToRoutes"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "access-routes-get",
-                "summary": "Query allowed API routes",
-                "description": "GET the API resource paths that the current session is authorized to use."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "access-routes-options",
-                "summary": "Preflight check for API resource accesses",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
         "/data/billing_types": {
             "summary": "Billing types API endpoint",
             "description": "Operations to fetch billing types data. \nEditing operations cannot be done through this resource.",
@@ -2054,58 +2075,6 @@
                 "summary": "Preflight check for billing types API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
-        },
-        "/public/products/{barcode}": {
-            "summary": "Find specific product",
-            "description": "",
-            "get": {
-                "tags": [
-                    "fetch-one",
-                    "products"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/SingleProduct"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "deprecated": true,
-                "security": [
-                    {}
-                ],
-                "operationId": "store-product-request",
-                "summary": "Find specific product",
-                "description": "GET complete public information about a specific product."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "store-product-options",
-                "summary": "Preflight check for specific product",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "barcode",
-                    "description": "The unique product identifier",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
         },
         "/data/salespeople": {
             "summary": "Salesperson data API endpoint",
@@ -2508,9 +2477,6 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-shippers-options",
                 "summary": "Preflight check for shipper API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2542,14 +2508,85 @@
                     "fetch-many",
                     "product-lists"
                 ],
+                "parameters": [
+                    {
+                        "name": "pageSize",
+                        "description": "Number of lists per page",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "pageIndex",
+                        "description": "Index of page (0-based)",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortBy",
+                        "description": "List property to sort by",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "Ascending order": {
+                                "value": "\"asc\""
+                            },
+                            "Descending order": {
+                                "value": "\"desc\""
+                            }
+                        },
+                        "name": "order",
+                        "description": "Lists sort order (ascending or descending)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "code",
+                        "description": "The exact code of a list. Case sensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The exact name of a list. Case sensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "codeLike",
+                        "description": "A portion of a list's code. Case insensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "nameLike",
+                        "description": "A portion of a list's name. Case insensitive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/MultipleProductCategories"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-product-lists-get",
                 "summary": "List product lists",
                 "description": "GET a paged collection of product lists."
@@ -2661,9 +2698,6 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-product-lists-options",
                 "summary": "Preflight check for root product lists API",
                 "description": "Fetch OPTIONS for communicating with this resource."
@@ -2774,9 +2808,6 @@
                         "$ref": "#/components/responses/PaginatedCollection"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-product-list-contents-get",
                 "summary": "Fetch products stored in a list",
                 "description": "GET a paged collection of product within a list's contents."
@@ -2917,9 +2948,6 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "security": [
-                    {}
-                ],
                 "operationId": "data-product-list-contents-options",
                 "summary": "Preflight check for root product lists API",
                 "description": "Fetch OPTIONS for communicating with this resource."

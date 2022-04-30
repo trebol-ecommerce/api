@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.5.0-rc.1] - 2022-04-29
+
+### Added
+- Query parameters specification for `GET /data/product_lists`
+  - `ProductList` specific query params are `code`, `name`, `codeLike` and `nameLike`
+- Three resources to interact with processing of sales
+  - `POST /data/sales/confirmation` - Should confirm a given sell that is in a `Paid` or similar state
+  - `POST /data/sales/reject` - Should reject a given sell that is in a `Paid` or similar state
+  - `POST /data/sales/completion` - Should mark a sell as `Completed` or `Delivered`, given that it is in a `Confirmed` or similar state
+- New query parameters for `GET /data/sales` - `afterDate`, `beforeDate` and `statusCode`
+
+### Changed
+- Removed some empty security schema specs
+
+### Fixed
+- Added missing data type ref to path parameter in `/access/{resource}` path
+- Moved `date` query parameter for `/data/sales` to be used only in its `GET` method
+
+### Removed
+- Deprecated resource paths
+  - `/public/categories` - Since v1.1.0
+  - `/public/products` - Since v1.2.1
+  - `/public/products/{barcode}` - Since v1.2.0
+
 ## [v1.2.2] - 2022-01-07
 
 ### Changed
