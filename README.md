@@ -33,6 +33,9 @@ Below is a short summary of all available paths and their purposes.
 - `/product_lists` [Public] - Named groups used to organize and link specific products together
 - `/product_list_contents` [Public] - Pagination of products contained on given lists
 - `/sales` [Bearer] - The purchases acknowledged through the store; they follow a certain transaction flow; updating their state to `requested`, `paid`, `cancelled`, `failed`, `delivered`, among others
+  - `/confirmation` - [Bearer] - To indicate that a sell is ready for delivery/shipping
+  - `/rejection` - [Bearer] - To indicate that a sell was acknowledged but cannot be completed. The customer should be refunded.
+  - `/completion` - [Bearer] - To indicate that a sell has been delivered and it can be considered a success
 - `/salespeople` [Bearer] - Correlation of stored personal information towards employees that earn sales through the store
 - `/shippers` [Public] - Metadata of internal and/or external logistics services for shipping and delivery of physical items
 - `/user_roles` [Bearer] - Metadata of available privilege groupings for users
