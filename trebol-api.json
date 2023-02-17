@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.5.0",
+        "version": "1.5.1",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -13,6 +13,77 @@
             "url": "https://www.gnu.org/licenses/gpl.txt"
         }
     },
+    "tags": [
+        {
+            "name": "authorization"
+        },
+        {
+            "name": "preflight"
+        },
+        {
+            "name": "transaction"
+        },
+        {
+            "name": "metadata"
+        },
+        {
+            "name": "account"
+        },
+        {
+            "name": "session"
+        },
+        {
+            "name": "create"
+        },
+        {
+            "name": "read-one"
+        },
+        {
+            "name": "read-many"
+        },
+        {
+            "name": "update"
+        },
+        {
+            "name": "delete"
+        },
+        {
+            "name": "billing-types"
+        },
+        {
+            "name": "customers"
+        },
+        {
+            "name": "images"
+        },
+        {
+            "name": "products"
+        },
+        {
+            "name": "product-categories"
+        },
+        {
+            "name": "product-lists"
+        },
+        {
+            "name": "people"
+        },
+        {
+            "name": "sales"
+        },
+        {
+            "name": "salespeople"
+        },
+        {
+            "name": "shippers"
+        },
+        {
+            "name": "users"
+        },
+        {
+            "name": "user-roles"
+        }
+    ],
     "paths": {
         "/access": {
             "summary": "Allowed (authorized) access to API routes",
@@ -108,7 +179,7 @@
             "description": "Operations to fetch, create, edit and remove customers and their metadata.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "customers"
                 ],
                 "parameters": [
@@ -245,7 +316,7 @@
             },
             "delete": {
                 "tags": [
-                    "remove",
+                    "delete",
                     "customers"
                 ],
                 "responses": {
@@ -337,7 +408,7 @@
             "description": "Operations to fetch people data. \nEditing operations cannot be done through this resource.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "people"
                 ],
                 "parameters": [
@@ -418,7 +489,7 @@
             "description": "Operations to fetch, create, edit and remove products and their metadata.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "products"
                 ],
                 "parameters": [
@@ -547,7 +618,7 @@
             },
             "delete": {
                 "tags": [
-                    "remove",
+                    "delete",
                     "products"
                 ],
                 "responses": {
@@ -639,7 +710,7 @@
             "description": "Operations to fetch, create, edit and remove sales and their metadata.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "sales"
                 ],
                 "parameters": [
@@ -696,7 +767,8 @@
                         "name": "afterDate",
                         "description": "Minimum date & time to account transactions by (datetime range start)",
                         "schema": {
-                            "type": "date-time"
+                            "type": "string",
+                            "format": "date-time"
                         },
                         "in": "query"
                     },
@@ -704,7 +776,8 @@
                         "name": "beforeDate",
                         "description": "Limit date & time to account transactions by (datetime range end)",
                         "schema": {
-                            "type": "date-time"
+                            "type": "string",
+                            "format": "date-time"
                         },
                         "in": "query"
                     },
@@ -809,7 +882,7 @@
             },
             "delete": {
                 "tags": [
-                    "remove",
+                    "delete",
                     "sales"
                 ],
                 "responses": {
@@ -1006,7 +1079,7 @@
             "description": "Operations to fetch, create, edit and remove users and their metadata.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "users"
                 ],
                 "parameters": [
@@ -1143,7 +1216,7 @@
             },
             "delete": {
                 "tags": [
-                    "remove",
+                    "delete",
                     "users"
                 ],
                 "responses": {
@@ -1214,7 +1287,7 @@
             "description": "Operations to fetch, create, edit and remove images and their metadata.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "images"
                 ],
                 "parameters": [
@@ -1351,7 +1424,7 @@
             },
             "delete": {
                 "tags": [
-                    "remove",
+                    "delete",
                     "images"
                 ],
                 "responses": {
@@ -1396,7 +1469,7 @@
             "description": "Operations to fetch user roles data. \nEditing operations cannot be done through this resource.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "user-roles"
                 ],
                 "responses": {
@@ -1650,7 +1723,7 @@
             "description": "Operations to fetch, create, edit and remove product categories and their metadata.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "product-categories"
                 ],
                 "responses": {
@@ -1740,7 +1813,7 @@
             },
             "delete": {
                 "tags": [
-                    "remove",
+                    "delete",
                     "product-categories"
                 ],
                 "responses": {
@@ -1820,7 +1893,7 @@
             "description": "Operations against the current user's profile.",
             "get": {
                 "tags": [
-                    "fetch-one",
+                    "read-one",
                     "account"
                 ],
                 "responses": {
@@ -2044,7 +2117,7 @@
             "description": "Operations to fetch billing types data. \nEditing operations cannot be done through this resource.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "billing-types"
                 ],
                 "responses": {
@@ -2081,7 +2154,7 @@
             "description": "Operations to fetch, create, edit and remove salespeople and their metadata.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "salespeople"
                 ],
                 "parameters": [
@@ -2218,7 +2291,7 @@
             },
             "delete": {
                 "tags": [
-                    "remove",
+                    "delete",
                     "salespeople"
                 ],
                 "responses": {
@@ -2313,7 +2386,7 @@
             "description": "Operations to fetch, create, edit and remove users and their metadata.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "shippers"
                 ],
                 "parameters": [
@@ -2445,7 +2518,7 @@
             },
             "delete": {
                 "tags": [
-                    "remove",
+                    "delete",
                     "shippers"
                 ],
                 "responses": {
@@ -2505,7 +2578,7 @@
             "description": "Operations to fetch, create, edit and remove product lists and their metadata.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "product-lists"
                 ],
                 "parameters": [
@@ -2666,7 +2739,7 @@
             },
             "delete": {
                 "tags": [
-                    "remove",
+                    "delete",
                     "product-lists"
                 ],
                 "responses": {
@@ -2734,7 +2807,7 @@
             "description": "Operations to fetch and edit contents of specific product lists.",
             "get": {
                 "tags": [
-                    "fetch-many",
+                    "read-many",
                     "product-lists"
                 ],
                 "parameters": [
@@ -2890,7 +2963,7 @@
             },
             "delete": {
                 "tags": [
-                    "remove",
+                    "delete",
                     "product-lists"
                 ],
                 "parameters": [
@@ -3004,12 +3077,12 @@
                     },
                     "phone1": {
                         "description": "The preferred personal phone number",
-                        "pattern": "^(\\\\((\\\\+)?[0-9]{3}\\\\))?[0-9]{3,4}[ -]?[0-9]{4}$",
+                        "pattern": "^(\\(\\+?(\\d{3}|\\d{2} ?\\d)\\)|\\+?\\d{3}|\\+?\\d{2}[ -]?\\d)?[ -]?(\\d{8}|(\\d{2,4}[ -]?){2,4}|)$",
                         "type": "string"
                     },
                     "phone2": {
                         "description": "A second phone number",
-                        "pattern": "^(\\\\((\\\\+)?[0-9]{3}\\\\))?[0-9]{3,4}[ -]?[0-9]{4}$",
+                        "pattern": "^(\\(\\+?(\\d{3}|\\d{2} ?\\d)\\)|\\+?\\d{3}|\\+?\\d{2}[ -]?\\d)?[ -]?(\\d{8}|(\\d{2,4}[ -]?){2,4}|)$",
                         "type": "string"
                     },
                     "idNumber": {
@@ -3030,7 +3103,7 @@
                     "lastName": "Williams McGregor",
                     "idNumber": "123456789-0",
                     "email": "example@email.com",
-                    "phone1": "(+2)784 876 823",
+                    "phone1": "(+512)784 876 823",
                     "phone2": "4444 9820"
                 }
             },
@@ -3060,8 +3133,8 @@
                         "name": "some text",
                         "idNumber": "some text",
                         "email": "some text",
-                        "phone1": "some text",
-                        "phone2": "some text"
+                        "phone1": "+1111111111",
+                        "phone2": "+22 222 222 22"
                     },
                     "name": "some text"
                 }
@@ -3076,8 +3149,7 @@
                 "type": "object",
                 "properties": {
                     "product": {
-                        "$ref": "#/components/schemas/Product",
-                        "description": "The related product."
+                        "$ref": "#/components/schemas/Product"
                     },
                     "units": {
                         "description": "The amount, or quantity of the related product.",
@@ -3118,24 +3190,20 @@
                 },
                 "example": {
                     "filename": "test.png",
-                    "url": "http://localhost:80/examplePath"
+                    "url": "http://localhost:80/examplePath",
+                    "code": "TESTIMAGE"
                 }
             },
             "PaymentRedirection": {
                 "title": "Root Type for PaymentRedirection",
                 "description": "Metadata used to redirect the user towards a payment method.",
                 "required": [
-                    "url",
-                    "token"
+                    "url"
                 ],
                 "type": "object",
                 "properties": {
                     "url": {
                         "description": "The url to access the payment service and undergo the transaction process.",
-                        "type": "string"
-                    },
-                    "token": {
-                        "description": "A secret code that the external payment service will use to identify the transaction.",
                         "type": "string"
                     }
                 },
@@ -3176,8 +3244,7 @@
                         "type": "string"
                     },
                     "category": {
-                        "$ref": "#/components/schemas/ProductCategory",
-                        "description": "The category the product is associated to."
+                        "$ref": "#/components/schemas/ProductCategory"
                     },
                     "description": {
                         "description": "A summary of the product qualities",
@@ -3286,8 +3353,7 @@
                 "type": "object",
                 "properties": {
                     "product": {
-                        "$ref": "#/components/schemas/Product",
-                        "description": "The related product."
+                        "$ref": "#/components/schemas/Product"
                     },
                     "units": {
                         "description": "The amount or quantity of the given product.",
@@ -3345,17 +3411,16 @@
                 "type": "object",
                 "properties": {
                     "person": {
-                        "$ref": "#/components/schemas/Person",
-                        "description": "The customer's personal information."
+                        "$ref": "#/components/schemas/Person"
                     }
                 },
                 "example": {
                     "person": {
                         "name": "some text",
-                        "idNumber": "some text",
-                        "email": "some text",
-                        "phone1": "some text",
-                        "phone2": "some text"
+                        "idNumber": "some id number",
+                        "email": "some email",
+                        "phone1": "+11111111",
+                        "phone2": "2222 2222"
                     }
                 }
             },
@@ -3368,8 +3433,7 @@
                 "type": "object",
                 "properties": {
                     "person": {
-                        "$ref": "#/components/schemas/Person",
-                        "description": "The salesperson' personal information."
+                        "$ref": "#/components/schemas/Person"
                     }
                 },
                 "example": {
@@ -3377,8 +3441,8 @@
                         "name": "some text",
                         "idNumber": "some text",
                         "email": "some text",
-                        "phone1": "some text",
-                        "phone2": "some text"
+                        "phone1": "3333 3333",
+                        "phone2": "44 44 44 44"
                     }
                 }
             },
@@ -3392,8 +3456,7 @@
                 "type": "object",
                 "properties": {
                     "product": {
-                        "$ref": "#/components/schemas/Product",
-                        "description": "The product related to this detail."
+                        "$ref": "#/components/schemas/Product"
                     },
                     "units": {
                         "description": "The amount of products in this detail.",
@@ -3435,16 +3498,13 @@
                         "type": "string"
                     },
                     "billingAddress": {
-                        "$ref": "#/components/schemas/Address",
-                        "description": "The address designated to bill."
+                        "$ref": "#/components/schemas/Address"
                     },
                     "shippingAddress": {
-                        "$ref": "#/components/schemas/Address",
-                        "description": "The address designated to ship."
+                        "$ref": "#/components/schemas/Address"
                     },
                     "shipper": {
-                        "$ref": "#/components/schemas/Shipper",
-                        "description": "The shipper that was chosen."
+                        "$ref": "#/components/schemas/Shipper"
                     },
                     "date": {
                         "format": "date-time",
@@ -3456,12 +3516,10 @@
                         "type": "string"
                     },
                     "salesperson": {
-                        "$ref": "#/components/schemas/Salesperson",
-                        "description": "The employee that authorized the sell."
+                        "$ref": "#/components/schemas/Salesperson"
                     },
                     "billingCompany": {
-                        "$ref": "#/components/schemas/BillingCompany",
-                        "description": "The company, if any, that will pay the bill."
+                        "$ref": "#/components/schemas/BillingCompany"
                     },
                     "netValue": {
                         "description": "The total value derived from the products included at the moment of transaction.",
@@ -3476,8 +3534,7 @@
                         "type": "integer"
                     },
                     "customer": {
-                        "$ref": "#/components/schemas/Customer",
-                        "description": "The customer that initiated the transaction."
+                        "$ref": "#/components/schemas/Customer"
                     },
                     "taxValue": {
                         "description": "The amount of income destined to pay taxes.",
@@ -3563,8 +3620,7 @@
                         "type": "string"
                     },
                     "person": {
-                        "$ref": "#/components/schemas/Person",
-                        "description": "The person this user \"is\"."
+                        "$ref": "#/components/schemas/Person"
                     },
                     "role": {
                         "description": "The name of the role this user has.",
@@ -3640,8 +3696,7 @@
                         "type": "string"
                     },
                     "parent": {
-                        "$ref": "#/components/schemas/ProductCategory",
-                        "description": "A category existing one level above the current."
+                        "$ref": "#/components/schemas/ProductCategory"
                     },
                     "code": {
                         "description": "A unique identifier for the category.",
@@ -3797,7 +3852,7 @@
                     }
                 },
                 "example": {
-                    "code": "-1",
+                    "code": 1,
                     "name": "invalid"
                 }
             },
@@ -3857,6 +3912,7 @@
                 },
                 "example": {
                     "name": "example list",
+                    "code": "EXAMPLE001",
                     "items": [
                         {
                             "name": "example product",
