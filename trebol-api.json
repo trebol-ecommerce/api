@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.5.1",
+        "version": "1.5.2",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -4120,5 +4120,32 @@
     },
     "security": [
         {}
+    ],
+    "servers": [
+      {
+        "url": "{protocol}://{host}:{port}{basePath}",
+        "description": "Any server",
+        "variables": {
+          "protocol": {
+            "default": "https",
+            "description": "http or https. https is ideal"
+          },
+          "host": {
+            "default": "localhost",
+            "description": "The fully qualified domain name for the server, e.g. my-app.us-east-1.aws.amazon.com"
+          },
+          "port": {
+            "enum": [
+              "443"
+            ],
+            "default": "443",
+            "description": "The port that the server listens to for incoming requests"
+          },
+          "basePath": {
+            "default": "",
+            "description": "The base path that the API is served to. Must not end with a slash (/)"
+          }
+        }
+      }
     ]
 }
