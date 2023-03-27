@@ -3985,17 +3985,11 @@
             "AllowMethodGET": {
                 "description": "Normal, empty response to some OPTIONS requests. Should include CORS headers and indicate that only the GET method is allowed."
             },
-            "AllowMethodGET-POST": {
-                "description": "Normal, empty response to some OPTIONS requests. Should include CORS headers and indicate that only the GET and POST methods are allowed."
-            },
             "AllowAllMethods": {
                 "description": "Normal, empty response to some OPTIONS requests. Should include CORS headers and indicate that the methods GET, POST PUT and DELETE are allowed."
             },
             "AllowMethodGET-PUT": {
                 "description": "Normal, empty response to some OPTIONS requests. Should include CORS headers and indicate that only the GET and PUT methods are allowed."
-            },
-            "AllowMethodGET-PUT-DELETE": {
-                "description": "Normal, empty response to some OPTIONS requests. Should include CORS headers and indicate that only the GET, PUT and DELETE methods are allowed."
             },
             "BadRequestBody": {
                 "description": "Erroneous response, sent when the request does not meet certain expectations. This probably because required properties were not included in the request body, or because certain data constraints (duplicate code numbers, for example) were not met."
