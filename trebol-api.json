@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.5.3",
+        "version": "1.5.4",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -1474,7 +1474,17 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/MultipleUserRoles"
+                        "description": "Normal response containing a list of user roles.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserRole"
+                                    }
+                                }
+                            }
+                        }
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -1677,7 +1687,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/SingleReceipt"
+                        "description": "Normal response containing a receipt.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Receipt"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "$ref": "#/components/responses/NotFound"
@@ -1728,7 +1745,17 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/MultipleProductCategories"
+                        "description": "Normal response containing a list of product categories.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductCategory"
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -1898,7 +1925,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/SinglePerson"
+                        "description": "Normal response containing a Person object containing data about the user.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Person"
+                                }
+                            }
+                        }
                     },
                     "403": {
                         "$ref": "#/components/responses/Forbidden"
@@ -2122,7 +2156,17 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/MultipleBillingTypes"
+                        "description": "Normal response containing a list of billing types.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BillingType"
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -3839,46 +3883,6 @@
                     "name": "some text"
                 }
             },
-            "SellStatus": {
-                "title": "Root Type for SellStatus",
-                "description": "Representation of a step in the checkout process.",
-                "required": [
-                    "code",
-                    "name"
-                ],
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "description": "Unique identifier. Negative values represent error states, positive values represent steps in the checkout process.",
-                        "type": "integer"
-                    },
-                    "name": {
-                        "description": "The name of the status.",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "code": 1,
-                    "name": "invalid"
-                }
-            },
-            "PaymentType": {
-                "title": "Root Type for PaymentType",
-                "description": "Designates the method that the customer used to pay their bill.",
-                "required": [
-                    "name"
-                ],
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "description": "The name given to this payment type.",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "name": "Enterprise Invoice"
-                }
-            },
             "BillingType": {
                 "title": "Root Type for ProductType",
                 "description": "Dictates taxes to be applied to a given Sell.",
@@ -3995,125 +3999,6 @@
             },
             "BadRequestBody": {
                 "description": "Erroneous response, sent when the request does not meet certain expectations. This probably because required properties were not included in the request body, or because certain data constraints (duplicate code numbers, for example) were not met."
-            },
-            "SingleProduct": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Product"
-                        }
-                    }
-                },
-                "description": "Normal response, sends an object representation of an individual product."
-            },
-            "SingleSell": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Sell"
-                        }
-                    }
-                },
-                "description": "Normal response, sends an object representation of an individual sell."
-            },
-            "SingleReceipt": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Receipt"
-                        }
-                    }
-                },
-                "description": "Normal response, sends an object representation of an individual transaction receipt."
-            },
-            "MultipleProductCategories": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/components/schemas/ProductCategory"
-                            }
-                        }
-                    }
-                },
-                "description": "Normal response, sends an array of product categories."
-            },
-            "MultipleUserRoles": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/components/schemas/UserRole"
-                            }
-                        }
-                    }
-                },
-                "description": "Normal response, sends an array of user roles."
-            },
-            "SingleImage": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Image"
-                        }
-                    }
-                },
-                "description": "Normal response, sends an object representation of an individual image."
-            },
-            "SingleCustomer": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Customer"
-                        }
-                    }
-                },
-                "description": "Normal response, sends an object representation of an individual customer."
-            },
-            "SingleSalesperson": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Salesperson"
-                        }
-                    }
-                },
-                "description": "Normal response, sends an object representation of an individual salesperson."
-            },
-            "SingleUser": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/User"
-                        }
-                    }
-                },
-                "description": "Normal response, sends an object representation of an individual user."
-            },
-            "SinglePerson": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Person"
-                        }
-                    }
-                },
-                "description": "Normal response, sends an object representation of an individual person."
-            },
-            "MultipleBillingTypes": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/components/schemas/BillingType"
-                            }
-                        }
-                    }
-                },
-                "description": "Normal response, sends an array of user roles."
             }
         },
         "securitySchemes": {
