@@ -3746,10 +3746,6 @@
                     "pageSize": 15
                 }
             },
-            "EmptyObject": {
-                "description": "An object without properties.",
-                "type": "object"
-            },
             "Address": {
                 "title": "Root Type for Address",
                 "description": "Information about a physical address.",
