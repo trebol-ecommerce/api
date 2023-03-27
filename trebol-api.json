@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.5.2",
+        "version": "1.5.3",
         "description": "A collection of resources that the Trébol backend exposes to interact with.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -2657,7 +2657,17 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/MultipleProductCategories"
+                        "description": "Normal response containing a list of product lists.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductList"
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
                 "operationId": "data-product-lists-get",
@@ -2669,7 +2679,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/ProductCategory"
+                                "$ref": "#/components/schemas/ProductList"
                             }
                         }
                     },
@@ -2707,7 +2717,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/ProductCategory"
+                                "$ref": "#/components/schemas/ProductList"
                             }
                         }
                     },
