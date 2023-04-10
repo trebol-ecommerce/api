@@ -1,0 +1,13 @@
+
+# worktree files
+gitdir
+commondir
+HEAD
+index
+index.lock
+ORIG_HEAD
+COMMIT_EDITMSG
+logs/
+REBASE_HEAD
+FETCH_HEAD
+rebase-merge/
