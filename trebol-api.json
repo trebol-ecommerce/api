@@ -94,10 +94,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AuthorizedAccessToRoutes"
+                        "$ref": "common.trebol-api.json#/components/responses/AuthorizedAccessToRoutes"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
                     }
                 },
                 "security": [
@@ -115,7 +115,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
+                        "$ref": "common.trebol-api.json#/components/responses/AllowMethodGET"
                     }
                 },
                 "security": [
@@ -135,10 +135,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AuthorizedAccessToResource"
+                        "$ref": "common.trebol-api.json#/components/responses/AuthorizedAccessToResource"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
                     }
                 },
                 "security": [
@@ -156,7 +156,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
+                        "$ref": "common.trebol-api.json#/components/responses/AllowMethodGET"
                     }
                 },
                 "operationId": "access-resource-options",
