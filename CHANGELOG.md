@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.6.0] - 2023-04-10
+
+### Changed
+
+- Created a second API document `common.trebol-api.json` for common components
+  - Moved schemas to this document
+    - `DataPage`
+    - `LoginCredentials`
+    - `UserRegistration`
+    - `AuthorizedAccess`
+    - `Person`
+  - Moved responses to this document
+    - `PaginatedCollection`
+    - `Forbidden`
+    - `AuthorizedAccessToResource`
+    - `AuthorizedAccessToRoutes`
+    - `NotFound`
+    - `Empty`
+    - `AllowMethodPOST`
+    - `AllowMethodGET`
+    - `AllowAllMethods`
+    - `AllowMethodGET-PUT`
+    - `BadRequestBody`
+  - Rewritten References (`$ref`) to load all these components from the second document file if it exists in the same directory
+
 ## [v1.5.4] - 2023-03-27
 
 ### Changed
