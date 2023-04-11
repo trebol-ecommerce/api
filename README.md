@@ -3,7 +3,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-[![GitHub Super-Linter](https://github.com/trebol-ecommerce/api/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![GitHub Super-Linter](https://github.com/trebol-ecommerce/api/.github/workflows/linter.yaml/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 The contract that Trébol as a whole must comply with.
 
