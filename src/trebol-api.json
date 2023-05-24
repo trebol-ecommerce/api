@@ -3205,12 +3205,7 @@
                     "token_ws": "a.token.that.the.payment.method.created.and.recognizes"
                 }
             },
-            "Product": {
-                "title": "Root Type for product",
-                "description": "A physical item or a service that the shop offers to the public.",
-                "required": [
-                    "barcode"
-                ],
+            "ProductProperties": {
                 "type": "object",
                 "properties": {
                     "name": {
@@ -3243,7 +3238,26 @@
                         "description": "A summary of the product qualities",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "ProductRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "name",
+                    "barcode",
+                    "price"
+                ]
+            },
+            "Product": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ProductProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ProductRequiredProperties"
+                    }
+                ],
+                "description": "A physical item or a service that the shop offers to the public.",
                 "example": {
                     "name": "example product",
                     "barcode": "EXMPL00001",
