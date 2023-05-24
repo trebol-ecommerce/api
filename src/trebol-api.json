@@ -3482,15 +3482,7 @@
                     "unitValue": 1000
                 }
             },
-            "Sell": {
-                "title": "Root Type for Sell",
-                "description": "A transaction already requested or yet to be requested.",
-                "required": [
-                    "paymentType",
-                    "details",
-                    "date",
-                    "customer"
-                ],
+            "SellProperties": {
                 "type": "object",
                 "properties": {
                     "details": {
@@ -3563,7 +3555,27 @@
                         "description": "The amount paid for transport.",
                         "type": "number"
                     }
-                },
+                }
+            },
+            "SellRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "paymentType",
+                    "details",
+                    "date",
+                    "customer"
+                ]
+            },
+            "Sell": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SellProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/SellRequiredProperties"
+                    }
+                ],
+                "description": "A transaction already requested or yet to be requested.",
                 "example": {
                     "buyOrder": 1,
                     "details": [
