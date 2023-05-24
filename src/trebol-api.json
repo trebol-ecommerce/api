@@ -3146,14 +3146,7 @@
                     "units": 1
                 }
             },
-            "Image": {
-                "title": "Root Type for Image",
-                "description": "A reference to an image that can be found following a given URL.",
-                "required": [
-                    "filename",
-                    "url",
-                    "code"
-                ],
+            "ImageProperties": {
                 "type": "object",
                 "properties": {
                     "filename": {
@@ -3168,7 +3161,26 @@
                         "description": "Unique identifier of the image. Allows URL-compatible characters only.",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "ImageRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "filename",
+                    "url",
+                    "code"
+                ]
+            },
+            "Image": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ImageProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ImageRequiredProperties"
+                    }
+                ],
+                "description": "A reference to an image that can be found following a given URL.",
                 "example": {
                     "filename": "test.png",
                     "url": "http://localhost:80/examplePath",
