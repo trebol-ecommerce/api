@@ -45,6 +45,9 @@
             "name": "update"
         },
         {
+            "name": "partial-update"
+        },
+        {
             "name": "delete"
         },
         {
@@ -3730,6 +3733,35 @@
                     "notes": "lorem ipsum"
                 }
             },
+            "BillingTypeProperties": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "The name given to this billing type.",
+                        "type": "string"
+                    }
+                }
+            },
+            "BillingTypeRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "BillingType": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/BillingTypeProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/BillingTypeRequiredProperties"
+                    }
+                ],
+                "description": "Dictates taxes to be applied to a given Sell.",
+                "example": {
+                    "name": "Enterprise Invoice"
+                }
+            },
             "BillingCompany": {
                 "title": "Root Type for BillingCompany",
                 "description": "A company or similar organization, enabled to pay taxes.",
@@ -3767,23 +3799,6 @@
                 },
                 "example": {
                     "name": "some text"
-                }
-            },
-            "BillingType": {
-                "title": "Root Type of BillingType",
-                "description": "Dictates taxes to be applied to a given Sell.",
-                "required": [
-                    "name"
-                ],
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "description": "The name given to this billing type.",
-                        "type": "string"
-                    }
-                },
-                "example": {
-                    "name": "Enterprise Invoice"
                 }
             },
             "ProductList": {
