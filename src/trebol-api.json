@@ -3626,12 +3626,7 @@
                     "totalItems": 42
                 }
             },
-            "User": {
-                "title": "Root Type for User",
-                "description": "Identified users of the application",
-                "required": [
-                    "name"
-                ],
+            "UserProperties": {
                 "type": "object",
                 "properties": {
                     "name": {
@@ -3645,7 +3640,24 @@
                         "description": "The name of the role this user has.",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "UserRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "User": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/UserProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/UserRequiredProperties"
+                    }
+                ],
+                "description": "Identified users of the application",
                 "example": {
                     "name": "an username",
                     "person": {
