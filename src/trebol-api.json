@@ -3770,7 +3770,7 @@
                 }
             },
             "BillingType": {
-                "title": "Root Type for ProductType",
+                "title": "Root Type of BillingType",
                 "description": "Dictates taxes to be applied to a given Sell.",
                 "required": [
                     "name"
