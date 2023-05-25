@@ -3834,19 +3834,31 @@
                     "name": "some text"
                 }
             },
-            "Shipper": {
-                "title": "Root Type for Shipper",
-                "description": "External representatives that handle shipping.",
-                "required": [
-                    "name"
-                ],
+            "ShipperProperties": {
                 "type": "object",
                 "properties": {
                     "name": {
                         "description": "The name of the representative.",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "ShipperRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "Shipper": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ShipperProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ShipperRequiredProperties"
+                    }
+                ],
+                "description": "External representatives that handle shipping.",
                 "example": {
                     "name": "some text"
                 }
