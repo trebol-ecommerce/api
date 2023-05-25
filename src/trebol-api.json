@@ -3665,9 +3665,7 @@
                     }
                 }
             },
-            "UserRole": {
-                "title": "Root Type for UserRole",
-                "description": "A user role holds permissions to consume certain APIs.",
+            "UserRoleProperties": {
                 "type": "object",
                 "properties": {
                     "name": {
@@ -3676,7 +3674,24 @@
                     "description": {
                         "type": "string"
                     }
-                },
+                }
+            },
+            "UserRoleRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "UserRole": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/UserRoleProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/UserRoleRequiredProperties"
+                    }
+                ],
+                "description": "A user role holds permissions to consume certain APIs.",
                 "example": {
                     "name": "example role",
                     "description": "this role has access to read most data, excepting users"
