@@ -45,6 +45,9 @@
             "name": "update"
         },
         {
+            "name": "partial-update"
+        },
+        {
             "name": "delete"
         },
         {
@@ -616,6 +619,44 @@
                 "summary": "Insert new products",
                 "description": "POST a new product entity and save it to the data store"
             },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "products"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-products-patch",
+                "summary": "Partially update a product",
+                "description": "PATCH changes to the product matching the provided query parameters."
+            },
             "delete": {
                 "tags": [
                     "delete",
@@ -879,6 +920,44 @@
                 "operationId": "data-sales-post",
                 "summary": "Insert new sales",
                 "description": "POST a new sell entity and save it to the data store."
+            },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SellProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "sales"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-sales-patch",
+                "summary": "Partially update a sell",
+                "description": "PATCH changes into a sell matching the provided query parameters."
             },
             "delete": {
                 "tags": [
@@ -1214,6 +1293,44 @@
                 "summary": "Insert new users",
                 "description": "POST a new user entity and save it to the data store."
             },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "users"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-users-patch",
+                "summary": "Partial update an user",
+                "description": "PATCH changes into the user matching the provided query parameters."
+            },
             "delete": {
                 "tags": [
                     "delete",
@@ -1421,6 +1538,44 @@
                 "operationId": "data-images-post",
                 "summary": "Insert new images",
                 "description": "POST a new image entity and save it to the data store"
+            },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ImageProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "images"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-images-patch",
+                "summary": "Partially update an image",
+                "description": "PATCH changes into the image tahat matches the provided query parameters."
             },
             "delete": {
                 "tags": [
@@ -1837,6 +1992,44 @@
                 "operationId": "data-product-categories-post",
                 "summary": "Insert new product categories",
                 "description": "POST a new product category entity and save it to the data store."
+            },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategoryProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "product-categories"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-product-categories-patch",
+                "summary": "Partially update a product category",
+                "description": "PATCH changes into the product category matching the provided query parameters."
             },
             "delete": {
                 "tags": [
@@ -2560,6 +2753,44 @@
                 "summary": "Insert new shippers",
                 "description": "POST a new shipper entity and save it to the data store."
             },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ShipperProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "shippers"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-shippers-patch",
+                "summary": "Partially update a shipper",
+                "description": "PATCH changes into the shipper matching the provided query parameters."
+            },
             "delete": {
                 "tags": [
                     "delete",
@@ -2790,6 +3021,44 @@
                 "operationId": "data-product-lists-post",
                 "summary": "Insert new product lists",
                 "description": "POST a new product list entity and save it to the data store."
+            },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductListProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-product-lists-patch",
+                "summary": "Partially update a product list",
+                "description": "PATCH changes to the product list matching the provided query parameters."
             },
             "delete": {
                 "tags": [
