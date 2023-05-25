@@ -1,7 +1,7 @@
 {
     "info": {
         "title": "Trébol API Commons",
-        "version": "1.0.0",
+        "version": "1.7.0",
         "description": "A collection of components for reusing in other API documents.",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -139,12 +139,7 @@
                     ]
                 }
             },
-            "Person": {
-                "title": "Root Type for Person",
-                "description": "Personal information about an individual.",
-                "required": [
-                    "idNumber"
-                ],
+            "PersonProperties": {
                 "type": "object",
                 "properties": {
                     "email": {
@@ -173,7 +168,24 @@
                         "description": "The individual's last or family name.",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "PersonRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "idNumber"
+                ]
+            },
+            "Person": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/PersonProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/PersonRequiredProperties"
+                    }
+                ],
+                "description": "Personal information about an individual.",
                 "example": {
                     "firstName": "Isaac Sebastian",
                     "lastName": "Williams McGregor",

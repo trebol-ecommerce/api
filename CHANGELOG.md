@@ -5,7 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [v1.7.0] - 2023-05-24
+
+### Added
+
+- `PATCH` methods, to partially update data
+  - affected endpoints
+    - `/data/products`
+    - `/data/sales`
+    - `/data/users`
+    - `/data/images`
+    - `/data/product_categories`
+    - `/data/shippers`
+    - `/data/product_lists`
+  - all of these are tagged with `partial-update`
 
 ### Fixed
 

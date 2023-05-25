@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.6.1",
+        "version": "1.7.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with. Depends on, and references `Trébol eCommerce API Commons v1.0.0`",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -43,6 +43,9 @@
         },
         {
             "name": "update"
+        },
+        {
+            "name": "partial-update"
         },
         {
             "name": "delete"
@@ -616,6 +619,44 @@
                 "summary": "Insert new products",
                 "description": "POST a new product entity and save it to the data store"
             },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "products"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-products-patch",
+                "summary": "Partially update a product",
+                "description": "PATCH changes to the product matching the provided query parameters."
+            },
             "delete": {
                 "tags": [
                     "delete",
@@ -879,6 +920,44 @@
                 "operationId": "data-sales-post",
                 "summary": "Insert new sales",
                 "description": "POST a new sell entity and save it to the data store."
+            },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SellProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "sales"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-sales-patch",
+                "summary": "Partially update a sell",
+                "description": "PATCH changes into a sell matching the provided query parameters."
             },
             "delete": {
                 "tags": [
@@ -1214,6 +1293,44 @@
                 "summary": "Insert new users",
                 "description": "POST a new user entity and save it to the data store."
             },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "users"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-users-patch",
+                "summary": "Partial update an user",
+                "description": "PATCH changes into the user matching the provided query parameters."
+            },
             "delete": {
                 "tags": [
                     "delete",
@@ -1421,6 +1538,44 @@
                 "operationId": "data-images-post",
                 "summary": "Insert new images",
                 "description": "POST a new image entity and save it to the data store"
+            },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ImageProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "images"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-images-patch",
+                "summary": "Partially update an image",
+                "description": "PATCH changes into the image tahat matches the provided query parameters."
             },
             "delete": {
                 "tags": [
@@ -1837,6 +1992,44 @@
                 "operationId": "data-product-categories-post",
                 "summary": "Insert new product categories",
                 "description": "POST a new product category entity and save it to the data store."
+            },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCategoryProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "product-categories"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-product-categories-patch",
+                "summary": "Partially update a product category",
+                "description": "PATCH changes into the product category matching the provided query parameters."
             },
             "delete": {
                 "tags": [
@@ -2560,6 +2753,44 @@
                 "summary": "Insert new shippers",
                 "description": "POST a new shipper entity and save it to the data store."
             },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ShipperProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "shippers"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-shippers-patch",
+                "summary": "Partially update a shipper",
+                "description": "PATCH changes into the shipper matching the provided query parameters."
+            },
             "delete": {
                 "tags": [
                     "delete",
@@ -2790,6 +3021,44 @@
                 "operationId": "data-product-lists-post",
                 "summary": "Insert new product lists",
                 "description": "POST a new product list entity and save it to the data store."
+            },
+            "patch": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductListProperties"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "partial-update",
+                    "product-lists"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "common.trebol-api.json#/components/responses/Empty"
+                    },
+                    "400": {
+                        "$ref": "common.trebol-api.json#/components/responses/BadRequestBody"
+                    },
+                    "403": {
+                        "$ref": "common.trebol-api.json#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "common.trebol-api.json#/components/responses/NotFound"
+                    }
+                },
+                "security": [
+                    {
+                        "AuthorizedRequest": []
+                    }
+                ],
+                "operationId": "data-product-lists-patch",
+                "summary": "Partially update a product list",
+                "description": "PATCH changes to the product list matching the provided query parameters."
             },
             "delete": {
                 "tags": [
@@ -3143,14 +3412,7 @@
                     "units": 1
                 }
             },
-            "Image": {
-                "title": "Root Type for Image",
-                "description": "A reference to an image that can be found following a given URL.",
-                "required": [
-                    "filename",
-                    "url",
-                    "code"
-                ],
+            "ImageProperties": {
                 "type": "object",
                 "properties": {
                     "filename": {
@@ -3165,7 +3427,26 @@
                         "description": "Unique identifier of the image. Allows URL-compatible characters only.",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "ImageRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "filename",
+                    "url",
+                    "code"
+                ]
+            },
+            "Image": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ImageProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ImageRequiredProperties"
+                    }
+                ],
+                "description": "A reference to an image that can be found following a given URL.",
                 "example": {
                     "filename": "test.png",
                     "url": "http://localhost:80/examplePath",
@@ -3190,12 +3471,7 @@
                     "token_ws": "a.token.that.the.payment.method.created.and.recognizes"
                 }
             },
-            "Product": {
-                "title": "Root Type for product",
-                "description": "A physical item or a service that the shop offers to the public.",
-                "required": [
-                    "barcode"
-                ],
+            "ProductProperties": {
                 "type": "object",
                 "properties": {
                     "name": {
@@ -3228,7 +3504,26 @@
                         "description": "A summary of the product qualities",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "ProductRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "name",
+                    "barcode",
+                    "price"
+                ]
+            },
+            "Product": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ProductProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ProductRequiredProperties"
+                    }
+                ],
+                "description": "A physical item or a service that the shop offers to the public.",
                 "example": {
                     "name": "example product",
                     "barcode": "EXMPL00001",
@@ -3453,15 +3748,7 @@
                     "unitValue": 1000
                 }
             },
-            "Sell": {
-                "title": "Root Type for Sell",
-                "description": "A transaction already requested or yet to be requested.",
-                "required": [
-                    "paymentType",
-                    "details",
-                    "date",
-                    "customer"
-                ],
+            "SellProperties": {
                 "type": "object",
                 "properties": {
                     "details": {
@@ -3534,7 +3821,27 @@
                         "description": "The amount paid for transport.",
                         "type": "number"
                     }
-                },
+                }
+            },
+            "SellRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "paymentType",
+                    "details",
+                    "date",
+                    "customer"
+                ]
+            },
+            "Sell": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SellProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/SellRequiredProperties"
+                    }
+                ],
+                "description": "A transaction already requested or yet to be requested.",
                 "example": {
                     "buyOrder": 1,
                     "details": [
@@ -3585,12 +3892,7 @@
                     "totalItems": 42
                 }
             },
-            "User": {
-                "title": "Root Type for User",
-                "description": "Identified users of the application",
-                "required": [
-                    "name"
-                ],
+            "UserProperties": {
                 "type": "object",
                 "properties": {
                     "name": {
@@ -3604,7 +3906,24 @@
                         "description": "The name of the role this user has.",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "UserRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "User": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/UserProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/UserRequiredProperties"
+                    }
+                ],
+                "description": "Identified users of the application",
                 "example": {
                     "name": "an username",
                     "person": {
@@ -3612,9 +3931,7 @@
                     }
                 }
             },
-            "UserRole": {
-                "title": "Root Type for UserRole",
-                "description": "A user role holds permissions to consume certain APIs.",
+            "UserRoleProperties": {
                 "type": "object",
                 "properties": {
                     "name": {
@@ -3623,7 +3940,24 @@
                     "description": {
                         "type": "string"
                     }
-                },
+                }
+            },
+            "UserRoleRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "UserRole": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/UserRoleProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/UserRoleRequiredProperties"
+                    }
+                ],
+                "description": "A user role holds permissions to consume certain APIs.",
                 "example": {
                     "name": "example role",
                     "description": "this role has access to read most data, excepting users"
@@ -3660,13 +3994,7 @@
                     ]
                 }
             },
-            "ProductCategory": {
-                "title": "Root Type for ProductFamily",
-                "description": "A Product group/category. Each one can be divided into smaller subsets (ProductType).",
-                "required": [
-                    "name",
-                    "code"
-                ],
+            "ProductCategoryProperties": {
                 "type": "object",
                 "properties": {
                     "name": {
@@ -3674,16 +4002,37 @@
                         "type": "string"
                     },
                     "parent": {
-                        "$ref": "#/components/schemas/ProductCategory"
+                        "$ref": "#/components/schemas/ProductCategoryProperties"
                     },
                     "code": {
                         "description": "A unique identifier for the category.",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "ProductCategoryRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "name",
+                    "code"
+                ]
+            },
+            "ProductCategory": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ProductCategoryProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ProductCategoryRequiredProperties"
+                    }
+                ],
+                "description": "A Product group/category. Each one can be divided into smaller subsets (ProductType).",
                 "example": {
-                    "code": 1,
-                    "name": "example category"
+                    "code": 3,
+                    "name": "example category",
+                    "parent": {
+                        "code": 2
+                    }
                 }
             },
             "Address": {
@@ -3752,25 +4101,37 @@
                     "name": "some text"
                 }
             },
-            "Shipper": {
-                "title": "Root Type for Shipper",
-                "description": "External representatives that handle shipping.",
-                "required": [
-                    "name"
-                ],
+            "ShipperProperties": {
                 "type": "object",
                 "properties": {
                     "name": {
                         "description": "The name of the representative.",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "ShipperRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "Shipper": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ShipperProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ShipperRequiredProperties"
+                    }
+                ],
+                "description": "External representatives that handle shipping.",
                 "example": {
                     "name": "some text"
                 }
             },
             "BillingType": {
-                "title": "Root Type for ProductType",
+                "title": "Root Type of BillingType",
                 "description": "Dictates taxes to be applied to a given Sell.",
                 "required": [
                     "name"
@@ -3786,11 +4147,7 @@
                     "name": "Enterprise Invoice"
                 }
             },
-            "ProductList": {
-                "description": "A named, editable collection of items.",
-                "required": [
-                    "code"
-                ],
+            "ProductListProperties": {
                 "type": "object",
                 "properties": {
                     "totalCount": {
@@ -3805,7 +4162,24 @@
                         "description": "Unique code of the list",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "ProductListRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "code"
+                ]
+            },
+            "ProductList": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ProductListProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ProductListRequiredProperties"
+                    }
+                ],
+                "description": "A named, editable collection of items.",
                 "example": {
                     "name": "example list",
                     "code": "EXAMPLE001",
