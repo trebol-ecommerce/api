@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.6.1",
+        "version": "1.7.0",
         "description": "A collection of resources that the Trébol backend exposes to interact with. Depends on, and references `Trébol eCommerce API Commons v1.0.0`",
         "contact": {
             "name": "Benjamin La Madrid",

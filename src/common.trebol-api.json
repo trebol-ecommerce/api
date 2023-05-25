@@ -1,7 +1,7 @@
 {
     "info": {
         "title": "Trébol API Commons",
-        "version": "1.0.0",
+        "version": "1.7.0",
         "description": "A collection of components for reusing in other API documents.",
         "contact": {
             "name": "Benjamin La Madrid",
