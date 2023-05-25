@@ -3728,13 +3728,7 @@
                     ]
                 }
             },
-            "ProductCategory": {
-                "title": "Root Type for ProductFamily",
-                "description": "A Product group/category. Each one can be divided into smaller subsets (ProductType).",
-                "required": [
-                    "name",
-                    "code"
-                ],
+            "ProductCategoryProperties": {
                 "type": "object",
                 "properties": {
                     "name": {
@@ -3742,16 +3736,37 @@
                         "type": "string"
                     },
                     "parent": {
-                        "$ref": "#/components/schemas/ProductCategory"
+                        "$ref": "#/components/schemas/ProductCategoryProperties"
                     },
                     "code": {
                         "description": "A unique identifier for the category.",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "ProductCategoryRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "name",
+                    "code"
+                ]
+            },
+            "ProductCategory": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ProductCategoryProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ProductCategoryRequiredProperties"
+                    }
+                ],
+                "description": "A Product group/category. Each one can be divided into smaller subsets (ProductType).",
                 "example": {
-                    "code": 1,
-                    "name": "example category"
+                    "code": 3,
+                    "name": "example category",
+                    "parent": {
+                        "code": 2
+                    }
                 }
             },
             "Address": {
