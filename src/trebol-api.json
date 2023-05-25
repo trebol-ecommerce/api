@@ -3893,11 +3893,7 @@
                     "name": "some text"
                 }
             },
-            "ProductList": {
-                "description": "A named, editable collection of items.",
-                "required": [
-                    "code"
-                ],
+            "ProductListProperties": {
                 "type": "object",
                 "properties": {
                     "totalCount": {
@@ -3912,7 +3908,24 @@
                         "description": "Unique code of the list",
                         "type": "string"
                     }
-                },
+                }
+            },
+            "ProductListRequiredProperties": {
+                "type": "object",
+                "required": [
+                    "code"
+                ]
+            },
+            "ProductList": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ProductListProperties"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ProductListRequiredProperties"
+                    }
+                ],
+                "description": "A named, editable collection of items.",
                 "example": {
                     "name": "example list",
                     "code": "EXAMPLE001",
