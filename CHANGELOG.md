@@ -32,6 +32,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `/data/product_lists`
   - all of these are tagged with `partial-update`
 
+### Changed
+
+- To support `PATCH` methods, each and every CRUD-related schema was split into three:
+  - One schema only has the `properties` array from the original one, and is added the suffix `-Properties`
+  - Another, with the `required` array, and is added the suffix `-RequiredProperties`
+  - The last one extends from both the others, plus includes the rest of the metaproperties `name`, `description`, `example`, and retains the original name
+  - This way, each `PATCH` method only needs a `-Properties` schema, and each `PUT`/`POST` still makes use of the original schema.
+
 ### Fixed
 
 - SuperLinter badge url
