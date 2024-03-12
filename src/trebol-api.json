@@ -4082,20 +4082,14 @@
                     }
                 }
             },
-            "UserRoleRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "name"
-                ]
-            },
             "UserRole": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/UserRoleProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/UserRoleRequiredProperties"
                     }
+                ],
+                "required": [
+                    "name"
                 ],
                 "description": "A user role holds permissions to consume certain APIs.",
                 "example": {
