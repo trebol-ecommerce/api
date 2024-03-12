@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- The following schemas were merged into their original ones
+  - `ProductRequiredProperties` -> `Product`
+  - `SellRequiredProperties` -> `Sell`
+  - `UserRequiredProperties` -> `User`
+  - `UserRoleRequiredProperties` -> `UserRole`
+  - `ImageRequiredProperties` -> `Image`
+  - `PersonRequiredProperties` -> `Person`
+  - `ProductCategoryRequiredProperties` -> `ProductCategory`
+  - `ProductListRequiredProperties` -> `ProductList`
+  - `ShipperRequiredProperties` -> `Shipper`
+
 ## [v1.7.2] - 2023-05-26
 
 ### Fixed
@@ -34,10 +49,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- To support `PATCH` methods, each and every CRUD-related schema was split into three:
+- To support `PATCH` methods, each and every CRUD-related schema was split into three
   - One schema only has the `properties` array from the original one, and is added the suffix `-Properties`
   - Another, with the `required` array, and is added the suffix `-RequiredProperties`
   - The last one extends from both the others, plus includes the rest of the metaproperties `name`, `description`, `example`, and retains the original name
+  - All of this is true for these following schemas, resulting in the following new ones:
+    - `Product` -> `ProductProperties` & `ProductRequiredProperties`
+    - `Sell` -> `SellProperties` & `SellRequiredProperties`
+    - `User` -> `UserProperties` & `UserRequiredProperties`
+    - `Image` -> `ImageProperties` & `ImageRequiredProperties`
+    - `ProductCategory` -> `ProductCategoryProperties` & `ProductCategoryRequiredProperties`
+    - `Shipper` -> `ShipperProperties` & `ShipperRequiredProperties`
+    - `ProductList` -> `ProductListProperties` & `ProductListRequiredProperties`
   - This way, each `PATCH` method only needs a `-Properties` schema, and each `PUT`/`POST` still makes use of the original schema.
 
 ### Fixed
