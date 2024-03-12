@@ -3519,20 +3519,17 @@
                     }
                 }
             },
-            "PersonRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "idNumber"
-                ]
-            },
             "Person": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/PersonProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/PersonRequiredProperties"
                     }
+                ],
+                "required": [
+                    "idNumber",
+                    "firstName",
+                    "lastName",
+                    "email"
                 ],
                 "description": "Personal information about an individual.",
                 "example": {
