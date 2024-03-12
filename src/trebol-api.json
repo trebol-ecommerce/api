@@ -4198,20 +4198,14 @@
                     }
                 }
             },
-            "ShipperRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "name"
-                ]
-            },
             "Shipper": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/ShipperProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/ShipperRequiredProperties"
                     }
+                ],
+                "required": [
+                    "name"
                 ],
                 "description": "External representatives that handle shipping.",
                 "example": {
