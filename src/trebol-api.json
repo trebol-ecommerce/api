@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "1.7.2",
+        "version": "1.7.3",
         "description": "A collection of resources that the Trébol backend exposes to interact with. Depends on, and references `Trébol eCommerce API Commons v1.0.0`",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -3519,20 +3519,17 @@
                     }
                 }
             },
-            "PersonRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "idNumber"
-                ]
-            },
             "Person": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/PersonProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/PersonRequiredProperties"
                     }
+                ],
+                "required": [
+                    "idNumber",
+                    "firstName",
+                    "lastName",
+                    "email"
                 ],
                 "description": "Personal information about an individual.",
                 "example": {
@@ -3587,22 +3584,16 @@
                     }
                 }
             },
-            "ImageRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "filename",
-                    "url",
-                    "code"
-                ]
-            },
             "Image": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/ImageProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/ImageRequiredProperties"
                     }
+                ],
+                "required": [
+                    "filename",
+                    "url",
+                    "code"
                 ],
                 "description": "A reference to an image that can be found following a given URL.",
                 "example": {
@@ -3664,22 +3655,16 @@
                     }
                 }
             },
-            "ProductRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "name",
-                    "barcode",
-                    "price"
-                ]
-            },
             "Product": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/ProductProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/ProductRequiredProperties"
                     }
+                ],
+                "required": [
+                    "name",
+                    "barcode",
+                    "price"
                 ],
                 "description": "A physical item or a service that the shop offers to the public.",
                 "example": {
@@ -3981,23 +3966,17 @@
                     }
                 }
             },
-            "SellRequiredProperties": {
-                "type": "object",
+            "Sell": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SellProperties"
+                    }
+                ],
                 "required": [
                     "paymentType",
                     "details",
                     "date",
                     "customer"
-                ]
-            },
-            "Sell": {
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/SellProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/SellRequiredProperties"
-                    }
                 ],
                 "description": "A transaction already requested or yet to be requested.",
                 "example": {
@@ -4066,20 +4045,14 @@
                     }
                 }
             },
-            "UserRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "name"
-                ]
-            },
             "User": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/UserProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/UserRequiredProperties"
                     }
+                ],
+                "required": [
+                    "name"
                 ],
                 "description": "Identified users of the application",
                 "example": {
@@ -4100,20 +4073,14 @@
                     }
                 }
             },
-            "UserRoleRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "name"
-                ]
-            },
             "UserRole": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/UserRoleProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/UserRoleRequiredProperties"
                     }
+                ],
+                "required": [
+                    "name"
                 ],
                 "description": "A user role holds permissions to consume certain APIs.",
                 "example": {
@@ -4137,21 +4104,15 @@
                     }
                 }
             },
-            "ProductCategoryRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "name",
-                    "code"
-                ]
-            },
             "ProductCategory": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/ProductCategoryProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/ProductCategoryRequiredProperties"
                     }
+                ],
+                "required": [
+                    "name",
+                    "code"
                 ],
                 "description": "A Product group/category. Each one can be divided into smaller subsets (ProductType).",
                 "example": {
@@ -4237,20 +4198,14 @@
                     }
                 }
             },
-            "ShipperRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "name"
-                ]
-            },
             "Shipper": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/ShipperProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/ShipperRequiredProperties"
                     }
+                ],
+                "required": [
+                    "name"
                 ],
                 "description": "External representatives that handle shipping.",
                 "example": {
@@ -4291,20 +4246,14 @@
                     }
                 }
             },
-            "ProductListRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "code"
-                ]
-            },
             "ProductList": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/ProductListProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/ProductListRequiredProperties"
                     }
+                ],
+                "required": [
+                    "code"
                 ],
                 "description": "A named, editable collection of items.",
                 "example": {
