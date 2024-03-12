@@ -3975,23 +3975,17 @@
                     }
                 }
             },
-            "SellRequiredProperties": {
-                "type": "object",
+            "Sell": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/SellProperties"
+                    }
+                ],
                 "required": [
                     "paymentType",
                     "details",
                     "date",
                     "customer"
-                ]
-            },
-            "Sell": {
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/SellProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/SellRequiredProperties"
-                    }
                 ],
                 "description": "A transaction already requested or yet to be requested.",
                 "example": {
