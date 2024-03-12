@@ -9,8 +9,13 @@ The contract that Trébol as a whole must comply with.
 
 ## Documentation
 
-- [Most recent release](https://studio-ws.apicur.io/sharing/b0bc9a13-4e93-4be2-8636-108986e75ce4)
-- [Unreleased changes](https://studio-ws.apicur.io/sharing/817cd752-6043-4a6e-a230-ac0d70d07a43) (quality may be inconsistent)
+Run this command in your terminal at the project root directory:
+
+```bash
+mkdir docs/ && npx @redocly/cli build-docs src/trebol-api.json --output=docs/index.html
+```
+
+Then browse the generated `docs/index.html` file. [Read more about Redoc here](https://github.com/Redocly/redoc).
 
 ## Specification
 
