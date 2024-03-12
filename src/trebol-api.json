@@ -4252,20 +4252,14 @@
                     }
                 }
             },
-            "ProductListRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "code"
-                ]
-            },
             "ProductList": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/ProductListProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/ProductListRequiredProperties"
                     }
+                ],
+                "required": [
+                    "code"
                 ],
                 "description": "A named, editable collection of items.",
                 "example": {
