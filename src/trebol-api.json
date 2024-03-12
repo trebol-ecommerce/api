@@ -3587,22 +3587,16 @@
                     }
                 }
             },
-            "ImageRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "filename",
-                    "url",
-                    "code"
-                ]
-            },
             "Image": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/ImageProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/ImageRequiredProperties"
                     }
+                ],
+                "required": [
+                    "filename",
+                    "url",
+                    "code"
                 ],
                 "description": "A reference to an image that can be found following a given URL.",
                 "example": {
