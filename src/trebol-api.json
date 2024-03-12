@@ -3664,22 +3664,16 @@
                     }
                 }
             },
-            "ProductRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "name",
-                    "barcode",
-                    "price"
-                ]
-            },
             "Product": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/ProductProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/ProductRequiredProperties"
                     }
+                ],
+                "required": [
+                    "name",
+                    "barcode",
+                    "price"
                 ],
                 "description": "A physical item or a service that the shop offers to the public.",
                 "example": {
