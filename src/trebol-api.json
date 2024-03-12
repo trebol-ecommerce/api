@@ -4054,20 +4054,14 @@
                     }
                 }
             },
-            "UserRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "name"
-                ]
-            },
             "User": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/UserProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/UserRequiredProperties"
                     }
+                ],
+                "required": [
+                    "name"
                 ],
                 "description": "Identified users of the application",
                 "example": {
