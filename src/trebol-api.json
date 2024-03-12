@@ -4104,21 +4104,15 @@
                     }
                 }
             },
-            "ProductCategoryRequiredProperties": {
-                "type": "object",
-                "required": [
-                    "name",
-                    "code"
-                ]
-            },
             "ProductCategory": {
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/ProductCategoryProperties"
-                    },
-                    {
-                        "$ref": "#/components/schemas/ProductCategoryRequiredProperties"
                     }
+                ],
+                "required": [
+                    "name",
+                    "code"
                 ],
                 "description": "A Product group/category. Each one can be divided into smaller subsets (ProductType).",
                 "example": {
