@@ -4,16 +4,11 @@ on:
     branches: [main]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-permissions:
-  contents: read
-  pages: write
-  id-token: write
 jobs:
-  generate_deploy_documentation:
+  generate_documentation:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -21,16 +16,24 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.5
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Install redocly and generate the static site
+      - name: Generate the static site
         run: |
           mkdir docs/
           npx @redocly/cli build-docs src/trebol-api.json --output=docs/index.html
-      - name: Upload artifact
+      - name: Upload static site as artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'docs/'
-      - name: Deploy to GitHub Pages
+  deploy_documentation:
+    needs: generate_documentation
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy artifact to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
