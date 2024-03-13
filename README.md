@@ -6,10 +6,4 @@ The contract that Trébol as a whole must comply with.
 
 ## Documentation
 
-Run this command in your terminal at the project root directory:
-
-```bash
-mkdir docs/ && npx @redocly/cli build-docs src/trebol-api.json --output=docs/index.html
-```
-
-Then browse the generated `docs/index.html` file. [Read more about Redoc here](https://github.com/Redocly/redoc).
+Thanks to GitHub Actions and [Redoc](https://github.com/Redocly/redoc), you can explore the latest version of this API through [a modern website deployed in GitHub Pages](https://trebol-ecommerce.github.io/api/).
