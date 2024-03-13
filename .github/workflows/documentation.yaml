@@ -20,9 +20,8 @@ jobs:
         uses: actions/configure-pages@v4
       - name: Install redocly and generate the static site
         run: |
-          npm i -g @redocly/cli
           mkdir docs/
-          redocly build-docs src/trebol-api.json --output=docs/index.html
+          npx @redocly/cli build-docs src/trebol-api.json --output=docs/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
