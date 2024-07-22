@@ -72,7 +72,7 @@
             "name": "people"
         },
         {
-            "name": "sales"
+            "name": "orders"
         },
         {
             "name": "salespeople"
@@ -746,18 +746,18 @@
                 }
             ]
         },
-        "/data/sales": {
-            "summary": "Sell data API endpoint",
-            "description": "Operations to fetch, create, edit and remove sales and their metadata.",
+        "/data/orders": {
+            "summary": "Order data API endpoint",
+            "description": "Operations to fetch, create, edit and remove orders and their metadata.",
             "get": {
                 "tags": [
                     "read-many",
-                    "sales"
+                    "orders"
                 ],
                 "parameters": [
                     {
                         "name": "pageSize",
-                        "description": "Number of sales per page",
+                        "description": "Number of orders per page",
                         "schema": {
                             "type": "integer"
                         },
@@ -773,7 +773,7 @@
                     },
                     {
                         "name": "sortBy",
-                        "description": "Sell property to sort by",
+                        "description": "Order property to sort by",
                         "schema": {
                             "type": "string"
                         },
@@ -789,7 +789,7 @@
                             }
                         },
                         "name": "order",
-                        "description": "Sell sort order (ascending or descending)",
+                        "description": "Sort order direction (ascending or descending)",
                         "schema": {
                             "type": "string"
                         },
@@ -844,16 +844,16 @@
                         "AuthorizedRequest": []
                     }
                 ],
-                "operationId": "data-sales-get",
-                "summary": "List sales",
-                "description": "GET a paged collection of sales."
+                "operationId": "data-orders-get",
+                "summary": "List orders",
+                "description": "GET a paged collection of orders."
             },
             "put": {
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Sell"
+                                "$ref": "#/components/schemas/Order"
                             }
                         }
                     },
@@ -861,7 +861,7 @@
                 },
                 "tags": [
                     "update",
-                    "sales"
+                    "orders"
                 ],
                 "responses": {
                     "200": {
@@ -882,16 +882,16 @@
                         "AuthorizedRequest": []
                     }
                 ],
-                "operationId": "data-sales-put",
-                "summary": "Update sales",
-                "description": "PUT changes to all sales matching the provided query parameters."
+                "operationId": "data-orders-put",
+                "summary": "Update orders",
+                "description": "PUT changes to all orders matching the provided query parameters."
             },
             "post": {
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Sell"
+                                "$ref": "#/components/schemas/Order"
                             }
                         }
                     },
@@ -899,7 +899,7 @@
                 },
                 "tags": [
                     "create",
-                    "sales"
+                    "orders"
                 ],
                 "responses": {
                     "200": {
@@ -917,16 +917,16 @@
                         "AuthorizedRequest": []
                     }
                 ],
-                "operationId": "data-sales-post",
-                "summary": "Insert new sales",
-                "description": "POST a new sell entity and save it to the data store."
+                "operationId": "data-orders-post",
+                "summary": "Insert new orders",
+                "description": "POST a new order entity and save it to the data store."
             },
             "patch": {
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/SellProperties"
+                                "$ref": "#/components/schemas/OrderProperties"
                             }
                         }
                     },
@@ -934,7 +934,7 @@
                 },
                 "tags": [
                     "partial-update",
-                    "sales"
+                    "orders"
                 ],
                 "responses": {
                     "200": {
@@ -955,14 +955,14 @@
                         "AuthorizedRequest": []
                     }
                 ],
-                "operationId": "data-sales-patch",
-                "summary": "Partially update a sell",
-                "description": "PATCH changes into a sell matching the provided query parameters."
+                "operationId": "data-orders-patch",
+                "summary": "Partially update an order",
+                "description": "PATCH changes into an order matching the provided query parameters."
             },
             "delete": {
                 "tags": [
                     "delete",
-                    "sales"
+                    "orders"
                 ],
                 "responses": {
                     "200": {
@@ -980,9 +980,9 @@
                         "AuthorizedRequest": []
                     }
                 ],
-                "operationId": "data-sales-delete",
-                "summary": "Delete sales",
-                "description": "DELETE sales matching the provided query parameters, from the data store."
+                "operationId": "data-orders-delete",
+                "summary": "Delete orders",
+                "description": "DELETE orders matching the provided query parameters, from the data store."
             },
             "options": {
                 "tags": [
@@ -993,14 +993,14 @@
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
-                "operationId": "data-sales-options",
-                "summary": "Preflight check for non-specific sell API",
+                "operationId": "data-orders-options",
+                "summary": "Preflight check for non-specific order API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             },
             "parameters": [
                 {
                     "name": "buyOrder",
-                    "description": "The unique number associated to a sell.",
+                    "description": "The unique number associated to an order.",
                     "schema": {
                         "type": "integer"
                     },
@@ -1008,22 +1008,22 @@
                 }
             ]
         },
-        "/data/sales/confirmation": {
-            "summary": "Sell confirmation API endpoint",
-            "description": "Operation to mark sales/orders as confirmed.",
+        "/data/orders/confirmation": {
+            "summary": "Order confirmation API endpoint",
+            "description": "Operation to mark orders as confirmed.",
             "post": {
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Sell"
+                                "$ref": "#/components/schemas/Order"
                             }
                         }
                     },
                     "required": true
                 },
                 "tags": [
-                    "sales"
+                    "orders"
                 ],
                 "responses": {
                     "200": {
@@ -1038,8 +1038,8 @@
                         "AuthorizedRequest": []
                     }
                 ],
-                "operationId": "data-sales-confirmation-post",
-                "summary": "Confirm sales",
+                "operationId": "data-orders-confirmation-post",
+                "summary": "Confirm orders",
                 "description": "POST confirmation of a given order"
             },
             "options": {
@@ -1051,27 +1051,27 @@
                         "$ref": "#/components/responses/AllowMethodPOST"
                     }
                 },
-                "operationId": "data-sales-confirmation-options",
-                "summary": "Preflight check for sell confirmation API",
+                "operationId": "data-orders-confirmation-options",
+                "summary": "Preflight check for Order confirmation API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/sales/rejection": {
-            "summary": "Sell rejection API endpoint",
-            "description": "Operation to mark sales/orders as rejected.",
+        "/data/orders/rejection": {
+            "summary": "Order rejection API endpoint",
+            "description": "Operation to mark orders as rejected.",
             "post": {
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Sell"
+                                "$ref": "#/components/schemas/Order"
                             }
                         }
                     },
                     "required": true
                 },
                 "tags": [
-                    "sales"
+                    "orders"
                 ],
                 "responses": {
                     "200": {
@@ -1086,8 +1086,8 @@
                         "AuthorizedRequest": []
                     }
                 ],
-                "operationId": "data-sales-rejection-post",
-                "summary": "Reject sales",
+                "operationId": "data-orders-rejection-post",
+                "summary": "Reject orders",
                 "description": "POST rejection of a given order"
             },
             "options": {
@@ -1099,27 +1099,27 @@
                         "$ref": "#/components/responses/AllowMethodPOST"
                     }
                 },
-                "operationId": "data-sales-rejection-options",
-                "summary": "Preflight check for sell rejection API",
+                "operationId": "data-orders-rejection-options",
+                "summary": "Preflight check for Order rejection API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/sales/completion": {
-            "summary": "Sell completion API endpoint",
-            "description": "Operation to mark sales/orders as completed/delivered.",
+        "/data/orders/completion": {
+            "summary": "Order completion API endpoint",
+            "description": "Operation to mark orders as fulfilled/delivered.",
             "post": {
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Sell"
+                                "$ref": "#/components/schemas/Order"
                             }
                         }
                     },
                     "required": true
                 },
                 "tags": [
-                    "sales"
+                    "orders"
                 ],
                 "responses": {
                     "200": {
@@ -1134,8 +1134,8 @@
                         "AuthorizedRequest": []
                     }
                 ],
-                "operationId": "data-sales-completion-post",
-                "summary": "Finish completed sales",
+                "operationId": "data-orders-completion-post",
+                "summary": "Finish completed orders",
                 "description": "POST completion of a given order"
             },
             "options": {
@@ -1147,8 +1147,8 @@
                         "$ref": "#/components/responses/AllowMethodPOST"
                     }
                 },
-                "operationId": "data-sales-completion-options",
-                "summary": "Preflight check for sell completion API",
+                "operationId": "data-orders-completion-options",
+                "summary": "Preflight check for Order completion API",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
@@ -3482,7 +3482,7 @@
                         "clients",
                         "products",
                         "people",
-                        "sales",
+                        "orders",
                         "salespeople",
                         "users"
                     ]
@@ -3862,9 +3862,9 @@
                     }
                 }
             },
-            "SellDetail": {
-                "title": "Root Type for SellDetail",
-                "description": "Representation of data about a single product within a single sell.",
+            "OrderDetail": {
+                "title": "Root Type for OrderDetail",
+                "description": "Representation of data about a single product within a single order.",
                 "required": [
                     "product",
                     "units"
@@ -3891,18 +3891,18 @@
                     "unitValue": 1000
                 }
             },
-            "SellProperties": {
+            "OrderProperties": {
                 "type": "object",
                 "properties": {
                     "details": {
                         "description": "A list that provides full information about the acquired products or services.",
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/SellDetail"
+                            "$ref": "#/components/schemas/OrderDetail"
                         }
                     },
                     "billingType": {
-                        "description": "The name of the chosen method for generating a bill of the sell.",
+                        "description": "The name of the chosen method for generating a bill of the order.",
                         "type": "string"
                     },
                     "billingAddress": {
@@ -3966,10 +3966,10 @@
                     }
                 }
             },
-            "Sell": {
+            "Order": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/SellProperties"
+                        "$ref": "#/components/schemas/OrderProperties"
                     }
                 ],
                 "required": [
@@ -4214,7 +4214,7 @@
             },
             "BillingType": {
                 "title": "Root Type of BillingType",
-                "description": "Dictates taxes to be applied to a given Sell.",
+                "description": "Dictates taxes to be applied to a given Order.",
                 "required": [
                     "name"
                 ],
