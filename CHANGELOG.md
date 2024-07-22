@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [BREAKING CHANGE] In newly-named `Order`, `Customer` and `Salesperson` now reference a `Person` element instead
 - [BREAKING CHANGE] Rename all instances of `Sell` to `Order`
   - Tag `sales` -> `orders`
   - Endpoint `/data/sales` -> `/data/orders`
@@ -23,6 +24,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `SellDetail` -> `OrderDetail`
     - `SellDetailProperties` -> `OrderDetailProperties`
   - All uses of the noun in literal descriptions
+
+### Removed
+
+- [BREAKING CHANGE] Elements that constitute the concepts of `Customer` and `Salesperson`
+  - Endpoints `/data/customers` and `/data/salespeople`
+  - Schemas `Customer` and `Salesperson`
+  - Tags `customers` and `salespeople`
 
 ## [v1.7.3] - 2024-03-11
 
