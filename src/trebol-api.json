@@ -54,9 +54,6 @@
             "name": "billing-types"
         },
         {
-            "name": "customers"
-        },
-        {
             "name": "images"
         },
         {
@@ -73,9 +70,6 @@
         },
         {
             "name": "orders"
-        },
-        {
-            "name": "salespeople"
         },
         {
             "name": "shippers"
@@ -174,235 +168,6 @@
                     "schema": {
                         "type": "string"
                     }
-                }
-            ]
-        },
-        "/data/customers": {
-            "summary": "Customer data API endpoint",
-            "description": "Operations to fetch, create, edit and remove customers and their metadata.",
-            "get": {
-                "tags": [
-                    "read-many",
-                    "customers"
-                ],
-                "parameters": [
-                    {
-                        "name": "pageSize",
-                        "description": "Number of customers per page",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "name": "pageIndex",
-                        "description": "Index of page (0-based)",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "name": "sortBy",
-                        "description": "Customer property to sort by",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "examples": {
-                            "Ascending order": {
-                                "value": "\"asc\""
-                            },
-                            "Descending order": {
-                                "value": "\"desc\""
-                            }
-                        },
-                        "name": "order",
-                        "description": "Sort order (ascending or descending)",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/PaginatedCollection"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "data-customers-get",
-                "summary": "List customers",
-                "description": "GET a paged collection of customers."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Customer"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "update",
-                    "customers"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "data-customers-put",
-                "summary": "Update customers",
-                "description": "PUT changes to all customers matching the provided query parameters."
-            },
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Customer"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "create",
-                    "customers"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "data-customers-post",
-                "summary": "Insert new customers",
-                "description": "POST new customer entities and save them to the data store."
-            },
-            "delete": {
-                "tags": [
-                    "delete",
-                    "customers"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "data-customers-delete",
-                "summary": "Delete customers",
-                "description": "DELETE customers matching the provided query parameters, from the data store."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowAllMethods"
-                    }
-                },
-                "operationId": "data-customers-options",
-                "summary": "Preflight check for non-specific customer API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "idNumber",
-                    "description": "The unique identifying number of the customer. Case sensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "name",
-                    "description": "The exact name of the customer. Case sensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "idNumberLike",
-                    "description": "A portion of the customer's identifying number. Case insensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "nameLike",
-                    "description": "A portion of the customer's name. Case insensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "email",
-                    "description": "The exact email address of the customer. Case sensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "emailLike",
-                    "description": "A portion of the customer's email address. Case insensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
                 }
             ]
         },
@@ -2386,238 +2151,6 @@
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },
-        "/data/salespeople": {
-            "summary": "Salesperson data API endpoint",
-            "description": "Operations to fetch, create, edit and remove salespeople and their metadata.",
-            "get": {
-                "tags": [
-                    "read-many",
-                    "salespeople"
-                ],
-                "parameters": [
-                    {
-                        "name": "pageSize",
-                        "description": "Number of salespeople per page",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "name": "pageIndex",
-                        "description": "Index of page (0-based)",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "name": "sortBy",
-                        "description": "Salesperson property to sort by",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query"
-                    },
-                    {
-                        "examples": {
-                            "Ascending order": {
-                                "value": "\"asc\""
-                            },
-                            "Descending order": {
-                                "value": "\"desc\""
-                            }
-                        },
-                        "name": "order",
-                        "description": "Salesperson sort order (ascending or descending)",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/PaginatedCollection"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "data-salespeople-get",
-                "summary": "List salespeople",
-                "description": "GET a paged collection of salespeople."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Salesperson"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "update",
-                    "salespeople"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "data-salespeople-put",
-                "summary": "Update salespeople",
-                "description": "PUT changes to all salespeople matching the provided query parameters."
-            },
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Salesperson"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "create",
-                    "salespeople"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "data-salespeople-post",
-                "summary": "Insert new salespeople",
-                "description": "POST a new salesperson entity and save it to the data store."
-            },
-            "delete": {
-                "tags": [
-                    "delete",
-                    "salespeople"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Forbidden"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/NotFound"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "data-salespeople-delete",
-                "summary": "Delete salespeople",
-                "description": "DELETE salespeople matching the provided query parameters, from the data store."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowAllMethods"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "data-salespeople-options",
-                "summary": "Preflight check for non-specific salesperson API",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "idNumber",
-                    "description": "The unique identifying number of the salesperson. Case sensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "name",
-                    "description": "The exact name of the salesperson. Case sensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "idNumberLike",
-                    "description": "A portion of the salesperson's identifying number. Case insensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "nameLike",
-                    "description": "A portion of the salesperson's name. Case insensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "email",
-                    "description": "The exact email address of the salesperson. Case sensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "emailLike",
-                    "description": "A portion of the salesperson's email address. Case insensitive.",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                }
-            ]
-        },
         "/data/shippers": {
             "summary": "User data API endpoint",
             "description": "Operations to fetch, create, edit and remove users and their metadata.",
@@ -3818,50 +3351,6 @@
                     "logoImageURL": "https://example.com/logo.jpg"
                 }
             },
-            "Customer": {
-                "title": "Root Type for Customer",
-                "description": "Store customers. They directly relate to Person's in a one-to-one relationship.",
-                "required": [
-                    "person"
-                ],
-                "type": "object",
-                "properties": {
-                    "person": {
-                        "$ref": "#/components/schemas/Person"
-                    }
-                },
-                "example": {
-                    "person": {
-                        "name": "some text",
-                        "idNumber": "some id number",
-                        "email": "some email",
-                        "phone1": "+11111111",
-                        "phone2": "2222 2222"
-                    }
-                }
-            },
-            "Salesperson": {
-                "title": "Root Type for Salesperson",
-                "description": "Store vendors/workers. Like Customers, they relate to Person's in a one-to-one relationship they could, but should not collide.",
-                "required": [
-                    "person"
-                ],
-                "type": "object",
-                "properties": {
-                    "person": {
-                        "$ref": "#/components/schemas/Person"
-                    }
-                },
-                "example": {
-                    "person": {
-                        "name": "some text",
-                        "idNumber": "some text",
-                        "email": "some text",
-                        "phone1": "3333 3333",
-                        "phone2": "44 44 44 44"
-                    }
-                }
-            },
             "OrderDetail": {
                 "title": "Root Type for OrderDetail",
                 "description": "Representation of data about a single product within a single order.",
@@ -3924,7 +3413,7 @@
                         "type": "string"
                     },
                     "salesperson": {
-                        "$ref": "#/components/schemas/Salesperson"
+                        "$ref": "#/components/schemas/Person"
                     },
                     "billingCompany": {
                         "$ref": "#/components/schemas/BillingCompany"
@@ -3942,7 +3431,7 @@
                         "type": "integer"
                     },
                     "customer": {
-                        "$ref": "#/components/schemas/Customer"
+                        "$ref": "#/components/schemas/Person"
                     },
                     "taxValue": {
                         "description": "The amount of income destined to pay taxes.",
@@ -4016,10 +3505,11 @@
                     "status": "Pending",
                     "date": "2018-02-10T09:30Z",
                     "paymentType": "some payment method",
+                    "customer": {
+                        "idNumber": "some text"
+                    },
                     "salesperson": {
-                        "person": {
-                            "idNumber": "some text"
-                        }
+                        "idNumber": "some text"
                     },
                     "token": "ANSDg900viery9e",
                     "netValue": 549.99,
