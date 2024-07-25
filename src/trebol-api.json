@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Trébol eCommerce API",
-        "version": "2.0.1",
+        "version": "2.0.2",
         "description": "A collection of resources that the Trébol backend exposes to interact with. Depends on, and references `Trébol eCommerce API Commons v1.0.0`",
         "contact": {
             "name": "Benjamin La Madrid",
@@ -94,7 +94,7 @@
                         "$ref": "#/components/responses/AuthorizedAccessToRoutes"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -135,7 +135,7 @@
                         "$ref": "#/components/responses/AuthorizedAccessToResource"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -226,7 +226,7 @@
                         "$ref": "#/components/responses/PaginatedCollection"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -331,13 +331,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -369,10 +369,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -404,13 +404,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -432,10 +432,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -601,7 +601,7 @@
                         "$ref": "#/components/responses/PaginatedCollection"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -633,13 +633,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -671,10 +671,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -706,13 +706,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -734,10 +734,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -795,7 +795,7 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -843,7 +843,7 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -891,7 +891,7 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -973,7 +973,7 @@
                         "$ref": "#/components/responses/PaginatedCollection"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1005,13 +1005,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1043,10 +1043,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1078,13 +1078,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1106,10 +1106,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1219,7 +1219,7 @@
                         "$ref": "#/components/responses/PaginatedCollection"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1251,13 +1251,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1289,10 +1289,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1324,13 +1324,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1352,10 +1352,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1407,7 +1407,7 @@
                         }
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1526,10 +1526,10 @@
                         "description": "Normal response. The transaction was acknowledged and initiated. Details to redirect towards the payment page are included."
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1569,10 +1569,10 @@
                         "description": "Normal, empty response, sent when the transaction was approved. Redirects the user.\n\n'Location' response header should be included with a URL to the result page."
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1617,7 +1617,7 @@
                         }
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1705,13 +1705,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1743,10 +1743,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1778,13 +1778,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1806,10 +1806,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1893,7 +1893,7 @@
                         }
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -1925,10 +1925,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -2077,7 +2077,7 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -2233,13 +2233,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -2271,10 +2271,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -2306,13 +2306,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -2334,10 +2334,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -2502,13 +2502,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -2540,10 +2540,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -2575,13 +2575,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -2603,10 +2603,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -2764,13 +2764,13 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -2802,10 +2802,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
-                        "$ref": "#/components/responses/BadRequestBody"
+                        "$ref": "#/components/responses/Error"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -2853,10 +2853,10 @@
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
-                        "$ref": "#/components/responses/Forbidden"
+                        "$ref": "#/components/responses/Error"
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/Error"
                     }
                 },
                 "security": [
@@ -3763,6 +3763,27 @@
                     "totalCount": 32,
                     "pageSize": 15
                 }
+            },
+            "AppError": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "description": "Unique code of the error",
+                        "type": "string"
+                    },
+                    "message": {
+                        "description": "A brief, human-readable description of the error",
+                        "type": "string"
+                    },
+                    "detailMessage": {
+                        "description": "A more technical, in-depth description of the error",
+                        "type": "string"
+                    },
+                    "canRetry": {
+                        "description": "Whether or not the client may retry the request that originated the error",
+                        "type": "boolean"
+                    }
+                }
             }
         },
         "responses": {
@@ -3776,8 +3797,15 @@
                 },
                 "description": "Normal response for most \"/data\" methods; sends items in an array, along with pagination metadata."
             },
-            "Forbidden": {
-                "description": "Erroneous, empty response for requests not meeting security requirements. Most likely, it does not have authorization to access specific privileged resource(s), or does not include any form of authentication while requesting some privileged resource(s)."
+            "Error": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/AppError"
+                        }
+                    }
+                },
+                "description": "Standard response for unsuccessful requests; can include an explanation and may (or may not) be retried thereafter."
             },
             "AuthorizedAccessToResource": {
                 "content": {
@@ -3799,9 +3827,6 @@
                 },
                 "description": "Normal response. Sends an array of API routes available for use from a parent path."
             },
-            "NotFound": {
-                "description": "Non-erroneous, empty response which indicates that no data matched the provided criteria."
-            },
             "Empty": {
                 "description": "Normal response which indicates everything went right (after successfully altering data, for example) and that there's no additional information to be included."
             },
@@ -3816,9 +3841,6 @@
             },
             "AllowMethodGET-PUT": {
                 "description": "Normal, empty response to some OPTIONS requests. Should include CORS headers and indicate that only the GET and PUT methods are allowed."
-            },
-            "BadRequestBody": {
-                "description": "Erroneous response, sent when the request does not meet certain expectations. This probably because required properties were not included in the request body, or because certain data constraints (duplicate code numbers, for example) were not met."
             }
         },
         "securitySchemes": {
