@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Generic error response and response body schema, named `Error` and `AppError` respectively
+
 ### Changed
 
+- [BREAKING CHANGE] All error responses were replaced in favor of the new generic error schema
 - [BREAKING CHANGE] In newly-named `Order`, `Customer` and `Salesperson` now reference a `Person` element instead
 - [BREAKING CHANGE] Rename all instances of `Sell` to `Order`
   - Tag `sales` -> `orders`
@@ -27,6 +32,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- [BREAKING CHANGE] Error response schemas
+  - `Forbidden`
+  - `NotFound`
+  - `BadRequestBody`
 - [BREAKING CHANGE] Elements that constitute the concepts of `Customer` and `Salesperson`
   - Endpoints `/data/customers` and `/data/salespeople`
   - Schemas `Customer` and `Salesperson`
