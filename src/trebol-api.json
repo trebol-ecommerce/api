@@ -15,9 +15,6 @@
     },
     "tags": [
         {
-            "name": "authorization"
-        },
-        {
             "name": "preflight"
         },
         {
@@ -28,9 +25,6 @@
         },
         {
             "name": "account"
-        },
-        {
-            "name": "session"
         },
         {
             "name": "create"
@@ -82,95 +76,6 @@
         }
     ],
     "paths": {
-        "/access": {
-            "summary": "Allowed (authorized) access to API routes",
-            "description": "Operation that hints the API consumer on what paths, routes, or resources can be accessed in the /data API.",
-            "get": {
-                "tags": [
-                    "authorization"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AuthorizedAccessToRoutes"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Error"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "access-routes-get",
-                "summary": "Query allowed API routes",
-                "description": "GET the API resource paths that the current session is authorized to use."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "access-routes-options",
-                "summary": "Preflight check for API resource accesses",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/access/{resource}": {
-            "summary": "Authorized access to a certain resource",
-            "description": "Operation that hints the API consumer on what actions can be performed against another resource in the /data API.",
-            "get": {
-                "tags": [
-                    "authorization"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AuthorizedAccessToResource"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/Error"
-                    }
-                },
-                "security": [
-                    {
-                        "AuthorizedRequest": []
-                    }
-                ],
-                "operationId": "access-resource-actions-get",
-                "summary": "Query allowed API operations on the resource",
-                "description": "GET operations that the current user is authorized to request against the resource."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodGET"
-                    }
-                },
-                "operationId": "access-resource-options",
-                "summary": "Preflight check for resource operation accesses",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            },
-            "parameters": [
-                {
-                    "name": "resource",
-                    "in": "path",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ]
-        },
         "/data/people": {
             "summary": "Person data API endpoint",
             "description": "Operations to fetch people data. \nEditing operations cannot be done through this resource.",
@@ -1954,153 +1859,6 @@
                 ],
                 "operationId": "profile-options",
                 "summary": "Preflight check for user profile information",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/public/guest": {
-            "summary": "Guest session opener",
-            "description": "",
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Person"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "account",
-                    "session"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Normal response; a guest token was generated. It is included in the response headers and body."
-                    },
-                    "403": {
-                        "description": "Erroneous, empty response to improper use; the user was already logged in or using a valid guest token."
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "guest-session-request",
-                "summary": "Start a guest session",
-                "description": "POST personal information to generate a token for a temporary guest session."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodPOST"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "guest-session-options",
-                "summary": "Preflight check for guest session opener",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/public/login": {
-            "summary": "Session opener",
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/LoginCredentials"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "account",
-                    "session"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Normal response; the credentials are correct, and an authorization token was generated. It is included in the response headers and body."
-                    },
-                    "403": {
-                        "description": "Erroneous, empty response, sent when the credentials are rejected."
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "login-request",
-                "summary": "Start a logged-in session",
-                "description": "POST credentials to authenticate, generate an authorization token and start a new session."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodPOST"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "login-options",
-                "summary": "Preflight check for session opener",
-                "description": "Fetch OPTIONS for communicating with this resource."
-            }
-        },
-        "/public/register": {
-            "summary": "Account registrar",
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UserRegistration"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "account"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/Empty"
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/Error"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "register-request",
-                "summary": "Request a new user account",
-                "description": "POST details for a new user account, including its profile information."
-            },
-            "options": {
-                "tags": [
-                    "preflight"
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/AllowMethodPOST"
-                    }
-                },
-                "security": [
-                    {}
-                ],
-                "operationId": "register-options",
-                "summary": "Preflight check for account registrar",
                 "description": "Fetch OPTIONS for communicating with this resource."
             }
         },

@@ -40,6 +40,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Endpoints `/data/customers` and `/data/salespeople`
   - Schemas `Customer` and `Salesperson`
   - Tags `customers` and `salespeople`
+- [BREAKING CHANGE] Auth-related resources
+  - Paths
+    - `/public/guest`
+    - `/public/register`
+    - `/public/login`
+    - `/access`
+    - `/access/{resource}`
+  - Unusedd tags
+    - `authorization`
+    - `session`
 
 ## [v1.7.3] - 2024-03-11
 
