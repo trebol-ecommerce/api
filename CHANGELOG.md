@@ -29,6 +29,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `SellDetail` -> `OrderDetail`
     - `SellDetailProperties` -> `OrderDetailProperties`
   - All uses of the noun in literal descriptions
+- [BREAKING CHANGE] Standard status codes in replacement of vague `200`
+  - All `/data/` POST endpoints will return `201`
+    - Excepting the three subroutes within `/data/orders` which will return `204`:
+      - `/confirmation`
+      - `/rejection`
+      - `/completion`
+  - All `/data/` PUT, PATCH, DELETE and OPTIONS endpoints will return `204`
 
 ### Removed
 

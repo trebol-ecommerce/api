@@ -232,7 +232,7 @@
                     "products"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -270,7 +270,7 @@
                     "products"
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -305,7 +305,7 @@
                     "products"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -333,7 +333,7 @@
                     "products"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
@@ -357,7 +357,7 @@
                     "preflight"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
@@ -534,7 +534,7 @@
                     "orders"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -572,7 +572,7 @@
                     "orders"
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -607,7 +607,7 @@
                     "orders"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -635,7 +635,7 @@
                     "orders"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
@@ -659,7 +659,7 @@
                     "preflight"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
@@ -696,7 +696,7 @@
                     "orders"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
@@ -744,7 +744,7 @@
                     "orders"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
@@ -792,7 +792,7 @@
                     "orders"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
@@ -906,7 +906,7 @@
                     "users"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -944,7 +944,7 @@
                     "users"
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -979,7 +979,7 @@
                     "users"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -1007,7 +1007,7 @@
                     "users"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
@@ -1031,7 +1031,7 @@
                     "preflight"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
@@ -1152,7 +1152,7 @@
                     "images"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -1190,7 +1190,7 @@
                     "images"
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -1225,7 +1225,7 @@
                     "images"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -1253,7 +1253,7 @@
                     "images"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
@@ -1277,7 +1277,7 @@
                     "preflight"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
@@ -1606,7 +1606,7 @@
                     "product-categories"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -1644,7 +1644,7 @@
                     "product-categories"
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -1679,7 +1679,7 @@
                     "product-categories"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -1707,7 +1707,7 @@
                     "product-categories"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
@@ -1731,7 +1731,7 @@
                     "preflight"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
@@ -1826,7 +1826,7 @@
                     "account"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -1987,7 +1987,7 @@
                     "shippers"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -2025,7 +2025,7 @@
                     "shippers"
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -2060,7 +2060,7 @@
                     "shippers"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -2088,7 +2088,7 @@
                     "shippers"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
@@ -2112,7 +2112,7 @@
                     "preflight"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
@@ -2256,7 +2256,7 @@
                     "product-lists"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -2294,7 +2294,7 @@
                     "product-lists"
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -2329,7 +2329,7 @@
                     "product-lists"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -2357,7 +2357,7 @@
                     "product-lists"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
@@ -2381,7 +2381,7 @@
                     "preflight"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
@@ -2518,7 +2518,7 @@
                     "product-lists"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -2556,7 +2556,7 @@
                     "product-lists"
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "400": {
@@ -2607,7 +2607,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/Empty"
                     },
                     "403": {
@@ -2631,7 +2631,7 @@
                     "preflight"
                 ],
                 "responses": {
-                    "200": {
+                    "204": {
                         "$ref": "#/components/responses/AllowAllMethods"
                     }
                 },
